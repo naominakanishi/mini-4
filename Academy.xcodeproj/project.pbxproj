@@ -47,6 +47,9 @@
 		5BE70E57282C57B500E36372 /* HelpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E56282C57B500E36372 /* HelpFilter.swift */; };
 		5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */; };
 		5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */; };
+		5BE70E5E282C643C00E36372 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* Authentication.swift */; };
+		5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
+		5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +186,9 @@
 		5BE70E56282C57B500E36372 /* HelpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFilter.swift; sourceTree = "<group>"; };
 		5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTypeFilterButton.swift; sourceTree = "<group>"; };
 		5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListViewModel.swift; sourceTree = "<group>"; };
+		5BE70E5D282C643C00E36372 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCard.swift; sourceTree = "<group>"; };
+		5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +359,7 @@
 			children = (
 				5BE70E25282C3F6B00E36372 /* HelpCard.swift */,
 				5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */,
+				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -424,6 +431,7 @@
 			children = (
 				5BE70E50282C4A6F00E36372 /* DateFormatter.swift */,
 				5BE70E56282C57B500E36372 /* HelpFilter.swift */,
+				5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -432,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				119255AD282B4E84008410F3 /* HTTP.swift */,
+				5BE70E5D282C643C00E36372 /* Authentication.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -656,9 +665,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE70E5E282C643C00E36372 /* Authentication.swift in Sources */,
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
 				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
 				5BE70E57282C57B500E36372 /* HelpFilter.swift in Sources */,
+				5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
 				119255AE282B4E84008410F3 /* HTTP.swift in Sources */,
 				5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */,
@@ -690,6 +701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
 				5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */,
 				5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */,
 			);

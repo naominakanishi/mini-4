@@ -2,15 +2,11 @@ import Foundation
 import Academy
 
 final class ContentViewModel: ObservableObject {
-    @Published private(set) var progsHelpList: [Help] = []
-    @Published private(set) var designHelpList: [Help] = []
-    @Published private(set) var businessHelpList: [Help] = []
+    @Published private(set) var announcementList: [Announcement] = []
     
-    let filterAssignment = FilterAssignment()
+    let announcementFilter = AnnouncementFilter()
     
     func onAppear() {
-        progsHelpList = filterAssignment.filter(byType: .code)
-        designHelpList = filterAssignment.filter(byType: .design)
-        businessHelpList = filterAssignment.filter(byType: .business)
+        announcementList = announcementFilter.filterActiveAnnouncements()
     }
 }
