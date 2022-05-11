@@ -1,7 +1,7 @@
 import Foundation
 import Academy
 
-final class ContentViewModel: ObservableObject {
+final class HelpListViewModel: ObservableObject {
     @Published var codeHelpList: [Help] = []
     @Published var designHelpList: [Help] = []
     @Published var businessHelpList: [Help] = []

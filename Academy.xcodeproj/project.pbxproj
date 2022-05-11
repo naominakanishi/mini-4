@@ -32,7 +32,7 @@
 		5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E22282C3EC000E36372 /* Announcement.swift */; };
 		5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E25282C3F6B00E36372 /* HelpCard.swift */; };
 		5BE70E2E282C41C000E36372 /* AcademyiPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E2D282C41C000E36372 /* AcademyiPadApp.swift */; };
-		5BE70E30282C41C000E36372 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E2F282C41C000E36372 /* ContentView.swift */; };
+		5BE70E30282C41C000E36372 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E2F282C41C000E36372 /* HelpListView.swift */; };
 		5BE70E32282C41C200E36372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE70E31282C41C200E36372 /* Assets.xcassets */; };
 		5BE70E35282C41C200E36372 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE70E34282C41C200E36372 /* Preview Assets.xcassets */; };
 		5BE70E3F282C45B200E36372 /* Academy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; };
@@ -46,7 +46,7 @@
 		5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E54282C566B00E36372 /* RequestForHelpModalView.swift */; };
 		5BE70E57282C57B500E36372 /* HelpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E56282C57B500E36372 /* HelpFilter.swift */; };
 		5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */; };
-		5BE70E5C282C5FEC00E36372 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* ContentViewModel.swift */; };
+		5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,7 +174,7 @@
 		5BE70E25282C3F6B00E36372 /* HelpCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCard.swift; sourceTree = "<group>"; };
 		5BE70E2B282C41C000E36372 /* AcademyiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcademyiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE70E2D282C41C000E36372 /* AcademyiPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyiPadApp.swift; sourceTree = "<group>"; };
-		5BE70E2F282C41C000E36372 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5BE70E2F282C41C000E36372 /* HelpListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListView.swift; sourceTree = "<group>"; };
 		5BE70E31282C41C200E36372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BE70E34282C41C200E36372 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5BE70E50282C4A6F00E36372 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 		5BE70E54282C566B00E36372 /* RequestForHelpModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestForHelpModalView.swift; sourceTree = "<group>"; };
 		5BE70E56282C57B500E36372 /* HelpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFilter.swift; sourceTree = "<group>"; };
 		5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTypeFilterButton.swift; sourceTree = "<group>"; };
-		5BE70E5B282C5FEC00E36372 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,7 +397,7 @@
 		5BE70E3B282C423900E36372 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				5BE70E5B282C5FEC00E36372 /* ContentViewModel.swift */,
+				5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -405,7 +405,7 @@
 		5BE70E3C282C424000E36372 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BE70E2F282C41C000E36372 /* ContentView.swift */,
+				5BE70E2F282C41C000E36372 /* HelpListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -699,9 +699,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE70E30282C41C000E36372 /* ContentView.swift in Sources */,
+				5BE70E30282C41C000E36372 /* HelpListView.swift in Sources */,
 				5BE70E2E282C41C000E36372 /* AcademyiPadApp.swift in Sources */,
-				5BE70E5C282C5FEC00E36372 /* ContentViewModel.swift in Sources */,
+				5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

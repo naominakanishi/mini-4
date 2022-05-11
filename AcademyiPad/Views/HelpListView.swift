@@ -2,9 +2,9 @@ import SwiftUI
 import Academy
 import AcademyUI
 
-struct ContentView: View {
+struct HelpListView: View {
     
-    @StateObject private var viewModel = ContentViewModel()
+    @StateObject private var viewModel = HelpListViewModel()
     
     var body: some View {
         VStack {
@@ -53,9 +53,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HelpListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HelpListView()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
