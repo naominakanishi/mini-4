@@ -2,6 +2,7 @@ import Foundation
 
 struct HTTP {
     func fetchHelpList() -> [Help] {
+        // Review later
         [
             .init(title: "Como configurar campanhas no Facebook Ads", description: "Precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", type: .business, currentLocation: "Aquário", requestDate: Date(), assignee: nil),
             .init(title: "Arquitetura MVVM", description: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", type: .code, currentLocation: "Discord - Lab 2", requestDate: Date(), assignee: nil),
@@ -13,21 +14,9 @@ struct HTTP {
             .init(title: "Como fazer um modelo de assinatura que funcione?", description: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", type: .business, currentLocation: "Lab 3", requestDate: Date(), assignee: nil)
         ]
     }
-}
-
-public struct FilterAssignment {
     
-    let http: HTTP
-    
-    public init() {
-        self.init(http: HTTP())
-    }
-    
-    internal init(http: HTTP) {
-        self.http = http
-    }
-    
-    public func filter(byType type: HelpType) -> [Help] {
-        http.fetchHelpList()
+    func createHelpRequest() {
+        // To do -> Save Help on Firebase Realtime Database
+        
     }
 }

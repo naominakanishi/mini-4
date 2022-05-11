@@ -1,9 +1,12 @@
 import SwiftUI
 import Academy
 
-struct HelpCard: View {
-    var helpModel: Help
+public struct HelpCard: View {
     
+    var helpModel: Help
+    @State var showDetails: Bool = false
+    
+    // Review
     var typeColor: Color {
         switch helpModel.type {
         case .business:
@@ -12,9 +15,12 @@ struct HelpCard: View {
             return .green
         case .design:
             return .pink
+        case .all:
+            return .gray
         }
     }
     
+    // Review
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "pt-BR")
@@ -28,14 +34,17 @@ struct HelpCard: View {
         }
     }
     
+    // Review
     var isToday: Bool {
         let calendar = Calendar.current
         return calendar.isDateInToday(helpModel.requestDate)
     }
     
-    @State var showDetails: Bool = false
+    public init(helpModel: Help) {
+        self.helpModel = helpModel
+    }
     
-    var body: some View {
+    public var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {

@@ -29,4 +29,5 @@ public enum HelpType: String {
     case design = "Design"
     case code = "Progs"
     case business = "Business"
+    case all = "Todos"
 }
