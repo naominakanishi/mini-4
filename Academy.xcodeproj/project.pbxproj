@@ -26,7 +26,15 @@
 		119255EA282B51C9008410F3 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		119255EE282B51E5008410F3 /* AcademyUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; };
 		119255EF282B51E5008410F3 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		119255F3282B5203008410F3 /* AssignmentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255F2282B5203008410F3 /* AssignmentList.swift */; };
+		5BE70E1B282C338E00E36372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1A282C338E00E36372 /* User.swift */; };
+		5BE70E1D282C33B600E36372 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1C282C33B600E36372 /* Help.swift */; };
+		5BE70E20282C3D0A00E36372 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */; };
+		5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E22282C3EC000E36372 /* Announcement.swift */; };
+		5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E25282C3F6B00E36372 /* HelpCard.swift */; };
+		5BE70E2E282C41C000E36372 /* AcademyiPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E2D282C41C000E36372 /* AcademyiPadApp.swift */; };
+		5BE70E30282C41C000E36372 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E2F282C41C000E36372 /* ContentView.swift */; };
+		5BE70E32282C41C200E36372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE70E31282C41C200E36372 /* Assets.xcassets */; };
+		5BE70E35282C41C200E36372 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE70E34282C41C200E36372 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +111,16 @@
 		119255D4282B4F01008410F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		119255E3282B51C9008410F3 /* AcademyUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AcademyUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255E5282B51C9008410F3 /* AcademyUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcademyUI.h; sourceTree = "<group>"; };
-		119255F2282B5203008410F3 /* AssignmentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentList.swift; sourceTree = "<group>"; };
+		5BE70E1A282C338E00E36372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5BE70E1C282C33B600E36372 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		5BE70E22282C3EC000E36372 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		5BE70E25282C3F6B00E36372 /* HelpCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCard.swift; sourceTree = "<group>"; };
+		5BE70E2B282C41C000E36372 /* AcademyiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcademyiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE70E2D282C41C000E36372 /* AcademyiPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyiPadApp.swift; sourceTree = "<group>"; };
+		5BE70E2F282C41C000E36372 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5BE70E31282C41C200E36372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BE70E34282C41C200E36372 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +156,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BE70E28282C41C000E36372 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -146,9 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				119255A5282B4E77008410F3 /* Academy */,
+				119255E4282B51C9008410F3 /* AcademyUI */,
 				119255B4282B4EA9008410F3 /* AcademyiOS */,
 				119255CC282B4F00008410F3 /* AcademyTV */,
-				119255E4282B51C9008410F3 /* AcademyUI */,
+				5BE70E2C282C41C000E36372 /* AcademyiPad */,
 				119255A4282B4E77008410F3 /* Products */,
 				119255C1282B4EB3008410F3 /* Frameworks */,
 			);
@@ -161,6 +186,7 @@
 				119255B3282B4EA9008410F3 /* AcademyiOS.app */,
 				119255CB282B4F00008410F3 /* AcademyTV.app */,
 				119255E3282B51C9008410F3 /* AcademyUI.framework */,
+				5BE70E2B282C41C000E36372 /* AcademyiPad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +194,7 @@
 		119255A5282B4E77008410F3 /* Academy */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E19282C332300E36372 /* Models */,
 				119255A6282B4E77008410F3 /* Academy.h */,
 				119255AD282B4E84008410F3 /* Dummy.swift */,
 			);
@@ -177,8 +204,9 @@
 		119255B4282B4EA9008410F3 /* AcademyiOS */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E39282C421900E36372 /* Views */,
+				5BE70E3A282C421E00E36372 /* View Models */,
 				119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */,
-				119255B7282B4EA9008410F3 /* ContentView.swift */,
 				119255B9282B4EAA008410F3 /* Assets.xcassets */,
 				119255BB282B4EAA008410F3 /* Preview Content */,
 			);
@@ -203,8 +231,9 @@
 		119255CC282B4F00008410F3 /* AcademyTV */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E21282C3D2500E36372 /* Views */,
+				5BE70E1E282C3CFC00E36372 /* View Models */,
 				119255CD282B4F00008410F3 /* AcademyTVApp.swift */,
-				119255CF282B4F00008410F3 /* ContentView.swift */,
 				119255D1282B4F01008410F3 /* Assets.xcassets */,
 				119255D3282B4F01008410F3 /* Preview Content */,
 			);
@@ -222,10 +251,94 @@
 		119255E4282B51C9008410F3 /* AcademyUI */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E24282C3F5A00E36372 /* Components */,
 				119255E5282B51C9008410F3 /* AcademyUI.h */,
-				119255F2282B5203008410F3 /* AssignmentList.swift */,
 			);
 			path = AcademyUI;
+			sourceTree = "<group>";
+		};
+		5BE70E19282C332300E36372 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E1A282C338E00E36372 /* User.swift */,
+				5BE70E1C282C33B600E36372 /* Help.swift */,
+				5BE70E22282C3EC000E36372 /* Announcement.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5BE70E1E282C3CFC00E36372 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BE70E21282C3D2500E36372 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				119255CF282B4F00008410F3 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BE70E24282C3F5A00E36372 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E25282C3F6B00E36372 /* HelpCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5BE70E2C282C41C000E36372 /* AcademyiPad */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E3C282C424000E36372 /* Views */,
+				5BE70E3B282C423900E36372 /* View Models */,
+				5BE70E2D282C41C000E36372 /* AcademyiPadApp.swift */,
+				5BE70E31282C41C200E36372 /* Assets.xcassets */,
+				5BE70E33282C41C200E36372 /* Preview Content */,
+			);
+			path = AcademyiPad;
+			sourceTree = "<group>";
+		};
+		5BE70E33282C41C200E36372 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E34282C41C200E36372 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5BE70E39282C421900E36372 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				119255B7282B4EA9008410F3 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BE70E3A282C421E00E36372 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BE70E3B282C423900E36372 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BE70E3C282C424000E36372 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E2F282C41C000E36372 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +439,23 @@
 			productReference = 119255E3282B51C9008410F3 /* AcademyUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		5BE70E2A282C41C000E36372 /* AcademyiPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BE70E36282C41C200E36372 /* Build configuration list for PBXNativeTarget "AcademyiPad" */;
+			buildPhases = (
+				5BE70E27282C41C000E36372 /* Sources */,
+				5BE70E28282C41C000E36372 /* Frameworks */,
+				5BE70E29282C41C000E36372 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcademyiPad;
+			productName = AcademyiPad;
+			productReference = 5BE70E2B282C41C000E36372 /* AcademyiPad.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -350,6 +480,9 @@
 						CreatedOnToolsVersion = 13.3.1;
 						LastSwiftMigration = 1330;
 					};
+					5BE70E2A282C41C000E36372 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 1192559D282B4E77008410F3 /* Build configuration list for PBXProject "Academy" */;
@@ -369,6 +502,7 @@
 				119255B2282B4EA9008410F3 /* AcademyiOS */,
 				119255CA282B4F00008410F3 /* AcademyTV */,
 				119255E2282B51C9008410F3 /* AcademyUI */,
+				5BE70E2A282C41C000E36372 /* AcademyiPad */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +540,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BE70E29282C41C000E36372 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE70E35282C41C200E36372 /* Preview Assets.xcassets in Resources */,
+				5BE70E32282C41C200E36372 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -413,6 +556,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
+				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
+				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
 				119255AE282B4E84008410F3 /* Dummy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +578,7 @@
 			files = (
 				119255D0282B4F00008410F3 /* ContentView.swift in Sources */,
 				119255CE282B4F00008410F3 /* AcademyTVApp.swift in Sources */,
+				5BE70E20282C3D0A00E36372 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +586,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				119255F3282B5203008410F3 /* AssignmentList.swift in Sources */,
+				5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE70E27282C41C000E36372 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE70E30282C41C000E36372 /* ContentView.swift in Sources */,
+				5BE70E2E282C41C000E36372 /* AcademyiPadApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +993,64 @@
 			};
 			name = Release;
 		};
+		5BE70E37282C41C200E36372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AcademyiPad/Preview Content\"";
+				DEVELOPMENT_TEAM = VWZ6P536SX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrearns.AcademyiPad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5BE70E38282C41C200E36372 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AcademyiPad/Preview Content\"";
+				DEVELOPMENT_TEAM = VWZ6P536SX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrearns.AcademyiPad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -881,6 +1095,15 @@
 			buildConfigurations = (
 				119255EC282B51C9008410F3 /* Debug */,
 				119255ED282B51C9008410F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BE70E36282C41C200E36372 /* Build configuration list for PBXNativeTarget "AcademyiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BE70E37282C41C200E36372 /* Debug */,
+				5BE70E38282C41C200E36372 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
