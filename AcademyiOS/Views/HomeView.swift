@@ -3,6 +3,9 @@ import AcademyUI
 
 struct HomeView: View {
     @State var showHelpListView: Bool = false
+    @State var showAcademyPeopleView: Bool = false
+    @State var showCalendarView: Bool = false
+    @State var showSuggestionsBoxView: Bool = false
     
     var body: some View {
         NavigationView {
@@ -46,11 +49,11 @@ struct HomeView: View {
                         HStack {
                             VStack {
                                 FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
-                                    
+                                    showAcademyPeopleView = true
                                 }
                                 
                                 FeatureCard(title: "agenda", maxHeight: 120, color: Color.adaLightBlue) {
-                                    
+                                    showCalendarView = true
                                 }
                             }
                             
@@ -64,7 +67,7 @@ struct HomeView: View {
                             }
                             
                             FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
-                                
+                                showSuggestionsBoxView = true
                             }
                         }
                     }
@@ -75,6 +78,9 @@ struct HomeView: View {
                 Spacer()
                 
                 NavigationLink("", destination: HelpListView(), isActive: $showHelpListView)
+                NavigationLink("", destination: AcademyPeopleView(), isActive: $showAcademyPeopleView)
+                NavigationLink("", destination: CalendarView(), isActive: $showCalendarView)
+                NavigationLink("", destination: SuggestionsBoxView(), isActive: $showSuggestionsBoxView)
             }
             .background(Color.adaBackground)
             .navigationBarHidden(true)
@@ -120,5 +126,6 @@ struct FeatureCard: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .preferredColorScheme(.dark)
     }
 }

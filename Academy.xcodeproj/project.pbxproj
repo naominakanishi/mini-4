@@ -52,6 +52,9 @@
 		5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */; };
 		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
 		5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E65282D8A1800E36372 /* HomeView.swift */; };
+		5BE70E68282DBEDB00E36372 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E67282DBEDB00E36372 /* CalendarView.swift */; };
+		5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */; };
+		5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +196,9 @@
 		5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFilter.swift; sourceTree = "<group>"; };
 		5BE70E63282D88A000E36372 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BE70E65282D8A1800E36372 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5BE70E67282DBEDB00E36372 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyPeopleView.swift; sourceTree = "<group>"; };
+		5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +401,9 @@
 				119255B7282B4EA9008410F3 /* HelpListView.swift */,
 				5BE70E54282C566B00E36372 /* RequestForHelpModalView.swift */,
 				5BE70E65282D8A1800E36372 /* HomeView.swift */,
+				5BE70E67282DBEDB00E36372 /* CalendarView.swift */,
+				5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */,
+				5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -686,8 +695,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */,
 				119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */,
+				5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */,
 				5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */,
+				5BE70E68282DBEDB00E36372 /* CalendarView.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */,
