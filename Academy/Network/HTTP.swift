@@ -1,8 +1,9 @@
 import Foundation
 
 struct HTTP {
+    // MARK: - Help requests
     func fetchHelpList() -> [Help] {
-        // Review later
+        // To do -> Fetch from /helps
         [
             .init(title: "Como configurar campanhas no Facebook Ads", description: "Precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", type: .business, currentLocation: "Aquário", requestDate: Date(), assignee: nil),
             .init(title: "Arquitetura MVVM", description: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", type: .code, currentLocation: "Discord - Lab 2", requestDate: Date(), assignee: nil),
@@ -15,8 +16,27 @@ struct HTTP {
         ]
     }
     
-    func createHelpRequest() {
+    func createNewHelpRequest(help: Help) {
         // To do -> Save Help on Firebase Realtime Database
+        
+    }
+    
+    // MARK: - Announcement requests
+    func fetchAnnouncementList() -> [Announcement] {
+        // To do -> Fetch from /announcements
+        [
+            .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", isActive: true),
+            .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "Hoje não vamos ter Get Together!!!", isActive: true),
+                .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", isActive: true),
+            .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "Hoje não vamos ter Get Together!!!", isActive: true),
+                .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", isActive: true),
+            .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "Hoje não vamos ter Get Together!!!", isActive: true),
+            .init(fromUser: User(name: "André", imageName: "andre-memoji"), date: Date(), text: "precisava de muita ajuda com o meu projeto, to tentando usar a biblioteca Metal pra fazer formas primitivas, triangleStrip no caso, mas to me batendo bastante", isActive: true),
+        ]
+    }
+    
+    func createNewAnnouncement(announcement: Announcement) {
+        // To do -> Save announcemente on Firebase Realtime Database
         
     }
 }

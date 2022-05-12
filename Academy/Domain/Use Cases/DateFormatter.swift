@@ -1,15 +1,21 @@
-//
-//  DateFormatter.swift
-//  Academy
-//
-//  Created by André Arns on 11/05/22.
-//
-
 import Foundation
 import SwiftUI
 
-struct DateFormatter {
-    func getformattedDate(format: String) {
-        // To do
+public extension Date {
+    func getFormattedDate() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "pt-BR")
+        formatter.timeZone = NSTimeZone(name: "UTC-3") as TimeZone?
+        
+        let calendar = Calendar.current
+        let isToday = calendar.isDateInToday(self)
+        
+        if isToday {
+            formatter.dateFormat = "HH:mm"
+            return "Hoje às " + formatter.string(from: self)
+        } else {
+            formatter.dateFormat = "MM/dd/yyyy"
+            return formatter.string(from: self)
+        }
     }
 }

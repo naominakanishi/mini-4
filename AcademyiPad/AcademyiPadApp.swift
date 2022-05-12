@@ -4,7 +4,7 @@ import SwiftUI
 struct AcademyiPadApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HelpListView()
         }
     }
 }

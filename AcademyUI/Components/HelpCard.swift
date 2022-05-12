@@ -57,7 +57,7 @@ public struct HelpCard: View {
                             .foregroundColor(.white)
                             .cornerRadius(16)
                         
-                        Text(formattedDate)
+                        Text(helpModel.requestDate.getFormattedDate())
                             .padding(.leading, 8)
                             .font(.system(size: 16, weight: .regular, design: .rounded))
                     }

@@ -2,11 +2,9 @@ import SwiftUI
 import Academy
 import AcademyUI
 
-struct ContentView: View {
+struct HelpListView: View {
     
-    @State var codeHelpList: [Help] = []
-    @State var designHelpList: [Help] = []
-    @State var businessHelpList: [Help] = []
+    @StateObject private var viewModel = HelpListViewModel()
     
     var body: some View {
         VStack {
@@ -15,7 +13,7 @@ struct ContentView: View {
                     Text("Ajuda Progs")
                         .font(.title2)
                         .bold()
-                    ForEach(codeHelpList, id: \.self) { helpModel in
+                    ForEach(viewModel.codeHelpList, id: \.self) { helpModel in
                         HelpCard(helpModel: helpModel)
                     }
                     Spacer()
@@ -26,7 +24,7 @@ struct ContentView: View {
                     Text("Ajuda Design")
                         .font(.title2)
                         .bold()
-                    ForEach(designHelpList, id: \.self) { helpModel in
+                    ForEach(viewModel.designHelpList, id: \.self) { helpModel in
                         HelpCard(helpModel: helpModel)
                     }
                     Spacer()
@@ -37,7 +35,7 @@ struct ContentView: View {
                     Text("Ajuda Business")
                         .font(.title2)
                         .bold()
-                    ForEach(businessHelpList, id: \.self) { helpModel in
+                    ForEach(viewModel.businessHelpList, id: \.self) { helpModel in
                         HelpCard(helpModel: helpModel)
                     }
                     Spacer()
@@ -47,21 +45,17 @@ struct ContentView: View {
             
             Spacer()
         }
-        .onAppear {
-            separateList()
-        }
         .statusBar(hidden: true)
         .padding()
-    }
-    
-    func separateList() {
-        
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HelpListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HelpListView()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
