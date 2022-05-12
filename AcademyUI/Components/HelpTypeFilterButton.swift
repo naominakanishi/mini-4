@@ -9,11 +9,11 @@ public struct HelpTypeFilterButton: View {
     var typeColor: Color {
         switch helpType {
         case .business:
-            return .blue
+            return .adaYellow
         case .code:
-            return .green
+            return .adaGreen
         case .design:
-            return .pink
+            return .adaPink
         case .all:
             return .gray
         }
@@ -28,14 +28,21 @@ public struct HelpTypeFilterButton: View {
         Button(action: {
             onTap()
         }) {
-            Text(helpType.rawValue)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 4)
-                .background(typeColor)
-                .font(.system(size: 16, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-                .cornerRadius(16)
-                .padding(.bottom, 8)
+            VStack {
+                Text(helpType.rawValue)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
+                    .background(typeColor.opacity(0.1))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(typeColor, lineWidth: 1)
+            )
+            .padding(.vertical, 4)
+            .padding(.leading, 4)
         }
     }
 }

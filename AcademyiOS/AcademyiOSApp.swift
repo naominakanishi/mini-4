@@ -4,7 +4,7 @@ import SwiftUI
 struct AcademyiOSApp: App {
     var body: some Scene {
         WindowGroup {
-            HelpListView()
+            HomeView()
         }
     }
 }

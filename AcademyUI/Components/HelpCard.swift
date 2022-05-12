@@ -10,34 +10,14 @@ public struct HelpCard: View {
     var typeColor: Color {
         switch helpModel.type {
         case .business:
-            return .blue
+            return .adaYellow
         case .code:
-            return .green
+            return .adaGreen
         case .design:
-            return .pink
+            return .adaPink
         case .all:
             return .gray
         }
-    }
-    
-    // Review
-    var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "pt-BR")
-        formatter.timeZone = NSTimeZone(name: "UTC-3") as TimeZone?
-        if isToday {
-            formatter.dateFormat = "HH:mm"
-            return "Hoje às " + formatter.string(from: helpModel.requestDate)
-        } else {
-            formatter.dateFormat = "MM/dd/yyyy"
-            return formatter.string(from: helpModel.requestDate)
-        }
-    }
-    
-    // Review
-    var isToday: Bool {
-        let calendar = Calendar.current
-        return calendar.isDateInToday(helpModel.requestDate)
     }
     
     public init(helpModel: Help) {
@@ -47,49 +27,61 @@ public struct HelpCard: View {
     public var body: some View {
         VStack {
             HStack {
+                Text("1")
+                    .font(.system(size: 40, weight: .bold, design: .default))
+                    .foregroundColor(Color.white)
+                    .padding(.trailing)
+                    .padding(.leading, 8)
+                
                 VStack(alignment: .leading) {
-                    HStack(alignment: .center) {
-                        Text(helpModel.type.rawValue)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 4)
-                            .background(typeColor)
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
-                            .cornerRadius(16)
-                        
-                        Text(helpModel.requestDate.getFormattedDate())
-                            .padding(.leading, 8)
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                    }
-                    .padding(.bottom, 8)
-                    
                     Text(helpModel.title)
                         .bold()
+                        .padding(.bottom, 2)
+                        .foregroundColor(Color.white)
                     
-                    if showDetails {
-                        Text(helpModel.description)
-                            .padding(.top, 8)
-                    }
+                    Text(helpModel.currentLocation)
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundColor(Color.white)
                 }
+                
                 Spacer()
+                
+                Text(helpModel.requestDate.getFormattedDate())
+                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                    .foregroundColor(Color.white)
+                
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(8)
-            .shadow(color: .black.opacity(0.1), radius: 16, x: 0, y: 0)
-            .padding(.horizontal)
+            
+            if showDetails {
+                Text(helpModel.description)
+                    .padding(.top, 8)
+                
+                // TO DO: Add other help data here
+                
+            }
         }
-//        .onTapGesture {
-//            withAnimation {
-//                showDetails.toggle()
-//            }
-//        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(typeColor.opacity(0.2))
+        .cornerRadius(8)
+        .shadow(color: .black.opacity(0.1), radius: 16, x: 0, y: 0)
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(typeColor, lineWidth: 2)
+        )
+        .padding(.horizontal)
+        .padding(.bottom, 4)
+        .onTapGesture {
+            withAnimation {
+                showDetails.toggle()
+            }
+        }
     }
 }
 
 struct HelpCard_Previews: PreviewProvider {
     static var previews: some View {
         HelpCard(helpModel: .init(title: "Pode crerrr", description: "jsdnjsnajksdnjlsanjsdn asnjasnsdj asnsajn asndsjns", type: .business, currentLocation: "Caverna de cima", requestDate: Date(), assignee: nil))
+            .preferredColorScheme(.dark)
     }
 }

@@ -50,6 +50,8 @@
 		5BE70E5E282C643C00E36372 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* Authentication.swift */; };
 		5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */; };
+		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
+		5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E65282D8A1800E36372 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +191,8 @@
 		5BE70E5D282C643C00E36372 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCard.swift; sourceTree = "<group>"; };
 		5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFilter.swift; sourceTree = "<group>"; };
+		5BE70E63282D88A000E36372 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5BE70E65282D8A1800E36372 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +328,7 @@
 			children = (
 				5BE70E24282C3F5A00E36372 /* Components */,
 				119255E5282B51C9008410F3 /* AcademyUI.h */,
+				5BE70E63282D88A000E36372 /* Colors.swift */,
 			);
 			path = AcademyUI;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			children = (
 				119255B7282B4EA9008410F3 /* HelpListView.swift */,
 				5BE70E54282C566B00E36372 /* RequestForHelpModalView.swift */,
+				5BE70E65282D8A1800E36372 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -683,6 +689,7 @@
 				119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */,
 				5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
+				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,6 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
+				5BE70E64282D88A000E36372 /* Colors.swift in Sources */,
 				5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */,
 				5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */,
 			);

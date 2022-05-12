@@ -3,6 +3,7 @@ import Academy
 import AcademyUI
 
 struct HelpListView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel = HelpListViewModel()
     
     var body: some View {
@@ -11,9 +12,22 @@ struct HelpListView: View {
                 VStack {
                     VStack {
                         HStack {
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Image(systemName: "arrow.left")
+                                    .font(.system(size: 24, weight: .bold, design: .default))
+                                    .foregroundColor(Color.white)
+                            }
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        
+                        HStack {
                             Text("Fila de ajuda")
                                 .font(.title)
                                 .bold()
+                                .foregroundColor(Color.white)
                             
                             Spacer()
                         }
@@ -73,12 +87,15 @@ struct HelpListView: View {
                 }
             }
         }
+        .background(Color.adaBackground)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
             RequestHelpModalView()
         }
         .onAppear {
             viewModel.onAppear()
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

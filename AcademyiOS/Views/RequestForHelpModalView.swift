@@ -1,5 +1,6 @@
 import SwiftUI
 import Academy
+import AcademyUI
 
 struct RequestHelpModalView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -14,46 +15,24 @@ struct RequestHelpModalView: View {
                 .bold()
                 .font(.title2)
                 .padding(.vertical, 32)
+                .foregroundColor(Color.white)
             
             VStack(alignment: .leading) {
                     Text("Categoria")
                         .bold()
+                        .foregroundColor(Color.white)
                     
                     HStack {
-                        Button(action: {
+                        HelpTypeFilterButton(helpType: .code) {
                             categoryChosen = .code
-                        }) {
-                            Text("Progs")
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 4)
-                                .background(categoryChosen == .code ? Color.green : Color.gray)
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
                         }
                         
-                        Button(action: {
+                        HelpTypeFilterButton(helpType: .design) {
                             categoryChosen = .design
-                        }) {
-                            Text("Design")
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 4)
-                                .background(categoryChosen == .design ? Color.pink : Color.gray)
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
                         }
                         
-                        Button(action: {
+                        HelpTypeFilterButton(helpType: .business) {
                             categoryChosen = .business
-                        }) {
-                            Text("Business")
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 4)
-                                .background(categoryChosen == .business ? Color.blue : Color.gray)
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
                         }
                     
                     Spacer()
@@ -66,9 +45,12 @@ struct RequestHelpModalView: View {
             VStack(alignment: .leading) {
                 Text("Assunto principal")
                     .bold()
+                    .foregroundColor(Color.white)
+                
                 TextField("Seu desafio em poucas palavras", text: $subject)
                     .padding()
-                    .background(Color.white)
+                    .background(Color.adaDarkGray)
+                    .foregroundColor(Color.white)
                     .cornerRadius(8)
                     .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
             }
@@ -78,12 +60,15 @@ struct RequestHelpModalView: View {
             VStack(alignment: .leading) {
                 Text("Descrição")
                     .bold()
+                    .foregroundColor(Color.white)
+                
                 TextField("Descreva com mais detalhes o que você está tentando fazer e o que você já tentou até aogra", text: $description)
                     .padding()
                     .frame(height: 150)
-                    .background(Color.white)
+                    .background(Color.adaDarkGray)
                     .cornerRadius(8)
                     .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
+                    .foregroundColor(Color.white)
             }
             .padding(.horizontal)
             .padding(.bottom)
@@ -91,11 +76,14 @@ struct RequestHelpModalView: View {
             VStack(alignment: .leading) {
                 Text("Onde você está?")
                     .bold()
+                    .foregroundColor(Color.white)
+                
                 TextField("Onde a ajuda poderá te encontrar", text: $location)
                     .padding()
-                    .background(Color.white)
+                    .background(Color.adaDarkGray)
                     .cornerRadius(8)
                     .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
+                    .foregroundColor(Color.white)
             }
             .padding(.horizontal)
             .padding(.bottom)
@@ -118,6 +106,7 @@ struct RequestHelpModalView: View {
             
             Spacer()
         }
+        .background(Color.adaBackground)
     }
 }
 
