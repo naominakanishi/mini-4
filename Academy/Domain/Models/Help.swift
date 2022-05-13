@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Help {
+public struct Help: Codable {
     var id = UUID()
     public var title: String
     public var description: String
@@ -25,7 +25,7 @@ extension Help: Hashable {
     }
 }
 
-public enum HelpType: String {
+public enum HelpType: String, Codable {
     case design = "Design"
     case code = "Progs"
     case business = "Business"

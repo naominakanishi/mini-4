@@ -71,11 +71,11 @@ public struct HelpCard: View {
         )
         .padding(.horizontal)
         .padding(.bottom, 4)
-        .onTapGesture {
-            withAnimation {
-                showDetails.toggle()
-            }
-        }
+//        .onTapGesture {
+//            withAnimation {
+//                showDetails.toggle()
+//            }
+//        }
     }
 }
 
