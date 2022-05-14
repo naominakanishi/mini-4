@@ -26,6 +26,12 @@
 		119255EA282B51C9008410F3 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		119255EE282B51E5008410F3 /* AcademyUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; };
 		119255EF282B51E5008410F3 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD206D7282F43CE005E1090 /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206D6282F43CE005E1090 /* CodableFirebase */; };
+		5BD206DA282F4555005E1090 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206D9282F4555005E1090 /* FirebaseAnalytics */; };
+		5BD206DC282F4555005E1090 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206DB282F4555005E1090 /* FirebaseAuth */; };
+		5BD206DE282F4555005E1090 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206DD282F4555005E1090 /* FirebaseCrashlytics */; };
+		5BD206E0282F4555005E1090 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206DF282F4555005E1090 /* FirebaseDatabase */; };
+		5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206E2282F45D3005E1090 /* GoogleSignIn */; };
 		5BE70E1B282C338E00E36372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1A282C338E00E36372 /* User.swift */; };
 		5BE70E1D282C33B600E36372 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1C282C33B600E36372 /* Help.swift */; };
 		5BE70E20282C3D0A00E36372 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */; };
@@ -206,6 +212,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD206E0282F4555005E1090 /* FirebaseDatabase in Frameworks */,
+				5BD206DA282F4555005E1090 /* FirebaseAnalytics in Frameworks */,
+				5BD206DE282F4555005E1090 /* FirebaseCrashlytics in Frameworks */,
+				5BD206DC282F4555005E1090 /* FirebaseAuth in Frameworks */,
+				5BD206D7282F43CE005E1090 /* CodableFirebase in Frameworks */,
+				5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +508,14 @@
 			dependencies = (
 			);
 			name = Academy;
+			packageProductDependencies = (
+				5BD206D6282F43CE005E1090 /* CodableFirebase */,
+				5BD206D9282F4555005E1090 /* FirebaseAnalytics */,
+				5BD206DB282F4555005E1090 /* FirebaseAuth */,
+				5BD206DD282F4555005E1090 /* FirebaseCrashlytics */,
+				5BD206DF282F4555005E1090 /* FirebaseDatabase */,
+				5BD206E2282F45D3005E1090 /* GoogleSignIn */,
+			);
 			productName = Academy;
 			productReference = 119255A3282B4E77008410F3 /* Academy.framework */;
 			productType = "com.apple.product-type.framework";
@@ -618,6 +638,11 @@
 				Base,
 			);
 			mainGroup = 11925599282B4E77008410F3;
+			packageReferences = (
+				5BD206D5282F43CE005E1090 /* XCRemoteSwiftPackageReference "CodableFirebase" */,
+				5BD206D8282F4555005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5BD206E1282F45D3005E1090 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = 119255A4282B4E77008410F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1262,6 +1287,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5BD206D5282F43CE005E1090 /* XCRemoteSwiftPackageReference "CodableFirebase" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alickbass/CodableFirebase";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		5BD206D8282F4555005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		5BD206E1282F45D3005E1090 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5BD206D6282F43CE005E1090 /* CodableFirebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206D5282F43CE005E1090 /* XCRemoteSwiftPackageReference "CodableFirebase" */;
+			productName = CodableFirebase;
+		};
+		5BD206D9282F4555005E1090 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206D8282F4555005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5BD206DB282F4555005E1090 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206D8282F4555005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		5BD206DD282F4555005E1090 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206D8282F4555005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		5BD206DF282F4555005E1090 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206D8282F4555005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		5BD206E2282F45D3005E1090 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206E1282F45D3005E1090 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1192559A282B4E77008410F3 /* Project object */;
 }

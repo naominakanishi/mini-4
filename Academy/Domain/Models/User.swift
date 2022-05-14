@@ -1,7 +1,7 @@
 import Foundation
 
 public struct User: Hashable, Codable {
-    let id = UUID()
+    var id = UUID()
     public let name: String
     public let imageName: String
     let token: String
