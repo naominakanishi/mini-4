@@ -1,6 +1,14 @@
 import Foundation
+import FirebaseDatabase
 
-struct HTTP {
+public final class FirebaseService {
+    
+    private var ref: DatabaseReference!
+    
+    public init() {
+        self.ref = Database.database().reference()
+    }
+    
     // MARK: - Help requests
     func fetchHelpList() -> [Help] {
         // To do -> Fetch from /helps
@@ -16,9 +24,19 @@ struct HTTP {
         ]
     }
     
-    func createNewHelpRequest(help: Help) {
-        // To do -> Save Help on Firebase Realtime Database
-        
+    public func createNewHelpRequest(help: Help, completionHandler: @escaping () -> ()) {
+        // Review
+        self.ref.child("help/\(help.id)/").setValue([
+            "title": help.title,
+            "description" : help.description,
+            "currentLocation" : help.currentLocation
+        ]) { (error: Error?, ref: DatabaseReference) in
+            if let error = error {
+                print("Help request failed: \(error)")
+            } else {
+                print("Help request saved successfully 🚀")
+            }
+        }
     }
     
     // MARK: - Announcement requests
@@ -35,7 +53,7 @@ struct HTTP {
         ]
     }
     
-    func createNewAnnouncement(announcement: Announcement) {
+    public func createNewAnnouncement(announcement: Announcement) {
         // To do -> Save announcemente on Firebase Realtime Database
         
     }

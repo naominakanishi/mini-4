@@ -4,10 +4,7 @@ import AcademyUI
 
 struct RequestHelpModalView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State var categoryChosen: HelpType? = nil
-    @State var subject: String = ""
-    @State var description: String = ""
-    @State var location: String = ""
+    @StateObject var viewModel = RequestForHelpViewModel()
     
     var body: some View {
         VStack {
@@ -24,15 +21,15 @@ struct RequestHelpModalView: View {
                     
                     HStack {
                         HelpTypeFilterButton(helpType: .code) {
-                            categoryChosen = .code
+                            viewModel.categoryChosen = .code
                         }
                         
                         HelpTypeFilterButton(helpType: .design) {
-                            categoryChosen = .design
+                            viewModel.categoryChosen = .design
                         }
                         
                         HelpTypeFilterButton(helpType: .business) {
-                            categoryChosen = .business
+                            viewModel.categoryChosen = .business
                         }
                     
                     Spacer()
@@ -47,7 +44,7 @@ struct RequestHelpModalView: View {
                     .bold()
                     .foregroundColor(Color.white)
                 
-                TextField("Seu desafio em poucas palavras", text: $subject)
+                TextField("Seu desafio em poucas palavras", text: $viewModel.subject)
                     .padding()
                     .background(Color.adaDarkGray)
                     .foregroundColor(Color.white)
@@ -62,7 +59,7 @@ struct RequestHelpModalView: View {
                     .bold()
                     .foregroundColor(Color.white)
                 
-                TextField("Descreva com mais detalhes o que você está tentando fazer e o que você já tentou até aogra", text: $description)
+                TextField("Descreva com mais detalhes o que você está tentando fazer e o que você já tentou até aogra", text: $viewModel.description)
                     .padding()
                     .frame(height: 150)
                     .background(Color.adaDarkGray)
@@ -78,7 +75,7 @@ struct RequestHelpModalView: View {
                     .bold()
                     .foregroundColor(Color.white)
                 
-                TextField("Onde a ajuda poderá te encontrar", text: $location)
+                TextField("Onde a ajuda poderá te encontrar", text: $viewModel.location)
                     .padding()
                     .background(Color.adaDarkGray)
                     .cornerRadius(8)
@@ -91,6 +88,7 @@ struct RequestHelpModalView: View {
             Button(action: {
                 print("Save new help request on Firebase Database")
                 presentationMode.wrappedValue.dismiss()
+                viewModel.sendHelpRequest()
             }) {
                 VStack {
                     Text("Pedir ajuda")

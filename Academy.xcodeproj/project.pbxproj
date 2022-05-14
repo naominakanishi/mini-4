@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		119255A7282B4E77008410F3 /* Academy.h in Headers */ = {isa = PBXBuildFile; fileRef = 119255A6282B4E77008410F3 /* Academy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		119255AE282B4E84008410F3 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255AD282B4E84008410F3 /* HTTP.swift */; };
+		119255AE282B4E84008410F3 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255AD282B4E84008410F3 /* FirebaseService.swift */; };
 		119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */; };
 		119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B7282B4EA9008410F3 /* HelpListView.swift */; };
 		119255BA282B4EAA008410F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119255B9282B4EAA008410F3 /* Assets.xcassets */; };
@@ -32,6 +32,8 @@
 		5BD206DE282F4555005E1090 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206DD282F4555005E1090 /* FirebaseCrashlytics */; };
 		5BD206E0282F4555005E1090 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206DF282F4555005E1090 /* FirebaseDatabase */; };
 		5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206E2282F45D3005E1090 /* GoogleSignIn */; };
+		5BD206E5282F49D5005E1090 /* RequestForHelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */; };
+		5BD206E7282F4C1E005E1090 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD206E6282F4C1E005E1090 /* GoogleService-Info.plist */; };
 		5BE70E1B282C338E00E36372 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1A282C338E00E36372 /* User.swift */; };
 		5BE70E1D282C33B600E36372 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1C282C33B600E36372 /* Help.swift */; };
 		5BE70E20282C3D0A00E36372 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */; };
@@ -53,7 +55,7 @@
 		5BE70E57282C57B500E36372 /* HelpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E56282C57B500E36372 /* HelpFilter.swift */; };
 		5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */; };
 		5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */; };
-		5BE70E5E282C643C00E36372 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* Authentication.swift */; };
+		5BE70E5E282C643C00E36372 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* AuthenticationService.swift */; };
 		5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */; };
 		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
@@ -168,7 +170,7 @@
 /* Begin PBXFileReference section */
 		119255A3282B4E77008410F3 /* Academy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Academy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255A6282B4E77008410F3 /* Academy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Academy.h; sourceTree = "<group>"; };
-		119255AD282B4E84008410F3 /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		119255AD282B4E84008410F3 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		119255B3282B4EA9008410F3 /* AcademyiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcademyiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyiOSApp.swift; sourceTree = "<group>"; };
 		119255B7282B4EA9008410F3 /* HelpListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,8 @@
 		119255D4282B4F01008410F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		119255E3282B51C9008410F3 /* AcademyUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AcademyUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255E5282B51C9008410F3 /* AcademyUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcademyUI.h; sourceTree = "<group>"; };
+		5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestForHelpViewModel.swift; sourceTree = "<group>"; };
+		5BD206E6282F4C1E005E1090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BE70E1A282C338E00E36372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5BE70E1C282C33B600E36372 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
@@ -197,7 +201,7 @@
 		5BE70E56282C57B500E36372 /* HelpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFilter.swift; sourceTree = "<group>"; };
 		5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTypeFilterButton.swift; sourceTree = "<group>"; };
 		5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListViewModel.swift; sourceTree = "<group>"; };
-		5BE70E5D282C643C00E36372 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		5BE70E5D282C643C00E36372 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCard.swift; sourceTree = "<group>"; };
 		5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFilter.swift; sourceTree = "<group>"; };
 		5BE70E63282D88A000E36372 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -297,6 +301,7 @@
 		119255B4282B4EA9008410F3 /* AcademyiOS */ = {
 			isa = PBXGroup;
 			children = (
+				5BD206E6282F4C1E005E1090 /* GoogleService-Info.plist */,
 				5BE70E39282C421900E36372 /* Views */,
 				5BE70E3A282C421E00E36372 /* View Models */,
 				119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */,
@@ -424,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				5BE70E52282C4BA700E36372 /* HelpListViewModel.swift */,
+				5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -466,8 +472,8 @@
 		5BE70E4A282C470000E36372 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				119255AD282B4E84008410F3 /* HTTP.swift */,
-				5BE70E5D282C643C00E36372 /* Authentication.swift */,
+				119255AD282B4E84008410F3 /* FirebaseService.swift */,
+				5BE70E5D282C643C00E36372 /* AuthenticationService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD206E7282F4C1E005E1090 /* GoogleService-Info.plist in Resources */,
 				119255BD282B4EAA008410F3 /* Preview Assets.xcassets in Resources */,
 				119255BA282B4EAA008410F3 /* Assets.xcassets in Resources */,
 			);
@@ -705,13 +712,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE70E5E282C643C00E36372 /* Authentication.swift in Sources */,
+				5BE70E5E282C643C00E36372 /* AuthenticationService.swift in Sources */,
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
 				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
 				5BE70E57282C57B500E36372 /* HelpFilter.swift in Sources */,
 				5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
-				119255AE282B4E84008410F3 /* HTTP.swift in Sources */,
+				119255AE282B4E84008410F3 /* FirebaseService.swift in Sources */,
 				5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -722,6 +729,7 @@
 			files = (
 				5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */,
 				119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */,
+				5BD206E5282F49D5005E1090 /* RequestForHelpViewModel.swift in Sources */,
 				5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */,
 				5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* CalendarView.swift in Sources */,

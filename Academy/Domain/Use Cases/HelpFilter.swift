@@ -2,13 +2,13 @@ import Foundation
 
 public struct HelpFilter {
     
-    let http: HTTP
+    let http: FirebaseService
     
     public init() {
-        self.init(http: HTTP())
+        self.init(http: FirebaseService())
     }
     
-    internal init(http: HTTP) {
+    internal init(http: FirebaseService) {
         self.http = http
     }
     
