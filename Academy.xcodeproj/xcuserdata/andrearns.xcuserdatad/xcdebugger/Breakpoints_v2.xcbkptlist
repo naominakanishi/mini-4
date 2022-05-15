@@ -23,54 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "77C263A0-23CB-442B-AFA3-22788DE6DC7C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Academy/Network/FirebaseService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "createNewHelpRequest(help:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "77C263A0-23CB-442B-AFA3-22788DE6DC7C - 2ffaba981eb9d326"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Academy.FirebaseService.createNewHelpRequest(help: Academy.Help, completionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "Academy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrearns/Development/swift/Apple%20Developer%20Academy/mini-4/Academy/Network/FirebaseService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "101">
-               </Location>
-               <Location
-                  uuid = "77C263A0-23CB-442B-AFA3-22788DE6DC7C - 2ffaba981eb9d326"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Academy.FirebaseService.createNewHelpRequest(help: Academy.Help, completionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "Academy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrearns/Development/swift/Apple%20Developer%20Academy/mini-4/Academy/Network/FirebaseService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "321">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2CA83632-4FB6-4777-BFB5-B7ADE3D650C2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -78,13 +30,13 @@
             filePath = "Academy/Network/FirebaseService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "createNewHelpRequest(help:completionHandler:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2CA83632-4FB6-4777-BFB5-B7ADE3D650C2 - 2ffaba981eb9d364"
+                  uuid = "2CA83632-4FB6-4777-BFB5-B7ADE3D650C2 - 2ffaba981eb9d2da"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -94,12 +46,12 @@
                   urlString = "file:///Users/andrearns/Development/swift/Apple%20Developer%20Academy/mini-4/Academy/Network/FirebaseService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
                   offsetFromSymbolStart = "729">
                </Location>
                <Location
-                  uuid = "2CA83632-4FB6-4777-BFB5-B7ADE3D650C2 - 2ffaba981eb9d364"
+                  uuid = "2CA83632-4FB6-4777-BFB5-B7ADE3D650C2 - 2ffaba981eb9d2da"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -109,9 +61,9 @@
                   urlString = "file:///Users/andrearns/Development/swift/Apple%20Developer%20Academy/mini-4/Academy/Network/FirebaseService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "129">
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "173">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -142,8 +94,8 @@
             filePath = "Academy/Network/FirebaseService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "createNewHelpRequest(help:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -160,10 +112,10 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"
                   endingLineNumber = "29"
-                  offsetFromSymbolStart = "147">
+                  offsetFromSymbolStart = "135">
                </Location>
                <Location
-                  uuid = "C8B6C1DA-C0DA-429C-9F49-85DCEA7F9A24 - 50870cc915a6a4ae"
+                  uuid = "C8B6C1DA-C0DA-429C-9F49-85DCEA7F9A24 - 50870cc915a6a48f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -173,9 +125,9 @@
                   urlString = "file:///Users/andrearns/Development/swift/Apple%20Developer%20Academy/mini-4/Academy/Network/FirebaseService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "156">
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "135">
                </Location>
             </Locations>
          </BreakpointContent>

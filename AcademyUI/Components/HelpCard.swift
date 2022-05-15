@@ -81,7 +81,7 @@ public struct HelpCard: View {
 
 struct HelpCard_Previews: PreviewProvider {
     static var previews: some View {
-        HelpCard(helpModel: .init(title: "Pode crerrr", description: "jsdnjsnajksdnjlsanjsdn asnjasnsdj asnsajn asndsjns", type: .business, currentLocation: "Caverna de cima", requestDate: Date(), assignee: nil))
+        HelpCard(helpModel: .init(title: "Pode crerrr", description: "jsdnjsnajksdnjlsanjsdn asnjasnsdj asnsajn asndsjns", type: .business, currentLocation: "Caverna de cima", requestTimeInterval: Date().timeIntervalSince1970, assignee: nil))
             .preferredColorScheme(.dark)
     }
 }

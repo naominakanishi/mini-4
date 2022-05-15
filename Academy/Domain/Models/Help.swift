@@ -1,20 +1,23 @@
 import Foundation
 
 public struct Help: Codable {
-    var id = UUID()
+    public var id: String = UUID().uuidString
     public var title: String
     public var description: String
     public var type: HelpType
     public var currentLocation: String
-    public var requestDate: Date
+    public var requestTimeInterval: TimeInterval
     public var assignee: User?
+    public var requestDate: Date {
+        Date(timeIntervalSince1970: requestTimeInterval)
+    }
     
-    public init(title: String, description: String, type: HelpType, currentLocation: String, requestDate: Date, assignee: User?) {
+    public init(title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: User?) {
         self.title = title
         self.description = description
         self.type = type
         self.currentLocation = currentLocation
-        self.requestDate = requestDate
+        self.requestTimeInterval = requestTimeInterval
         self.assignee = assignee
     }
 }
