@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CalendarView: View {
+struct ScheduleView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -30,8 +30,8 @@ struct CalendarView: View {
     }
 }
 
-struct CalendarView_Previews: PreviewProvider {
+struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarView()
+        ScheduleView()
     }
 }
