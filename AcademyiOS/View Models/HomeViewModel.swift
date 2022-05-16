@@ -5,6 +5,7 @@ import Combine
 final class HomeViewModel: ObservableObject {
     @Published var announcementRepository = AnnouncementRepository()
     @Published var announcementList: [Announcement] = []
+    @Published var activeAnnouncements: [Announcement] = []
     
     private var cancellabels: Set<AnyCancellable> = []
     
@@ -17,7 +18,11 @@ final class HomeViewModel: ObservableObject {
             .assign(to: \.announcementList, on: self)
             .store(in: &cancellabels)
         
-        print(announcementList)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.activeAnnouncements = self.announcementList.filter({ announcement in
+                announcement.isActive == true
+            })
+        }
     }
     
     func createAnnouncement() {

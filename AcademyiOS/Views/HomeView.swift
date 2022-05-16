@@ -48,8 +48,20 @@ struct HomeView: View {
                             }
                         }
                         
-                        ForEach(viewModel.announcementList) { announcement in
-                            AnnouncementCard(announcement: announcement)
+                        if viewModel.activeAnnouncements.count > 0 {
+                            ForEach(viewModel.activeAnnouncements) { announcement in
+                                AnnouncementCard(announcement: announcement)
+                            }
+                        } else {
+                            VStack {
+                                Text("Nenhum aviso importante hoje... 😴")
+                                    .padding()
+                                    .foregroundColor(Color.white)
+                                    .font(.system(size: 16, weight: .regular, design: .default))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .background(Color.adaDarkGray)
+                            .cornerRadius(8)
                         }
                         
                     }
