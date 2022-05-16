@@ -64,12 +64,10 @@
 		5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E50282C4A6F00E36372 /* DateFormatter.swift */; };
 		5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E52282C4BA700E36372 /* HelpListViewModel.swift */; };
 		5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E54282C566B00E36372 /* RequestForHelpModalView.swift */; };
-		5BE70E57282C57B500E36372 /* HelpFilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E56282C57B500E36372 /* HelpFilterService.swift */; };
 		5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */; };
 		5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */; };
 		5BE70E5E282C643C00E36372 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* AuthenticationService.swift */; };
 		5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
-		5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */; };
 		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
 		5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E65282D8A1800E36372 /* HomeView.swift */; };
 		5BE70E68282DBEDB00E36372 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E67282DBEDB00E36372 /* CalendarView.swift */; };
@@ -220,12 +218,10 @@
 		5BE70E50282C4A6F00E36372 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		5BE70E52282C4BA700E36372 /* HelpListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListViewModel.swift; sourceTree = "<group>"; };
 		5BE70E54282C566B00E36372 /* RequestForHelpModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestForHelpModalView.swift; sourceTree = "<group>"; };
-		5BE70E56282C57B500E36372 /* HelpFilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFilterService.swift; sourceTree = "<group>"; };
 		5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTypeFilterButton.swift; sourceTree = "<group>"; };
 		5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListViewModel.swift; sourceTree = "<group>"; };
 		5BE70E5D282C643C00E36372 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCard.swift; sourceTree = "<group>"; };
-		5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFilter.swift; sourceTree = "<group>"; };
 		5BE70E63282D88A000E36372 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BE70E65282D8A1800E36372 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5BE70E67282DBEDB00E36372 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -316,8 +312,9 @@
 			isa = PBXGroup;
 			children = (
 				5BC2EABA2831CB800071821E /* Utils */,
-				5BE70E4A282C470000E36372 /* Repository */,
-				5BE70E48282C46EC00E36372 /* Domain */,
+				5BE70E19282C332300E36372 /* Models */,
+				5BE70E49282C46F500E36372 /* Services */,
+				5BE70E4A282C470000E36372 /* Repositories */,
 				119255A6282B4E77008410F3 /* Academy.h */,
 			);
 			path = Academy;
@@ -490,26 +487,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5BE70E48282C46EC00E36372 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				5BE70E49282C46F500E36372 /* Services */,
-				5BE70E19282C332300E36372 /* Models */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		5BE70E49282C46F500E36372 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				5BE70E5D282C643C00E36372 /* AuthenticationService.swift */,
-				5BE70E56282C57B500E36372 /* HelpFilterService.swift */,
-				5BE70E61282C6F0900E36372 /* AnnouncementFilter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		5BE70E4A282C470000E36372 /* Repository */ = {
+		5BE70E4A282C470000E36372 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				5BC2EAB82831B8000071821E /* HelpRepository.swift */,
@@ -517,7 +503,7 @@
 				5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */,
 				5BC2EAC72831E8A50071821E /* EquipmentRepository.swift */,
 			);
-			path = Repository;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -762,9 +748,7 @@
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
 				5BC2EAC82831E8A50071821E /* EquipmentRepository.swift in Sources */,
 				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
-				5BE70E57282C57B500E36372 /* HelpFilterService.swift in Sources */,
 				5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */,
-				5BE70E62282C6F0900E36372 /* AnnouncementFilter.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
 				5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */,
 				5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */,
