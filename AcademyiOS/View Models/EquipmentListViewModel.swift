@@ -14,7 +14,8 @@ final class EquipmentListViewModel: ObservableObject {
     }
     
     func fetchEquipmentList() {
-        equipmentRepository.$equipmentList
+        equipmentRepository
+            .read()
             .assign(to: \.equipmentList, on: self)
             .store(in: &cancellabels)
     }

@@ -10,17 +10,16 @@ public final class EquipmentRepository: ObservableObject {
     
     @Published public var equipmentList: [Equipment] = []
     
-    public init() {
-        read()
-    }
+    public init() {}
     
-    func read() {
+    public func read() -> AnyPublisher<[Equipment], Never>{
+        let publisher = PassthroughSubject<[Equipment], Never>()
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
             
-            self.equipmentList = snapshot?.documents.compactMap {
+            let equipmentList: [Equipment] = snapshot?.documents.compactMap {
                 do {
                     return try $0.data(as: Equipment.self)
                 } catch {
@@ -28,7 +27,11 @@ public final class EquipmentRepository: ObservableObject {
                     return nil
                 }
             } ?? []
+            
+            publisher.send(equipmentList)
         }
+        
+        return publisher.eraseToAnyPublisher()
     }
     
     public func create(_ equipment: Equipment) {
