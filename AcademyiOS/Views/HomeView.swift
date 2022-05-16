@@ -6,7 +6,7 @@ struct HomeView: View {
     
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false
-    @State var showCalendarView: Bool = false
+    @State var showEquipmentList: Bool = false
     @State var showSuggestionsBoxView: Bool = false
     
     var body: some View {
@@ -77,8 +77,8 @@ struct HomeView: View {
                                     showAcademyPeopleView = true
                                 }
                                 
-                                FeatureCard(title: "agenda", maxHeight: 120, color: Color.adaLightBlue) {
-                                    showCalendarView = true
+                                FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
+                                    showEquipmentList = true
                                 }
                             }
                             
@@ -104,7 +104,7 @@ struct HomeView: View {
                 
                 NavigationLink("", destination: HelpListView(), isActive: $showHelpListView)
                 NavigationLink("", destination: AcademyPeopleView(), isActive: $showAcademyPeopleView)
-                NavigationLink("", destination: CalendarView(), isActive: $showCalendarView)
+                NavigationLink("", destination: EquipmentListView(), isActive: $showEquipmentList)
                 NavigationLink("", destination: SuggestionsBoxView(), isActive: $showSuggestionsBoxView)
             }
             .background(Color.adaBackground)

@@ -31,6 +31,11 @@
 		5BC2EAC02831E13E0071821E /* SuggestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */; };
 		5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC12831E1B20071821E /* Suggestion.swift */; };
 		5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC32831E3020071821E /* SuggestionsBoxViewModel.swift */; };
+		5BC2EAC62831E7B00071821E /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC52831E7B00071821E /* Equipment.swift */; };
+		5BC2EAC82831E8A50071821E /* EquipmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC72831E8A50071821E /* EquipmentRepository.swift */; };
+		5BC2EACA2831E92E0071821E /* EquipmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC92831E92E0071821E /* EquipmentListView.swift */; };
+		5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EACB2831E9B60071821E /* EquipmentListViewModel.swift */; };
+		5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EACD2831EA900071821E /* EquipmentCard.swift */; };
 		5BD206D7282F43CE005E1090 /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206D6282F43CE005E1090 /* CodableFirebase */; };
 		5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206E2282F45D3005E1090 /* GoogleSignIn */; };
 		5BD206E5282F49D5005E1090 /* RequestForHelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */; };
@@ -195,6 +200,11 @@
 		5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionRepository.swift; sourceTree = "<group>"; };
 		5BC2EAC12831E1B20071821E /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		5BC2EAC32831E3020071821E /* SuggestionsBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxViewModel.swift; sourceTree = "<group>"; };
+		5BC2EAC52831E7B00071821E /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
+		5BC2EAC72831E8A50071821E /* EquipmentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentRepository.swift; sourceTree = "<group>"; };
+		5BC2EAC92831E92E0071821E /* EquipmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListView.swift; sourceTree = "<group>"; };
+		5BC2EACB2831E9B60071821E /* EquipmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListViewModel.swift; sourceTree = "<group>"; };
+		5BC2EACD2831EA900071821E /* EquipmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentCard.swift; sourceTree = "<group>"; };
 		5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestForHelpViewModel.swift; sourceTree = "<group>"; };
 		5BD206F528319F65005E1090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BE70E1A282C338E00E36372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -386,6 +396,7 @@
 				5BE70E1C282C33B600E36372 /* Help.swift */,
 				5BE70E22282C3EC000E36372 /* Announcement.swift */,
 				5BC2EAC12831E1B20071821E /* Suggestion.swift */,
+				5BC2EAC52831E7B00071821E /* Equipment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -412,6 +423,7 @@
 				5BE70E25282C3F6B00E36372 /* HelpCard.swift */,
 				5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */,
 				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
+				5BC2EACD2831EA900071821E /* EquipmentCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -446,6 +458,7 @@
 				5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */,
 				5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */,
 				5BC2EAC32831E3020071821E /* SuggestionsBoxViewModel.swift */,
+				5BC2EAC92831E92E0071821E /* EquipmentListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +469,7 @@
 				5BE70E52282C4BA700E36372 /* HelpListViewModel.swift */,
 				5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */,
 				5BC2EABD2831D2570071821E /* HomeViewModel.swift */,
+				5BC2EACB2831E9B60071821E /* EquipmentListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -501,6 +515,7 @@
 				5BC2EAB82831B8000071821E /* HelpRepository.swift */,
 				5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */,
 				5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */,
+				5BC2EAC72831E8A50071821E /* EquipmentRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -743,7 +758,9 @@
 			files = (
 				5BE70E5E282C643C00E36372 /* AuthenticationService.swift in Sources */,
 				5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */,
+				5BC2EAC62831E7B00071821E /* Equipment.swift in Sources */,
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
+				5BC2EAC82831E8A50071821E /* EquipmentRepository.swift in Sources */,
 				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
 				5BE70E57282C57B500E36372 /* HelpFilterService.swift in Sources */,
 				5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */,
@@ -764,9 +781,11 @@
 				5BD206E5282F49D5005E1090 /* RequestForHelpViewModel.swift in Sources */,
 				5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */,
 				5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */,
+				5BC2EACA2831E92E0071821E /* EquipmentListView.swift in Sources */,
 				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* CalendarView.swift in Sources */,
+				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */,
@@ -787,6 +806,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */,
 				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
 				5BE70E64282D88A000E36372 /* Colors.swift in Sources */,
 				5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */,
