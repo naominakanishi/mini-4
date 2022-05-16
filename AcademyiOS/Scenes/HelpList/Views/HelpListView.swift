@@ -91,7 +91,7 @@ struct HelpListView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
-            RequestHelpModalView {
+            HelpFormView {
                 self.viewModel.readHelpList()
             }
         }

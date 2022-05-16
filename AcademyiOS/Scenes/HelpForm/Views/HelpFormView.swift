@@ -4,7 +4,7 @@ import AcademyUI
 
 struct HelpFormView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var viewModel = RequestForHelpViewModel()
+    @ObservedObject var viewModel = HelpFormViewModel()
     var onDismiss: () -> ()
     
     
