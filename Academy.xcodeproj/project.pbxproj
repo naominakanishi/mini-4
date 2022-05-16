@@ -28,6 +28,9 @@
 		5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAB82831B8000071821E /* HelpRepository.swift */; };
 		5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */; };
 		5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABD2831D2570071821E /* HomeViewModel.swift */; };
+		5BC2EAC02831E13E0071821E /* SuggestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */; };
+		5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC12831E1B20071821E /* Suggestion.swift */; };
+		5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAC32831E3020071821E /* SuggestionsBoxViewModel.swift */; };
 		5BD206D7282F43CE005E1090 /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206D6282F43CE005E1090 /* CodableFirebase */; };
 		5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206E2282F45D3005E1090 /* GoogleSignIn */; };
 		5BD206E5282F49D5005E1090 /* RequestForHelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */; };
@@ -189,6 +192,9 @@
 		5BC2EAB82831B8000071821E /* HelpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRepository.swift; sourceTree = "<group>"; };
 		5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRepository.swift; sourceTree = "<group>"; };
 		5BC2EABD2831D2570071821E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionRepository.swift; sourceTree = "<group>"; };
+		5BC2EAC12831E1B20071821E /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		5BC2EAC32831E3020071821E /* SuggestionsBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxViewModel.swift; sourceTree = "<group>"; };
 		5BD206E4282F49D5005E1090 /* RequestForHelpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestForHelpViewModel.swift; sourceTree = "<group>"; };
 		5BD206F528319F65005E1090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BE70E1A282C338E00E36372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -379,6 +385,7 @@
 				5BE70E1A282C338E00E36372 /* User.swift */,
 				5BE70E1C282C33B600E36372 /* Help.swift */,
 				5BE70E22282C3EC000E36372 /* Announcement.swift */,
+				5BC2EAC12831E1B20071821E /* Suggestion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -438,6 +445,7 @@
 				5BE70E67282DBEDB00E36372 /* CalendarView.swift */,
 				5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */,
 				5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */,
+				5BC2EAC32831E3020071821E /* SuggestionsBoxViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,6 +500,7 @@
 			children = (
 				5BC2EAB82831B8000071821E /* HelpRepository.swift */,
 				5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */,
+				5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -733,6 +742,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE70E5E282C643C00E36372 /* AuthenticationService.swift in Sources */,
+				5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */,
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
 				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
 				5BE70E57282C57B500E36372 /* HelpFilterService.swift in Sources */,
@@ -741,6 +751,7 @@
 				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
 				5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */,
 				5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */,
+				5BC2EAC02831E13E0071821E /* SuggestionRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +764,7 @@
 				5BD206E5282F49D5005E1090 /* RequestForHelpViewModel.swift in Sources */,
 				5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */,
 				5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */,
+				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* RequestForHelpModalView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* CalendarView.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
