@@ -1,4 +1,3 @@
-import Foundation
 import Combine
 
 public final class AnnouncementListenerService {
@@ -9,7 +8,7 @@ public final class AnnouncementListenerService {
     }
     
     public convenience init() {
-        self.init(announcementRepository: AnnouncementRepository())
+        self.init(announcementRepository: .shared)
     }
     
     public var activeAnnouncements: AnyPublisher<[Announcement], Never> {

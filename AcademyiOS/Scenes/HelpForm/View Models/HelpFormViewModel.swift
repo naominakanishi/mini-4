@@ -12,6 +12,6 @@ final class HelpFormViewModel: ObservableObject {
     func createNewHelp() {
         let newHelpRequest = Help(id: UUID().uuidString, title: subject, description: description, type: categoryChosen ?? .all, currentLocation: location, requestTimeInterval: Date().timeIntervalSince1970, assignee: nil)
         
-        helpRepository.create(newHelpRequest)
+//        helpRepository.create(helpData: newHelpRequest)
     }
 }

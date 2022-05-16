@@ -13,31 +13,6 @@ public final class AnnouncementRepository: ObservableObject {
     
     static let shared = AnnouncementRepository()
     
-    public func create(_ announcement: Announcement) {
-        do {
-            _ = try store.collection(path).addDocument(from: announcement)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    public func read() -> AnyPublisher<Data, Never> {
-        let publisher = PassthroughSubject<Data, Never>()
-        
-        store.collection(path).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            guard let snapshot = snapshot else { fatalError() }
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            publisher.send(data)
-        }
-        
-        return publisher.eraseToAnyPublisher()
-    }
-    
     func create(announcementData data: [String: Any]) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         store.collection(path).addDocument(data: data) {
@@ -51,6 +26,26 @@ public final class AnnouncementRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
+    public func read() -> AnyPublisher<Data, Never> {
+        let publisher = PassthroughSubject<Data, Never>()
+        
+        store.collection(path).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            // Review
+            guard let snapshot = snapshot else { fatalError() }
+            
+            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            
+            publisher.send(data)
+        }
+        
+        return publisher.eraseToAnyPublisher()
+    }
+    
     func update(_ announcement: Announcement) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
@@ -59,6 +54,7 @@ public final class AnnouncementRepository: ObservableObject {
                     response.send(false)
                     return
                 }
+                
                 response.send(true)
             }
         } catch {

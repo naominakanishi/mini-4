@@ -4,7 +4,7 @@ import AcademyUI
 
 struct HelpListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject private var viewModel = HelpListViewModel()
+    @StateObject private var viewModel = HelpListViewModel(listener: HelpListenerService())
     
     var body: some View {
         ZStack {
@@ -92,8 +92,11 @@ struct HelpListView: View {
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
             HelpFormView {
-                self.viewModel.readHelpList()
+
             }
+        }
+        .onAppear {
+            viewModel.handleOnAppear()
         }
     }
 }

@@ -43,6 +43,9 @@
 		5BC2EADD2832ED270071821E /* AnnouncementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EADC2832ED270071821E /* AnnouncementListViewModel.swift */; };
 		5BC2EADF2832ED3D0071821E /* AnnouncementFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EADE2832ED3D0071821E /* AnnouncementFormViewModel.swift */; };
 		5BC2EAE12832ED9D0071821E /* AnnouncementSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAE02832ED9D0071821E /* AnnouncementSenderService.swift */; };
+		5BC2EB022832FD8B0071821E /* HelpSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EB012832FD8B0071821E /* HelpSenderService.swift */; };
+		5BC2EB042832FD9C0071821E /* HelpUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EB032832FD9C0071821E /* HelpUpdatingService.swift */; };
+		5BC2EB072832FDDB0071821E /* HelpListenerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EB062832FDDB0071821E /* HelpListenerService.swift */; };
 		5BD206D7282F43CE005E1090 /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206D6282F43CE005E1090 /* CodableFirebase */; };
 		5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206E2282F45D3005E1090 /* GoogleSignIn */; };
 		5BD206E5282F49D5005E1090 /* HelpFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD206E4282F49D5005E1090 /* HelpFormViewModel.swift */; };
@@ -217,6 +220,9 @@
 		5BC2EADC2832ED270071821E /* AnnouncementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewModel.swift; sourceTree = "<group>"; };
 		5BC2EADE2832ED3D0071821E /* AnnouncementFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFormViewModel.swift; sourceTree = "<group>"; };
 		5BC2EAE02832ED9D0071821E /* AnnouncementSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementSenderService.swift; sourceTree = "<group>"; };
+		5BC2EB012832FD8B0071821E /* HelpSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpSenderService.swift; sourceTree = "<group>"; };
+		5BC2EB032832FD9C0071821E /* HelpUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpUpdatingService.swift; sourceTree = "<group>"; };
+		5BC2EB062832FDDB0071821E /* HelpListenerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListenerService.swift; sourceTree = "<group>"; };
 		5BD206E4282F49D5005E1090 /* HelpFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFormViewModel.swift; sourceTree = "<group>"; };
 		5BD206F528319F65005E1090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BE70E1A282C338E00E36372 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -688,6 +694,16 @@
 			path = Announcement;
 			sourceTree = "<group>";
 		};
+		5BC2EB002832FD750071821E /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				5BC2EB012832FD8B0071821E /* HelpSenderService.swift */,
+				5BC2EB032832FD9C0071821E /* HelpUpdatingService.swift */,
+				5BC2EB062832FDDB0071821E /* HelpListenerService.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 		5BE70E19282C332300E36372 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +782,7 @@
 		5BE70E49282C46F500E36372 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5BC2EB002832FD750071821E /* Help */,
 				5BC2EAFF2832F7F20071821E /* Announcement */,
 				5BE70E5D282C643C00E36372 /* AuthenticationService.swift */,
 			);
@@ -1022,6 +1039,7 @@
 				5BE70E5E282C643C00E36372 /* AuthenticationService.swift in Sources */,
 				5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */,
 				5BC2EAC62831E7B00071821E /* Equipment.swift in Sources */,
+				5BC2EB072832FDDB0071821E /* HelpListenerService.swift in Sources */,
 				5BC2EAE12832ED9D0071821E /* AnnouncementSenderService.swift in Sources */,
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
 				5BC2EAC82831E8A50071821E /* EquipmentRepository.swift in Sources */,
@@ -1029,6 +1047,8 @@
 				5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
 				5BC2EAD42832E8F50071821E /* AnnouncementUpdatingService.swift in Sources */,
+				5BC2EB042832FD9C0071821E /* HelpUpdatingService.swift in Sources */,
+				5BC2EB022832FD8B0071821E /* HelpSenderService.swift in Sources */,
 				5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */,
 				5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */,
 				5BC2EAD22832DF460071821E /* AnnouncementListenerService.swift in Sources */,

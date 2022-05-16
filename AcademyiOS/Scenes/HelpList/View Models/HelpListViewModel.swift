@@ -5,8 +5,9 @@ import SwiftUI
 
 final class HelpListViewModel: ObservableObject {
     
-    @Published var helpRepository = HelpRepository()
-    @Published var helpList: [Help] = []
+    private let listener: HelpListenerService
+    private var cancelable: AnyCancellable?
+    
     @Published var currentHelpList: [Help] = []
     
     @Published var filterChosen: HelpType = .all {
@@ -17,30 +18,24 @@ final class HelpListViewModel: ObservableObject {
     
     @Published var showRequestHelpModal: Bool = false
     
-    private var cancellabels: Set<AnyCancellable> = []
     
-    init() {
-        readHelpList()
-    }
-    
-    func readHelpList() {
-        helpRepository.$helpList
-            .assign(to: \.helpList, on: self)
-            .store(in: &cancellabels)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.currentHelpList = self.helpList
-            self.selectFilter(helpType: self.filterChosen)
-        }
+    init(listener: HelpListenerService) {
+        self.listener = listener
     }
     
     func selectFilter(helpType: HelpType) {
-        if helpType == .all {
-            currentHelpList = helpList
-        } else {
-            currentHelpList = helpList.filter({ help in
-                help.type == helpType
+        cancelable?.cancel()
+        cancelable = listener
+            .listen(to: helpType)
+            .mapError({ error -> Error in
+                print("ERRROR", error)
+                return error
             })
-        }
+            .replaceError(with: [])
+            .assign(to: \.currentHelpList, on: self)
+    }
+    
+    func handleOnAppear() {
+        selectFilter(helpType: .all)
     }
 }
