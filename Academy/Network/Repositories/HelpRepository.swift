@@ -44,6 +44,7 @@ public final class HelpRepository: ObservableObject {
         // To do
     }
     
+    // Review
     private func sortHelpList() {
         self.helpList = self.helpList.sorted { helpA, helpB in
             helpA.requestTimeInterval < helpB.requestTimeInterval

@@ -2,7 +2,10 @@ import SwiftUI
 import AcademyUI
 
 struct HomeView: View {
-    @StateObject var viewModel = HomeViewModel()
+    @StateObject var viewModel = HomeViewModel(
+        announcementUpdatingService: .init(),
+        announcementListenerService: .init()
+    )
     
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false

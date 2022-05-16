@@ -1,7 +1,7 @@
 import Foundation
 import Academy
 
-final class RequestForHelpViewModel: ObservableObject {
+final class HelpFormViewModel: ObservableObject {
     
     @Published var helpRepository = HelpRepository()
     @Published var categoryChosen: HelpType? = nil

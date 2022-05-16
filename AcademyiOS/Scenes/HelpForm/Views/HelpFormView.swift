@@ -2,7 +2,7 @@ import SwiftUI
 import Academy
 import AcademyUI
 
-struct RequestHelpModalView: View {
+struct HelpFormView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = RequestForHelpViewModel()
     var onDismiss: () -> ()
@@ -116,9 +116,9 @@ struct RequestHelpModalView: View {
     }
 }
 
-struct RequestHelpModalView_Previews: PreviewProvider {
+struct HelpFormView_Previews: PreviewProvider {
     static var previews: some View {
-        RequestHelpModalView {
+        HelpFormView {
             print("")
         }
     }
