@@ -57,7 +57,7 @@ struct HelpListView: View {
                         .padding(.leading)
                         .padding(.bottom)
                         
-                        ForEach(viewModel.currentHelpModelList, id: \.self) { helpModel in
+                        ForEach(viewModel.currentHelpList) { helpModel in
                             HelpCard(helpModel: helpModel)
                         }
                     }
@@ -88,14 +88,13 @@ struct HelpListView: View {
             }
         }
         .background(Color.adaBackground)
-        .sheet(isPresented: $viewModel.showRequestHelpModal) {
-            RequestHelpModalView()
-        }
-        .onAppear {
-            viewModel.onAppear()
-        }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $viewModel.showRequestHelpModal) {
+            RequestHelpModalView {
+                self.viewModel.readHelpList()
+            }
+        }
     }
 }
 

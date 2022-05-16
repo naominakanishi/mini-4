@@ -1,15 +1,19 @@
 import Foundation
 
-public struct Announcement: Hashable {
-    public var id = UUID()
-    public var fromUser: User
-    public var date: Date
+public struct Announcement: Codable, Hashable, Identifiable {
+    public var id: String
+    // Review
+    public var fromUser: User?
+    public var createdTimeInterval: TimeInterval
     public var text: String
     public var isActive: Bool
+    public var createdDate: Date {
+        Date(timeIntervalSince1970: createdTimeInterval)
+    }
     
-    public init(fromUser: User, date: Date, text: String, isActive: Bool) {
-        self.fromUser = fromUser
-        self.date = date
+    public init(id: String, createdTimeInterval: TimeInterval, text: String, isActive: Bool) {
+        self.id = id
+        self.createdTimeInterval = createdTimeInterval
         self.text = text
         self.isActive = isActive
     }

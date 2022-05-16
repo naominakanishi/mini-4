@@ -71,17 +71,10 @@ public struct HelpCard: View {
         )
         .padding(.horizontal)
         .padding(.bottom, 4)
-//        .onTapGesture {
-//            withAnimation {
-//                showDetails.toggle()
-//            }
-//        }
-    }
-}
-
-struct HelpCard_Previews: PreviewProvider {
-    static var previews: some View {
-        HelpCard(helpModel: .init(title: "Pode crerrr", description: "jsdnjsnajksdnjlsanjsdn asnjasnsdj asnsajn asndsjns", type: .business, currentLocation: "Caverna de cima", requestTimeInterval: Date().timeIntervalSince1970, assignee: nil))
-            .preferredColorScheme(.dark)
+        .onTapGesture {
+            withAnimation {
+                showDetails.toggle()
+            }
+        }
     }
 }

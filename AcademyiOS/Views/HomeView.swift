@@ -2,6 +2,8 @@ import SwiftUI
 import AcademyUI
 
 struct HomeView: View {
+    @StateObject var viewModel = HomeViewModel()
+    
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false
     @State var showCalendarView: Bool = false
@@ -36,9 +38,20 @@ struct HomeView: View {
                                 .foregroundColor(Color.white)
                             
                             Spacer()
+                            
+                            Button(action: {
+                                print("Open announcement form")
+                            }) {
+                                Image(systemName: "plus")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 21, weight: .bold, design: .default))
+                            }
                         }
                         
-                        // TO DO: Announcement List
+                        ForEach(viewModel.announcementList) { announcement in
+                            AnnouncementCard(announcement: announcement)
+                        }
+                        
                     }
                     .padding(.vertical, 32)
                     

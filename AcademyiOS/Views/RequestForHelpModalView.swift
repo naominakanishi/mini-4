@@ -4,7 +4,13 @@ import AcademyUI
 
 struct RequestHelpModalView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var viewModel = RequestForHelpViewModel()
+    @ObservedObject var viewModel = RequestForHelpViewModel()
+    var onDismiss: () -> ()
+    
+    
+    init(onDismiss: @escaping () -> ()) {
+        self.onDismiss = onDismiss
+    }
     
     var body: some View {
         VStack {
@@ -86,9 +92,8 @@ struct RequestHelpModalView: View {
             .padding(.bottom)
             
             Button(action: {
-                print("Save new help request on Firebase Database")
                 presentationMode.wrappedValue.dismiss()
-                viewModel.sendHelpRequest()
+                viewModel.createNewHelp()
             }) {
                 VStack {
                     Text("Pedir ajuda")
@@ -105,11 +110,16 @@ struct RequestHelpModalView: View {
             Spacer()
         }
         .background(Color.adaBackground)
+        .onDisappear {
+            onDismiss()
+        }
     }
 }
 
 struct RequestHelpModalView_Previews: PreviewProvider {
     static var previews: some View {
-        RequestHelpModalView()
+        RequestHelpModalView {
+            print("")
+        }
     }
 }

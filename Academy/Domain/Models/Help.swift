@@ -1,7 +1,7 @@
 import Foundation
 
-public struct Help: Codable {
-    public var id: String = UUID().uuidString
+public struct Help: Codable, Identifiable {
+    public var id: String
     public var title: String
     public var description: String
     public var type: HelpType
@@ -12,7 +12,8 @@ public struct Help: Codable {
         Date(timeIntervalSince1970: requestTimeInterval)
     }
     
-    public init(title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: User?) {
+    public init(id: String, title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: User?) {
+        self.id = id
         self.title = title
         self.description = description
         self.type = type

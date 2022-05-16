@@ -1,24 +1,46 @@
 import Foundation
 import Academy
+import Combine
+import SwiftUI
 
 final class HelpListViewModel: ObservableObject {
     
-    @Published private(set) var helpList: [Help] = []
-    @Published var showRequestHelpModal: Bool = false
-    @Published var currentHelpModelList: [Help] = []
+    @Published var helpRepository = HelpRepository()
+    @Published var helpList: [Help] = []
+    @Published var currentHelpList: [Help] = []
+    
     @Published var filterChosen: HelpType = .all {
         didSet {
             selectFilter(helpType: filterChosen)
         }
     }
     
-    let helpFilter = HelpFilter()
+    @Published var showRequestHelpModal: Bool = false
+    
+    private var cancellabels: Set<AnyCancellable> = []
+    
+    init() {
+        readHelpList()
+    }
+    
+    func readHelpList() {
+        helpRepository.$helpList
+            .assign(to: \.helpList, on: self)
+            .store(in: &cancellabels)
         
-    func onAppear() {
-        currentHelpModelList = helpFilter.fetchHelpList()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.currentHelpList = self.helpList
+            self.selectFilter(helpType: self.filterChosen)
+        }
     }
     
     func selectFilter(helpType: HelpType) {
-        currentHelpModelList = helpFilter.filter(byType: helpType)
+        if helpType == .all {
+            currentHelpList = helpList
+        } else {
+            currentHelpList = helpList.filter({ help in
+                help.type == helpType
+            })
+        }
     }
 }
