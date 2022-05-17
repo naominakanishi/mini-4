@@ -7,38 +7,45 @@ public final class EquipmentRepository: ObservableObject {
     
     private let path = "equipment"
     private let store = Firestore.firestore()
-    
     @Published public var equipmentList: [Equipment] = []
     
     public init() {}
     
-    public func read() -> AnyPublisher<[Equipment], Never>{
-        let publisher = PassthroughSubject<[Equipment], Never>()
+    static let shared = EquipmentRepository()
+    
+    public func read() -> AnyPublisher<Data, Never>{
+        let publisher = PassthroughSubject<Data, Never>()
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
             
-            let equipmentList: [Equipment] = snapshot?.documents.compactMap {
-                do {
-                    return try $0.data(as: Equipment.self)
-                } catch {
-                    print(error.localizedDescription)
-                    return nil
-                }
-            } ?? []
+            // Review
+            guard let snapshot = snapshot else { fatalError() }
             
-            publisher.send(equipmentList)
+            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            
+            publisher.send(data)
         }
         
         return publisher.eraseToAnyPublisher()
     }
     
-    public func create(_ equipment: Equipment) {
-        do {
-            _ = try store.collection(path).addDocument(from: equipment)
-        } catch {
-            print(error.localizedDescription)
+    public func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
+        store.collection(path).addDocument(data: data) {
+            if let _ = $0 {
+                response.send(false)
+                return
+            }
+            response.send(true)
         }
+        return response
+            .eraseToAnyPublisher()
+    }
+    
+    public func update(_ equipment: Equipment) {
+        
     }
 }

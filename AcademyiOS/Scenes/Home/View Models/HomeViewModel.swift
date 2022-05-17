@@ -4,11 +4,9 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     
-    @Published
-    private(set) var announcementList: [Announcement] = []
+    @Published private(set) var announcementList: [Announcement] = []
     
-    @Published
-    private(set) var activeAnnouncements: [Announcement] = []
+    @Published private(set) var activeAnnouncements: [Announcement] = []
     
     private var cancellabels: Set<AnyCancellable> = []
     
@@ -31,9 +29,5 @@ final class HomeViewModel: ObservableObject {
         announcementListenerService
             .activeAnnouncements
             .assign(to: &$activeAnnouncements)
-    }
-    
-    func createAnnouncement() {
-        // To do
     }
 }

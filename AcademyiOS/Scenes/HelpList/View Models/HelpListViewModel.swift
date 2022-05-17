@@ -34,10 +34,6 @@ final class HelpListViewModel: ObservableObject {
         cancelable?.cancel()
         cancelable = listener
             .listen(to: helpType)
-            .mapError({ error -> Error in
-                print("ERROR", error)
-                return error
-            })
             .replaceError(with: [])
             .assign(to: \.currentHelpList, on: self)
     }
