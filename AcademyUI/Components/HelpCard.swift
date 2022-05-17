@@ -1,86 +1,140 @@
 import SwiftUI
 import Academy
 
-struct HelpCard: View {
-    var helpModel: Help
+public struct HelpCard: View {
     
+    var helpModel: Help
+    var assignHelpHandler: () -> ()
+    var completeHelpHandler: () -> ()
+    @State var showDetails: Bool = false
+    
+    // Review
     var typeColor: Color {
         switch helpModel.type {
         case .business:
-            return .blue
+            return .adaYellow
         case .code:
-            return .green
+            return .adaGreen
         case .design:
-            return .pink
+            return .adaPink
+        case.general:
+            return .adaLightBlue
+        case .all:
+            return .gray
         }
     }
     
-    var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "pt-BR")
-        formatter.timeZone = NSTimeZone(name: "UTC-3") as TimeZone?
-        if isToday {
-            formatter.dateFormat = "HH:mm"
-            return "Hoje às " + formatter.string(from: helpModel.requestDate)
-        } else {
-            formatter.dateFormat = "MM/dd/yyyy"
-            return formatter.string(from: helpModel.requestDate)
-        }
+    public init(helpModel: Help, assignHelpHandler: @escaping () -> (), completeHelpHandler: @escaping () -> ()) {
+        self.helpModel = helpModel
+        self.assignHelpHandler = assignHelpHandler
+        self.completeHelpHandler = completeHelpHandler
     }
     
-    var isToday: Bool {
-        let calendar = Calendar.current
-        return calendar.isDateInToday(helpModel.requestDate)
-    }
-    
-    @State var showDetails: Bool = false
-    
-    var body: some View {
+    public var body: some View {
         VStack {
             HStack {
+                Text("1")
+                    .font(.system(size: 40, weight: .bold, design: .default))
+                    .foregroundColor(Color.white)
+                    .padding(.trailing)
+                    .padding(.leading, 8)
+                
                 VStack(alignment: .leading) {
-                    HStack(alignment: .center) {
-                        Text(helpModel.type.rawValue)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 4)
-                            .background(typeColor)
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
-                            .cornerRadius(16)
-                        
-                        Text(formattedDate)
-                            .padding(.leading, 8)
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                    }
-                    .padding(.bottom, 8)
-                    
                     Text(helpModel.title)
                         .bold()
+                        .padding(.bottom, 2)
+                        .foregroundColor(Color.white)
                     
-                    if showDetails {
-                        Text(helpModel.description)
-                            .padding(.top, 8)
+                    Text(helpModel.currentLocation)
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundColor(Color.white)
+                }
+                
+                Spacer()
+                
+                switch helpModel.status {
+                case .waitingForHelp:
+                    Text(helpModel.requestDate.getFormattedDate())
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundColor(Color.white)
+                case .beingHelped:
+                    Image("andre-memoji")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+                case .done:
+                    Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30)
+                        .foregroundColor(.adaGreen)
+                }
+            }
+            
+            if showDetails {
+                Divider()
+                    .background(typeColor)
+                
+                HStack {
+                    Text(helpModel.description)
+                        .padding(.bottom, 8)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                }
+                .padding(.vertical)
+                
+                HStack {
+                    Button(action: {
+                        print("Ajudar")
+                        assignHelpHandler()
+                    }) {
+                        HStack {
+                            Spacer()
+                            Text("Ajudar")
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .foregroundColor(.black)
+                        .padding(.trailing, 4)
+                    }
+                    
+                    Button(action: {
+                        print("Resolvido")
+                        completeHelpHandler()
+                    }) {
+                        HStack {
+                            Spacer()
+                            Text("Resolvido")
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                        .background(Color.adaLightBlue)
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                        .padding(.leading, 4)
                     }
                 }
-                Spacer()
+                
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .cornerRadius(8)
-            .shadow(color: .black.opacity(0.1), radius: 16, x: 0, y: 0)
-            .padding(.horizontal)
         }
-//        .onTapGesture {
-//            withAnimation {
-//                showDetails.toggle()
-//            }
-//        }
-    }
-}
-
-struct HelpCard_Previews: PreviewProvider {
-    static var previews: some View {
-        HelpCard(helpModel: .init(title: "Pode crerrr", description: "jsdnjsnajksdnjlsanjsdn asnjasnsdj asnsajn asndsjns", type: .business, currentLocation: "Caverna de cima", requestDate: Date(), assignee: nil))
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(typeColor.opacity(0.2))
+        .cornerRadius(8)
+        .shadow(color: .black.opacity(0.1), radius: 16, x: 0, y: 0)
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(typeColor, lineWidth: 2)
+        )
+        .padding(.horizontal)
+        .padding(.bottom, 4)
+        .onTapGesture {
+            withAnimation {
+                showDetails.toggle()
+            }
+        }
     }
 }
