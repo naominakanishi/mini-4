@@ -14,102 +14,113 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            ScrollView {
                 VStack {
-                    HStack {
-                        Text("Apple Developer Academy")
-                            .font(.system(size: 30, weight: .bold, design: .default))
-                            .foregroundColor(Color.white)
-                        
-                        Spacer()
-                        
-                        ZStack {
-                            Circle()
-                                .foregroundColor(Color.adaLightBlue)
-                            Image("andre-memoji")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .padding(2)
-                        }
-                        .frame(maxWidth: 60, maxHeight: 60)
-                    }
-                    
                     VStack {
                         HStack {
-                            Text("Avisos")
-                                .font(.system(size: 24, weight: .bold, design: .default))
+                            Text("Apple Developer Academy")
+                                .font(.system(size: 30, weight: .bold, design: .default))
                                 .foregroundColor(Color.white)
                             
                             Spacer()
                             
-                            Button(action: {
-                                print("Open announcement form")
-                            }) {
-                                Image(systemName: "plus")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 21, weight: .bold, design: .default))
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(Color.adaLightBlue)
+                                Image("andre-memoji")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(2)
                             }
+                            .frame(maxWidth: 60, maxHeight: 60)
                         }
                         
-                        if viewModel.activeAnnouncements.count > 0 {
-                            ForEach(viewModel.activeAnnouncements) { announcement in
-                                AnnouncementCard(announcement: announcement)
-                            }
-                        } else {
-                            VStack {
-                                Text("Nenhum aviso importante hoje... 😴")
-                                    .padding()
+                        VStack {
+                            HStack {
+                                Text("Avisos")
+                                    .font(.system(size: 24, weight: .bold, design: .default))
                                     .foregroundColor(Color.white)
-                                    .font(.system(size: 16, weight: .regular, design: .default))
+                                
+                                Spacer()
+                                
+                                NavigationLink {
+                                    AnnouncementListView(viewModel: .init(listener: .init()))
+                                } label: {
+                                    Text("ver mais")
+                                }
+
                             }
-                            .frame(maxWidth: .infinity)
-                            .background(Color.adaDarkGray)
-                            .cornerRadius(8)
+                            
+                            if viewModel.activeAnnouncements.count > 0 {
+                                TabView {
+                                    ForEach(viewModel.activeAnnouncements) { announcement in
+                                        VStack {
+                                            AnnouncementCard(text: announcement.text, username: announcement.fromUser?.name ?? "Binder", time: announcement.createdDate.getFormattedDate(), userImage: Image("andre-memoji"))
+                                            Spacer()
+                                                .frame(height: 40)
+                                        }
+                                    }
+                                }
+                                .frame(width: UIScreen.main.bounds.width * 0.95, height: 130)
+                                .tabViewStyle(.page)
+//
+                            } else {
+                                VStack {
+                                    Text("Nenhum aviso importante hoje... 😴")
+                                        .padding()
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 16, weight: .regular, design: .default))
+                                }
+                                .frame(maxWidth: .infinity)
+                                .background(Color.adaDarkGray)
+                                .cornerRadius(8)
+                            }
+                            
                         }
+//                        .padding(.vertical, 32)
                         
-                    }
-                    .padding(.vertical, 32)
-                    
-                    Divider()
-                        .background(Color.white)
-                    
-                    VStack {
-                        HStack {
-                            VStack {
-                                FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
-                                    showAcademyPeopleView = true
+                        Divider()
+                            .background(Color.white)
+                        
+                        VStack {
+                            HStack {
+                                VStack {
+                                    FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
+                                        showAcademyPeopleView = true
+                                    }
+                                    
+                                    FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
+                                        showEquipmentList = true
+                                    }
                                 }
                                 
-                                FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
-                                    showEquipmentList = true
+                                FeatureCard(title: "@ajuda", maxHeight: 252, color: Color.adaGreen) {
+                                    showHelpListView = true
                                 }
                             }
-                            
-                            FeatureCard(title: "@ajuda", maxHeight: 252, color: Color.adaGreen) {
-                                showHelpListView = true
-                            }
-                        }
-                        HStack {
-                            FeatureCard(title: "learning journey", maxHeight: 120, color: Color.adaYellow) {
+                            HStack {
+                                FeatureCard(title: "learning journey", maxHeight: 120, color: Color.adaYellow) {
+                                    
+                                }
                                 
-                            }
-                            
-                            FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
-                                showSuggestionsBoxView = true
+                                FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
+                                    showSuggestionsBoxView = true
+                                }
                             }
                         }
+                        .padding(.vertical)
                     }
-                    .padding(.vertical)
+                    .padding()
+                    
+                    Spacer()
+                    
+                    NavigationLink("", destination: HelpListView(), isActive: $showHelpListView)
+                    NavigationLink("", destination: AcademyPeopleView(), isActive: $showAcademyPeopleView)
+                    NavigationLink("", destination: EquipmentListView(), isActive: $showEquipmentList)
+                    NavigationLink("", destination: SuggestionsBoxView(), isActive: $showSuggestionsBoxView)
                 }
-                .padding()
-                
-                Spacer()
-                
-                NavigationLink("", destination: HelpListView(), isActive: $showHelpListView)
-                NavigationLink("", destination: AcademyPeopleView(), isActive: $showAcademyPeopleView)
-                NavigationLink("", destination: EquipmentListView(), isActive: $showEquipmentList)
-                NavigationLink("", destination: SuggestionsBoxView(), isActive: $showSuggestionsBoxView)
             }
+           
             .background(Color.adaBackground)
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
