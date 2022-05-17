@@ -59,6 +59,9 @@ struct HelpListView: View {
                         
                         ForEach(viewModel.currentHelpList) { helpModel in
                             HelpCard(helpModel: helpModel)
+                                .onLongPressGesture {
+                                    viewModel.handleCardLongPress(helpModel: helpModel)
+                                }
                         }
                     }
                     
@@ -91,8 +94,8 @@ struct HelpListView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
-            HelpFormView {
-
+            HelpFormView(helpModel: viewModel.helpOnEdit ?? nil) {
+                viewModel.helpOnEdit = nil
             }
         }
         .onAppear {

@@ -14,7 +14,7 @@ public class HelpSenderService {
     public func send(help: Help) -> AnyPublisher<Bool, Error> {
         do {
             let data = try help.toFirebase()
-            return repository.create(helpData: data)
+            return repository.create(helpData: data, id: help.id)
         } catch let error {
             return Fail(outputType: Bool.self, failure: error)
                 .eraseToAnyPublisher()

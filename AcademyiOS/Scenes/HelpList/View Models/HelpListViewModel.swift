@@ -8,6 +8,8 @@ final class HelpListViewModel: ObservableObject {
     private let listener: HelpListenerService
     private var cancelable: AnyCancellable?
     
+    @Published var helpOnEdit: Help? = nil
+    
     @Published var currentHelpList: [Help] = []
     
     @Published var filterChosen: HelpType = .all {
@@ -37,5 +39,10 @@ final class HelpListViewModel: ObservableObject {
     
     func handleOnAppear() {
         selectFilter(helpType: .all)
+    }
+    
+    func handleCardLongPress(helpModel: Help) {
+        showRequestHelpModal = true
+        helpOnEdit = helpModel
     }
 }

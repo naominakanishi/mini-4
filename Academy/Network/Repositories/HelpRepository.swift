@@ -17,9 +17,9 @@ public final class HelpRepository: ObservableObject {
         self.initialize()
     }
     
-    public func create(helpData data: [String: Any]) -> AnyPublisher<Bool, Error> {
+    public func create(helpData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
-        store.collection(path).addDocument(data: data) {
+        store.collection(path).document(id).setData(data) {
             if let _ = $0 {
                 response.send(false)
                 return
@@ -52,13 +52,12 @@ public final class HelpRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func delete(_ helpId: String) {
+    func delete(_ help: Help) {
         // To do
     }
     
     private func initialize() {
         store.collection(path).addSnapshotListener { (snapshot, error) in
-            print("RECEVEDDDDD")
             if let error = error {
                 print("FAILED!", error.localizedDescription)
             }
