@@ -4,19 +4,37 @@ import Combine
 
 final class EquipmentListViewModel: ObservableObject {
 
-    @Published var equipmentRepository = EquipmentRepository()
+    private let listener: EquipmentListenerService
+    
     @Published var equipmentList: [Equipment] = []
+    @Published var filterChosen: EquipmentType = .all {
+        didSet {
+            selectFilter(equipmentType: filterChosen)
+        }
+    }
     
-    private var cancellabels: Set<AnyCancellable> = []
+    private var cancellable: AnyCancellable?
     
-    init() {
-        fetchEquipmentList()
+    init(listener: EquipmentListenerService) {
+        self.listener = listener
+    }
+    
+    func selectFilter(equipmentType: EquipmentType) {
+        cancellable?.cancel()
+        cancellable = listener
+            .listen(to: equipmentType)
+            .replaceError(with: [])
+            .assign(to: \.equipmentList, on: self)
     }
     
     func fetchEquipmentList() {
-        equipmentRepository
-            .read()
-            .assign(to: \.equipmentList, on: self)
-            .store(in: &cancellabels)
+        listener
+            .listen(to: .all)
+            .assign(to: &$equipmentList)
     }
+    
+    func handleOnAppear() {
+        selectFilter(equipmentType: .all)
+    }
+    
 }

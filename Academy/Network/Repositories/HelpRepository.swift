@@ -7,47 +7,73 @@ public final class HelpRepository: ObservableObject {
     
     private let path = "help"
     private let store = Firestore.firestore()
+    
     @Published public var helpList: [Help] = []
     
+    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    static let shared = HelpRepository()
+    
     public init() {
-        read()
+        self.initialize()
     }
     
-    public func create(_ help: Help) {
-        do {
-            _ = try store.collection(path).addDocument(from: help)
-        } catch {
-            print(error.localizedDescription)
+    public func create(helpData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
+        store.collection(path).document(id).setData(data) {
+            if let _ = $0 {
+                response.send(false)
+                return
+            }
+            response.send(true)
         }
+        return response
+            .eraseToAnyPublisher()
+    }
+ 
+    
+    func update(_ help: Help) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
+        do {
+            try store.collection(path).document(help.id)
+                .setData(from: help) {
+                if let error = $0 {
+                    response.send(false)
+                    return
+                }
+                    
+                response.send(true)
+            }
+        } catch {
+            return Fail(outputType: Bool.self, failure: error)
+                .eraseToAnyPublisher()
+        }
+        
+        return response
+            .eraseToAnyPublisher()
     }
     
-    func read() {
+    func delete(_ help: Help) {
+        // To do
+    }
+    
+    private func initialize() {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print("FAILED!", error.localizedDescription)
             }
+            // Review
+            guard let snapshot = snapshot else { fatalError() }
             
-            self.helpList = snapshot?.documents.compactMap {
-                let data = try? $0.data(as: Help.self)
-                return data
-            } ?? []
-            
-            self.sortHelpList()
+            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
+            dump(dictionaries)
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            self.readingPublisher.send(data)
         }
     }
-    
-    func update(_ help: Help) {
-        // To do
-    }
-    
-    func delete(_ helpId: String) {
-        // To do
-    }
-    
-    // Review
-    private func sortHelpList() {
-        self.helpList = self.helpList.sorted { helpA, helpB in
-            helpA.requestTimeInterval < helpB.requestTimeInterval
-        }
+}
+
+extension Data {
+    static var emptyJson: Self {
+        try! JSONEncoder().encode([String]())
     }
 }

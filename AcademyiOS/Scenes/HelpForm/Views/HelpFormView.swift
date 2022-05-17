@@ -4,12 +4,12 @@ import AcademyUI
 
 struct HelpFormView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var viewModel = HelpFormViewModel()
+    @ObservedObject var viewModel: HelpFormViewModel
     var onDismiss: () -> ()
     
-    
-    init(onDismiss: @escaping () -> ()) {
+    init(helpModel: Help?, onDismiss: @escaping () -> ()) {
         self.onDismiss = onDismiss
+        self.viewModel = HelpFormViewModel(helpModel: helpModel)
     }
     
     var body: some View {
@@ -27,15 +27,15 @@ struct HelpFormView: View {
                     
                     HStack {
                         HelpTypeFilterButton(helpType: .code) {
-                            viewModel.categoryChosen = .code
+                            viewModel.type = .code
                         }
                         
                         HelpTypeFilterButton(helpType: .design) {
-                            viewModel.categoryChosen = .design
+                            viewModel.type = .design
                         }
                         
                         HelpTypeFilterButton(helpType: .business) {
-                            viewModel.categoryChosen = .business
+                            viewModel.type = .business
                         }
                     
                     Spacer()
@@ -50,7 +50,7 @@ struct HelpFormView: View {
                     .bold()
                     .foregroundColor(Color.white)
                 
-                TextField("Seu desafio em poucas palavras", text: $viewModel.subject)
+                TextField("Seu desafio em poucas palavras", text: $viewModel.title)
                     .padding()
                     .background(Color.adaDarkGray)
                     .foregroundColor(Color.white)
@@ -81,7 +81,7 @@ struct HelpFormView: View {
                     .bold()
                     .foregroundColor(Color.white)
                 
-                TextField("Onde a ajuda poderá te encontrar", text: $viewModel.location)
+                TextField("Onde a ajuda poderá te encontrar", text: $viewModel.currentLocation)
                     .padding()
                     .background(Color.adaDarkGray)
                     .cornerRadius(8)
@@ -93,10 +93,10 @@ struct HelpFormView: View {
             
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
-                viewModel.createNewHelp()
+                viewModel.tapButtonHandle()
             }) {
                 VStack {
-                    Text("Pedir ajuda")
+                    Text(viewModel.buttonText)
                         .foregroundColor(.white)
                         .bold()
                 }
@@ -118,7 +118,7 @@ struct HelpFormView: View {
 
 struct HelpFormView_Previews: PreviewProvider {
     static var previews: some View {
-        HelpFormView {
+        HelpFormView(helpModel: nil) {
             print("")
         }
     }

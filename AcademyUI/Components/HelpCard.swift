@@ -4,6 +4,8 @@ import Academy
 public struct HelpCard: View {
     
     var helpModel: Help
+    var assignHelpHandler: () -> ()
+    var completeHelpHandler: () -> ()
     @State var showDetails: Bool = false
     
     // Review
@@ -20,8 +22,10 @@ public struct HelpCard: View {
         }
     }
     
-    public init(helpModel: Help) {
+    public init(helpModel: Help, assignHelpHandler: @escaping () -> (), completeHelpHandler: @escaping () -> ()) {
         self.helpModel = helpModel
+        self.assignHelpHandler = assignHelpHandler
+        self.completeHelpHandler = completeHelpHandler
     }
     
     public var body: some View {
@@ -46,17 +50,71 @@ public struct HelpCard: View {
                 
                 Spacer()
                 
-                Text(helpModel.requestDate.getFormattedDate())
-                    .font(.system(size: 16, weight: .regular, design: .rounded))
-                    .foregroundColor(Color.white)
-                
+                switch helpModel.status {
+                case .waitingForHelp:
+                    Text(helpModel.requestDate.getFormattedDate())
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundColor(Color.white)
+                case .beingHelped:
+                    Image("andre-memoji")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+                case .done:
+                    Image(systemName: "checkmark.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30)
+                        .foregroundColor(.adaGreen)
+                }
             }
             
             if showDetails {
-                Text(helpModel.description)
-                    .padding(.top, 8)
+                Divider()
+                    .background(typeColor)
                 
-                // TO DO: Add other help data here
+                HStack {
+                    Text(helpModel.description)
+                        .padding(.bottom, 8)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                }
+                .padding(.vertical)
+                
+                HStack {
+                    Button(action: {
+                        print("Ajudar")
+                        assignHelpHandler()
+                    }) {
+                        HStack {
+                            Spacer()
+                            Text("Ajudar")
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .foregroundColor(.black)
+                        .padding(.trailing, 4)
+                    }
+                    
+                    Button(action: {
+                        print("Resolvido")
+                        completeHelpHandler()
+                    }) {
+                        HStack {
+                            Spacer()
+                            Text("Resolvido")
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                        .background(Color.adaLightBlue)
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                        .padding(.leading, 4)
+                    }
+                }
                 
             }
         }
