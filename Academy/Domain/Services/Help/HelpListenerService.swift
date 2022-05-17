@@ -20,6 +20,9 @@ public final class HelpListenerService {
                 if type == .all { return helps }
                 return helps.filter { $0.type == type }
             }
+            .map { helps -> [Help] in
+                return helps.filter { $0.status != .done }
+            }
             .map { $0.sorted { h1, h2 in
                 h1.requestTimeInterval < h2.requestTimeInterval
             }}

@@ -44,10 +44,12 @@ struct HomeView: View {
                             
                             Button(action: {
                                 print("Open announcement form")
+                                
                             }) {
-                                Image(systemName: "plus")
+                                Text("Ver todos")
+                                    .bold()
+                                    .font(.system(size: 16, weight: .bold, design: .default))
                                     .foregroundColor(.white)
-                                    .font(.system(size: 21, weight: .bold, design: .default))
                             }
                         }
                         

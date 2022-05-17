@@ -8,11 +8,12 @@ public struct Help: Codable, Identifiable {
     public var currentLocation: String
     public var requestTimeInterval: TimeInterval
     public var assignee: User?
+    public var status: HelpStatus = .waitingForHelp
     public var requestDate: Date {
         Date(timeIntervalSince1970: requestTimeInterval)
     }
     
-    public init(id: String, title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: User?) {
+    public init(id: String, title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: User?, status: HelpStatus) {
         self.id = id
         self.title = title
         self.description = description
@@ -20,6 +21,7 @@ public struct Help: Codable, Identifiable {
         self.currentLocation = currentLocation
         self.requestTimeInterval = requestTimeInterval
         self.assignee = assignee
+        self.status = status
     }
 }
 
@@ -34,4 +36,10 @@ public enum HelpType: String, Codable {
     case code = "Progs"
     case business = "Business"
     case all = "Todos"
+}
+
+public enum HelpStatus: String, Codable {
+    case waitingForHelp = "Aguardando ajuda"
+    case beingHelped = "Ajuda recebida"
+    case done = "Resolvido"
 }

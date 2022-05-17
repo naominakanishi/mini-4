@@ -4,7 +4,11 @@ import AcademyUI
 
 struct HelpListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject private var viewModel = HelpListViewModel(listener: HelpListenerService())
+    @StateObject private var viewModel = HelpListViewModel(
+        listener: HelpListenerService(),
+        helpAssignService: HelpAssignService(),
+        helpUpdatingService: HelpUpdatingService()
+    )
     
     var body: some View {
         ZStack {
@@ -58,10 +62,18 @@ struct HelpListView: View {
                         .padding(.bottom)
                         
                         ForEach(viewModel.currentHelpList) { helpModel in
-                            HelpCard(helpModel: helpModel)
-                                .onLongPressGesture {
-                                    viewModel.handleCardLongPress(helpModel: helpModel)
+                            HelpCard(
+                                helpModel: helpModel,
+                                assignHelpHandler: {
+                                    viewModel.assignHelpHandler(help: helpModel)
+                                },
+                                completeHelpHandler: {
+                                    viewModel.completeHelpHandler(help: helpModel)
                                 }
+                            )
+                            .onLongPressGesture {
+                                viewModel.handleCardLongPress(helpModel: helpModel)
+                            }
                         }
                     }
                     

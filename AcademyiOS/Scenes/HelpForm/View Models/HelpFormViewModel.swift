@@ -3,6 +3,8 @@ import Academy
 
 final class HelpFormViewModel: ObservableObject {
     
+    private var helpModel: Help? = nil
+    
     private let helpSenderService = HelpSenderService()
     private let helpUpdatingService = HelpUpdatingService()
     
@@ -11,7 +13,13 @@ final class HelpFormViewModel: ObservableObject {
     @Published var currentLocation: String = ""
     @Published var type: HelpType? = nil
     
-    var helpModel: Help? = nil
+    var buttonText: String {
+        if helpModel != nil {
+            return "Salvar edição"
+        } else {
+            return "Pedir ajuda"
+        }
+    }
     
     init(helpModel: Help?) {
         self.helpModel = helpModel
@@ -30,7 +38,8 @@ final class HelpFormViewModel: ObservableObject {
                 type: type ?? .all,
                 currentLocation: currentLocation,
                 requestTimeInterval: helpModel!.requestTimeInterval,
-                assignee: nil
+                assignee: nil,
+                status: helpModel!.status
             )
             updateHelp(updatedHelp)
         } else {
@@ -39,19 +48,12 @@ final class HelpFormViewModel: ObservableObject {
     }
     
     private func createNewHelp() {
-        let newHelpRequest = Help(id: UUID().uuidString, title: title, description: description, type: type ?? .all, currentLocation: currentLocation, requestTimeInterval: Date().timeIntervalSince1970, assignee: nil)
+        let newHelpRequest = Help(id: UUID().uuidString, title: title, description: description, type: type ?? .all, currentLocation: currentLocation, requestTimeInterval: Date().timeIntervalSince1970, assignee: nil, status: .waitingForHelp)
         
         helpSenderService.send(help: newHelpRequest)
     }
     
     private func updateHelp(_ help: Help) {
-        helpUpdatingService.execute(using: help).sink { error in
-            print("Teste")
-        } receiveValue: { success in
-            if success {
-                print("Deu boa")
-            }
-        }
-
+        helpUpdatingService.execute(using: help)
     }
 }

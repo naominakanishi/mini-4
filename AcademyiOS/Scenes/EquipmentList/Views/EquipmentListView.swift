@@ -17,7 +17,6 @@ struct EquipmentListView: View {
                 }
                 Spacer()
             }
-            .padding(.vertical)
             
             HStack {
                 Text("Equipamentos")
@@ -32,6 +31,7 @@ struct EquipmentListView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(viewModel.equipmentList) { equipment in
                     EquipmentCard(equipment: equipment)
+                        .padding(.horizontal, 1)
                 }
             }
         }

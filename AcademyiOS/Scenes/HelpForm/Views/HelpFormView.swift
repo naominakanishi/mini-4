@@ -96,7 +96,7 @@ struct HelpFormView: View {
                 viewModel.tapButtonHandle()
             }) {
                 VStack {
-                    Text("Pedir ajuda")
+                    Text(viewModel.buttonText)
                         .foregroundColor(.white)
                         .bold()
                 }

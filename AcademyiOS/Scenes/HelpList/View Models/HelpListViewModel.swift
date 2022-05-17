@@ -6,6 +6,9 @@ import SwiftUI
 final class HelpListViewModel: ObservableObject {
     
     private let listener: HelpListenerService
+    private let helpUpdatingService: HelpUpdatingService
+    private let helpAssignService: HelpAssignService
+    
     private var cancelable: AnyCancellable?
     
     @Published var helpOnEdit: Help? = nil
@@ -21,8 +24,10 @@ final class HelpListViewModel: ObservableObject {
     @Published var showRequestHelpModal: Bool = false
     
     
-    init(listener: HelpListenerService) {
+    init(listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
         self.listener = listener
+        self.helpAssignService = helpAssignService
+        self.helpUpdatingService = helpUpdatingService
     }
     
     func selectFilter(helpType: HelpType) {
@@ -30,7 +35,7 @@ final class HelpListViewModel: ObservableObject {
         cancelable = listener
             .listen(to: helpType)
             .mapError({ error -> Error in
-                print("ERRROR", error)
+                print("ERROR", error)
                 return error
             })
             .replaceError(with: [])
@@ -44,5 +49,15 @@ final class HelpListViewModel: ObservableObject {
     func handleCardLongPress(helpModel: Help) {
         showRequestHelpModal = true
         helpOnEdit = helpModel
+    }
+    
+    func assignHelpHandler(help: Help) {
+        helpAssignService.assign(using: help)
+    }
+    
+    func completeHelpHandler(help: Help) {
+        var helpUpdated = help
+        helpUpdated.status = .done
+        helpUpdatingService.execute(using: helpUpdated)
     }
 }
