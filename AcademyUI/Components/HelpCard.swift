@@ -17,6 +17,8 @@ public struct HelpCard: View {
             return .adaGreen
         case .design:
             return .adaPink
+        case.general:
+            return .adaLightBlue
         case .all:
             return .gray
         }
