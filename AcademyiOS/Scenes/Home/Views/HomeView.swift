@@ -88,14 +88,14 @@ struct HomeView: View {
                                     NavigationLink {
                                         AcademyPeopleView()
                                     } label: {
-                                        FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
+                                        FeatureCard(title: "pessoas na \nacademy", maxHeight: 200, color: Color.adaPink) {
                                         }
                                     }
                                     
                                     NavigationLink {
                                         EquipmentListView()
                                     } label: {
-                                        FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
+                                        FeatureCard(title: "equipamentos", maxHeight: 200, color: Color.adaLightBlue) {
                                         }
                                     }
 
@@ -104,7 +104,7 @@ struct HomeView: View {
                                 NavigationLink {
                                     HelpListView()
                                 } label: {
-                                    FeatureCard(title: "@ajuda", maxHeight: 252, color: Color.adaGreen) {
+                                    FeatureCard(title: "@ajuda", maxHeight: 412, color: Color.adaGreen) {
                                     }
                                 }
                                 
@@ -112,14 +112,14 @@ struct HomeView: View {
                             }
                             HStack {
                                 
-                                FeatureCard(title: "learning journey", maxHeight: 120, color: Color.adaYellow) {
+                                FeatureCard(title: "learning journey", maxHeight: 200, color: Color.adaYellow) {
                                     
                                 }
                                 
                                 NavigationLink {
                                     SuggestionsBoxView()
                                 } label: {
-                                    FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
+                                    FeatureCard(title: "caixinha de \nsugestões", maxHeight: 200, color: Color.adaPurple) {
                                     }
                                 }
                                 
@@ -158,6 +158,8 @@ struct FeatureCard: View {
                     Text(title)
                         .font(.system(size: 18, weight: .bold, design: .default))
                         .foregroundColor(Color.white)
+                        .multilineTextAlignment(.leading)
+                        .padding(.top, 32)
                     Spacer()
                 }
                 .padding()

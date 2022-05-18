@@ -28,6 +28,11 @@
 		11BB181A2834598D0050B977 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB18192834598D0050B977 /* Role.swift */; };
 		11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB181B28345C170050B977 /* PeopleViewModel.swift */; };
 		11BB182228345EB10050B977 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB182128345EB10050B977 /* PersonView.swift */; };
+		5B68C2032834B00600FD2539 /* EquipmentUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2022834B00600FD2539 /* EquipmentUpdatingService.swift */; };
+		5B68C2072834B08400FD2539 /* SuggestionSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */; };
+		5B68C20C2834B55300FD2539 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C20B2834B55300FD2539 /* LoginView.swift */; };
+		5B68C20E2834B55F00FD2539 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C20D2834B55F00FD2539 /* LoginViewModel.swift */; };
+		5B68C2102834B5A000FD2539 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C20F2834B5A000FD2539 /* SignInWithAppleButton.swift */; };
 		5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAB82831B8000071821E /* HelpRepository.swift */; };
 		5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */; };
 		5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABD2831D2570071821E /* HomeViewModel.swift */; };
@@ -211,6 +216,11 @@
 		11BB18192834598D0050B977 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		11BB181B28345C170050B977 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewModel.swift; path = "AcademyiOS/Scenes/AcademyPeople/View Models/PeopleViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		11BB182128345EB10050B977 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonView.swift; path = AcademyiOS/Scenes/AcademyPeople/Views/PersonView.swift; sourceTree = SOURCE_ROOT; };
+		5B68C2022834B00600FD2539 /* EquipmentUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentUpdatingService.swift; sourceTree = "<group>"; };
+		5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSenderService.swift; sourceTree = "<group>"; };
+		5B68C20B2834B55300FD2539 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5B68C20D2834B55F00FD2539 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5B68C20F2834B5A000FD2539 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		5BC2EAB82831B8000071821E /* HelpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRepository.swift; sourceTree = "<group>"; };
 		5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRepository.swift; sourceTree = "<group>"; };
 		5BC2EABD2831D2570071821E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -408,6 +418,48 @@
 			path = AcademyUI;
 			sourceTree = "<group>";
 		};
+		5B68C2042834B03E00FD2539 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5BE70E5D282C643C00E36372 /* AuthenticationService.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		5B68C2052834B06D00FD2539 /* Suggestion */ = {
+			isa = PBXGroup;
+			children = (
+				5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */,
+			);
+			path = Suggestion;
+			sourceTree = "<group>";
+		};
+		5B68C2082834B53000FD2539 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5B68C20A2834B54100FD2539 /* View Models */,
+				5B68C2092834B53C00FD2539 /* Views */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5B68C2092834B53C00FD2539 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B68C20B2834B55300FD2539 /* LoginView.swift */,
+				5B68C20F2834B5A000FD2539 /* SignInWithAppleButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B68C20A2834B54100FD2539 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B68C20D2834B55F00FD2539 /* LoginViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		5BC2EABA2831CB800071821E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,6 +471,7 @@
 		5BC2EACF2832DEA20071821E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5B68C2042834B03E00FD2539 /* Authentication */,
 				5BE70E4A282C470000E36372 /* Repositories */,
 			);
 			path = Network;
@@ -436,6 +489,7 @@
 		5BC2EAD52832ECD70071821E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5B68C2082834B53000FD2539 /* Login */,
 				5BC2EAFC2832F7370071821E /* Schedule */,
 				5BC2EAEF2832F6920071821E /* EquipmentList */,
 				5BC2EAEE2832F6860071821E /* SuggestionBox */,
@@ -699,6 +753,7 @@
 			isa = PBXGroup;
 			children = (
 				5BC2EB0B28336BA50071821E /* EquipmentListenerService.swift */,
+				5B68C2022834B00600FD2539 /* EquipmentUpdatingService.swift */,
 			);
 			path = Equipment;
 			sourceTree = "<group>";
@@ -783,10 +838,10 @@
 		5BE70E49282C46F500E36372 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5B68C2052834B06D00FD2539 /* Suggestion */,
 				5BC2EB0A28336B850071821E /* Equipment */,
 				5BC2EB002832FD750071821E /* Help */,
 				5BC2EAFF2832F7F20071821E /* Announcement */,
-				5BE70E5D282C643C00E36372 /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1050,7 +1105,9 @@
 				5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* User.swift in Sources */,
 				5BC2EAD42832E8F50071821E /* AnnouncementUpdatingService.swift in Sources */,
+				5B68C2032834B00600FD2539 /* EquipmentUpdatingService.swift in Sources */,
 				5BC2EB042832FD9C0071821E /* HelpUpdatingService.swift in Sources */,
+				5B68C2072834B08400FD2539 /* SuggestionSenderService.swift in Sources */,
 				5BC2EB022832FD8B0071821E /* HelpSenderService.swift in Sources */,
 				5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */,
 				5BC2EB0C28336BA50071821E /* EquipmentListenerService.swift in Sources */,
@@ -1073,6 +1130,7 @@
 				11BB182228345EB10050B977 /* PersonView.swift in Sources */,
 				5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */,
 				5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */,
+				5B68C2102834B5A000FD2539 /* SignInWithAppleButton.swift in Sources */,
 				5BC2EACA2831E92E0071821E /* EquipmentListView.swift in Sources */,
 				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */,
@@ -1083,7 +1141,9 @@
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BC2EADD2832ED270071821E /* AnnouncementListViewModel.swift in Sources */,
 				5BC2EADA2832ECFE0071821E /* AnnouncementFormView.swift in Sources */,
+				5B68C20C2834B55300FD2539 /* LoginView.swift in Sources */,
 				5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */,
+				5B68C20E2834B55F00FD2539 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

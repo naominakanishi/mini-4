@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseCore
+import CryptoKit
 
 @main
 struct AcademyiOSApp: App {
@@ -7,7 +8,7 @@ struct AcademyiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            LoginView()
         }
     }
 }
@@ -20,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Configure Firebase
         FirebaseApp.configure()
-        
         
         return true
     }
