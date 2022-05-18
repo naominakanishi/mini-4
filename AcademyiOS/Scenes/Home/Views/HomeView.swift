@@ -85,27 +85,44 @@ struct HomeView: View {
                         VStack {
                             HStack {
                                 VStack {
-                                    FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
-                                        showAcademyPeopleView = true
+                                    NavigationLink {
+                                        AcademyPeopleView()
+                                    } label: {
+                                        FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
+                                        }
                                     }
                                     
-                                    FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
-                                        showEquipmentList = true
+                                    NavigationLink {
+                                        EquipmentListView()
+                                    } label: {
+                                        FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
+                                        }
+                                    }
+
+                                }
+                                
+                                NavigationLink {
+                                    HelpListView()
+                                } label: {
+                                    FeatureCard(title: "@ajuda", maxHeight: 252, color: Color.adaGreen) {
                                     }
                                 }
                                 
-                                FeatureCard(title: "@ajuda", maxHeight: 252, color: Color.adaGreen) {
-                                    showHelpListView = true
-                                }
+                                
                             }
                             HStack {
+                                
                                 FeatureCard(title: "learning journey", maxHeight: 120, color: Color.adaYellow) {
                                     
                                 }
                                 
-                                FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
-                                    showSuggestionsBoxView = true
+                                NavigationLink {
+                                    SuggestionsBoxView()
+                                } label: {
+                                    FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
+                                    }
                                 }
+                                
                             }
                         }
                         .padding(.vertical)
@@ -114,10 +131,6 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    NavigationLink("", destination: HelpListView(), isActive: $showHelpListView)
-                    NavigationLink("", destination: AcademyPeopleView(), isActive: $showAcademyPeopleView)
-                    NavigationLink("", destination: EquipmentListView(), isActive: $showEquipmentList)
-                    NavigationLink("", destination: SuggestionsBoxView(), isActive: $showSuggestionsBoxView)
                 }
             }
            
@@ -155,9 +168,6 @@ struct FeatureCard: View {
                 .stroke(color, lineWidth: 1)
         )
         .padding(4)
-        .onTapGesture {
-            onTap()
-        }
         .frame(maxHeight: maxHeight)
     }
 }

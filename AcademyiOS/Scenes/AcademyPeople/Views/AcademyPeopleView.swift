@@ -2,31 +2,42 @@ import SwiftUI
 
 struct AcademyPeopleView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     var body: some View {
         VStack {
-            HStack {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "arrow.left")
-                        .font(.system(size: 24, weight: .bold, design: .default))
-                        .foregroundColor(Color.white)
-                }
+            HStack{
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
                 Spacer()
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+                Spacer()
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+                Spacer()
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+
             }
-            .padding(.horizontal)
+            .padding()
             
-            Spacer()
+            HStack{
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+                Spacer()
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+                Spacer()
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+                Spacer()
+                PersonView(userImage: Image("andre-memoji"), username: "teste")
+
+            }
+            .padding()
             
-            Text("To do")
-                .foregroundColor(Color.white)
             
-            Spacer()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.adaBackground)
-        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button("<", action: {
+            presentationMode.wrappedValue.dismiss()
+        }))
+        .navigationTitle("Avisos")
     }
 }
 
