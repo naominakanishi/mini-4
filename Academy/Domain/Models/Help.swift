@@ -35,6 +35,7 @@ public enum HelpType: String, Codable {
     case design = "Design"
     case code = "Progs"
     case business = "Business"
+    case general = "Geral"
     case all = "Todos"
 }
 

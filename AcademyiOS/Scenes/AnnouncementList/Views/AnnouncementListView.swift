@@ -18,7 +18,7 @@ struct AnnouncementListView: View {
     
     var body: some View {
         List {
-            ForEach (viewModel.announcements, id: \.id) { announcement in
+            ForEach (viewModel.announcementList, id: \.id) { announcement in
                 AnnouncementCard(text: announcement.text,
                                  username: announcement.fromUser?.name ?? "Binder",
                                  time: announcement.createdDate.getFormattedDate(),
