@@ -3,6 +3,7 @@ import SwiftUI
 public struct PersonView: View {
     let userImage: Image
     let username: String
+    let color: Color
     
     private var progressChart: some View {
         Circle()
@@ -11,14 +12,11 @@ public struct PersonView: View {
                 lineCap: .round,
                 lineJoin: .round
             ))
-            .fill(.linearGradient(.init(colors: [
-                Color.adaGreen, Color.adaGreen, Color.adaGreen, Color.adaGreen, Color.clear
-            ]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .fill(color.adaGradient)
         }
 
     
     public var body: some View {
-   //     progressChart
         VStack{
             ZStack{
                 progressChart
@@ -41,7 +39,15 @@ public struct PersonView: View {
 
 struct PersonView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonView(userImage: Image("andre-memoji"), username: "André")
+        PersonView(userImage: Image("andre-memoji"), username: "André", color: .red)
             .preferredColorScheme(.dark)
+    }
+}
+
+extension Color {
+    var adaGradient: LinearGradient {
+        .init(colors: .init(repeating: self, count: 5) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
     }
 }
