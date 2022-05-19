@@ -67,7 +67,11 @@ struct HomeView: View {
                                 TabView {
                                     ForEach(viewModel.activeAnnouncements) { announcement in
                                         VStack {
-                                            AnnouncementCard(text: announcement.text, username: announcement.fromUser?.name ?? "Binder", time: announcement.createdDate.getFormattedDate(), userImage: Image("andre-memoji"))
+                                            AnnouncementCard(
+                                                text: announcement.text,
+                                                user: announcement.fromUser,
+                                                dateString: announcement.createdDate.getFormattedDate()
+                                            )
                                             Spacer()
                                                 .frame(height: 40)
                                         }
@@ -105,7 +109,7 @@ struct HomeView: View {
                                     }
                                     
                                     NavigationLink {
-                                        EquipmentListView()
+                                        EquipmentListView(currentUser: authService.user)
                                     } label: {
                                         FeatureCard(title: "equipamentos", maxHeight: 200, color: Color.adaLightBlue) {
                                         }

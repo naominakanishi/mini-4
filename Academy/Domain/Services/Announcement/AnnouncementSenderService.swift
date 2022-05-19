@@ -11,11 +11,14 @@ public class AnnouncementSenderService {
         self.init(repository: .shared)
     }
     
-    public func send(content: String) -> AnyPublisher<Bool, Error> {
-        let announcement = Announcement(id: UUID().uuidString,
-                                        createdTimeInterval: Date.now.timeIntervalSince1970,
-                                        text: content,
-                                        isActive: true)
+    public func send(content: String, user: AcademyUser) -> AnyPublisher<Bool, Error> {
+        let announcement = Announcement(
+            id: UUID().uuidString,
+            fromUser: user,
+            createdTimeInterval: Date.now.timeIntervalSince1970,
+            text: content,
+            isActive: true
+        )
         
         do {
             let data = try announcement.toFirebase()

@@ -17,7 +17,6 @@ struct LoadingView: View {
         }
         .onAppear {
             authService.initialize()
-            print(authService.user)
         }
     }
 }

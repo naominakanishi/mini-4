@@ -17,7 +17,7 @@ public final class AnnouncementListenerService {
     
     public func listen() -> AnyPublisher<[Announcement], Never> {
         return repository
-            .read()
+            .readingPublisher
             .decode(type: [Announcement].self, decoder: JSONDecoder())
             .map { $0.sorted { a1, a2 in
                 a1.createdDate < a2.createdDate

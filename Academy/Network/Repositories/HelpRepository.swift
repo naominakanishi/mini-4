@@ -51,16 +51,12 @@ public final class HelpRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func delete(_ help: Help) {
-        // To do
-    }
-    
     private func read() {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("FAILED!", error.localizedDescription)
             }
-            // Review
+
             guard let snapshot = snapshot else { fatalError() }
             
             let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
@@ -69,10 +65,8 @@ public final class HelpRepository: ObservableObject {
             self.readingPublisher.send(data)
         }
     }
-}
-
-extension Data {
-    static var emptyJson: Self {
-        try! JSONEncoder().encode([String]())
+    
+    func delete(_ help: Help) {
+        // To do
     }
 }

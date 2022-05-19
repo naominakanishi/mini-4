@@ -1,5 +1,6 @@
 import Foundation
 import Academy
+import Combine
 
 final class HelpFormViewModel: ObservableObject {
     
@@ -7,6 +8,7 @@ final class HelpFormViewModel: ObservableObject {
     private var user: AcademyUser
     private let helpSenderService = HelpSenderService()
     private let helpUpdatingService = HelpUpdatingService()
+    private var cancelBag: [AnyCancellable] = []
     
     @Published var title: String = ""
     @Published var description: String = ""
@@ -53,6 +55,17 @@ final class HelpFormViewModel: ObservableObject {
         let newHelpRequest = Help(id: UUID().uuidString, user: user, title: title, description: description, type: type ?? .all, currentLocation: currentLocation, requestTimeInterval: Date().timeIntervalSince1970, assignee: nil, status: .waitingForHelp)
         
         helpSenderService.send(help: newHelpRequest)
+            .sink(receiveCompletion: { error in
+                // TODO display error
+            }, receiveValue: {
+                if !$0 {
+                    // TODO display error
+                    return
+                }
+                
+                // TODO display success
+            })
+            .store(in: &cancelBag)
     }
     
     private func updateHelp(_ help: Help) {

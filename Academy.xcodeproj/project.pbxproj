@@ -28,7 +28,7 @@
 		11BB181A2834598D0050B977 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB18192834598D0050B977 /* Role.swift */; };
 		11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB181B28345C170050B977 /* PeopleViewModel.swift */; };
 		11BB182228345EB10050B977 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB182128345EB10050B977 /* PersonView.swift */; };
-		5B68C2032834B00600FD2539 /* EquipmentUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2022834B00600FD2539 /* EquipmentUpdatingService.swift */; };
+		5B68C2032834B00600FD2539 /* EquipmentWaitlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */; };
 		5B68C2072834B08400FD2539 /* SuggestionSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */; };
 		5B68C20C2834B55300FD2539 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C20B2834B55300FD2539 /* LoginView.swift */; };
 		5B68C20E2834B55F00FD2539 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C20D2834B55F00FD2539 /* LoginViewModel.swift */; };
@@ -43,6 +43,8 @@
 		5B75E6572835CD3F0047ADEB /* UserSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6562835CD3F0047ADEB /* UserSenderService.swift */; };
 		5B75E6592835CD8C0047ADEB /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6582835CD8C0047ADEB /* Encodable.swift */; };
 		5B75E65B2835D12B0047ADEB /* UserExistenceCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */; };
+		5B75E65D2835FBDE0047ADEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65C2835FBDE0047ADEB /* Data.swift */; };
+		5B75E65F2835FCA00047ADEB /* EquipmentUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */; };
 		5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAB82831B8000071821E /* HelpRepository.swift */; };
 		5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */; };
 		5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABD2831D2570071821E /* HomeViewModel.swift */; };
@@ -226,7 +228,7 @@
 		11BB18192834598D0050B977 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		11BB181B28345C170050B977 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewModel.swift; path = "AcademyiOS/Scenes/AcademyPeople/View Models/PeopleViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		11BB182128345EB10050B977 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonView.swift; path = AcademyiOS/Scenes/AcademyPeople/Views/PersonView.swift; sourceTree = SOURCE_ROOT; };
-		5B68C2022834B00600FD2539 /* EquipmentUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentUpdatingService.swift; sourceTree = "<group>"; };
+		5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentWaitlistService.swift; sourceTree = "<group>"; };
 		5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSenderService.swift; sourceTree = "<group>"; };
 		5B68C20B2834B55300FD2539 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5B68C20D2834B55F00FD2539 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -242,6 +244,8 @@
 		5B75E6562835CD3F0047ADEB /* UserSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSenderService.swift; sourceTree = "<group>"; };
 		5B75E6582835CD8C0047ADEB /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExistenceCheckerService.swift; sourceTree = "<group>"; };
+		5B75E65C2835FBDE0047ADEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentUpdatingService.swift; sourceTree = "<group>"; };
 		5BC2EAB82831B8000071821E /* HelpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRepository.swift; sourceTree = "<group>"; };
 		5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRepository.swift; sourceTree = "<group>"; };
 		5BC2EABD2831D2570071821E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -526,6 +530,7 @@
 			children = (
 				5BE70E50282C4A6F00E36372 /* DateFormatter.swift */,
 				5B75E6582835CD8C0047ADEB /* Encodable.swift */,
+				5B75E65C2835FBDE0047ADEB /* Data.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -815,7 +820,8 @@
 			isa = PBXGroup;
 			children = (
 				5BC2EB0B28336BA50071821E /* EquipmentListenerService.swift */,
-				5B68C2022834B00600FD2539 /* EquipmentUpdatingService.swift */,
+				5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */,
+				5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */,
 			);
 			path = Equipment;
 			sourceTree = "<group>";
@@ -1159,6 +1165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE70E5E282C643C00E36372 /* AuthService.swift in Sources */,
+				5B75E65D2835FBDE0047ADEB /* Data.swift in Sources */,
 				5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */,
 				5BC2EAC62831E7B00071821E /* Equipment.swift in Sources */,
 				5BC2EB0928335E630071821E /* HelpAssignService.swift in Sources */,
@@ -1171,7 +1178,8 @@
 				5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* AcademyUser.swift in Sources */,
 				5BC2EAD42832E8F50071821E /* AnnouncementUpdatingService.swift in Sources */,
-				5B68C2032834B00600FD2539 /* EquipmentUpdatingService.swift in Sources */,
+				5B75E65F2835FCA00047ADEB /* EquipmentUpdatingService.swift in Sources */,
+				5B68C2032834B00600FD2539 /* EquipmentWaitlistService.swift in Sources */,
 				5B75E6572835CD3F0047ADEB /* UserSenderService.swift in Sources */,
 				5B75E645283577A60047ADEB /* UserRepository.swift in Sources */,
 				5B75E6592835CD8C0047ADEB /* Encodable.swift in Sources */,

@@ -57,7 +57,9 @@ public final class AuthService: ObservableObject {
                         self.userSenderService
                             .send(user: AcademyUser(id: authUser.uid, name: authUser.displayName ?? "", email: authUser.email!, imageName: "", status: .available, birthday: nil, role: nil))
                     }
-                    self.authState = .signedIn
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.authState = .signedIn
+                    }
                 }.store(in: &self.cancellabels)
             } else {
                 self.signOut { error in

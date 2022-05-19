@@ -2,8 +2,7 @@ import Foundation
 
 public struct Announcement: Codable, Hashable, Identifiable {
     public var id: String
-    // Review
-    public var fromUser: AcademyUser?
+    public var fromUser: AcademyUser
     public var createdTimeInterval: TimeInterval
     public var text: String
     public var isActive: Bool
@@ -11,8 +10,9 @@ public struct Announcement: Codable, Hashable, Identifiable {
         Date(timeIntervalSince1970: createdTimeInterval)
     }
     
-    public init(id: String, createdTimeInterval: TimeInterval, text: String, isActive: Bool) {
+    public init(id: String, fromUser: AcademyUser, createdTimeInterval: TimeInterval, text: String, isActive: Bool) {
         self.id = id
+        self.fromUser = fromUser
         self.createdTimeInterval = createdTimeInterval
         self.text = text
         self.isActive = isActive

@@ -10,7 +10,11 @@ public final class AnnouncementRepository: ObservableObject {
     private let path = "announcement"
     private let store = Firestore.firestore()
     
-    public init() {}
+    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    
+    public init() {
+        read()
+    }
     
     func create(announcementData data: [String: Any]) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
@@ -25,12 +29,10 @@ public final class AnnouncementRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    public func read() -> AnyPublisher<Data, Never> {
-        let publisher = PassthroughSubject<Data, Never>()
-        
+    private func read() {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print("FAILED!", error.localizedDescription)
             }
             
             // Review
@@ -40,10 +42,8 @@ public final class AnnouncementRepository: ObservableObject {
             let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
             let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
             
-            publisher.send(data)
+            self.readingPublisher.send(data)
         }
-        
-        return publisher.eraseToAnyPublisher()
     }
     
     func update(_ announcement: Announcement) -> AnyPublisher<Bool, Error> {
