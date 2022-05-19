@@ -5,31 +5,15 @@ import Combine
 
 public final class EquipmentRepository: ObservableObject {
     
-    private let path = "equipment"
-    private let store = Firestore.firestore()
-    @Published public var equipmentList: [Equipment] = []
-    
-    public init() {}
-    
     static let shared = EquipmentRepository()
     
-    public func read() -> AnyPublisher<Data, Never>{
-        let publisher = PassthroughSubject<Data, Never>()
-        store.collection(path).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            // Review
-            guard let snapshot = snapshot else { fatalError() }
-            
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            publisher.send(data)
-        }
-        
-        return publisher.eraseToAnyPublisher()
+    private let path = "equipment"
+    private let store = Firestore.firestore()
+    
+    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    
+    public init() {
+        read()
     }
     
     public func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
@@ -45,7 +29,39 @@ public final class EquipmentRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    public func update(_ equipment: Equipment) {
+    private func read() {
+        store.collection(path).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
         
+            guard let snapshot = snapshot else { fatalError() }
+            
+            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            
+            self.readingPublisher.send(data)
+        }
+    }
+    
+    public func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
+        do {
+            try store.collection(path).document(equipment.id)
+                .setData(from: equipment) {
+                if let error = $0 {
+                    response.send(false)
+                    return
+                }
+                    
+                response.send(true)
+            }
+        } catch {
+            return Fail(outputType: Bool.self, failure: error)
+                .eraseToAnyPublisher()
+        }
+        
+        return response
+            .eraseToAnyPublisher()
     }
 }

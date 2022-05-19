@@ -1,5 +1,6 @@
 import SwiftUI
 import AcademyUI
+import Academy
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel(
@@ -7,10 +8,18 @@ struct HomeView: View {
         announcementListenerService: .init()
     )
     
+    @EnvironmentObject var authService: AuthService
+    
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false
     @State var showEquipmentList: Bool = false
     @State var showSuggestionsBoxView: Bool = false
+    
+    func logout() {
+        authService.signOut { result in
+            // TO DO
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -18,7 +27,7 @@ struct HomeView: View {
                 VStack {
                     VStack {
                         HStack {
-                            Text("Apple Developer Academy")
+                            Text("Academy Pocket")
                                 .font(.system(size: 30, weight: .bold, design: .default))
                                 .foregroundColor(Color.white)
                             
@@ -33,6 +42,9 @@ struct HomeView: View {
                                     .padding(2)
                             }
                             .frame(maxWidth: 60, maxHeight: 60)
+                            .onTapGesture {
+                                logout()
+                            }
                         }
                         
                         VStack {
@@ -55,7 +67,11 @@ struct HomeView: View {
                                 TabView {
                                     ForEach(viewModel.activeAnnouncements) { announcement in
                                         VStack {
-                                            AnnouncementCard(text: announcement.text, username: announcement.fromUser?.name ?? "Binder", time: announcement.createdDate.getFormattedDate(), userImage: Image("andre-memoji"))
+                                            AnnouncementCard(
+                                                text: announcement.text,
+                                                user: announcement.fromUser,
+                                                dateString: announcement.createdDate.getFormattedDate()
+                                            )
                                             Spacer()
                                                 .frame(height: 40)
                                         }
@@ -88,23 +104,23 @@ struct HomeView: View {
                                     NavigationLink {
                                         AcademyPeopleView()
                                     } label: {
-                                        FeatureCard(title: "pessoas na academy", maxHeight: 120, color: Color.adaPink) {
+                                        FeatureCard(title: "pessoas na \nacademy", maxHeight: 200, color: Color.adaPink) {
                                         }
                                     }
                                     
                                     NavigationLink {
-                                        EquipmentListView()
+                                        EquipmentListView(currentUser: authService.user)
                                     } label: {
-                                        FeatureCard(title: "equipamentos", maxHeight: 120, color: Color.adaLightBlue) {
+                                        FeatureCard(title: "equipamentos", maxHeight: 200, color: Color.adaLightBlue) {
                                         }
                                     }
 
                                 }
                                 
                                 NavigationLink {
-                                    HelpListView()
+                                    HelpListView(currentUser: authService.user)
                                 } label: {
-                                    FeatureCard(title: "@ajuda", maxHeight: 252, color: Color.adaGreen) {
+                                    FeatureCard(title: "@ajuda", maxHeight: 412, color: Color.adaGreen) {
                                     }
                                 }
                                 
@@ -112,14 +128,14 @@ struct HomeView: View {
                             }
                             HStack {
                                 
-                                FeatureCard(title: "learning journey", maxHeight: 120, color: Color.adaYellow) {
+                                FeatureCard(title: "learning journey", maxHeight: 200, color: Color.adaYellow) {
                                     
                                 }
                                 
                                 NavigationLink {
                                     SuggestionsBoxView()
                                 } label: {
-                                    FeatureCard(title: "caixinha de sugestões", maxHeight: 120, color: Color.adaPurple) {
+                                    FeatureCard(title: "caixinha de \nsugestões", maxHeight: 200, color: Color.adaPurple) {
                                     }
                                 }
                                 
@@ -158,6 +174,8 @@ struct FeatureCard: View {
                     Text(title)
                         .font(.system(size: 18, weight: .bold, design: .default))
                         .foregroundColor(Color.white)
+                        .multilineTextAlignment(.leading)
+                        .padding(.top, 32)
                     Spacer()
                 }
                 .padding()

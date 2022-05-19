@@ -11,12 +11,15 @@ class AnnouncementFormViewModel: ObservableObject {
     
     private let sender: AnnouncementSenderService
     
-    init(sender: AnnouncementSenderService) {
+    private let currentUser: AcademyUser
+    
+    init(currentUser: AcademyUser, sender: AnnouncementSenderService) {
+        self.currentUser = currentUser
         self.sender = sender
     }
     
     func handleSend() {
-        sender.send(content: content)
+        sender.send(content: content, user: currentUser)
             .sink(receiveCompletion: { error in
                 // TODO display error
             }, receiveValue: {

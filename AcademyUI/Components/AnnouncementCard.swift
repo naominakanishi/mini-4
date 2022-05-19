@@ -3,24 +3,22 @@ import Academy
 
 public struct AnnouncementCard: View {
     
-    public init(text: String, username: String, time: String, userImage: Image) {
-        self.text = text
-        self.username = username
-        self.time = time
-        self.userImage = userImage
-    }
+    var text: String
+    let user: AcademyUser
+    let dateString: String
     
-    let text: String
-    let username: String
-    let time: String
-    let userImage: Image
+    public init(text: String, user: AcademyUser, dateString: String) {
+        self.text = text
+        self.user = user
+        self.dateString = dateString
+    }
     
     public var body: some View {
         HStack(alignment: .top) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.adaGreen)
-                userImage
+                Image(user.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
@@ -48,13 +46,12 @@ public struct AnnouncementCard: View {
     
     private var announcementTitle: some View {
         HStack {
-            Text("@" + username)
+            Text("@" + user.name)
                 .bold()
                 .font(.system(size: 16, weight: .bold, design: .default))
             Spacer()
-            Text(time)
+            Text(dateString)
                 .font(.system(size: 14, weight: .regular, design: .default))
-
         }
     }
 }

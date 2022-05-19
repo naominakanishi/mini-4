@@ -1,9 +1,15 @@
 import SwiftUI
 import AcademyUI
+import Academy
 
 struct EquipmentListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var viewModel = EquipmentListViewModel(listener: .init())
+    @EnvironmentObject var authService: AuthService
+    @ObservedObject var viewModel: EquipmentListViewModel
+    
+    init(currentUser: AcademyUser) {
+        self.viewModel = EquipmentListViewModel(currentUser: currentUser, listenerService: .init(), updatingService: .init(), waitlistService: .init())
+    }
     
     var body: some View {
         VStack {
@@ -61,8 +67,11 @@ struct EquipmentListView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(viewModel.equipmentList) { equipment in
-                    EquipmentCard(equipment: equipment)
-                        .padding(.horizontal, 1)
+                    
+                    EquipmentCard(isBorrowedByUser: (equipment.personWhoBorrowed?.id == authService.user.id), equipment: equipment) {
+                        viewModel.handleTapOnEquipmentButton(equipment: equipment)
+                    }
+                    .padding(.horizontal, 1)
                 }
             }
             .padding(.horizontal)
@@ -78,8 +87,8 @@ struct EquipmentListView: View {
     }
 }
 
-struct EquipmentListView_Previews: PreviewProvider {
-    static var previews: some View {
-        EquipmentListView()
-    }
-}
+//struct EquipmentListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EquipmentListView()
+//    }
+//}

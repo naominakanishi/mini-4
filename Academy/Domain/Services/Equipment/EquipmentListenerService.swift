@@ -13,7 +13,7 @@ public final class EquipmentListenerService {
     
     public func listen(to type: EquipmentType) -> AnyPublisher<[Equipment], Never> {
         return repository
-            .read()
+            .readingPublisher
             .decode(type: [Equipment].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .map { equipments -> [Equipment] in
