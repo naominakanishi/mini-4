@@ -21,28 +21,6 @@ struct HelpListView: View {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
                     VStack {
-                        HStack {
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "arrow.left")
-                                    .font(.system(size: 24, weight: .bold, design: .default))
-                                    .foregroundColor(Color.white)
-                            }
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                        
-                        HStack {
-                            Text("Fila de ajuda")
-                                .font(.title)
-                                .bold()
-                                .foregroundColor(Color.white)
-                            
-                            Spacer()
-                        }
-                        .padding()
-                        
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 HelpTypeFilterButton(helpType: .all) {
@@ -113,7 +91,6 @@ struct HelpListView: View {
             }
         }
         .background(Color.adaBackground)
-        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
             HelpFormView(user: authService.user, helpModel: viewModel.helpOnEdit ?? nil) {
@@ -123,6 +100,18 @@ struct HelpListView: View {
         .onAppear {
             viewModel.handleOnAppear()
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "arrow.left")
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .foregroundColor(Color.white)
+                }
+            }
+        })
+        .navigationTitle("Fila de ajuda")
     }
 }
 

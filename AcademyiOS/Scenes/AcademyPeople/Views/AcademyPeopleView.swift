@@ -20,6 +20,7 @@ struct AcademyPeopleView: View {
     var body: some View {
         VStack {
             filterList
+                .padding()
             ScrollView {
                 LazyVGrid (columns: columns, spacing: 14 ) {
                     ForEach(viewModel.users) { user in

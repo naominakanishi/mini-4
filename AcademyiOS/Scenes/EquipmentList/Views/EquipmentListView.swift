@@ -13,29 +13,6 @@ struct EquipmentListView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "arrow.left")
-                        .font(.system(size: 24, weight: .bold, design: .default))
-                        .foregroundColor(Color.white)
-                }
-                Spacer()
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text("Equipamentos")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(Color.white)
-                
-                Spacer()
-            }
-            .padding(.vertical)
-            .padding(.horizontal)
-            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     EquipmentTypeFilterButton(equipmentType: .all) {
@@ -79,11 +56,23 @@ struct EquipmentListView: View {
         }
         .padding(.vertical)
         .background(Color.adaBackground)
-        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .onAppear {
             viewModel.handleOnAppear()
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "arrow.left")
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .foregroundColor(Color.white)
+                }
+            }
+        })
+        .navigationTitle("Equipamentos")
+        
     }
 }
 
