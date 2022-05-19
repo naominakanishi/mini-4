@@ -5,37 +5,15 @@ import Combine
 
 public final class AnnouncementRepository: ObservableObject {
     
-    private let path = "announcement"
-    private let store = Firestore.firestore()
-    @Published public var announcementList: [Announcement] = []
-    
-    public init() {}
-    
     static let shared = AnnouncementRepository()
     
-    public func create(_ announcement: Announcement) {
-        do {
-            _ = try store.collection(path).addDocument(from: announcement)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+    private let path = "announcement"
+    private let store = Firestore.firestore()
     
-    public func read() -> AnyPublisher<Data, Never> {
-        let publisher = PassthroughSubject<Data, Never>()
-        
-        store.collection(path).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            guard let snapshot = snapshot else { fatalError() }
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            publisher.send(data)
-        }
-        
-        return publisher.eraseToAnyPublisher()
+    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    
+    public init() {
+        read()
     }
     
     func create(announcementData data: [String: Any]) -> AnyPublisher<Bool, Error> {
@@ -51,6 +29,23 @@ public final class AnnouncementRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
+    private func read() {
+        store.collection(path).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print("FAILED!", error.localizedDescription)
+            }
+            
+            // Review
+            guard let snapshot = snapshot else { fatalError()
+            }
+            
+            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            
+            self.readingPublisher.send(data)
+        }
+    }
+    
     func update(_ announcement: Announcement) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
@@ -59,6 +54,7 @@ public final class AnnouncementRepository: ObservableObject {
                     response.send(false)
                     return
                 }
+                
                 response.send(true)
             }
         } catch {

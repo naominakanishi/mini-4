@@ -1,15 +1,14 @@
-import Foundation
 import Combine
 
 public final class AnnouncementListenerService {
-    private let announcementRepository: AnnouncementRepository
+    private let repository: AnnouncementRepository
     
-    init(announcementRepository: AnnouncementRepository) {
-        self.announcementRepository = announcementRepository
+    init(repository: AnnouncementRepository) {
+        self.repository = repository
     }
     
     public convenience init() {
-        self.init(announcementRepository: AnnouncementRepository())
+        self.init(repository: .shared)
     }
     
     public var activeAnnouncements: AnyPublisher<[Announcement], Never> {
@@ -17,8 +16,8 @@ public final class AnnouncementListenerService {
     }
     
     public func listen() -> AnyPublisher<[Announcement], Never> {
-        return announcementRepository
-            .read()
+        return repository
+            .readingPublisher
             .decode(type: [Announcement].self, decoder: JSONDecoder())
             .map { $0.sorted { a1, a2 in
                 a1.createdDate < a2.createdDate

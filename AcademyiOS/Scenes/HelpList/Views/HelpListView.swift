@@ -4,7 +4,17 @@ import AcademyUI
 
 struct HelpListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject private var viewModel = HelpListViewModel()
+    @EnvironmentObject var authService: AuthService
+    @ObservedObject private var viewModel: HelpListViewModel
+    
+    init(currentUser: AcademyUser) {
+        self.viewModel = HelpListViewModel(
+            currentUser: currentUser,
+            listener: HelpListenerService(),
+            helpAssignService: HelpAssignService(),
+            helpUpdatingService: HelpUpdatingService()
+        )
+    }
     
     var body: some View {
         ZStack {
@@ -58,7 +68,22 @@ struct HelpListView: View {
                         .padding(.bottom)
                         
                         ForEach(viewModel.currentHelpList) { helpModel in
-                            HelpCard(helpModel: helpModel)
+                            HelpCard(
+                                queuePosition: viewModel.getQueuePosition(help: helpModel),
+                                isFromUser: helpModel.user.id == authService.user.id,
+                                helpModel: helpModel,
+                                assignHelpHandler: {
+                                    viewModel.assignHelpHandler(help: helpModel)
+                                },
+                                completeHelpHandler: {
+                                    viewModel.completeHelpHandler(help: helpModel)
+                                }
+                            )
+                            .onLongPressGesture {
+                                if helpModel.user.id == authService.user.id {
+                                    viewModel.handleCardLongPress(helpModel: helpModel)
+                                }
+                            }
                         }
                     }
                     
@@ -91,16 +116,19 @@ struct HelpListView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
-            RequestHelpModalView {
-                self.viewModel.readHelpList()
+            HelpFormView(user: authService.user, helpModel: viewModel.helpOnEdit ?? nil) {
+                viewModel.helpOnEdit = nil
             }
+        }
+        .onAppear {
+            viewModel.handleOnAppear()
         }
     }
 }
 
 
-struct HelpListView_Previews: PreviewProvider {
-    static var previews: some View {
-        HelpListView()
-    }
-}
+//struct HelpListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HelpListView()
+//    }
+//}

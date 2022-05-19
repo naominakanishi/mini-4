@@ -5,40 +5,63 @@ import Combine
 
 public final class EquipmentRepository: ObservableObject {
     
+    static let shared = EquipmentRepository()
+    
     private let path = "equipment"
     private let store = Firestore.firestore()
     
-    @Published public var equipmentList: [Equipment] = []
+    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
-    public init() {}
+    public init() {
+        read()
+    }
     
-    public func read() -> AnyPublisher<[Equipment], Never>{
-        let publisher = PassthroughSubject<[Equipment], Never>()
+    public func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
+        store.collection(path).addDocument(data: data) {
+            if let _ = $0 {
+                response.send(false)
+                return
+            }
+            response.send(true)
+        }
+        return response
+            .eraseToAnyPublisher()
+    }
+    
+    private func read() {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            
-            let equipmentList: [Equipment] = snapshot?.documents.compactMap {
-                do {
-                    return try $0.data(as: Equipment.self)
-                } catch {
-                    print(error.localizedDescription)
-                    return nil
-                }
-            } ?? []
-            
-            publisher.send(equipmentList)
-        }
         
-        return publisher.eraseToAnyPublisher()
+            guard let snapshot = snapshot else { fatalError() }
+            
+            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            
+            self.readingPublisher.send(data)
+        }
     }
     
-    public func create(_ equipment: Equipment) {
+    public func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
         do {
-            _ = try store.collection(path).addDocument(from: equipment)
+            try store.collection(path).document(equipment.id)
+                .setData(from: equipment) {
+                if let error = $0 {
+                    response.send(false)
+                    return
+                }
+                    
+                response.send(true)
+            }
         } catch {
-            print(error.localizedDescription)
+            return Fail(outputType: Bool.self, failure: error)
+                .eraseToAnyPublisher()
         }
+        
+        return response
+            .eraseToAnyPublisher()
     }
 }
