@@ -95,23 +95,20 @@ struct HomeView: View {
                         }
 //                        .padding(.vertical, 32)
                         
-                        Divider()
-                            .background(Color.white)
-                        
                         VStack {
                             HStack {
                                 VStack {
                                     NavigationLink {
                                         AcademyPeopleView()
                                     } label: {
-                                        FeatureCard(title: "pessoas na \nacademy", maxHeight: 200, color: Color.adaPink) {
+                                        FeatureCard(title: "mentores", maxHeight: 200, color: Color.adaGreen) {
                                         }
                                     }
                                     
                                     NavigationLink {
                                         EquipmentListView(currentUser: authService.user)
                                     } label: {
-                                        FeatureCard(title: "equipamentos", maxHeight: 200, color: Color.adaLightBlue) {
+                                        FeatureCard(title: "equipamentos", maxHeight: 200, color: Color.adaPurple) {
                                         }
                                     }
 
@@ -120,7 +117,7 @@ struct HomeView: View {
                                 NavigationLink {
                                     HelpListView(currentUser: authService.user)
                                 } label: {
-                                    FeatureCard(title: "@ajuda", maxHeight: 412, color: Color.adaGreen) {
+                                    FeatureCard(title: "@ajuda", maxHeight: 412, color: Color.adaLightBlue) {
                                     }
                                 }
                                 
@@ -128,7 +125,7 @@ struct HomeView: View {
                             }
                             HStack {
                                 
-                                FeatureCard(title: "learning journey", maxHeight: 200, color: Color.adaYellow) {
+                                FeatureCard(title: "learning journey", maxHeight: 200, color: Color.adaPink) {
                                     
                                 }
                                 
@@ -167,7 +164,9 @@ struct FeatureCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16)
-                .foregroundColor(color.opacity(0.1))
+                .fill(color.homeCardGradient)
+                .opacity(0.6)
+            
             VStack(alignment: .leading) {
                 Spacer()
                 HStack {
@@ -194,5 +193,21 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .preferredColorScheme(.dark)
+    }
+}
+
+extension Color {
+    var homeCardGradient: LinearGradient {
+        .init(colors: .init(repeating: self, count: 1) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}
+
+extension Color {
+    var strokeHomeCardGradient: LinearGradient {
+        .init(colors: .init(repeating: self, count: 1) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
     }
 }
