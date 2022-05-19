@@ -1,21 +1,73 @@
 import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
+import Combine
 
-public final class AuthService {
+public final class AuthService: ObservableObject {
+    
+    private let userListenerService = UserListenerService()
+    private let userSenderService = UserSenderService()
+    private let userExistenceCheckerService = UserExistenceCheckerService()
+    
+    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+    
+    private let userRepository: UserRepository
     
     private var currentNonce: String?
     
-    public init() {}
+    private var cancellabels: [AnyCancellable] = []
     
-    public func getLoginRequest() -> ASAuthorizationAppleIDRequest {
-        let provider = ASAuthorizationAppleIDProvider()
-        currentNonce = randomNonceString()
-        
-        let request = provider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        return request
+    @Published public var authState: AuthState = .undefined {
+        didSet {
+            print("New auth state:", authState)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                print("User:", self.user)
+            }
+        }
+    }
+    
+    @Published public var user: AcademyUser = .init(
+        id: "default",
+        name: "",
+        email: "",
+        imageName: "",
+        status: nil,
+        birthday: nil,
+        role: nil
+    )
+    
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+        self.initialize()
+    }
+    
+    public convenience init() {
+        self.init(userRepository: .shared)
+    }
+    
+    public func initialize() {
+        self.authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener({ change, user in
+            if let authUser = Auth.auth().currentUser {
+                // Create user if needed
+                self.userExistenceCheckerService.userExists(id: authUser.uid).sink { userExists in
+                    if userExists {
+                        self.userListenerService.listenUser(with: authUser.uid)
+                            .assign(to: &self.$user)
+                    } else {
+                        self.userSenderService
+                            .send(user: AcademyUser(id: authUser.uid, name: authUser.displayName ?? "", email: authUser.email!, imageName: "", status: .available, birthday: nil, role: nil))
+                    }
+                    self.authState = .signedIn
+                }.store(in: &self.cancellabels)
+            } else {
+                self.signOut { error in
+                    if error != nil {
+                        print("Logout")
+                        self.authState = .signedOut
+                    }
+                }
+            }
+        })
     }
     
     public func signIn(with appleIdCredential: ASAuthorizationAppleIDCredential) {
@@ -23,7 +75,7 @@ public final class AuthService {
             fatalError("Invalid state: A login callback was received, but no login request was sent.")
         }
         guard let appleIDToken = appleIdCredential.identityToken else {
-            print("Unable to fecth identity token")
+            print("Unable to fetch identity token")
             return
         }
         guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
@@ -39,19 +91,18 @@ public final class AuthService {
                 let alertVC = UIAlertController(title: "Ops!", message: error.localizedDescription, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default)
                 alertVC.addAction(okAction)
-                
-                // Review
+            
                 let viewController = UIApplication.shared.windows.first!.rootViewController!
                 viewController.present(alertVC, animated: true, completion: nil)
                 
                 print(error.localizedDescription)
-            case .success(_):
+            case .success(let authUser):
                 print("Signed in with Apple id")
             }
         }
     }
     
-    private func auth(using credential: AuthCredential, completionHandler: @escaping (Result<Bool, Error>) -> Void) {
+    private func auth(using credential: AuthCredential, completionHandler: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().signIn(with: credential, completion: { (_, err) in
             if let error = err {
                 completionHandler(.failure(error))
@@ -59,10 +110,29 @@ public final class AuthService {
             }
             
             if let authUser = Auth.auth().currentUser {
-                print("Auth user:", authUser)
-                completionHandler(.success(true))
+                completionHandler(.success(authUser))
             }
         })
+    }
+    
+    public func signOut(completion: @escaping (Result<Bool, Error>) -> Void) {
+        let auth = Auth.auth()
+        do {
+            try auth.signOut()
+            completion(.success(true))
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    public func getLoginRequest() -> ASAuthorizationAppleIDRequest {
+        let provider = ASAuthorizationAppleIDProvider()
+        currentNonce = randomNonceString()
+        
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        return request
     }
     
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce

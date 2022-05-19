@@ -1,5 +1,6 @@
 import SwiftUI
 import AcademyUI
+import Academy
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel(
@@ -7,10 +8,18 @@ struct HomeView: View {
         announcementListenerService: .init()
     )
     
+    @EnvironmentObject var authService: AuthService
+    
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false
     @State var showEquipmentList: Bool = false
     @State var showSuggestionsBoxView: Bool = false
+    
+    func logout() {
+        authService.signOut { result in
+            // TO DO
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -33,6 +42,9 @@ struct HomeView: View {
                                     .padding(2)
                             }
                             .frame(maxWidth: 60, maxHeight: 60)
+                            .onTapGesture {
+                                logout()
+                            }
                         }
                         
                         VStack {

@@ -7,13 +7,13 @@ public struct Help: Codable, Identifiable {
     public var type: HelpType
     public var currentLocation: String
     public var requestTimeInterval: TimeInterval
-    public var assignee: User?
+    public var assignee: AcademyUser?
     public var status: HelpStatus = .waitingForHelp
     public var requestDate: Date {
         Date(timeIntervalSince1970: requestTimeInterval)
     }
     
-    public init(id: String, title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: User?, status: HelpStatus) {
+    public init(id: String, title: String, description: String, type: HelpType, currentLocation: String, requestTimeInterval: TimeInterval, assignee: AcademyUser?, status: HelpStatus) {
         self.id = id
         self.title = title
         self.description = description

@@ -5,13 +5,12 @@ import Combine
 
 public final class EquipmentRepository: ObservableObject {
     
+    static let shared = EquipmentRepository()
+    
     private let path = "equipment"
     private let store = Firestore.firestore()
-    @Published public var equipmentList: [Equipment] = []
     
     public init() {}
-    
-    static let shared = EquipmentRepository()
     
     public func read() -> AnyPublisher<Data, Never>{
         let publisher = PassthroughSubject<Data, Never>()

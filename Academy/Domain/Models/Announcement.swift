@@ -3,7 +3,7 @@ import Foundation
 public struct Announcement: Codable, Hashable, Identifiable {
     public var id: String
     // Review
-    public var fromUser: User?
+    public var fromUser: AcademyUser?
     public var createdTimeInterval: TimeInterval
     public var text: String
     public var isActive: Bool

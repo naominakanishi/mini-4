@@ -5,13 +5,12 @@ import Combine
 
 public final class AnnouncementRepository: ObservableObject {
     
+    static let shared = AnnouncementRepository()
+    
     private let path = "announcement"
     private let store = Firestore.firestore()
-    @Published public var announcementList: [Announcement] = []
     
     public init() {}
-    
-    static let shared = AnnouncementRepository()
     
     func create(announcementData data: [String: Any]) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
@@ -35,7 +34,8 @@ public final class AnnouncementRepository: ObservableObject {
             }
             
             // Review
-            guard let snapshot = snapshot else { fatalError() }
+            guard let snapshot = snapshot else { fatalError()
+            }
             
             let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
             let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])

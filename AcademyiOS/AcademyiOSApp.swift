@@ -1,14 +1,18 @@
 import SwiftUI
 import FirebaseCore
 import CryptoKit
+import Academy
 
 @main
 struct AcademyiOSApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate
+    @StateObject var authService = AuthService()
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            LoadingView()
+                .environmentObject(authService)
+                .preferredColorScheme(.dark)
         }
     }
 }
