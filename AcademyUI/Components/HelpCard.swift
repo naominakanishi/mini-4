@@ -3,6 +3,7 @@ import Academy
 
 public struct HelpCard: View {
     
+    var isFromUser: Bool
     var helpModel: Help
     var assignHelpHandler: () -> ()
     var completeHelpHandler: () -> ()
@@ -24,7 +25,8 @@ public struct HelpCard: View {
         }
     }
     
-    public init(helpModel: Help, assignHelpHandler: @escaping () -> (), completeHelpHandler: @escaping () -> ()) {
+    public init(isFromUser: Bool, helpModel: Help, assignHelpHandler: @escaping () -> (), completeHelpHandler: @escaping () -> ()) {
+        self.isFromUser = isFromUser
         self.helpModel = helpModel
         self.assignHelpHandler = assignHelpHandler
         self.completeHelpHandler = completeHelpHandler
@@ -58,7 +60,7 @@ public struct HelpCard: View {
                         .font(.system(size: 16, weight: .regular, design: .rounded))
                         .foregroundColor(Color.white)
                 case .beingHelped:
-                    Image("andre-memoji")
+                    Image(helpModel.assignee!.imageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 50)
@@ -72,52 +74,72 @@ public struct HelpCard: View {
             }
             
             if showDetails {
-                Divider()
-                    .background(typeColor)
-                
-                HStack {
-                    Text(helpModel.description)
-                        .padding(.bottom, 8)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.leading)
-                    Spacer()
-                }
-                .padding(.vertical)
-                
-                HStack {
-                    Button(action: {
-                        print("Ajudar")
-                        assignHelpHandler()
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text("Ajudar")
-                            Spacer()
-                        }
-                        .padding(.vertical, 8)
-                        .background(Color.white)
-                        .cornerRadius(8)
-                        .foregroundColor(.black)
-                        .padding(.trailing, 4)
+                VStack {
+                    Divider()
+                        .background(typeColor)
+                    
+                    HStack {
+                        Image(helpModel.user.imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 60, height: 60)
+                            .padding(.trailing)
+                        
+                        Text(helpModel.user.name)
+                            .font(.system(size: 18, weight: .bold, design: .default))
+                            .foregroundColor(.white)
+                        Spacer()
                     }
                     
-                    Button(action: {
-                        print("Resolvido")
-                        completeHelpHandler()
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text("Resolvido")
-                            Spacer()
+                    HStack {
+                        Text(helpModel.description)
+                            .padding(.bottom, 8)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.leading)
+                        Spacer()
+                    }
+                    .padding(.vertical)
+                    
+                    HStack {
+                        if isFromUser {
+                            Button(action: {
+                                print("Resolvido")
+                                completeHelpHandler()
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Text("Resolvido")
+                                        .bold()
+                                    Spacer()
+                                }
+                                .padding(.vertical, 8)
+                                .background(Color.adaLightBlue)
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                                .padding(.leading, 4)
+                            }
+                        } else {
+                            Button(action: {
+                                print("Ajudar")
+                                assignHelpHandler()
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Text(helpModel.status == .beingHelped ? "Recebendo ajuda" : "Ajudar")
+                                        .bold()
+                                    Spacer()
+                                }
+                                .padding(.vertical, 8)
+                                .background(Color.white)
+                                .opacity(helpModel.status == .beingHelped ? 0.5 : 1)
+                                .cornerRadius(8)
+                                .foregroundColor(.black)
+                                .padding(.trailing, 4)
+                            }
+                            .disabled(helpModel.status == .beingHelped)
                         }
-                        .padding(.vertical, 8)
-                        .background(Color.adaLightBlue)
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
-                        .padding(.leading, 4)
                     }
                 }
-                
             }
         }
         .padding()

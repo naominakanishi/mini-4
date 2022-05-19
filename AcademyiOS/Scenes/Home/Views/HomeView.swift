@@ -114,7 +114,7 @@ struct HomeView: View {
                                 }
                                 
                                 NavigationLink {
-                                    HelpListView()
+                                    HelpListView(currentUser: authService.user)
                                 } label: {
                                     FeatureCard(title: "@ajuda", maxHeight: 412, color: Color.adaGreen) {
                                     }

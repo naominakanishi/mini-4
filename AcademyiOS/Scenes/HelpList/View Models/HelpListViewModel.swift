@@ -5,6 +5,7 @@ import SwiftUI
 
 final class HelpListViewModel: ObservableObject {
     
+    private var user: AcademyUser
     private let listener: HelpListenerService
     private let helpUpdatingService: HelpUpdatingService
     private let helpAssignService: HelpAssignService
@@ -24,7 +25,8 @@ final class HelpListViewModel: ObservableObject {
     @Published var showRequestHelpModal: Bool = false
     
     
-    init(listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
+    init(currentUser: AcademyUser, listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
+        self.user = currentUser
         self.listener = listener
         self.helpAssignService = helpAssignService
         self.helpUpdatingService = helpUpdatingService
@@ -48,7 +50,7 @@ final class HelpListViewModel: ObservableObject {
     }
     
     func assignHelpHandler(help: Help) {
-        helpAssignService.assign(using: help)
+        helpAssignService.assign(using: help, currentUser: user)
     }
     
     func completeHelpHandler(help: Help) {
