@@ -24,8 +24,10 @@ public enum EquipmentStatus: String, Codable {
 
 public enum EquipmentType: String, Codable {
     case all = "Todos"
+    case iPhone = "iPhone"
     case iPad = "iPad"
     case pencil = "Apple Pencil"
     case mac = "Mac"
     case watch = "Apple Watch"
+    case others = "Outros"
 }

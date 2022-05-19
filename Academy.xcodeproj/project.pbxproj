@@ -45,6 +45,7 @@
 		5B75E65B2835D12B0047ADEB /* UserExistenceCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */; };
 		5B75E65D2835FBDE0047ADEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65C2835FBDE0047ADEB /* Data.swift */; };
 		5B75E65F2835FCA00047ADEB /* EquipmentUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */; };
+		5B75E6612836E1A50047ADEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */; };
 		5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAB82831B8000071821E /* HelpRepository.swift */; };
 		5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */; };
 		5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABD2831D2570071821E /* HomeViewModel.swift */; };
@@ -78,7 +79,6 @@
 		5BD206F028319BBC005E1090 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206EF28319BBC005E1090 /* FirebaseDatabase */; };
 		5BD206F228319BBC005E1090 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206F128319BBC005E1090 /* FirebaseFirestore */; };
 		5BD206F428319BBC005E1090 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 5BD206F328319BBC005E1090 /* FirebaseFirestoreSwift-Beta */; };
-		5BD206F628319F65005E1090 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD206F528319F65005E1090 /* GoogleService-Info.plist */; };
 		5BE70E1B282C338E00E36372 /* AcademyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1A282C338E00E36372 /* AcademyUser.swift */; };
 		5BE70E1D282C33B600E36372 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1C282C33B600E36372 /* Help.swift */; };
 		5BE70E20282C3D0A00E36372 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */; };
@@ -93,7 +93,6 @@
 		5BE70E44282C45B600E36372 /* AcademyUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; };
 		5BE70E45282C45B600E36372 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5BE70E4B282C49F400E36372 /* Academy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; };
-		5BE70E4C282C49F400E36372 /* Academy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E50282C4A6F00E36372 /* DateFormatter.swift */; };
 		5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E52282C4BA700E36372 /* HelpListViewModel.swift */; };
 		5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E54282C566B00E36372 /* HelpFormView.swift */; };
@@ -197,17 +196,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BE70E4F282C49F400E36372 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				5BE70E4C282C49F400E36372 /* Academy.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -246,6 +234,7 @@
 		5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExistenceCheckerService.swift; sourceTree = "<group>"; };
 		5B75E65C2835FBDE0047ADEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentUpdatingService.swift; sourceTree = "<group>"; };
+		5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BC2EAB82831B8000071821E /* HelpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRepository.swift; sourceTree = "<group>"; };
 		5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRepository.swift; sourceTree = "<group>"; };
 		5BC2EABD2831D2570071821E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -271,7 +260,6 @@
 		5BC2EB0B28336BA50071821E /* EquipmentListenerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListenerService.swift; sourceTree = "<group>"; };
 		5BC2EB0D28336F970071821E /* EquipmentTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentTypeFilterButton.swift; sourceTree = "<group>"; };
 		5BD206E4282F49D5005E1090 /* HelpFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpFormViewModel.swift; sourceTree = "<group>"; };
-		5BD206F528319F65005E1090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BE70E1A282C338E00E36372 /* AcademyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyUser.swift; sourceTree = "<group>"; };
 		5BE70E1C282C33B600E36372 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		5BE70E1F282C3D0A00E36372 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
@@ -390,7 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				5B68C2112835702B00FD2539 /* AcademyiOS.entitlements */,
-				5BD206F528319F65005E1090 /* GoogleService-Info.plist */,
+				5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */,
 				5BC2EAD52832ECD70071821E /* Scenes */,
 				119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */,
 				119255B9282B4EAA008410F3 /* Assets.xcassets */,
@@ -1026,7 +1014,6 @@
 				119255DF282B51C9008410F3 /* Sources */,
 				119255E0282B51C9008410F3 /* Frameworks */,
 				119255E1282B51C9008410F3 /* Resources */,
-				5BE70E4F282C49F400E36372 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1127,7 +1114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				119255BD282B4EAA008410F3 /* Preview Assets.xcassets in Resources */,
-				5BD206F628319F65005E1090 /* GoogleService-Info.plist in Resources */,
+				5B75E6612836E1A50047ADEB /* GoogleService-Info.plist in Resources */,
 				119255BA282B4EAA008410F3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1445,7 +1432,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
@@ -1478,7 +1465,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
@@ -1512,7 +1499,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.iOS;
 				PRODUCT_NAME = "Academy Pocket";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1543,7 +1530,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.iOS;
 				PRODUCT_NAME = "Academy Pocket";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1570,7 +1557,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyTV;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.TV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1599,7 +1586,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyTV;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.TV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1630,7 +1617,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyUI;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.UI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
@@ -1663,7 +1650,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyUI;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.UI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
@@ -1695,7 +1682,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyiPad;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.iPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1724,7 +1711,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyiPad;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.iPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

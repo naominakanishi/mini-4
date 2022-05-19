@@ -51,12 +51,20 @@ struct EquipmentListView: View {
                         viewModel.filterChosen = .pencil
                     }
                     
+                    EquipmentTypeFilterButton(equipmentType: .iPhone) {
+                        viewModel.filterChosen = .iPhone
+                    }
+                    
                     EquipmentTypeFilterButton(equipmentType: .mac) {
                         viewModel.filterChosen = .mac
                     }
                     
                     EquipmentTypeFilterButton(equipmentType: .watch) {
                         viewModel.filterChosen = .watch
+                    }
+                    
+                    EquipmentTypeFilterButton(equipmentType: .others) {
+                        viewModel.filterChosen = .others
                     }
                     .padding(.trailing)
                     

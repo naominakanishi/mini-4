@@ -18,6 +18,10 @@ public struct EquipmentTypeFilterButton: View {
             return .adaPurple
         case .watch:
             return .adaGreen
+        case .iPhone:
+            return .adaLightBlue
+        case .others:
+            return .gray
         }
     }
     

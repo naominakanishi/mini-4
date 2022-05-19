@@ -18,6 +18,8 @@ public struct EquipmentCard: View {
             return .adaGreen
         case .pencil:
             return .adaYellow
+        case .iPhone:
+            return .adaLightBlue
         default:
             return .gray
         }
