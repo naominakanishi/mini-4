@@ -27,7 +27,7 @@ struct HomeView: View {
                 VStack {
                     VStack {
                         HStack {
-                            Text("Apple Developer Academy")
+                            Text("Academy Pocket")
                                 .font(.system(size: 30, weight: .bold, design: .default))
                                 .foregroundColor(Color.white)
                             

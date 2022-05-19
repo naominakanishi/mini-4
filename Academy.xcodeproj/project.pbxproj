@@ -213,7 +213,7 @@
 /* Begin PBXFileReference section */
 		119255A3282B4E77008410F3 /* Academy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Academy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255A6282B4E77008410F3 /* Academy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Academy.h; sourceTree = "<group>"; };
-		119255B3282B4EA9008410F3 /* AcademyiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcademyiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		119255B3282B4EA9008410F3 /* Academy Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Academy Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyiOSApp.swift; sourceTree = "<group>"; };
 		119255B7282B4EA9008410F3 /* HelpListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListView.swift; sourceTree = "<group>"; };
 		119255B9282B4EAA008410F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -367,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				119255A3282B4E77008410F3 /* Academy.framework */,
-				119255B3282B4EA9008410F3 /* AcademyiOS.app */,
+				119255B3282B4EA9008410F3 /* Academy Pocket.app */,
 				119255CB282B4F00008410F3 /* AcademyTV.app */,
 				119255E3282B51C9008410F3 /* AcademyUI.framework */,
 				5BE70E2B282C41C000E36372 /* AcademyiPad.app */,
@@ -995,7 +995,7 @@
 			);
 			name = AcademyiOS;
 			productName = AcademyiOS;
-			productReference = 119255B3282B4EA9008410F3 /* AcademyiOS.app */;
+			productReference = 119255B3282B4EA9008410F3 /* Academy Pocket.app */;
 			productType = "com.apple.product-type.application";
 		};
 		119255CA282B4F00008410F3 /* AcademyTV */ = {
@@ -1513,7 +1513,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyiOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Academy Pocket";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1544,7 +1544,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.AcademyiOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Academy Pocket";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
