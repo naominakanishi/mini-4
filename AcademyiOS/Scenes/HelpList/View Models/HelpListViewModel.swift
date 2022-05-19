@@ -58,4 +58,17 @@ final class HelpListViewModel: ObservableObject {
         helpUpdated.status = .done
         helpUpdatingService.execute(using: helpUpdated)
     }
+    
+    func getQueuePosition(help: Help) -> Int {
+        let typeList = currentHelpList.filter { h in
+            h.type == help.type
+        }
+        let sortedTypeList = typeList.sorted { h1, h2 in
+            h1.requestDate < h2.requestDate
+        }
+        let index = sortedTypeList.firstIndex { h in
+            h.id == help.id
+        }
+        return (index ?? 999) + 1
+    }
 }

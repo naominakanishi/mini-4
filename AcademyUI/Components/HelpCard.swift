@@ -3,6 +3,7 @@ import Academy
 
 public struct HelpCard: View {
     
+    var queuePosition: Int
     var isFromUser: Bool
     var helpModel: Help
     var assignHelpHandler: () -> ()
@@ -25,7 +26,8 @@ public struct HelpCard: View {
         }
     }
     
-    public init(isFromUser: Bool, helpModel: Help, assignHelpHandler: @escaping () -> (), completeHelpHandler: @escaping () -> ()) {
+    public init(queuePosition: Int, isFromUser: Bool, helpModel: Help, assignHelpHandler: @escaping () -> (), completeHelpHandler: @escaping () -> ()) {
+        self.queuePosition = queuePosition
         self.isFromUser = isFromUser
         self.helpModel = helpModel
         self.assignHelpHandler = assignHelpHandler
@@ -35,7 +37,7 @@ public struct HelpCard: View {
     public var body: some View {
         VStack {
             HStack {
-                Text("1")
+                Text("\(queuePosition)")
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .foregroundColor(Color.white)
                     .padding(.trailing)

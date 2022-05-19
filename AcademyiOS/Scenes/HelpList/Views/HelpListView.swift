@@ -69,6 +69,7 @@ struct HelpListView: View {
                         
                         ForEach(viewModel.currentHelpList) { helpModel in
                             HelpCard(
+                                queuePosition: viewModel.getQueuePosition(help: helpModel),
                                 isFromUser: helpModel.user.id == authService.user.id,
                                 helpModel: helpModel,
                                 assignHelpHandler: {
