@@ -13,7 +13,7 @@ public struct PersonView: View {
             ))
             .fill(.linearGradient(.init(colors: [
                 Color.adaGreen, Color.adaGreen, Color.adaGreen, Color.adaGreen, Color.clear
-            ]), startPoint: .top, endPoint: .bottom))
+            ]), startPoint: .topLeading, endPoint: .bottomTrailing))
         }
 
     
