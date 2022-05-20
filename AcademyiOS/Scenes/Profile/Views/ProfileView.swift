@@ -11,46 +11,105 @@ import AcademyUI
 struct ProfileView: View {
     
     @ObservedObject var picViewModel: ProfilePictureViewModel
-    @StateObject var viewModel = HomeViewModel(
-        announcementUpdatingService: .init(),
-        announcementListenerService: .init()
-    )
-    
-    @State var showHelpListView: Bool = false
-    @State var showAcademyPeopleView: Bool = false
-    @State var showEquipmentList: Bool = false
-    @State var showSuggestionsBoxView: Bool = false
+    @State var firstResponder: Int = 0
     
     var body: some View {
+        
         NavigationView {
             ScrollView {
-                VStack(alignment: .center, spacing: 0){
-                    HStack{
-                        Text("Perfil")
-                            .font(.system(size: 30, weight: .bold, design: .default))
-                            .foregroundColor(Color.white)
-                        Spacer()
-                    }
+                VStack(alignment: .center, spacing: 30){
+                    
                     
                     ProfilePictureView(viewModel: picViewModel)
-                        .padding(.bottom, 25)
+                    
+                    CustomTextField(text: .constant("@hannapcf"), //TODO: Input de dados
+                                    firstResponder: .constant(1),
+                                    order: 1)
+                    .modifier(TextFieldModifier())
+                    
+                    VStack(alignment: .leading, spacing: 0){
+                        HStack{
+                            Image(systemName: "hands.sparkles.fill")
+                                .foregroundColor(.adaLightBlue)
+                            Text("Posso ajudar em")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 14))
+                            Spacer()
+                            HStack(alignment: .center, spacing: 9){
+                                //TODO: HelpCards aqui, ver com o André
+                            }
+                        }
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(LinearGradient(colors: [(.white.opacity(0.35)), (.white.opacity(0))], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .cornerRadius(12)
+                    
+                    VStack{
+                        HStack{
+                            Image(systemName: "person.crop.square.filled.and.at.rectangle.fill")
+                                .foregroundColor(.adaLightBlue)
+                            Text("Seu cargo")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 14))
+                            Spacer()
+                            HStack(alignment: .center, spacing: 9){
+                                //TODO: RolesCards aqui, ver com o André
+                            }
+                        }
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(LinearGradient(colors: [(.white.opacity(0.35)), (.white.opacity(0))], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .cornerRadius(12)
+                    
+                    GeneralButton(title: "Disponibilidade",
+                                  image: "calendar.badge.clock",
+                                  enabled: true,
+                                  borderColor: .clear,
+                                  hasOptions: false,
+                                  hasChevron: true,
+                                  hasSavedData: true,
+                                  savedData: "",
+                                  onTap: {})
+                    
+                    GeneralButton(title: "Aniversário",
+                                  image: "calendar",
+                                  enabled: true,
+                                  borderColor: .clear,
+                                  hasOptions: true,
+                                  hasChevron: false,
+                                  hasSavedData: true,
+                                  savedData: "01/01/2000",
+                                  onTap: {})
+                    Spacer()
+                    
+                    Button(action: {
+                        //TODO: Button Action
+                    }, label: {
+                        Text("Salvar")
+                            .padding(14)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.adaLightBlue)
+                            .cornerRadius(12)
+                    })
+                    .padding(.bottom, 51)
                     
                 }
                 .padding()
-                
-                Spacer()
-                
-                NavigationLink("", destination: HelpListView(), isActive: $showHelpListView)
-                NavigationLink("", destination: AcademyPeopleView(), isActive: $showAcademyPeopleView)
-                NavigationLink("", destination: EquipmentListView(), isActive: $showEquipmentList)
-                NavigationLink("", destination: SuggestionsBoxView(), isActive: $showSuggestionsBoxView)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.adaBackground)
+                .edgesIgnoringSafeArea(.all)
             }
-            .padding(.horizontal, 23)
         }
         .background(Color.adaBackground)
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle("")
+        .navigationTitle("Perfil")
+        .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $picViewModel.openCameraRoll){
             ImagePicker(selectedImage: $picViewModel.imageSelected,
                         sourceType: .photoLibrary)

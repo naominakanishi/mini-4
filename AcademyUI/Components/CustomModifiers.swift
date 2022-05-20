@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 import LocalAuthentication
 
-struct MainTitle: View {
+public struct MainTitle: View {
     var title: String
-    var body: some View {
+    public var body: some View {
         Text(title)
             .font(.system(size: 18))
             .bold()
@@ -21,14 +21,14 @@ struct MainTitle: View {
 }
 
 
-struct TextFieldWithErrorModifier: ViewModifier {
+public struct TextFieldWithErrorModifier: ViewModifier {
     
     let fieldHeight: CGFloat = 51
     var fieldBackgroundColor: Color = .adaBackground
     var cornerRadius: CGFloat = 10
     var error: String?
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         VStack(alignment: .leading) {
             HStack(alignment: .bottom, spacing: 8) {
                 VStack(alignment: .leading, spacing: 0) {
@@ -51,14 +51,14 @@ struct TextFieldWithErrorModifier: ViewModifier {
     }
 }
 
-struct ToastModifier: ViewModifier {
+public struct ToastModifier: ViewModifier {
     
     var message: String
     @Binding var isShowing: Bool
     var duration: TimeInterval
     var color: Color
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ZStack {
             content
             if isShowing {
@@ -96,11 +96,11 @@ struct ToastModifier: ViewModifier {
     }
 }
 
-struct CarouselModifier: ViewModifier {
+public struct CarouselModifier: ViewModifier {
     var hasTitle: Bool
     var title: String = ""
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         if hasTitle {
             MainTitle(title: title)
         }
@@ -112,7 +112,7 @@ struct CarouselModifier: ViewModifier {
     }
 }
 
-struct TextFieldModifier: ViewModifier {
+public struct TextFieldModifier: ViewModifier {
     
     @State var firstResponder: Int = 0
     let titleSize: CGFloat = 14
@@ -120,20 +120,24 @@ struct TextFieldModifier: ViewModifier {
     var titleColor: Color = .white
     let fieldHeight: CGFloat = 49
     var fieldBackgroundColor: Color = .adaBackground
-    var cornerRadius: CGFloat = 10
+    var cornerRadius: CGFloat = 12
     var error: String?
     var bottomPadding: CGFloat? = 4
     var internalPadding: CGFloat = 15
     
-    func body(content: Content) -> some View {
+    public init(){
+        
+    }
+    
+    public func body(content: Content) -> some View {
         
         VStack(alignment: .center, spacing: 0){
             content
             .padding(internalPadding)
             .frame(maxWidth: UIScreen.main.bounds.width-30, maxHeight: fieldHeight)
-            .background(LinearGradient(colors: [(.white.opacity(0.16)), (.white.opacity(0))], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(LinearGradient(colors: [(.white.opacity(0.35)), (.white.opacity(0))], startPoint: .topLeading, endPoint: .bottomTrailing))
             .cornerRadius(cornerRadius)
-            .corneredBorder(10, corners: .allCorners, color: error == nil ? .white : .red, lineWidth: 0.5)
+            .corneredBorder(cornerRadius, corners: .allCorners, color: error == nil ? .white : .red, lineWidth: 0.5)
         }
     }
 }
