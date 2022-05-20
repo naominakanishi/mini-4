@@ -27,9 +27,11 @@ struct HomeView: View {
                 VStack {
                     VStack {
                         HStack {
-                            Text("Academy Pocket")
-                                .font(.system(size: 30, weight: .bold, design: .default))
-                                .foregroundColor(Color.white)
+                            Image("logo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(2)
+                                .frame(width: 170)
                             
                             Spacer()
                             
@@ -101,7 +103,7 @@ struct HomeView: View {
                                 }, label: {
                                     ShortcutCard(title: "mentores",
                                                  image: Image("people-icon"),
-                                                 color: Color.adaGreen.opacity(0.6)
+                                                 color: Color.adaRed.opacity(0.6)
                                     )
                                     .padding(.vertical, 4)
                                 })
@@ -110,7 +112,7 @@ struct HomeView: View {
                                 }, label: {
                                     ShortcutCard(title: "sugestoes",
                                                  image: Image("suggestions-icon"),
-                                                 color: Color.adaPurple.opacity(0.6)
+                                                 color: Color.adaLightBlue.opacity(0.6)
                                     )
                                     .padding(.vertical, 4)
                                 })
@@ -119,7 +121,7 @@ struct HomeView: View {
                                 } label: {
                                     ShortcutCard(title: "learning\njourney",
                                                  image: Image("learningJourney-icon"),
-                                                 color: Color.adaPink.opacity(0.6)
+                                                 color: Color.adaDarkBlue.opacity(0.6)
                                     )
                                         .padding(.vertical, 4)
                                 }
@@ -132,7 +134,7 @@ struct HomeView: View {
                                 } label: {
                                     ShortcutCard(title: "@ajuda",
                                                  image: Image("help-icon"),
-                                                 color: Color.adaLightBlue.opacity(0.6),
+                                                 color: Color.adaPurple.opacity(0.6),
                                                  imageWidth: 60
                                     )
                                         .aspectRatio(1, contentMode: .fill)
@@ -144,7 +146,7 @@ struct HomeView: View {
                                 } label: {
                                     ShortcutCard(title: "equipamentos",
                                                  image: Image("equipments-icon"),
-                                                 color: Color.adaPurple.opacity(0.6)
+                                                 color: Color.adaGreen.opacity(0.6)
                                     )
                                         .padding(.vertical, 4)
                                 }
