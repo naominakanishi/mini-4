@@ -21,7 +21,7 @@ struct SuggestionsBoxView: View {
                 )
                 .frame(maxHeight: 200)
                 .padding()
-                .background(Color.adaDarkGray)
+                .background(Color.white.textFieldAdaGradient())
                 .cornerRadius(8)
                 .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
                 Spacer()

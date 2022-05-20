@@ -387,6 +387,7 @@
 				5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */,
 				5BC2EAD52832ECD70071821E /* Scenes */,
 				119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */,
+				5BC2EAD72832ECF30071821E /* AnnouncementListView.swift */,
 				119255B9282B4EAA008410F3 /* Assets.xcassets */,
 				119255BB282B4EAA008410F3 /* Preview Content */,
 			);
@@ -625,7 +626,6 @@
 		5BC2EAE72832F6240071821E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BC2EAD72832ECF30071821E /* AnnouncementListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
