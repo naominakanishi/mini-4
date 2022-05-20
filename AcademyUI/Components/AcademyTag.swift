@@ -30,4 +30,6 @@ public struct AcademyTag: View {
             .padding(.leading, 4)
             .opacity(isSelected ? 1 : 0.5)
     }
+    
+    
 }

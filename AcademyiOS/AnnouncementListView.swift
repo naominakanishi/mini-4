@@ -36,6 +36,7 @@ struct AnnouncementListView: View {
                 .background(Color.adaBackground)
             } else {
                 ScrollView {
+                    VStack {
                         ForEach (viewModel.announcementList, id: \.id) { announcement in
                             AnnouncementCard(
                                 text: announcement.text,
@@ -43,9 +44,10 @@ struct AnnouncementListView: View {
                                 dateString: announcement.createdDate.getFormattedDate(),
                                 type: (announcement.type ?? .announcement).rawValue
                             )
-                            .onTapGesture(count: 2) {
+                            .onLongPressGesture {
                                 modal = announcement.fromUser == authService.user
                             }
+                        }
                     }
                     .background(Color.adaBackground)
                 }

@@ -21,26 +21,24 @@ struct HelpFormView: View {
                 .foregroundColor(Color.white)
             
             VStack(alignment: .leading) {
-                    Text("Categoria")
-                        .bold()
-                        .foregroundColor(Color.white)
-                    
-                    HStack {
-                        HelpTypeFilterButton(helpType: .code) {
-                            viewModel.type = .code
-                        }
-                        
-                        HelpTypeFilterButton(helpType: .design) {
-                            viewModel.type = .design
-                        }
-                        
-                        HelpTypeFilterButton(helpType: .business) {
-                            viewModel.type = .business
-                        }
-                    
-                    Spacer()
-                }
+                Text("Categoria")
+                    .bold()
+                    .foregroundColor(Color.white)
                 
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.tags) { tag in
+                            AcademyTag(text: tag.name,
+                                       color: tag.color,
+                                       isSelected: tag.isSelected
+                            )
+                            .onTapGesture {
+                                viewModel.didSelectTag(withId: tag.id)
+                            }
+                        }
+                        Spacer()
+                    }
+                }
             }
             .padding(.horizontal)
             .padding(.bottom)

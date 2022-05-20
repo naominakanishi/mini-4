@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		118865E928384826005B561F /* HelpType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118865E828384826005B561F /* HelpType+Extensions.swift */; };
 		119255A7282B4E77008410F3 /* Academy.h in Headers */ = {isa = PBXBuildFile; fileRef = 119255A6282B4E77008410F3 /* Academy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */; };
 		119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B7282B4EA9008410F3 /* HelpListView.swift */; };
@@ -213,6 +214,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		118865E828384826005B561F /* HelpType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpType+Extensions.swift"; sourceTree = "<group>"; };
 		119255A3282B4E77008410F3 /* Academy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Academy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255A6282B4E77008410F3 /* Academy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Academy.h; sourceTree = "<group>"; };
 		119255B3282B4EA9008410F3 /* Academy Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Academy Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -366,6 +368,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		118865E72838481A005B561F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				118865E828384826005B561F /* HelpType+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		11925599282B4E77008410F3 = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +464,7 @@
 		119255E4282B51C9008410F3 /* AcademyUI */ = {
 			isa = PBXGroup;
 			children = (
+				118865E72838481A005B561F /* Extensions */,
 				5BE70E24282C3F5A00E36372 /* Components */,
 				119255E5282B51C9008410F3 /* AcademyUI.h */,
 				5BE70E63282D88A000E36372 /* Colors.swift */,
@@ -1317,6 +1328,7 @@
 			files = (
 				11F47A2E2836C60600612631 /* AcademyTag.swift in Sources */,
 				5BC2EB0E28336F970071821E /* EquipmentTypeFilterButton.swift in Sources */,
+				118865E928384826005B561F /* HelpType+Extensions.swift in Sources */,
 				5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */,
 				5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */,
 				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
