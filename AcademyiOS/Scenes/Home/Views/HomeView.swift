@@ -91,69 +91,71 @@ struct HomeView: View {
                                 .background(Color.adaDarkGray)
                                 .cornerRadius(8)
                             }
-                            
                         }
 //                        .padding(.vertical, 32)
                         
-                        Divider()
-                            .background(Color.white)
-                        
-                        VStack {
-                            HStack {
-                                VStack {
-                                    NavigationLink {
-                                        AcademyPeopleView()
-                                    } label: {
-                                        FeatureCard(title: "pessoas na \nacademy", maxHeight: 200, color: Color.adaPink) {
-                                        }
-                                    }
-                                    
-                                    NavigationLink {
-                                        EquipmentListView(currentUser: authService.user)
-                                    } label: {
-                                        FeatureCard(title: "equipamentos", maxHeight: 200, color: Color.adaLightBlue) {
-                                        }
-                                    }
-
+                        HStack {
+                            VStack {
+                                NavigationLink(destination: {
+                                    AcademyPeopleView()
+                                }, label: {
+                                    ShortcutCard(title: "mentores",
+                                                 image: Image("people-icon"),
+                                                 color: Color.adaGreen.opacity(0.6)
+                                    )
+                                    .padding(.vertical, 4)
+                                })
+                                NavigationLink(destination: {
+                                    SuggestionsBoxView()
+                                }, label: {
+                                    ShortcutCard(title: "sugestoes",
+                                                 image: Image("suggestions-icon"),
+                                                 color: Color.adaPurple.opacity(0.6)
+                                    )
+                                    .padding(.vertical, 4)
+                                })
+                                Button {
+                                    viewModel.openLearningJourney()
+                                } label: {
+                                    ShortcutCard(title: "learning\njourney",
+                                                 image: Image("learningJourney-icon"),
+                                                 color: Color.adaPink.opacity(0.6)
+                                    )
+                                        .padding(.vertical, 4)
                                 }
-                                
+
+
+                            }
+                            VStack {
                                 NavigationLink {
                                     HelpListView(currentUser: authService.user)
                                 } label: {
-                                    FeatureCard(title: "@ajuda", maxHeight: 412, color: Color.adaGreen) {
-                                    }
+                                    ShortcutCard(title: "@ajuda",
+                                                 image: Image("help-icon"),
+                                                 color: Color.adaLightBlue.opacity(0.6),
+                                                 imageWidth: 60
+                                    )
+                                        .aspectRatio(1, contentMode: .fill)
+                                        .padding(.vertical, 4)
                                 }
-                                
-                                
-                            }
-                            HStack {
-                                
+
                                 NavigationLink {
-                                    CalendarEventListView()
+                                    EquipmentListView(currentUser: authService.user)
                                 } label: {
-                                    FeatureCard(title: "agenda", maxHeight: 200, color: Color.adaYellow) {
-                                    }
+                                    ShortcutCard(title: "equipamentos",
+                                                 image: Image("equipments-icon"),
+                                                 color: Color.adaPurple.opacity(0.6)
+                                    )
+                                        .padding(.vertical, 4)
                                 }
-                                
-                                
-                                NavigationLink {
-                                    SuggestionsBoxView()
-                                } label: {
-                                    FeatureCard(title: "caixinha de \nsugestões", maxHeight: 200, color: Color.adaPurple) {
-                                    }
-                                }
-                                
                             }
                         }
-                        .padding(.vertical)
                     }
                     .padding()
-                    
                     Spacer()
                     
                 }
             }
-           
             .background(Color.adaBackground)
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
@@ -162,41 +164,62 @@ struct HomeView: View {
     }
 }
 
-struct FeatureCard: View {
-    var title: String
-    var maxHeight: CGFloat
-    var color: Color
-    var onTap: () -> ()
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .foregroundColor(color.opacity(0.1))
-            VStack(alignment: .leading) {
-                Spacer()
-                HStack {
-                    Text(title)
-                        .font(.system(size: 18, weight: .bold, design: .default))
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.leading)
-                        .padding(.top, 32)
-                    Spacer()
-                }
-                .padding()
-            }
-        }
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(color, lineWidth: 1)
-        )
-        .padding(4)
-        .frame(maxHeight: maxHeight)
-    }
-}
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .preferredColorScheme(.dark)
+    }
+}
+
+extension Color {
+    var homeCardGradient: LinearGradient {
+        .init(colors: .init(repeating: self, count: 1) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}
+
+extension Color {
+    var strokeHomeCardGradient: LinearGradient {
+        .init(colors: .init(repeating: self, count: 1) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}
+
+struct ShortcutCard: View {
+    let title: String
+    let image: Image
+    let color: Color
+    var imageWidth: CGFloat = 27
+    
+    var body: some View {
+        HStack {
+            VStack {
+                Spacer()
+                Text(title)
+                    .font(.system(size: 15.5, weight: .bold, design: .default))
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer()
+            VStack {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: imageWidth)
+                Spacer()
+            }
+        }
+        .padding()
+        .background(color.adaGradient(repeatCount: 1))
+        .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(color.reversedAdaGradient(repeatCount: 3), lineWidth: 1)
+        )
     }
 }

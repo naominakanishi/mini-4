@@ -10,3 +10,25 @@ public extension Color {
     static let adaPurple = Color(red: 83/255, green: 60/255, blue: 222/255)
     static let adaDarkGray = Color(red: 19/255, green: 26/255, blue: 43/255)
 }
+
+public extension Color {
+    func adaGradient(repeatCount count: Int = 5) -> LinearGradient {
+        .init(colors: .init(repeating: self, count: count) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}
+
+public extension Color {
+    func reversedAdaGradient(repeatCount count: Int = 5) -> LinearGradient {
+        .init(colors: [.clear] + .init(repeating: self, count: count),
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}
+
+public extension Color {
+    func textFieldAdaGradient(repeatCount count: Int = 4) -> some View {
+        LinearGradient(colors: [self.opacity(0.3), self.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing).opacity(0.6)
+    }
+}
