@@ -1,7 +1,7 @@
 import Foundation
 import CloudKit
 
-public struct AcademyUser: Hashable, Codable {
+public struct AcademyUser: Hashable, Codable, Identifiable{
     
     public var id: String
     public let name: String
