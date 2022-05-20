@@ -4,8 +4,13 @@ import Combine
 class AnnouncementFormViewModel: ObservableObject {
     @Published
     var content: String = ""
+    
+    @Published
+    var headline: String = ""
+    
     var isButtonDisabled: Bool {
-        return content.isEmpty == true
+        content.isEmpty &&
+        headline.isEmpty
     }
     private var cancelBag: [AnyCancellable] = []
     

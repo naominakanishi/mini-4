@@ -1,28 +1,28 @@
 import SwiftUI
 
-public struct RoleTypeFilterButton: View {
+public struct AcademyTag: View {
     
-    var role: String
-    let typeColor: Color
+    var text: String
+    let color: Color
     
     
-    public init(role: String, typeColor: Color) {
-        self.role = role
-        self.typeColor = typeColor
+    public init(text: String, color: Color) {
+        self.text = text
+        self.color = color
     }
     
     public var body: some View {
         
-        Text(role)
+        Text(text)
             .padding(.horizontal, 24)
             .padding(.vertical, 12)
-            .background(typeColor.opacity(0.1))
+            .background(color.opacity(0.1))
             .font(.system(size: 16, weight: .bold, design: .rounded))
             .foregroundColor(.white)
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(typeColor, lineWidth: 1)
+                    .stroke(color, lineWidth: 1)
             )
             .padding(.vertical, 4)
             .padding(.leading, 4)
