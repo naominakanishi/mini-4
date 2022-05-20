@@ -9,9 +9,10 @@ class AnnouncementFormViewModel: ObservableObject {
     var headline: String = ""
     
     var isButtonDisabled: Bool {
-        content.isEmpty &&
-        headline.isEmpty
+        return content.isEmpty ||
+            headline.isEmpty
     }
+    
     private var cancelBag: [AnyCancellable] = []
     
     private let sender: AnnouncementSenderService

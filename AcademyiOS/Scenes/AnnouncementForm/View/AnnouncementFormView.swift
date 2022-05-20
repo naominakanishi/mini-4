@@ -2,29 +2,36 @@ import SwiftUI
 import AcademyUI
 
 struct AnnouncementFormView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @StateObject
     var viewModel: AnnouncementFormViewModel
     
     @FocusState
-    private var isEditing: Bool
+    private var isEditingHeadline: Bool
+    
+    @FocusState
+    private var isEditingContent: Bool
     
     var body: some View {
         VStack {
             titleView
                 .padding()
             announcementTypePickerView
-                .padding()
+                .padding(.horizontal)
             headlineTextField
             contentTextField
-            Button("Enviar") {
-                viewModel.handleSend()
-            }
-            .disabled(viewModel.isButtonDisabled)
+            Spacer()
+            sendButton
         }
         .background(Color.adaBackground)
         .onTapGesture {
-            if(isEditing) {
-                isEditing = false
+            if(isEditingHeadline) {
+                isEditingHeadline = false
+            }
+            
+            if(isEditingContent) {
+                isEditingContent = false
             }
         }
     }
@@ -43,14 +50,14 @@ struct AnnouncementFormView: View {
     private var announcementTypePickerView: some View {
         VStack(alignment: .leading) {
             Text("Aviso ou entrega?")
-                .bold()
+                .font(.system(size: 14, weight: .bold))
                 .padding([.horizontal, .top], 12)
             HStack {
                 AcademyTag(text: "Aviso", color: .red)
                 AcademyTag(text: "Entrega", color: .blue)
                 Spacer()
             }
-            .padding([.horizontal, .bottom], 12)
+            .padding([.horizontal], 12)
         }
         .background(Color.white.opacity(0.08).adaGradient(repeatCount: 5))
         .cornerRadius(12)
@@ -58,23 +65,44 @@ struct AnnouncementFormView: View {
     
     @ViewBuilder
     private var headlineTextField: some View {
-        VStack {
-            Text("Escreva aqui um resumo do aviso para o preview (máx 100 caracteres)")
-            GrowableTextField(hint: "Escreva aqui um resumo do aviso para o preview (máx 100 caracteres) ",
-                              text: $viewModel.headline,
-                              isEditingDescription: _isEditing)
-            .frame(maxHeight: 200)
-        }
+        GrowableTextField(hint: "Escreva aqui um resumo do aviso para o preview (máx 100 caracteres) ",
+                          text: $viewModel.headline,
+                          isEditingDescription: _isEditingHeadline)
+        .padding(4)
+        .frame(maxHeight: 60)
+        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 5))
+        .cornerRadius(12)
+        .padding(.horizontal)
     }
     
     @ViewBuilder
     private var contentTextField: some View {
-        VStack {
-            Text("Escreva aqui o aviso")
-            GrowableTextField(hint: "Escreva aqui o aviso",
-                              text: $viewModel.content,
-                              isEditingDescription: _isEditing)
-            .frame(maxHeight: 200)
+        GrowableTextField(hint: "Escreva aqui o aviso",
+                          text: $viewModel.content,
+                          isEditingDescription: _isEditingContent)
+        .padding(4)
+        .frame(maxHeight: 200)
+        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 5))
+        .cornerRadius(12)
+        .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private var sendButton: some View {
+        
+        Button(action: {
+            viewModel.handleSend()
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            VStack {
+                Text("Enviar")
+                    .bold()
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: 60)
+        .background(Color.adaLightBlue)
+        .cornerRadius(8)
+        .foregroundColor(.white)
+        .padding()
     }
 }

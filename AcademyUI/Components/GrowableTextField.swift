@@ -16,8 +16,40 @@ public struct GrowableTextField: View {
     @FocusState
     var isEditingDescription: Bool
     
+    @State
+    private var shouldDisplayHint = true
+    
+    @State
+    private var shouldClearHint = true
+    
+    private var textProxy: Binding<String> {
+        .init {
+            text.isEmpty && shouldClearHint ? hint : text
+        } set: { newValue in
+            if newValue == hint {
+                return
+            }
+            $text.wrappedValue = newValue
+        }
+    }
+    
     public var body: some View {
-        TextEditor(text: $text)
+        TextEditor(text: textProxy)
+            .font(.system(size: 14, weight: .bold))
             .focused($isEditingDescription)
+            .onChange(of: isEditingDescription) { isEditing in
+                if(isEditing && shouldClearHint) {
+                    textProxy.wrappedValue = ""
+                    shouldClearHint = false
+                }
+                
+                if(!isEditing && text.isEmpty) {
+                    textProxy.wrappedValue = hint
+                    shouldClearHint = true
+                }
+            }
+            .onAppear {
+                text = hint
+            }
     }
 }
