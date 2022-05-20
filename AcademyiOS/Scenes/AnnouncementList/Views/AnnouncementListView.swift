@@ -3,11 +3,11 @@ import Academy
 import AcademyUI
 
 struct AnnouncementListView: View {
-    @ObservedObject
-    var viewModel: AnnouncementListViewModel
+    @ObservedObject var viewModel: AnnouncementListViewModel
     
-    @State
-    private var modal = false
+    @EnvironmentObject var authService: AuthService
+    
+    @State private var modal = false
     
     init(viewModel: AnnouncementListViewModel) {
         self.viewModel = viewModel
@@ -19,12 +19,14 @@ struct AnnouncementListView: View {
     var body: some View {
         List {
             ForEach (viewModel.announcementList, id: \.id) { announcement in
-                AnnouncementCard(text: announcement.text,
-                                 username: announcement.fromUser?.name ?? "Binder",
-                                 time: announcement.createdDate.getFormattedDate(),
-                                 userImage: Image("andre-memoji")
-//                                 userImage: AsyncImage(url: announcement.fromUser?.imageName)
+                AnnouncementCard(
+                    text: announcement.text,
+                    user: announcement.fromUser,
+                    dateString: announcement.createdDate.getFormattedDate()
                 )
+                .onLongPressGesture {
+                    modal = true
+                }
             }
         }
         .background(Color.adaBackground)
@@ -39,7 +41,7 @@ struct AnnouncementListView: View {
             }
         }
         .sheet(isPresented: $modal) {
-            AnnouncementFormView(viewModel: .init(sender: .init()))
+            AnnouncementFormView(viewModel: .init(currentUser: authService.user, sender: .init()))
         }
     }
     

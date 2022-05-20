@@ -1,21 +1,21 @@
 import Foundation
 import CloudKit
 
-public struct User: Hashable, Codable {
+public struct AcademyUser: Hashable, Codable, Identifiable{
     
-    var id = UUID()
+    public var id: String
     public let name: String
+    public let email: String
     public let imageName: String
-    let token: String
     public let status: Status?
     public let birthday: Date?
     public let role: Role?
 
-    public init(id: UUID = UUID(), name: String, imageName: String, token: String, status: Status?, birthday: Date?, role: Role?) {
+    public init(id: String, name: String, email: String, imageName: String, status: Status?, birthday: Date?, role: Role?) {
         self.id = id
         self.name = name
+        self.email = email
         self.imageName = imageName
-        self.token = token
         self.status = status
         self.birthday = birthday
         self.role = role

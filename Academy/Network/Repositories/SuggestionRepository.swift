@@ -5,16 +5,23 @@ import Combine
 
 public final class SuggestionRepository: ObservableObject {
     
+    static let shared = SuggestionRepository()
+    
     private let path = "suggestion"
     private let store = Firestore.firestore()
     
     public init() { }
     
-    public func create(_ suggestion: Suggestion) {
-        do {
-            _ = try store.collection(path).addDocument(from: suggestion)
-        } catch {
-            print(error.localizedDescription)
+    public func create(suggestionData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
+        let response = PassthroughSubject<Bool, Error>()
+        store.collection(path).document(id).setData(data) {
+            if let _ = $0 {
+                response.send(false)
+                return
+            }
+            response.send(true)
         }
+        return response
+            .eraseToAnyPublisher()
     }
 }

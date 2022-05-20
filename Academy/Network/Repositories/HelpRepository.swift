@@ -5,16 +5,15 @@ import Combine
 
 public final class HelpRepository: ObservableObject {
     
+    static let shared = HelpRepository()
+    
     private let path = "help"
     private let store = Firestore.firestore()
     
-    @Published public var helpList: [Help] = []
-    
     public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
-    static let shared = HelpRepository()
     
     public init() {
-        self.initialize()
+        self.read()
     }
     
     public func create(helpData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
@@ -52,16 +51,12 @@ public final class HelpRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func delete(_ help: Help) {
-        // To do
-    }
-    
-    private func initialize() {
+    private func read() {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("FAILED!", error.localizedDescription)
             }
-            // Review
+
             guard let snapshot = snapshot else { fatalError() }
             
             let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
@@ -70,10 +65,8 @@ public final class HelpRepository: ObservableObject {
             self.readingPublisher.send(data)
         }
     }
-}
-
-extension Data {
-    static var emptyJson: Self {
-        try! JSONEncoder().encode([String]())
+    
+    func delete(_ help: Help) {
+        // To do
     }
 }

@@ -7,27 +7,10 @@ struct SuggestionsBoxView: View {
     var body: some View {
         ZStack {
             VStack {
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.left")
-                            .font(.system(size: 24, weight: .bold, design: .default))
-                            .foregroundColor(Color.white)
-                    }
-                    Spacer()
-                }
-                
-                HStack {
-                    Text("Caixinha de sugestões")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(Color.white)
-                    
-                    Spacer()
-                }
-                .padding(.vertical)
-                
+                Text("Deixe aqui sua sugestão ou crítica para melhorar o ambiente da Academy.\nLembre-se que sua resposta será anônima, e poderá ser acessada somente pelo Binder :)")
+                    .bold()
+                    .font(.system(size: 16, weight: .bold, design: .default))
+                    .padding(.bottom, 20)
                 TextField("Deixe aqui sua sugestão ou crítica para melhorar o ambiente da Academy", text: $viewModel.text)
                     .padding()
                     .background(Color.adaDarkGray)
@@ -59,8 +42,19 @@ struct SuggestionsBoxView: View {
         }
         .padding(.horizontal)
         .background(Color.adaBackground)
-        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "arrow.left")
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .foregroundColor(Color.white)
+                }
+            }
+        })
+        .navigationTitle("Caixinha de sugestões")
     }
 }
 

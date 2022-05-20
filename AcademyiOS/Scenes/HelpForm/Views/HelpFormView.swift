@@ -7,9 +7,9 @@ struct HelpFormView: View {
     @ObservedObject var viewModel: HelpFormViewModel
     var onDismiss: () -> ()
     
-    init(helpModel: Help?, onDismiss: @escaping () -> ()) {
+    init(user: AcademyUser, helpModel: Help?, onDismiss: @escaping () -> ()) {
         self.onDismiss = onDismiss
-        self.viewModel = HelpFormViewModel(helpModel: helpModel)
+        self.viewModel = HelpFormViewModel(helpModel: helpModel, user: user)
     }
     
     var body: some View {
@@ -116,10 +116,10 @@ struct HelpFormView: View {
     }
 }
 
-struct HelpFormView_Previews: PreviewProvider {
-    static var previews: some View {
-        HelpFormView(helpModel: nil) {
-            print("")
-        }
-    }
-}
+//struct HelpFormView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HelpFormView(helpModel: nil) {
+//            print("")
+//        }
+//    }
+//}
