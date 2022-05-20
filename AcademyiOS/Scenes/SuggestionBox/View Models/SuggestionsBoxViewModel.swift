@@ -3,7 +3,7 @@ import Academy
 import Combine
 
 final class SuggestionsBoxViewModel: ObservableObject {
-    @Published var text: String = "Escreva aqui a sugestão"
+    @Published var text: String = ""
     
     private let suggestionSenderService = SuggestionSenderService()
     

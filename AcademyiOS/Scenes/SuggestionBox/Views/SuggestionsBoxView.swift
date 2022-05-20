@@ -1,8 +1,12 @@
 import SwiftUI
+import AcademyUI
 
 struct SuggestionsBoxView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var viewModel = SuggestionsBoxViewModel()
+    
+    @FocusState
+    private(set) var isEditingDescription: Bool
     
     var body: some View {
         ZStack {
@@ -11,13 +15,15 @@ struct SuggestionsBoxView: View {
                     .bold()
                     .font(.system(size: 16, weight: .bold, design: .default))
                     .padding(.bottom, 20)
-                TextField("Deixe aqui sua sugestão ou crítica para melhorar o ambiente da Academy", text: $viewModel.text)
-                    .padding()
-                    .background(Color.adaDarkGray)
-                    .cornerRadius(8)
-                    .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
-                    .foregroundColor(Color.white)
-                
+                GrowableTextField(hint: "Deixe aqui sua sugestão ou crítica para melhorar o ambiente da Academy",
+                                  text: $viewModel.text,
+                                  isEditingDescription: _isEditingDescription
+                )
+                .frame(maxHeight: 200)
+                .padding()
+                .background(Color.adaDarkGray)
+                .cornerRadius(8)
+                .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
                 Spacer()
             }
             
@@ -55,6 +61,11 @@ struct SuggestionsBoxView: View {
             }
         })
         .navigationTitle("Caixinha de sugestões")
+        .onTapGesture {
+            if isEditingDescription {
+                isEditingDescription = false
+            }
+        }
     }
 }
 
