@@ -2,13 +2,15 @@ import SwiftUI
 
 public struct AcademyTag: View {
     
-    var text: String
+    let text: String
     let color: Color
+    let isSelected: Bool
     
-    
-    public init(text: String, color: Color) {
+    // TODO remove default parameter in isSelected
+    public init(text: String, color: Color, isSelected: Bool = true) {
         self.text = text
         self.color = color
+        self.isSelected = isSelected
     }
     
     public var body: some View {
@@ -26,5 +28,6 @@ public struct AcademyTag: View {
             )
             .padding(.vertical, 4)
             .padding(.leading, 4)
+            .opacity(isSelected ? 1 : 0.5)
     }
 }

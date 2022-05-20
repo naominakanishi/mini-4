@@ -3,20 +3,20 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-final class HelpRepository: ObservableObject {
+final class CalendarEventsRepository: ObservableObject {
     
-    static let shared = HelpRepository()
+    static let shared = CalendarEventsRepository()
     
-    private let path = "help"
+    private let path = "events"
     private let store = Firestore.firestore()
     
     let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
     init() {
-        self.read()
+        read()
     }
     
-    func create(helpData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
+    func create(eventData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         store.collection(path).document(id).setData(data) {
             if let _ = $0 {
@@ -29,11 +29,29 @@ final class HelpRepository: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func update(_ help: Help) -> AnyPublisher<Bool, Error> {
+    private func read() {
+        store.collection(path).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        
+            guard let snapshot = snapshot else {
+                fatalError()
+            }
+            
+            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
+            dump(dictionaries)
+            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            
+            self.readingPublisher.send(data)
+        }
+    }
+    
+    func update(_ event: CalendarEvent) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
-            try store.collection(path).document(help.id)
-                .setData(from: help) {
+            try store.collection(path).document(event.id)
+                .setData(from: event) {
                 if let error = $0 {
                     response.send(false)
                     return
@@ -49,24 +67,5 @@ final class HelpRepository: ObservableObject {
         return response
             .eraseToAnyPublisher()
     }
-    
-    private func read() {
-        store.collection(path).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print("FAILED!", error.localizedDescription)
-            }
-
-            guard let snapshot = snapshot else { fatalError() }
-            
-            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
-            dump(dictionaries)
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            self.readingPublisher.send(data)
-        }
-    }
-    
-    func delete(_ help: Help) {
-        // To do
-    }
 }
+
