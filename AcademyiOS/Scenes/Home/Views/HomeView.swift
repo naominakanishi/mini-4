@@ -52,7 +52,7 @@ struct HomeView: View {
                         VStack {
                             HStack {
                                 Text("Avisos")
-                                    .font(.system(size: 24, weight: .bold, design: .default))
+                                    .font(.adaFontSubtitle)
                                     .foregroundColor(Color.white)
                                 
                                 Spacer()

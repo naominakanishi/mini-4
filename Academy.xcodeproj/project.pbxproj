@@ -118,6 +118,7 @@
 		5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E67282DBEDB00E36372 /* ScheduleView.swift */; };
 		5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */; };
 		5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */; };
+		D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0E0A42838414400C14FE2 /* DesignSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +309,7 @@
 		5BE70E67282DBEDB00E36372 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyPeopleView.swift; sourceTree = "<group>"; };
 		5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxView.swift; sourceTree = "<group>"; };
+		D7E0E0A42838414400C14FE2 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +457,7 @@
 				5BE70E24282C3F5A00E36372 /* Components */,
 				119255E5282B51C9008410F3 /* AcademyUI.h */,
 				5BE70E63282D88A000E36372 /* Colors.swift */,
+				D7E0E0A42838414400C14FE2 /* DesignSystem.swift */,
 			);
 			path = AcademyUI;
 			sourceTree = "<group>";
@@ -1318,6 +1321,7 @@
 				5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */,
 				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
 				5BE70E64282D88A000E36372 /* Colors.swift in Sources */,
+				D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */,
 				5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */,
 				11F575C22837211B00123D19 /* GrowableTextField.swift in Sources */,
 				5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */,
