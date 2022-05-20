@@ -7,17 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BED54B9E-7139-4CBC-A14A-9D92CB43E94F"
-            shouldBeEnabled = "Yes"
-            condition = "String(data: data, encoding: .utf8) != &quot;[]&quot;"
+            uuid = "FF90E810-0B31-4EB3-A601-71821AB224AC"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Academy/Domain/Services/Announcement/AnnouncementListenerService.swift"
+            filePath = "AcademyiOS/Scenes/HelpForm/View Models/HelpFormViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "listen()"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "tapButtonHandle()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

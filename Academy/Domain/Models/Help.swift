@@ -33,12 +33,12 @@ extension Help: Hashable {
     }
 }
 
-public enum HelpType: String, Codable {
-    case design = "Design"
-    case code = "Progs"
-    case business = "Business"
-    case general = "Geral"
+public enum HelpType: String, Codable, CaseIterable {
     case all = "Todos"
+    case general = "Geral"
+    case code = "Progs"
+    case design = "Design"
+    case business = "Business"
 }
 
 public enum HelpStatus: String, Codable {

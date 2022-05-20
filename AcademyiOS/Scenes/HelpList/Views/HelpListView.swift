@@ -23,22 +23,14 @@ struct HelpListView: View {
                     VStack {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                HelpTypeFilterButton(helpType: .all) {
-                                    viewModel.filterChosen = .all
+                                ForEach(viewModel.filterTags) { tag in
+                                    AcademyTag(text: tag.name,
+                                               color: tag.color,
+                                               isSelected: tag.isSelected)
+                                    .onTapGesture {
+                                        viewModel.didSelectFilter(withId: tag.id)
+                                    }
                                 }
-                                
-                                HelpTypeFilterButton(helpType: .code) {
-                                    viewModel.filterChosen = .code
-                                }
-                                
-                                HelpTypeFilterButton(helpType: .design) {
-                                    viewModel.filterChosen = .design
-                                }
-                                
-                                HelpTypeFilterButton(helpType: .business) {
-                                    viewModel.filterChosen = .business
-                                }
-                                
                                 Spacer()
                             }
                         }
