@@ -33,10 +33,12 @@ final class AnnouncementRepository: ObservableObject {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("FAILED!", error.localizedDescription)
+                return
             }
             
             // Review
-            guard let snapshot = snapshot else { fatalError()
+            guard let snapshot = snapshot else {
+                return
             }
             
             let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }

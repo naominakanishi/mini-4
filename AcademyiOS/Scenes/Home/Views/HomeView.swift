@@ -70,7 +70,8 @@ struct HomeView: View {
                                             AnnouncementCard(
                                                 text: announcement.text,
                                                 user: announcement.fromUser,
-                                                dateString: announcement.createdDate.getFormattedDate()
+                                                dateString: announcement.createdDate.getFormattedDate(),
+                                                type: (announcement.type ?? .announcement).rawValue
                                             )
                                             Spacer()
                                                 .frame(height: 40)

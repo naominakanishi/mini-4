@@ -6,11 +6,13 @@ public struct AnnouncementCard: View {
     var text: String
     let user: AcademyUser
     let dateString: String
+    let type: String
     
-    public init(text: String, user: AcademyUser, dateString: String) {
+    public init(text: String, user: AcademyUser, dateString: String, type: String) {
         self.text = text
         self.user = user
         self.dateString = dateString
+        self.type = type
     }
     
     public var body: some View {
@@ -34,9 +36,7 @@ public struct AnnouncementCard: View {
         .listRowBackground(Color.adaBackground)
         .navigationTitle("Avisos")
     }
-        
 
-    
     private var announcementBody: some View {
         VStack(alignment: .leading) {
             announcementTitle
@@ -46,6 +46,9 @@ public struct AnnouncementCard: View {
     
     private var announcementTitle: some View {
         HStack {
+            Text("@" + type)
+                .bold()
+                .font(.system(size: 16, weight: .bold, design: .default))
             Text("@" + user.name)
                 .bold()
                 .font(.system(size: 16, weight: .bold, design: .default))

@@ -23,19 +23,19 @@ struct AnnouncementFormView: View {
             contentTextField
             Spacer()
             
-            VStack {
-                Text("Enviar")
-                    .bold()
-            }
-            .frame(maxWidth: .infinity, maxHeight: 60)
-            .background(Color.adaLightBlue)
-            .cornerRadius(8)
-            .foregroundColor(.white)
-            .padding()
-            .onTapGesture {
+            Button {
                 viewModel.handleSend()
                 presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Enviar")
+                    .bold()
+                    .frame(maxWidth: .infinity, maxHeight: 60)
+                    .background(Color.adaLightBlue)
+                    .cornerRadius(8)
+                    .foregroundColor(.white)
             }
+            .padding()
+            .disabled(viewModel.isButtonDisabled)
         }
         .background(Color.adaBackground)
         .onTapGesture {
@@ -66,8 +66,14 @@ struct AnnouncementFormView: View {
                 .font(.system(size: 14, weight: .bold))
                 .padding([.horizontal, .top], 12)
             HStack {
-                AcademyTag(text: "Aviso", color: .red)
-                AcademyTag(text: "Entrega", color: .blue)
+                ForEach(viewModel.announcementTypes) { announcement in
+                    AcademyTag(text: announcement.text,
+                               color: announcement.color,
+                               isSelected: announcement.isSelected)
+                    .onTapGesture {
+                        viewModel.handleSelect(announcementId: announcement.id)
+                    }
+                }
                 Spacer()
             }
             .padding([.horizontal], 12)
