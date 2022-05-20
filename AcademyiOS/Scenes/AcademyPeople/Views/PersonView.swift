@@ -12,7 +12,7 @@ public struct PersonView: View {
                 lineCap: .round,
                 lineJoin: .round
             ))
-            .fill(color.adaGradient)
+            .fill(color.adaGradient())
         }
 
     
@@ -45,8 +45,16 @@ struct PersonView_Previews: PreviewProvider {
 }
 
 extension Color {
-    var adaGradient: LinearGradient {
-        .init(colors: .init(repeating: self, count: 5) + [.clear],
+    func adaGradient(repeatCount count: Int = 5) -> LinearGradient {
+        .init(colors: .init(repeating: self, count: count) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}
+
+extension Color {
+    func reversedAdaGradient(repeatCount count: Int = 5) -> LinearGradient {
+        .init(colors: [.clear] + .init(repeating: self, count: count),
               startPoint: .topLeading,
               endPoint: .bottomTrailing)
     }
