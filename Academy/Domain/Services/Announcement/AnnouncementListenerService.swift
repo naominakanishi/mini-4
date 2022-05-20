@@ -16,13 +16,17 @@ public final class AnnouncementListenerService {
     }
     
     public func listen() -> AnyPublisher<[Announcement], Never> {
-        return repository
+        repository
             .readingPublisher
-            .decode(type: [Announcement].self, decoder: JSONDecoder())
+            .flatMap { data -> AnyPublisher<[Announcement], Never> in
+                Just(data)
+                    .decode(type: [Announcement].self, decoder: JSONDecoder())
+                    .replaceError(with: [])
+                    .eraseToAnyPublisher()
+            }
             .map { $0.sorted { a1, a2 in
-                a1.createdDate < a2.createdDate
+                a1.createdDate > a2.createdDate
             }}
-            .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 }

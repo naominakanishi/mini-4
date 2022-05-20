@@ -35,20 +35,20 @@ struct AnnouncementListView: View {
                 }
                 .background(Color.adaBackground)
             } else {
-                List {
-                    ForEach (viewModel.announcementList, id: \.id) { announcement in
-                        AnnouncementCard(
-                            text: announcement.text,
-                            user: announcement.fromUser,
-                            dateString: announcement.createdDate.getFormattedDate()
-                        )
-                        .onLongPressGesture {
-                            modal = true
-                        }
+                ScrollView {
+                        ForEach (viewModel.announcementList, id: \.id) { announcement in
+                            AnnouncementCard(
+                                text: announcement.text,
+                                user: announcement.fromUser,
+                                dateString: announcement.createdDate.getFormattedDate(),
+                                type: (announcement.type ?? .announcement).rawValue
+                            )
+                            .onTapGesture(count: 2) {
+                                modal = announcement.fromUser == authService.user
+                            }
                     }
+                    .background(Color.adaBackground)
                 }
-                .background(Color.adaBackground)
-                .listStyle(.plain)
             }
         }
         .navigationTitle("Avisos")

@@ -10,6 +10,7 @@ class AnnouncementListViewModel: ObservableObject {
         self.listener = listener
         listener
             .listen()
+            .breakpoint()
             .assign(to: &$announcementList)
     }
 }

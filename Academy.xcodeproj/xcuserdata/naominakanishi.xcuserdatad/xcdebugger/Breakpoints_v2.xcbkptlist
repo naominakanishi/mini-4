@@ -3,4 +3,23 @@
    uuid = "96E88525-A77E-42DC-83E5-AB44F169EBA5"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BED54B9E-7139-4CBC-A14A-9D92CB43E94F"
+            shouldBeEnabled = "Yes"
+            condition = "String(data: data, encoding: .utf8) != &quot;[]&quot;"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Academy/Domain/Services/Announcement/AnnouncementListenerService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "listen()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
