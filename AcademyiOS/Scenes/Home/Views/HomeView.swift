@@ -96,19 +96,57 @@ struct HomeView: View {
                         
                         HStack {
                             VStack {
-                                ShortcutCard(title: "mentores", image: Image("people-icon"), color: Color.adaGreen.opacity(0.6))
+                                NavigationLink(destination: {
+                                    AcademyPeopleView()
+                                }, label: {
+                                    ShortcutCard(title: "mentores",
+                                                 image: Image("people-icon"),
+                                                 color: Color.adaGreen.opacity(0.6)
+                                    )
                                     .padding(.vertical, 4)
-                                ShortcutCard(title: "sugestoes", image: Image("suggestions-icon"), color: Color.adaPurple.opacity(0.6))
+                                })
+                                NavigationLink(destination: {
+                                    SuggestionsBoxView()
+                                }, label: {
+                                    ShortcutCard(title: "sugestoes",
+                                                 image: Image("suggestions-icon"),
+                                                 color: Color.adaPurple.opacity(0.6)
+                                    )
                                     .padding(.vertical, 4)
-                                ShortcutCard(title: "learning\njourney", image: Image("learningJourney-icon"), color: Color.adaPink.opacity(0.6))
-                                    .padding(.vertical, 4)
+                                })
+                                NavigationLink {
+                                    Text("Teu cu")
+                                } label: {
+                                    ShortcutCard(title: "learning\njourney",
+                                                 image: Image("learningJourney-icon"),
+                                                 color: Color.adaPink.opacity(0.6)
+                                    )
+                                        .padding(.vertical, 4)
+                                }
+
                             }
                             VStack {
-                                ShortcutCard(title: "@ajuda", image: Image("help-icon"), color: Color.adaLightBlue.opacity(0.6))
-                                    .scaledToFill()
-                                    .padding(.vertical, 4)
-                                ShortcutCard(title: "equipamentos", image: Image("equipments-icon"), color: Color.adaPurple.opacity(0.6))
-                                    .padding(.vertical, 4)
+                                NavigationLink {
+                                    HelpListView(currentUser: authService.user)
+                                } label: {
+                                    ShortcutCard(title: "@ajuda",
+                                                 image: Image("help-icon"),
+                                                 color: Color.adaLightBlue.opacity(0.6),
+                                                 imageWidth: 60
+                                    )
+                                        .aspectRatio(1, contentMode: .fill)
+                                        .padding(.vertical, 4)
+                                }
+
+                                NavigationLink {
+                                    EquipmentListView(currentUser: authService.user)
+                                } label: {
+                                    ShortcutCard(title: "equipamentos",
+                                                 image: Image("equipments-icon"),
+                                                 color: Color.adaPurple.opacity(0.6)
+                                    )
+                                        .padding(.vertical, 4)
+                                }
                             }
                         }
                     }
@@ -117,7 +155,6 @@ struct HomeView: View {
                     
                 }
             }
-           
             .background(Color.adaBackground)
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
@@ -155,24 +192,24 @@ struct ShortcutCard: View {
     let title: String
     let image: Image
     let color: Color
+    var imageWidth: CGFloat = 27
     
     var body: some View {
-        VStack {
-            HStack {
+        HStack {
+            VStack {
                 Spacer()
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 27)
-            }
-            Spacer()
-            HStack {
                 Text(title)
-                    .font(.system(size: 18, weight: .bold, design: .default))
+                    .font(.system(size: 15.5, weight: .bold, design: .default))
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 32)
+            }
+            Spacer()
+            VStack {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: imageWidth)
                 Spacer()
             }
         }
