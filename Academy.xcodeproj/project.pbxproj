@@ -28,7 +28,7 @@
 		11BB181A2834598D0050B977 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB18192834598D0050B977 /* Role.swift */; };
 		11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB181B28345C170050B977 /* PeopleViewModel.swift */; };
 		11BB182228345EB10050B977 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB182128345EB10050B977 /* PersonView.swift */; };
-		11F47A2E2836C60600612631 /* RoleTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F47A2D2836C60600612631 /* RoleTypeFilterButton.swift */; };
+		11F47A2E2836C60600612631 /* AcademyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F47A2D2836C60600612631 /* AcademyTag.swift */; };
 		11F575C02837007E00123D19 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F575BF2837007E00123D19 /* FeatureCard.swift */; };
 		11F575C22837211B00123D19 /* GrowableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F575C12837211B00123D19 /* GrowableTextField.swift */; };
 		5B68C2032834B00600FD2539 /* EquipmentWaitlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */; };
@@ -219,7 +219,7 @@
 		11BB18192834598D0050B977 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		11BB181B28345C170050B977 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewModel.swift; path = "AcademyiOS/Scenes/AcademyPeople/View Models/PeopleViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		11BB182128345EB10050B977 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonView.swift; path = AcademyiOS/Scenes/AcademyPeople/Views/PersonView.swift; sourceTree = SOURCE_ROOT; };
-		11F47A2D2836C60600612631 /* RoleTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTypeFilterButton.swift; sourceTree = "<group>"; };
+		11F47A2D2836C60600612631 /* AcademyTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyTag.swift; sourceTree = "<group>"; };
 		11F575BF2837007E00123D19 /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
 		11F575C12837211B00123D19 /* GrowableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowableTextField.swift; sourceTree = "<group>"; };
 		5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentWaitlistService.swift; sourceTree = "<group>"; };
@@ -858,7 +858,7 @@
 				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 				5BC2EACD2831EA900071821E /* EquipmentCard.swift */,
 				5BC2EB0D28336F970071821E /* EquipmentTypeFilterButton.swift */,
-				11F47A2D2836C60600612631 /* RoleTypeFilterButton.swift */,
+				11F47A2D2836C60600612631 /* AcademyTag.swift */,
 				11F575C12837211B00123D19 /* GrowableTextField.swift */,
 			);
 			path = Components;
@@ -1241,7 +1241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11F47A2E2836C60600612631 /* RoleTypeFilterButton.swift in Sources */,
+				11F47A2E2836C60600612631 /* AcademyTag.swift in Sources */,
 				5BC2EB0E28336F970071821E /* EquipmentTypeFilterButton.swift in Sources */,
 				5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */,
 				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
