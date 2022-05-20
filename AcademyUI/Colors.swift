@@ -11,3 +11,11 @@ public extension Color {
     static let adaDarkGray = Color(red: 19/255, green: 26/255, blue: 43/255)
     static let adaLightGrey = Color(red: 196/255, green: 196/255, blue: 196/255)
 }
+
+public extension Color {
+    func adaGradient(repeatCount count: Int = 5) -> LinearGradient {
+        .init(colors: .init(repeating: self, count: count) + [.clear],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing)
+    }
+}

@@ -135,7 +135,7 @@ public struct TextFieldModifier: ViewModifier {
             content
             .padding(internalPadding)
             .frame(maxWidth: UIScreen.main.bounds.width-30, maxHeight: fieldHeight)
-            .background(LinearGradient(colors: [(.white.opacity(0.35)), (.white.opacity(0))], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
             .cornerRadius(cornerRadius)
             .corneredBorder(cornerRadius, corners: .allCorners, color: error == nil ? .white : .red, lineWidth: 0.5)
         }

@@ -76,7 +76,7 @@ public struct GeneralButton: View {
         .frame(maxWidth: .infinity)
         .padding()
         .frame(maxWidth: .infinity)
-        .background(LinearGradient(colors: [(.white.opacity(0.35)), (.white.opacity(0))], startPoint: .topLeading, endPoint: .bottomTrailing))
+        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
         .cornerRadius(12)
         
     }
