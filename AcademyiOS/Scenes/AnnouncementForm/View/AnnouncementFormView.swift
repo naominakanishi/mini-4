@@ -59,7 +59,7 @@ struct AnnouncementFormView: View {
             }
             .padding([.horizontal], 12)
         }
-        .background(Color.white.opacity(0.08).adaGradient(repeatCount: 5))
+        .background(Color.white.opacity(0.08).textFieldAdaGradient(repeatCount: 1))
         .cornerRadius(12)
     }
     
@@ -70,7 +70,6 @@ struct AnnouncementFormView: View {
                           isEditingDescription: _isEditingHeadline)
         .padding(4)
         .frame(maxHeight: 60)
-        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 5))
         .cornerRadius(12)
         .padding(.horizontal)
     }
@@ -82,7 +81,7 @@ struct AnnouncementFormView: View {
                           isEditingDescription: _isEditingContent)
         .padding(4)
         .frame(maxHeight: 200)
-        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 5))
+        .background(Color.white.opacity(0.1).textFieldAdaGradient(repeatCount: 4))
         .cornerRadius(12)
         .padding(.horizontal)
     }
