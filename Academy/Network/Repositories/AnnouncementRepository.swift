@@ -3,16 +3,16 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-public final class AnnouncementRepository: ObservableObject {
+final class AnnouncementRepository: ObservableObject {
     
     static let shared = AnnouncementRepository()
     
     private let path = "announcement"
     private let store = Firestore.firestore()
     
-    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
-    public init() {
+    init() {
         read()
     }
     

@@ -3,20 +3,20 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-public final class EquipmentRepository: ObservableObject {
+final class EquipmentRepository: ObservableObject {
     
     static let shared = EquipmentRepository()
     
     private let path = "equipment"
     private let store = Firestore.firestore()
     
-    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
-    public init() {
+    init() {
         read()
     }
     
-    public func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
+    func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         store.collection(path).addDocument(data: data) {
             if let _ = $0 {
@@ -44,7 +44,7 @@ public final class EquipmentRepository: ObservableObject {
         }
     }
     
-    public func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
+    func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
             try store.collection(path).document(equipment.id)
