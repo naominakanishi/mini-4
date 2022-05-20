@@ -13,14 +13,21 @@ final class HomeViewModel: ObservableObject {
     
     private let announcementUpdatingService: AnnouncementUpdatingService
     private let announcementListenerService: AnnouncementListenerService
+    private let openLearningJourneyService: LJRoutingService
     
     init(announcementUpdatingService: AnnouncementUpdatingService,
-         announcementListenerService: AnnouncementListenerService
+         announcementListenerService: AnnouncementListenerService,
+         openLearningJourneyService: LJRoutingService = .init()
     ) {
         self.announcementUpdatingService = announcementUpdatingService
         self.announcementListenerService = announcementListenerService
+        self.openLearningJourneyService = openLearningJourneyService
         
         bindToRepository()
+    }
+    
+    func openLearningJourney() {
+        openLearningJourneyService.route()
     }
     
     private func bindToRepository() {

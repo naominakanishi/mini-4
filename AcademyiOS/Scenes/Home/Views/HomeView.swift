@@ -114,8 +114,8 @@ struct HomeView: View {
                                     )
                                     .padding(.vertical, 4)
                                 })
-                                NavigationLink {
-                                    Text("Teu cu")
+                                Button {
+                                    viewModel.openLearningJourney()
                                 } label: {
                                     ShortcutCard(title: "learning\njourney",
                                                  image: Image("learningJourney-icon"),
@@ -123,6 +123,7 @@ struct HomeView: View {
                                     )
                                         .padding(.vertical, 4)
                                 }
+
 
                             }
                             VStack {
