@@ -28,6 +28,12 @@ final class HelpFormViewModel: ObservableObject {
     @Published
     var tags: [TagModel] = []
     
+    var isButtonDisabled: Bool {
+        title.isEmpty ||
+        description.isEmpty ||
+        currentLocation.isEmpty
+    }
+    
     private var selectedTagIndex = 0
     private let availableTags = HelpType.allCases.filter { $0 != .all }
     

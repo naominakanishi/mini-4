@@ -51,6 +51,6 @@ public struct GrowableTextField: View {
             .onAppear {
                 text = hint
             }
-            .background(Color.white.opacity(0.1).textFieldAdaGradient(repeatCount: 4))
+           // .background(Color.white.opacity(0.1).textFieldAdaGradient(repeatCount: 4))
     }
 }

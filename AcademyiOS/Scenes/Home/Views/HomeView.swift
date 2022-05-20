@@ -48,6 +48,7 @@ struct HomeView: View {
                                 logout()
                             }
                         }
+                        .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
                         
                         VStack {
                             HStack {
@@ -96,65 +97,73 @@ struct HomeView: View {
                             }
                         }
 //                        .padding(.vertical, 32)
-                        
-                        HStack {
-                            VStack {
-                                NavigationLink(destination: {
-                                    AcademyPeopleView()
-                                }, label: {
-                                    ShortcutCard(title: "mentores",
-                                                 image: Image("people-icon"),
-                                                 color: Color.adaRed.opacity(0.6)
-                                    )
-                                    .padding(.vertical, 4)
-                                })
-                                NavigationLink(destination: {
-                                    SuggestionsBoxView()
-                                }, label: {
-                                    ShortcutCard(title: "sugestoes",
-                                                 image: Image("suggestions-icon"),
-                                                 color: Color.adaLightBlue.opacity(0.6)
-                                    )
-                                    .padding(.vertical, 4)
-                                })
-                                Button {
-                                    viewModel.openLearningJourney()
-                                } label: {
-                                    ShortcutCard(title: "learning\njourney",
-                                                 image: Image("learningJourney-icon"),
-                                                 color: Color.adaDarkBlue.opacity(0.6)
-                                    )
+                        VStack (alignment: .leading){
+                            
+                            Text("Utilidades")
+                                .font(.adaFontSubtitle)
+                                .foregroundColor(Color.white)
+                                .padding(DesignSystem.Spacing.subtitlesToContentPadding)
+                                
+                            HStack {
+                                VStack {
+                                    NavigationLink(destination: {
+                                        AcademyPeopleView()
+                                    }, label: {
+                                        ShortcutCard(title: "mentores",
+                                                     image: Image("people-icon"),
+                                                     color: Color.adaRed.opacity(0.6)
+                                        )
                                         .padding(.vertical, 4)
+                                    })
+                                    NavigationLink(destination: {
+                                        SuggestionsBoxView()
+                                    }, label: {
+                                        ShortcutCard(title: "sugestoes",
+                                                     image: Image("suggestions-icon"),
+                                                     color: Color.adaLightBlue.opacity(0.6)
+                                        )
+                                        .padding(.vertical, 4)
+                                    })
+                                    Button {
+                                        viewModel.openLearningJourney()
+                                    } label: {
+                                        ShortcutCard(title: "learning\njourney",
+                                                     image: Image("learningJourney-icon"),
+                                                     color: Color.adaDarkBlue.opacity(0.6)
+                                        )
+                                            .padding(.vertical, 4)
+                                    }
+
+
                                 }
+                                VStack {
+                                    NavigationLink {
+                                        HelpListView(currentUser: authService.user)
+                                    } label: {
+                                        ShortcutCard(title: "@ajuda",
+                                                     image: Image("help-icon"),
+                                                     color: Color.adaPurple.opacity(0.6),
+                                                     imageWidth: 60
+                                        )
+                                            .aspectRatio(1, contentMode: .fill)
+                                            .padding(.vertical, 4)
+                                    }
 
-
-                            }
-                            VStack {
-                                NavigationLink {
-                                    HelpListView(currentUser: authService.user)
-                                } label: {
-                                    ShortcutCard(title: "@ajuda",
-                                                 image: Image("help-icon"),
-                                                 color: Color.adaPurple.opacity(0.6),
-                                                 imageWidth: 60
-                                    )
-                                        .aspectRatio(1, contentMode: .fill)
-                                        .padding(.vertical, 4)
-                                }
-
-                                NavigationLink {
-                                    EquipmentListView(currentUser: authService.user)
-                                } label: {
-                                    ShortcutCard(title: "equipamentos",
-                                                 image: Image("equipments-icon"),
-                                                 color: Color.adaGreen.opacity(0.6)
-                                    )
-                                        .padding(.vertical, 4)
+                                    NavigationLink {
+                                        EquipmentListView(currentUser: authService.user)
+                                    } label: {
+                                        ShortcutCard(title: "equipamentos",
+                                                     image: Image("equipments-icon"),
+                                                     color: Color.adaGreen.opacity(0.6)
+                                        )
+                                            .padding(.vertical, 4)
+                                    }
                                 }
                             }
                         }
+                        
                     }
-                    .padding()
+                    .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
                     Spacer()
                     
                 }
