@@ -128,9 +128,13 @@ struct HomeView: View {
                             }
                             HStack {
                                 
-                                FeatureCard(title: "learning journey", maxHeight: 200, color: Color.adaYellow) {
-                                    
+                                NavigationLink {
+                                    CalendarEventListView()
+                                } label: {
+                                    FeatureCard(title: "agenda", maxHeight: 200, color: Color.adaYellow) {
+                                    }
                                 }
+                                
                                 
                                 NavigationLink {
                                     SuggestionsBoxView()

@@ -3,16 +3,16 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-public final class UserRepository: ObservableObject {
+final class UserRepository: ObservableObject {
     
     static let shared = UserRepository()
     
     private let path = "user"
     private let store = Firestore.firestore()
     
-    public init() {}
+    init() {}
     
-    public func checkIfUserExists(with id: String) -> AnyPublisher<Bool, Never> {
+    func checkIfUserExists(with id: String) -> AnyPublisher<Bool, Never> {
         let publisher = PassthroughSubject<Bool, Never>()
         
         store.collection(path).document(id).getDocument(source: .server, completion: { document, error in
@@ -32,7 +32,7 @@ public final class UserRepository: ObservableObject {
         return publisher.eraseToAnyPublisher()
     }
     
-    public func fetchUser(with id: String) -> AnyPublisher<Data, Never> {
+    func fetchUser(with id: String) -> AnyPublisher<Data, Never> {
         let publisher = PassthroughSubject<Data, Never>()
         
         store.collection(path).document(id).addSnapshotListener { (document, error) in
