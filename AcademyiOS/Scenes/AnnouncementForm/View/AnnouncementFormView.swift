@@ -22,7 +22,20 @@ struct AnnouncementFormView: View {
             headlineTextField
             contentTextField
             Spacer()
-            sendButton
+            
+            VStack {
+                Text("Enviar")
+                    .bold()
+            }
+            .frame(maxWidth: .infinity, maxHeight: 60)
+            .background(Color.adaLightBlue)
+            .cornerRadius(8)
+            .foregroundColor(.white)
+            .padding()
+            .onTapGesture {
+                viewModel.handleSend()
+                presentationMode.wrappedValue.dismiss()
+            }
         }
         .background(Color.adaBackground)
         .onTapGesture {
@@ -85,24 +98,5 @@ struct AnnouncementFormView: View {
         .background(Color.white.opacity(0.1).adaGradient(repeatCount: 5))
         .cornerRadius(12)
         .padding(.horizontal)
-    }
-    
-    @ViewBuilder
-    private var sendButton: some View {
-        
-        Button(action: {
-            viewModel.handleSend()
-            presentationMode.wrappedValue.dismiss()
-        }) {
-            VStack {
-                Text("Enviar")
-                    .bold()
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: 60)
-        .background(Color.adaLightBlue)
-        .cornerRadius(8)
-        .foregroundColor(.white)
-        .padding()
     }
 }

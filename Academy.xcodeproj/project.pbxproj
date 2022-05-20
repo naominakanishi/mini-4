@@ -40,7 +40,6 @@
 		5B75E645283577A60047ADEB /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E644283577A60047ADEB /* UserRepository.swift */; };
 		5B75E64728357B090047ADEB /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64628357B090047ADEB /* AuthState.swift */; };
 		5B75E64C2835AF510047ADEB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64B2835AF510047ADEB /* LoadingView.swift */; };
-		5B75E64E2835AF5F0047ADEB /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64D2835AF5F0047ADEB /* LoadingViewModel.swift */; };
 		5B75E6502835B4B30047ADEB /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64F2835B4B30047ADEB /* Loader.swift */; };
 		5B75E6532835CAF40047ADEB /* UserListenerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6522835CAF40047ADEB /* UserListenerService.swift */; };
 		5B75E6552835CD270047ADEB /* UserUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6542835CD270047ADEB /* UserUpdatingService.swift */; };
@@ -233,7 +232,6 @@
 		5B75E644283577A60047ADEB /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		5B75E64628357B090047ADEB /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		5B75E64B2835AF510047ADEB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		5B75E64D2835AF5F0047ADEB /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		5B75E64F2835B4B30047ADEB /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		5B75E6522835CAF40047ADEB /* UserListenerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListenerService.swift; sourceTree = "<group>"; };
 		5B75E6542835CD270047ADEB /* UserUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdatingService.swift; sourceTree = "<group>"; };
@@ -495,7 +493,6 @@
 		5B75E6482835AF380047ADEB /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				5B75E64A2835AF430047ADEB /* View Models */,
 				5B75E6492835AF3D0047ADEB /* Views */,
 			);
 			path = Loading;
@@ -508,14 +505,6 @@
 				5B75E64F2835B4B30047ADEB /* Loader.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		5B75E64A2835AF430047ADEB /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				5B75E64D2835AF5F0047ADEB /* LoadingViewModel.swift */,
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5B75E6512835CADD0047ADEB /* User */ = {
@@ -1221,7 +1210,6 @@
 				5B68C2102834B5A000FD2539 /* SignInWithAppleButton.swift in Sources */,
 				5BC2EACA2831E92E0071821E /* EquipmentListView.swift in Sources */,
 				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
-				5B75E64E2835AF5F0047ADEB /* LoadingViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */,
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,

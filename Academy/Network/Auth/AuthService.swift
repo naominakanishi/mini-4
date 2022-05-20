@@ -27,7 +27,7 @@ public final class AuthService: ObservableObject {
     }
     
     @Published public var user: AcademyUser = .init(
-        id: "default",
+        id: "ERRO",
         name: "",
         email: "",
         imageName: "",
