@@ -54,9 +54,8 @@ final class ProfileViewModel: ObservableObject {
                 self.currentUser = user
                 
                 if let birthday = user.birthday {
-                    self.birthday = birthday
+                    self.birthday = Date(timeIntervalSince1970: birthday)
                 }
-                
                 self.imageUrl = URL(string: user.imageName)
                 self.currentUserHelpTags = user.helpTags ?? []
                 self.displayName = user.name
@@ -100,7 +99,7 @@ final class ProfileViewModel: ObservableObject {
                     email: currentUser.email,
                     imageName: imageURL?.absoluteString ?? self.imageUrl?.absoluteString ?? currentUser.imageName,
                     status: currentUser.status,
-                    birthday: birthday ,
+                    birthday: birthday.timeIntervalSince1970,
                     role: role,
                     helpTags: self.currentUserHelpTags
                 )

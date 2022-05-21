@@ -78,7 +78,7 @@ public final class AuthService {
             email: user.email ?? "",
             imageName: "invalid_image",
             status: .available,
-            birthday: nil,
+            birthday: Date.now.timeIntervalSince1970,
             role: .student,
             helpTags: []
         )
@@ -113,7 +113,7 @@ public final class AuthService {
                 print(error.localizedDescription)
             case .success(let authUser):
                 print("Signed in with Apple id")
-                self.userRepository.initializeUser(withId: authUser.uid)
+                self.authStatePublisher.send(.signedIn(authUser.uid))
             }
         }
     }

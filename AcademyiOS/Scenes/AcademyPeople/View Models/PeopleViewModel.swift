@@ -21,29 +21,7 @@ class PeopleViewModel: ObservableObject {
     @Published
     private(set) var users: [UserModel] = []
         
-    private var allUsers: [AcademyUser] = [
-        AcademyUser.init(id: "1", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "2", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "3", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "4", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "5", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "6", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "7", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "8", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "9", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "10", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "11", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "12", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "13", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "14", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "15", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "16", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "17", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "18", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "19", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "20", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: []),
-        AcademyUser.init(id: "21", name: "Nome", email: "", imageName: "andre-memoji", status: Status.available, birthday: nil, role: Role.allCases.randomElement()!, helpTags: [])
-    ]
+    private var allUsers: [AcademyUser] = []
     
     init() {
         loadRoles()

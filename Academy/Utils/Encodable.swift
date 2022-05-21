@@ -6,9 +6,7 @@ extension Encodable {
         encoder.dateEncodingStrategy = .millisecondsSince1970
         let data = try encoder.encode(self)
         guard let dict = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-        else {
-            throw FirebaseDecodingError.invalidType
-        }
+        else { throw FirebaseDecodingError.invalidType }
         return dict
     }
 }

@@ -1,5 +1,4 @@
 import Foundation
-import CloudKit
 
 public struct AcademyUser: Hashable, Codable, Identifiable{
     
@@ -11,14 +10,14 @@ public struct AcademyUser: Hashable, Codable, Identifiable{
     public let role: Role?
     public let helpTags: [HelpType]?
     
-    public let birthday: Date?
+    public let birthday: TimeInterval?
     
     public init(id: String,
                 name: String,
                 email: String,
                 imageName: String,
                 status: Status?,
-                birthday: Date?,
+                birthday: TimeInterval?,
                 role: Role?,
                 helpTags: [HelpType]?
     ) {

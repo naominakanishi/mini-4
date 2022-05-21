@@ -2,7 +2,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
-import CodableFirebase
+//import CodableFirebase
 import FirebaseStorage
 
 final class UserRepository: ObservableObject {
@@ -69,12 +69,7 @@ final class UserRepository: ObservableObject {
     func update(_ user: AcademyUser) -> AnyPublisher<AcademyUser, Error> {
         let response = PassthroughSubject<AcademyUser, Error>()
         do {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .millisecondsSince1970
-            let encoded = try encoder.encode(user)
-            guard let dictionary = try JSONSerialization.jsonObject(with: encoded) as? [String: Any]
-            else { fatalError() }
-            
+            let dictionary = try user.toFirebase()
             store.collection(path).document(user.id).setData(dictionary) {
                 if let error = $0 {
                     response.send(completion: .failure(error))
