@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		035FA7CB28346D6D00439AFD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CA28346D6D00439AFD /* ProfileView.swift */; };
-		035FA7CD28346ECF00439AFD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CC28346ECF00439AFD /* ProfileViewModel.swift */; };
 		035FA7CF283471C300439AFD /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CE283471C300439AFD /* ProfilePictureView.swift */; };
-		035FA7D12834727900439AFD /* ProfilePictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */; };
+		035FA7D12834727900439AFD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D02834727900439AFD /* ProfileViewModel.swift */; };
 		035FA7D3283479A300439AFD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D2283479A300439AFD /* ImagePicker.swift */; };
 		035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D428347B2D00439AFD /* CustomTextField.swift */; };
 		03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD66102836D7C10062F8F9 /* GeneralButton.swift */; };
@@ -228,9 +227,8 @@
 
 /* Begin PBXFileReference section */
 		035FA7CA28346D6D00439AFD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		035FA7CC28346ECF00439AFD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		035FA7CE283471C300439AFD /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
-		035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewModel.swift; sourceTree = "<group>"; };
+		035FA7D02834727900439AFD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		035FA7D2283479A300439AFD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		035FA7D428347B2D00439AFD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03CD66102836D7C10062F8F9 /* GeneralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButton.swift; sourceTree = "<group>"; };
@@ -406,8 +404,7 @@
 		035FA7C828346D4200439AFD /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				035FA7CC28346ECF00439AFD /* ProfileViewModel.swift */,
-				035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */,
+				035FA7D02834727900439AFD /* ProfileViewModel.swift */,
 				035FA7D2283479A300439AFD /* ImagePicker.swift */,
 			);
 			path = "View Models";
@@ -1359,8 +1356,7 @@
 				119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */,
 				5BD206E5282F49D5005E1090 /* HelpFormViewModel.swift in Sources */,
 				11BB182228345EB10050B977 /* PersonView.swift in Sources */,
-				035FA7D12834727900439AFD /* ProfilePictureViewModel.swift in Sources */,
-				035FA7CD28346ECF00439AFD /* ProfileViewModel.swift in Sources */,
+				035FA7D12834727900439AFD /* ProfileViewModel.swift in Sources */,
 				035FA7CF283471C300439AFD /* ProfilePictureView.swift in Sources */,
 				5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */,
 				5B75E6712836F1D80047ADEB /* CalendarEventListView.swift in Sources */,

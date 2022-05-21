@@ -2,16 +2,9 @@ import Foundation
 import Academy
 import Combine
 import SwiftUI
+import AcademyUI
 
 final class HelpFormViewModel: ObservableObject {
-    
-    // TODO unify this model across the app
-    struct TagModel: Identifiable {
-        let id = UUID()
-        let name: String
-        let color: Color
-        let isSelected: Bool
-    }
     
     private var helpModel: Help? = nil
     private var user: AcademyUser
@@ -26,7 +19,7 @@ final class HelpFormViewModel: ObservableObject {
     
     
     @Published
-    var tags: [TagModel] = []
+    var tags: [AcademyTagModel] = []
     
     var isButtonDisabled: Bool {
         title.isEmpty ||

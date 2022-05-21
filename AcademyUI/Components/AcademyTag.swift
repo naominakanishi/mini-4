@@ -1,13 +1,28 @@
 import SwiftUI
 
+public struct AcademyTagModel: Identifiable {
+    public let id = UUID()
+    let name: String
+    let color: Color
+    let isSelected: Bool
+    
+    public init(name: String, color: Color, isSelected: Bool) {
+        self.name = name
+        self.color = color
+        self.isSelected = isSelected
+    }
+}
+
 public struct AcademyTag: View {
     
     let text: String
     let color: Color
     let isSelected: Bool
     
-    // TODO remove default parameter in isSelected
-    public init(text: String, color: Color, isSelected: Bool = true) {
+    public init(model: AcademyTagModel) {
+        self.init(text: model.name, color: model.color, isSelected: model.isSelected)
+    }
+    public init(text: String, color: Color, isSelected: Bool) {
         self.text = text
         self.color = color
         self.isSelected = isSelected

@@ -1,40 +1,44 @@
 //
-//  ProfileViewModel.swift
+//  ProfilePictureViewModel.swift
 //  AcademyiOS
 //
 //  Created by HANNA P C FERREIRA on 17/05/22.
 //
 
 import Foundation
+import AcademyUI
 import Academy
-import Combine
 
 final class ProfileViewModel: ObservableObject {
     
-    @Published private(set) var announcementList: [Announcement] = []
+    @Published
+    var displayName: String = "" // TODO feed proper username
     
-    @Published private(set) var activeAnnouncements: [Announcement] = []
+    @Published
+    private(set) var helpTags: [AcademyTagModel] = []
     
-    private var cancellabels: Set<AnyCancellable> = []
+    @Published
+    var birthday: Date = .now
     
-    private let announcementUpdatingService: AnnouncementUpdatingService
-    private let announcementListenerService: AnnouncementListenerService
-    
-    init(announcementUpdatingService: AnnouncementUpdatingService,
-         announcementListenerService: AnnouncementListenerService
-    ) {
-        self.announcementUpdatingService = announcementUpdatingService
-        self.announcementListenerService = announcementListenerService
-        
-        bindToRepository()
+    var availableRoles: [String] {
+        Role.allCases
+            .filter { $0 != .all }
+            .map {
+            $0.rawValue
+        }
     }
     
-    private func bindToRepository() {
-        announcementListenerService
-            .listen()
-            .assign(to: &$announcementList)
-        announcementListenerService
-            .activeAnnouncements
-            .assign(to: &$activeAnnouncements)
+    @Published
+    var currentRole: String?
+    
+    init() {
+        
+        renderHelpTags()
+    }
+    
+    private func renderHelpTags() {
+        helpTags = HelpType.allCases.map {
+            .init(name: $0.rawValue, color: $0.color, isSelected: false) // TODO is selected
+        }
     }
 }

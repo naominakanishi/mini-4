@@ -83,10 +83,7 @@ struct HelpFormView: View {
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(viewModel.tags) { tag in
-                        AcademyTag(text: tag.name,
-                                   color: tag.color,
-                                   isSelected: tag.isSelected
-                        )
+                        AcademyTag(model: tag)
                         .onTapGesture {
                             viewModel.didSelectTag(withId: tag.id)
                         }

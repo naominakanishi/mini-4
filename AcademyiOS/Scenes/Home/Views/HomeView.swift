@@ -35,17 +35,18 @@ struct HomeView: View {
                             
                             Spacer()
                             
-                            ZStack {
-                                Circle()
-                                    .foregroundColor(Color.adaLightBlue)
-                                Image("andre-memoji")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .padding(2)
-                            }
-                            .frame(maxWidth: 60, maxHeight: 60)
-                            .onTapGesture {
-                                logout()
+                            NavigationLink {
+                                ProfileView()
+                            } label: {
+                                ZStack {
+                                    Circle()
+                                        .foregroundColor(Color.adaLightBlue)
+                                    Image("andre-memoji")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .padding(2)
+                                }
+                                .frame(maxWidth: 60, maxHeight: 60)
                             }
                         }
                         .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
