@@ -67,7 +67,7 @@ final class ProfileViewModel: ObservableObject {
         $imageSelected
             .flatMap { imageData -> AnyPublisher<URL?, Never> in
                 self.imageUrl = nil
-                guard let imageData = imageData?.pngData(),
+                guard let imageData = imageData?.pngData(), // TODO reduce image size!
                       let user = self.currentUser
                 else {
                     return Just(nil)

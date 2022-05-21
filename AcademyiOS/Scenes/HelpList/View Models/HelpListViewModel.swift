@@ -34,6 +34,8 @@ final class HelpListViewModel: ObservableObject {
     
     private var selectedFilterIndex = 0
     
+    private var disposeBag = [AnyCancellable]()
+    
     init(listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
         self.listener = listener
         self.helpAssignService = helpAssignService
@@ -50,10 +52,16 @@ final class HelpListViewModel: ObservableObject {
     }
     
     func assignHelpHandler(help: Help) {
-        userLisenterService.listener
+        userLisenterService
+            .listener
             .flatMap { user in
                 self.helpAssignService.assign(using: help, currentUser: user)
             }
+            .replaceError(with: false)
+            .sink { _ in
+                self.renderFilteredList()
+            }
+            .store(in: &disposeBag)
     }
     
     func completeHelpHandler(help: Help) {
@@ -78,7 +86,6 @@ final class HelpListViewModel: ObservableObject {
         }
         renderFilteredList()
     }
-    
     
     private func renderFilteredList() {
         let helpType = HelpType.allCases[selectedFilterIndex]
