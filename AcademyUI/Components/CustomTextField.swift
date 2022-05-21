@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomTextField: UIViewRepresentable {
+public struct CustomTextField: UIViewRepresentable {
     
     @Binding var text: String
     @Binding var firstResponder: Int
@@ -37,13 +37,13 @@ struct CustomTextField: UIViewRepresentable {
     
     private let textField = UITextField(frame: .zero)
     
-    init(text: Binding<String>, firstResponder: Binding<Int>, order: Int) {
+    public init(text: Binding<String>, firstResponder: Binding<Int>, order: Int) {
         _text = text
         _firstResponder = firstResponder
         self.order = order
     }
     
-    func makeUIView(context: Context) -> UITextField {
+    public func makeUIView(context: Context) -> UITextField {
         textField.delegate = context.coordinator
         
         setupView(textField, context: context)
@@ -51,7 +51,7 @@ struct CustomTextField: UIViewRepresentable {
         return textField
     }
     
-    func updateUIView(_ uiView: UITextField, context: Context) {
+    public func updateUIView(_ uiView: UITextField, context: Context) {
         
         setupView(uiView, context: context)
         
@@ -70,7 +70,7 @@ struct CustomTextField: UIViewRepresentable {
     }
     
     
-    func setupView(_ view: UITextField, context: Context) {
+    public func setupView(_ view: UITextField, context: Context) {
         if let mask = mask {
             view.text = text.masked(mask)
         } else if isCurrency {
@@ -110,15 +110,15 @@ struct CustomTextField: UIViewRepresentable {
         context.coordinator.mask = mask
     }
     
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         return Coordinator(self, mask: mask, isCurrency: isCurrency, maxCurrencyValue: maxCurrencyValue)
     }
     
-    func dismiss() {
+    public func dismiss() {
         self.firstResponder = -1
     }
     
-    class Coordinator: NSObject, UITextFieldDelegate {
+    public class Coordinator: NSObject, UITextFieldDelegate {
         private var parent: CustomTextField
         var mask: String?
         private var isCurrency: Bool
@@ -131,14 +131,14 @@ struct CustomTextField: UIViewRepresentable {
             self.maxCurrencyValue = maxCurrencyValue
         }
         
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             parent.text = textField.text ?? ""
             parent.returnPressed?()
             
             return true
         }
         
-        func textFieldDidEndEditing(_ textField: UITextField) {
+        public func textFieldDidEndEditing(_ textField: UITextField) {
             //let text = textField.text
             //DispatchQueue.main.async {
             //    self.parent.text = text ?? ""
@@ -148,7 +148,7 @@ struct CustomTextField: UIViewRepresentable {
             
         }
         
-        func textFieldDidBeginEditing(_ textField: UITextField) {
+        public func textFieldDidBeginEditing(_ textField: UITextField) {
             
             DispatchQueue.main.async {
                 self.parent.firstResponder = self.parent.order
@@ -156,7 +156,7 @@ struct CustomTextField: UIViewRepresentable {
             }
         }
         
-        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
             
             if let currentText = textField.text,
                let convertedRange = Range(range, in: currentText) {
@@ -187,7 +187,7 @@ struct CustomTextField: UIViewRepresentable {
         }
     }
     
-    func toolbar(coordinator: Coordinator) -> UIToolbar? {
+    public func toolbar(coordinator: Coordinator) -> UIToolbar? {
         guard let title = dismissButtonLabel else {
             return nil
         }

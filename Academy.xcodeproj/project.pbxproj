@@ -13,6 +13,7 @@
 		035FA7D12834727900439AFD /* ProfilePictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */; };
 		035FA7D3283479A300439AFD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D2283479A300439AFD /* ImagePicker.swift */; };
 		035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D428347B2D00439AFD /* CustomTextField.swift */; };
+		03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD66102836D7C10062F8F9 /* GeneralButton.swift */; };
 		03D2C51028356206000336C5 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C50F28356206000336C5 /* StringExt.swift */; };
 		03D2C512283563AD000336C5 /* DecimalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C511283563AD000336C5 /* DecimalExtension.swift */; };
 		03D2C5142835736E000336C5 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C5132835736E000336C5 /* CustomModifiers.swift */; };
@@ -232,6 +233,7 @@
 		035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewModel.swift; sourceTree = "<group>"; };
 		035FA7D2283479A300439AFD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		035FA7D428347B2D00439AFD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		03CD66102836D7C10062F8F9 /* GeneralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButton.swift; sourceTree = "<group>"; };
 		03D2C50F28356206000336C5 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		03D2C511283563AD000336C5 /* DecimalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalExtension.swift; sourceTree = "<group>"; };
 		03D2C5132835736E000336C5 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
@@ -1001,6 +1003,7 @@
 				11F47A2D2836C60600612631 /* AcademyTag.swift */,
 				11F575C12837211B00123D19 /* GrowableTextField.swift */,
 				5B75E6742836F4060047ADEB /* CalendarEventBox.swift */,
+				03CD66102836D7C10062F8F9 /* GeneralButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1408,6 +1411,7 @@
 				5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */,
 				03D2C51028356206000336C5 /* StringExt.swift in Sources */,
 				5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */,
+				03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */,
 				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
 				03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */,
 				035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */,
