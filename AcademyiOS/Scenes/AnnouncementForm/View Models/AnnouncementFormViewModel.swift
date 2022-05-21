@@ -42,7 +42,11 @@ class AnnouncementFormViewModel: ObservableObject {
         userListenerService
             .listener
             .flatMap { [self] user in
-                sender.send(content: self.content, user: user, type: AnnouncementType.allCases[self.selectedTypeIndex])
+                sender.send(content: self.content,
+                            user: user,
+                            type: AnnouncementType.allCases[self.selectedTypeIndex],
+                            headline: headline
+                )
             }
             .sink(receiveCompletion: { error in
                 // TODO display error

@@ -54,11 +54,11 @@ struct HomeView: View {
                                     ForEach(viewModel.activeAnnouncements) { announcement in
                                         VStack {
                                             AnnouncementCard(
-                                                text: announcement.text,
+                                                text: announcement.headline ?? announcement.text.prefix(100) + "...",
                                                 user: announcement.fromUser,
                                                 dateString: announcement.createdDate.getFormattedDate(),
-                                                type: (announcement.type ?? .announcement).rawValue
-                                            )
+                                                type: (announcement.type ?? .announcement).rawValue)
+                                            
                                             Spacer()
                                                 .frame(height: 40)
                                         }

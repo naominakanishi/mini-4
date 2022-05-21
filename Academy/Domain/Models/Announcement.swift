@@ -1,11 +1,12 @@
 import Foundation
 
 public struct Announcement: Codable, Hashable, Identifiable {
-    public var id: String
-    public var fromUser: AcademyUser
-    public var createdTimeInterval: TimeInterval
-    public var text: String
-    public var isActive: Bool
+    public let id: String
+    public let fromUser: AcademyUser
+    public let createdTimeInterval: TimeInterval
+    public let headline: String?
+    public let text: String
+    public let isActive: Bool
     
     public let type: AnnouncementType?
     
@@ -13,13 +14,21 @@ public struct Announcement: Codable, Hashable, Identifiable {
         Date(timeIntervalSince1970: createdTimeInterval)
     }
     
-    public init(id: String, fromUser: AcademyUser, createdTimeInterval: TimeInterval, text: String, isActive: Bool, type: AnnouncementType) {
+    public init(id: String,
+                fromUser: AcademyUser,
+                createdTimeInterval: TimeInterval,
+                text: String,
+                isActive: Bool,
+                type: AnnouncementType,
+                headline: String?
+    ) {
         self.id = id
         self.fromUser = fromUser
         self.createdTimeInterval = createdTimeInterval
         self.text = text
         self.isActive = isActive
         self.type = type
+        self.headline = headline
     }
 }
 

@@ -42,7 +42,7 @@ struct ProfileView: View {
                 saveButton
             }
         }
-            .padding()
+        .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
             .background(Color.adaBackground)
             .onTapGesture {
                 isEditing = false

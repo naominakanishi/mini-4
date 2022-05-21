@@ -21,32 +21,39 @@ struct HelpFormView: View {
     }
     
     var body: some View {
-        VStack {
-            titleView
-                .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
-            Group {
-                helpTypePickerView
-                headlineTextField
-                contentTextField
-                locationTextField
+        ZStack {
+            ScrollView {
+                VStack {
+                    titleView
+                        .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
+                    Group {
+                        helpTypePickerView
+                        headlineTextField
+                        contentTextField
+                        locationTextField
+                    }
+                    .padding(.vertical, DesignSystem.Spacing.cardInternalPadding)
+                    
+                    
+                    Spacer()
+                    
+                }
             }
-            .padding(.vertical, DesignSystem.Spacing.cardInternalPadding)
-            
-            
-            Spacer()
-            
-            Button {
-                presentationMode.wrappedValue.dismiss()
-                viewModel.tapButtonHandle()
-            } label: {
-                Text("Enviar")
-                    .bold()
-                    .frame(maxWidth: .infinity, maxHeight: 60)
-                    .background(Color.adaLightBlue)
-                    .cornerRadius(8)
-                    .foregroundColor(.white)
+            VStack {
+                Spacer()
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                    viewModel.tapButtonHandle()
+                } label: {
+                    Text("Enviar")
+                        .bold()
+                        .frame(maxWidth: .infinity, maxHeight: 60)
+                        .background(Color.adaLightBlue)
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                }
+                .disabled(viewModel.isButtonDisabled)
             }
-            .disabled(viewModel.isButtonDisabled)
         }
         .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
         .background(Color.adaBackground)
@@ -79,14 +86,14 @@ struct HelpFormView: View {
         VStack(alignment: .leading) {
             Text("Com o que você precisa de ajuda?")
                 .font(.adaFontSubtitle)
-
+            
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(viewModel.tags) { tag in
                         AcademyTag(model: tag)
-                        .onTapGesture {
-                            viewModel.didSelectTag(withId: tag.id)
-                        }
+                            .onTapGesture {
+                                viewModel.didSelectTag(withId: tag.id)
+                            }
                     }
                 }
             }
@@ -117,7 +124,7 @@ struct HelpFormView: View {
             .cornerRadius(12)
     }
     
-
+    
 }
 
 //struct HelpFormView_Previews: PreviewProvider {
