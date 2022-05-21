@@ -1,32 +1,32 @@
-//
-//  ProfilePictureView.swift
-//  AcademyiOS
-//
-//  Created by HANNA P C FERREIRA on 17/05/22.
-//
-
 import SwiftUI
 
-struct ProfilePictureView: View {
+public struct ProfilePictureView: View {
+    public init(imageSelected: Binding<UIImage?> = .constant(nil), imageUrl: Binding<URL?>, size: CGFloat) {
+        self._imageSelected = imageSelected
+        self._imageUrl = imageUrl
+        self.size = size
+    }
+    
     
     @Binding
     var imageSelected: UIImage?
     
-    var body: some View {
-        if let image = imageSelected {
-            userImage(image)
-        } else{
-            placeholderImage
-        }
-    }
+    @Binding
+    var imageUrl: URL?
     
-    @ViewBuilder
-    private func userImage(_ image: UIImage) -> some View {
+    let size: CGFloat
+    
+    public var body: some View {
         ZStack{
-            Image(uiImage: imageSelected ?? .init())
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 90, height: 90)
+            AsyncImage(url: imageUrl, content: { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: size, height: size)
+            }, placeholder: {
+                ProgressView()
+                    .frame(width: size, height: size)
+            })
                 .overlay(
                     Circle()
                     .stroke(style: .init(

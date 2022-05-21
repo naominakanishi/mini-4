@@ -3,23 +3,13 @@ import AcademyUI
 import Academy
 
 struct HomeView: View {
-    @StateObject var viewModel = HomeViewModel(
-        announcementUpdatingService: .init(),
-        announcementListenerService: .init()
-    )
-    
-    @EnvironmentObject var authService: AuthService
+    @StateObject
+    var viewModel: HomeViewModel = .init()
     
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false
     @State var showEquipmentList: Bool = false
     @State var showSuggestionsBoxView: Bool = false
-    
-    func logout() {
-        authService.signOut { result in
-            // TO DO
-        }
-    }
     
     var body: some View {
         NavigationView {
@@ -36,17 +26,9 @@ struct HomeView: View {
                             Spacer()
                             
                             NavigationLink {
-                                ProfileView(viewModel: .init(currentUserId: authService.user.id))
+                                ProfileView(viewModel: .init())
                             } label: {
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(Color.adaLightBlue)
-                                    Image("andre-memoji")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .padding(2)
-                                }
-                                .frame(maxWidth: 60, maxHeight: 60)
+                                ProfilePictureView(imageUrl: $viewModel.userImageUrl, size: 60)
                             }
                         }
                         .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
@@ -139,7 +121,7 @@ struct HomeView: View {
                                 }
                                 VStack {
                                     NavigationLink {
-                                        HelpListView(currentUser: authService.user)
+                                        HelpListView()
                                     } label: {
                                         ShortcutCard(title: "@ajuda",
                                                      image: Image("help-icon"),
@@ -151,7 +133,7 @@ struct HomeView: View {
                                     }
 
                                     NavigationLink {
-                                        EquipmentListView(currentUser: authService.user)
+                                        EquipmentListView()
                                     } label: {
                                         ShortcutCard(title: "equipamentos",
                                                      image: Image("equipments-icon"),

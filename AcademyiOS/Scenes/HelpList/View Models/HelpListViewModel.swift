@@ -4,6 +4,13 @@ import Combine
 import SwiftUI
 
 final class HelpListViewModel: ObservableObject {
+    struct HelpModel: Identifiable {
+        let id = UUID()
+        let isOwner: Bool
+        let queuePosition: Int
+        let help: Help
+    }
+    
     struct FilterTag: Identifiable {
         let id = UUID()
         let name: String
@@ -11,26 +18,23 @@ final class HelpListViewModel: ObservableObject {
         let isSelected: Bool
     }
     
-    private var user: AcademyUser
     private let listener: HelpListenerService
     private let helpUpdatingService: HelpUpdatingService
     private let helpAssignService: HelpAssignService
-    
-    private var cancelable: AnyCancellable?
+    private let userLisenterService: UserListenerService = .init()
     
     @Published var showRequestHelpModal: Bool = false
     
     @Published var helpOnEdit: Help? = nil
     
-    @Published var currentHelpList: [Help] = []
+    @Published var currentHelpList: [HelpModel] = []
     
     @Published
     private(set) var filterTags: [FilterTag] = []
     
     private var selectedFilterIndex = 0
     
-    init(currentUser: AcademyUser, listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
-        self.user = currentUser
+    init(listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
         self.listener = listener
         self.helpAssignService = helpAssignService
         self.helpUpdatingService = helpUpdatingService
@@ -46,26 +50,16 @@ final class HelpListViewModel: ObservableObject {
     }
     
     func assignHelpHandler(help: Help) {
-        helpAssignService.assign(using: help, currentUser: user)
+        userLisenterService.listener
+            .flatMap { user in
+                self.helpAssignService.assign(using: help, currentUser: user)
+            }
     }
     
     func completeHelpHandler(help: Help) {
         var helpUpdated = help
         helpUpdated.status = .done
         helpUpdatingService.execute(using: helpUpdated)
-    }
-    
-    func getQueuePosition(help: Help) -> Int {
-        let typeList = currentHelpList.filter { h in
-            h.type == help.type
-        }
-        let sortedTypeList = typeList.sorted { h1, h2 in
-            h1.requestDate < h2.requestDate
-        }
-        let index = sortedTypeList.firstIndex { h in
-            h.id == help.id
-        }
-        return (index ?? 999) + 1
     }
     
     func didSelectFilter(withId id: UUID) {
@@ -88,9 +82,27 @@ final class HelpListViewModel: ObservableObject {
     
     private func renderFilteredList() {
         let helpType = HelpType.allCases[selectedFilterIndex]
-        cancelable?.cancel()
-        cancelable = listener
-            .listen(to: helpType)
-            .assign(to: \.currentHelpList, on: self)
+        Publishers.CombineLatest(userLisenterService.listener, listener.listen(to: helpType))
+            .map { user, helpList in
+                helpList.map { help in
+                    HelpModel(isOwner: user.id == help.user.id,
+                              queuePosition: self.getQueuePosition(help: help),
+                              help: help)
+                }
+            }
+            .assign(to: &$currentHelpList)
+    }
+    
+    func getQueuePosition(help: Help) -> Int {
+        let typeList = currentHelpList.filter { h in
+            h.help.type == help.type
+        }
+        let sortedTypeList = typeList.sorted { h1, h2 in
+            h1.help.requestDate < h2.help.requestDate
+        }
+        let index = sortedTypeList.firstIndex { h in
+            h.help.id == help.id
+        }
+        return (index ?? 999) + 1
     }
 }

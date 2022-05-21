@@ -3,83 +3,86 @@ import CryptoKit
 import FirebaseAuth
 import Combine
 
-public final class AuthService: ObservableObject {
+public final class AuthService {
     
     private let userListenerService = UserListenerService()
     private let userSenderService = UserSenderService()
-    private let userExistenceCheckerService = UserExistenceCheckerService()
-    
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
-    
-    private let userRepository: UserRepository
+    private let userRepository: UserRepository = .shared
     
     private var currentNonce: String?
-    
     private var cancellabels: [AnyCancellable] = []
     
-    @Published public var authState: AuthState = .undefined {
-        didSet {
-            print("New auth state:", authState)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                print("User:", self.user)
-            }
-        }
+    public var authStatePublisher: CurrentValueSubject<AuthState, Never> = .init(.undefined)
+    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+    
+    public static let shared = AuthService()
+    
+    private init(userRepository: UserRepository) {
+        initialize()
     }
     
-    @Published public var user: AcademyUser = .init(
-        id: "ERRO",
-        name: "",
-        email: "",
-        imageName: "",
-        status: nil,
-        birthday: nil,
-        role: nil,
-        helpTags: []
-    )
-    
-    init(userRepository: UserRepository) {
-        self.userRepository = userRepository
-        self.initialize()
-    }
-    
-    public convenience init() {
+    private convenience init() {
         self.init(userRepository: .shared)
     }
     
-    public func initialize() {
+    private func initialize() {
         self.authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener({ change, user in
-            if let authUser = Auth.auth().currentUser {
-                // Create user if needed
-                self.userExistenceCheckerService.userExists(id: authUser.uid).sink { userExists in
-                    if userExists {
-                        self.userListenerService.listenUser(with: authUser.uid)
-                            .assign(to: &self.$user)
-                    } else {
-                        self.userSenderService
-                            .send(user: AcademyUser(
-                                id: authUser.uid,
-                                name: authUser.displayName ?? "",
-                                email: authUser.email!,
-                                imageName: "",
-                                status: .available,
-                                birthday: nil,
-                                role: nil,
-                                helpTags: []
-                            ))
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.authState = .signedIn
-                    }
-                }.store(in: &self.cancellabels)
-            } else {
+            guard let user = Auth.auth().currentUser else  {
                 self.signOut { error in
                     if error != nil {
                         print("Logout")
-                        self.authState = .signedOut
+                        self.authStatePublisher.send(.signedOut)
                     }
                 }
+                return
             }
+            
+            self.userRepository
+                .checkIfUserExists(with: user.uid)
+                .tryMap { existingUser in
+                    if let existingUser = existingUser {
+                        return existingUser
+                    }
+                    return try self.createNewUser(user: user)
+                }
+                .flatMap { dictionary -> AnyPublisher<Void, Error> in
+                    self.userRepository
+                        .createUser(userData: dictionary, with: user.uid)
+                        .eraseToAnyPublisher()
+                }
+                .flatMap { _ in Just(AuthState.signedIn(user.uid)) }
+                .replaceError(with: .signedOut)
+                .sink {
+                    self.authStatePublisher.send($0)
+                }
+                .store(in: &self.cancellabels)
         })
+        
+        authStatePublisher
+            .sink { state in
+                switch state {
+                case let .signedIn(userId):
+                    self.userRepository.initializeUser(withId: userId)
+                case .signedOut, .undefined:
+                    // TODO sign out from repository
+                    break
+                }
+            }
+            .store(in: &cancellabels)
+    }
+    
+    private func createNewUser(user: User) throws -> [String: Any] {
+        let user = AcademyUser(
+            id: user.uid,
+            name: user.displayName ?? "",
+            email: user.email ?? "",
+            imageName: "invalid_image",
+            status: .available,
+            birthday: nil,
+            role: .student,
+            helpTags: []
+        )
+        return try user.toFirebase()
     }
     
     public func signIn(with appleIdCredential: ASAuthorizationAppleIDCredential) {
@@ -96,20 +99,21 @@ public final class AuthService: ObservableObject {
         }
         
         let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-
+        
         self.auth(using: credential) { result in
             switch result {
             case .failure(let error):
                 let alertVC = UIAlertController(title: "Ops!", message: error.localizedDescription, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default)
                 alertVC.addAction(okAction)
-            
+                
                 let viewController = UIApplication.shared.windows.first!.rootViewController!
                 viewController.present(alertVC, animated: true, completion: nil)
                 
                 print(error.localizedDescription)
             case .success(let authUser):
                 print("Signed in with Apple id")
+                self.userRepository.initializeUser(withId: authUser.uid)
             }
         }
     }
@@ -149,39 +153,39 @@ public final class AuthService: ObservableObject {
     
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
-      precondition(length > 0)
-      let charset: [Character] =
+        precondition(length > 0)
+        let charset: [Character] =
         Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-      var result = ""
-      var remainingLength = length
-
-      while remainingLength > 0 {
-        let randoms: [UInt8] = (0 ..< 16).map { _ in
-          var random: UInt8 = 0
-          let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-          if errorCode != errSecSuccess {
-            fatalError(
-              "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-            )
-          }
-          return random
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError(
+                        "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+                    )
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
         }
-
-        randoms.forEach { random in
-          if remainingLength == 0 {
-            return
-          }
-
-          if random < charset.count {
-            result.append(charset[Int(random)])
-            remainingLength -= 1
-          }
-        }
-      }
-
-      return result
+        
+        return result
     }
-
+    
     func hashed(_ input: String) -> String {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)

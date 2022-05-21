@@ -15,9 +15,9 @@ struct HelpFormView: View {
     
     @FocusState private var isEditingLocation: Bool
     
-    init(user: AcademyUser, helpModel: Help?, onDismiss: @escaping () -> ()) {
+    init(helpModel: Help?, onDismiss: @escaping () -> ()) {
         self.onDismiss = onDismiss
-        self.viewModel = HelpFormViewModel(helpModel: helpModel, user: user)
+        self.viewModel = HelpFormViewModel(helpModel: helpModel)
     }
     
     var body: some View {

@@ -1,6 +1,10 @@
 import Foundation
 import Combine
 
+protocol UserUpdating {
+    func update(user: AcademyUser)
+}
+
 public final class UserListenerService {
     private let userRepository: UserRepository
     
@@ -12,15 +16,17 @@ public final class UserListenerService {
         self.init(userRepository: .shared)
     }
     
-    public func listenUser(with id: String) -> AnyPublisher<AcademyUser, Never> {
+    public var listener: AnyPublisher<AcademyUser, Never> {
         userRepository
-            .fetchUser(with: id)
-            .flatMap {
-                Just($0)
+            .currentUserPublisher
+            .flatMap { userData -> AnyPublisher<AcademyUser?, Never> in
+                Just(userData)
                     .decode(type: AcademyUser.self, decoder: JSONDecoder.firebaseDecoder)
-                    .replaceError(with: AcademyUser(id: "ERRO", name: "ERRO", email: "ERRO", imageName: "ERRO", status: nil, birthday: nil, role: nil, helpTags: []))
+                    .map { $0 }
+                    .replaceError(with: nil)
+                    .eraseToAnyPublisher()
             }
+            .compactMap { $0 }
             .eraseToAnyPublisher()
     }
-    
 }

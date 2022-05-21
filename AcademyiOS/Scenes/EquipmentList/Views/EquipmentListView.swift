@@ -4,11 +4,10 @@ import Academy
 
 struct EquipmentListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var authService: AuthService
     @ObservedObject var viewModel: EquipmentListViewModel
     
-    init(currentUser: AcademyUser) {
-        self.viewModel = EquipmentListViewModel(currentUser: currentUser, listenerService: .init(), updatingService: .init(), waitlistService: .init())
+    init() {
+        self.viewModel = EquipmentListViewModel(listenerService: .init(), updatingService: .init(), waitlistService: .init())
     }
     
     var body: some View {
@@ -52,9 +51,10 @@ struct EquipmentListView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(viewModel.equipmentList) { equipment in
-                    
-                    EquipmentCard(isBorrowedByUser: (equipment.personWhoBorrowed?.id == authService.user.id), equipment: equipment) {
-                        viewModel.handleTapOnEquipmentButton(equipment: equipment)
+                    EquipmentCard(isBorrowedByUser: true,
+                                  equipment: equipment.equipment
+                    ) {
+                        viewModel.handleTapOnEquipmentButton(equipment: equipment.equipment)
                     }
                     .padding(.horizontal, 1)
                 }

@@ -11,6 +11,9 @@ import Combine
 
 struct ProfileView: View {
     
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
+    
     @ObservedObject
     var viewModel: ProfileViewModel
     
@@ -41,13 +44,23 @@ struct ProfileView: View {
         }
             .padding()
             .background(Color.adaBackground)
-            .navigationBarHidden(true)
             .onTapGesture {
                 isEditing = false
             }
             .background(Color.adaBackground)
-            .navigationBarBackButtonHidden(true)
             .navigationTitle("Perfil")
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: 24, weight: .bold, design: .default))
+                            .foregroundColor(Color.white)
+                    }
+                }
+            }
             .sheet(isPresented: $openCameraRoll) {
                 ImagePicker(selectedImage: $viewModel.imageSelected,
                             sourceType: .photoLibrary)
@@ -59,7 +72,7 @@ struct ProfileView: View {
         Button {
             openCameraRoll = true
         } label: {
-            ProfilePictureView(imageSelected: $viewModel.imageSelected)
+            ProfilePictureView(imageSelected: $viewModel.imageSelected, imageUrl: $viewModel.imageUrl, size: 90)
         }
     }
     
@@ -130,10 +143,6 @@ struct ProfileView: View {
                                title: "Seu cargo",
                                leadingIconName: "person.crop.square.filled.and.at.rectangle.fill",
                                selectedOption: $viewModel.currentRole)
-                Spacer()
-                HStack(alignment: .center, spacing: 9){
-                    //TODO: RolesCards aqui, ver com o André
-                }
             }
             .padding()
         }
@@ -145,7 +154,15 @@ struct ProfileView: View {
     @ViewBuilder
     private var saveButton: some View {
         Button(action: {
-            viewModel.save()
+            viewModel
+                .save()
+                .sink { _ in
+                    
+                } receiveValue: { _ in
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .store(in: &viewModel.cancelBag)
+
         }, label: {
             Text("Salvar")
                 .font(.adaTagTitle)
@@ -155,71 +172,5 @@ struct ProfileView: View {
                 .background(Color.adaLightBlue)
                 .cornerRadius(12)
         })
-    }
-}
-
-struct DropdownPicker: View {
-    let options: [String]
-    let title: String
-    let leadingIconName: String
-    
-    @Binding
-    var selectedOption: String?
-    
-    @State
-    private var isOpen = false
-    
-    var body: some View {
-        VStack {
-            headerView
-            if isOpen {
-                optionsView
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private var headerView: some View {
-        Button {
-            isOpen.toggle()
-        } label: {
-            HStack {
-                Image(systemName: leadingIconName)
-                    .foregroundColor(.adaLightBlue)
-                Text(title)
-                    .font(.adaTagTitle)
-                
-                Spacer()
-                
-                if let selectedOption = selectedOption {
-                    Text(selectedOption)
-                }
-                if isOpen {
-                    Image(systemName: "triangle.fill")
-                        .resizable()
-                        .frame(width: 8, height: 8)
-                } else {
-                    Image(systemName: "arrowtriangle.down.fill")
-                        .resizable()
-                        .frame(width: 8, height: 8)
-                }
-            }
-        }
-        .foregroundColor(.white)
-    }
-    
-    @ViewBuilder
-    private var optionsView: some View {
-        VStack(alignment: .leading) {
-            Divider()
-            ForEach(options, id: \.self) { option in
-                Text(option)
-                    .onTapGesture {
-                        selectedOption = option
-                        isOpen = false
-                    }
-                    .padding(8)
-            }
-        }
     }
 }

@@ -3,7 +3,7 @@ import Academy
 import AuthenticationServices
 
 final class LoginViewModel: ObservableObject {
-    private let authService = AuthService()
+    private let authService = AuthService.shared
     
     func getLoginRequest() -> ASAuthorizationAppleIDRequest {
         authService.getLoginRequest()

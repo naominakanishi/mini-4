@@ -12,7 +12,12 @@ public final class UserUpdatingService {
         self.init(repository: .shared)
     }
     
-    public func update(with user: AcademyUser) -> AnyPublisher<Bool, Error> {
+    public func update(with user: AcademyUser) -> AnyPublisher<AcademyUser, Error> {
         repository.update(user)
+    }
+    
+    public func updateImage(_ imageData: Data, forUser user: AcademyUser) -> AnyPublisher<URL, Error> {
+        repository
+            .updateImage(using: imageData, usingFileName: user.id)
     }
 }

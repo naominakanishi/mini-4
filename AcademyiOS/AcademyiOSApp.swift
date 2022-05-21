@@ -6,12 +6,10 @@ import Academy
 @main
 struct AcademyiOSApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate
-    @StateObject var authService = AuthService()
     
     var body: some Scene {
         WindowGroup {
             LoadingView()
-                .environmentObject(authService)
                 .preferredColorScheme(.dark)
         }
     }
