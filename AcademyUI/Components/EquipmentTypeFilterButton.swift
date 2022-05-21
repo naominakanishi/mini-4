@@ -2,6 +2,7 @@ import SwiftUI
 import Academy
 
 public struct EquipmentTypeFilterButton: View {
+    
     var equipmentType: EquipmentType
     var onTap: () -> ()
     
@@ -18,6 +19,10 @@ public struct EquipmentTypeFilterButton: View {
             return .adaPurple
         case .watch:
             return .adaGreen
+        case .iPhone:
+            return .adaLightBlue
+        case .others:
+            return .gray
         }
     }
     

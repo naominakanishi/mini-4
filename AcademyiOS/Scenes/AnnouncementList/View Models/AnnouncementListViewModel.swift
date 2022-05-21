@@ -8,6 +8,9 @@ class AnnouncementListViewModel: ObservableObject {
     
     init(listener: AnnouncementListenerService) {
         self.listener = listener
-        listener.listen().assign(to: &$announcementList)
+        listener
+            .listen()
+            .breakpoint()
+            .assign(to: &$announcementList)
     }
 }

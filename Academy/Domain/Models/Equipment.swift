@@ -5,8 +5,8 @@ public struct Equipment: Codable, Identifiable {
     public var name: String
     public var status: EquipmentStatus
     public var type: EquipmentType
-    public var waitlist: [User]?
-    public var personWhoBorrowed: User?
+    public var waitlist: [AcademyUser]?
+    public var personWhoBorrowed: AcademyUser?
     
     public init(id: String, name: String, status: EquipmentStatus, type: EquipmentType) {
         self.id = id
@@ -24,8 +24,10 @@ public enum EquipmentStatus: String, Codable {
 
 public enum EquipmentType: String, Codable {
     case all = "Todos"
+    case iPhone = "iPhone"
     case iPad = "iPad"
     case pencil = "Apple Pencil"
     case mac = "Mac"
     case watch = "Apple Watch"
+    case others = "Outros"
 }

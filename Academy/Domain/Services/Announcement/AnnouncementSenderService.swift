@@ -11,11 +11,15 @@ public class AnnouncementSenderService {
         self.init(repository: .shared)
     }
     
-    public func send(content: String) -> AnyPublisher<Bool, Error> {
-        let announcement = Announcement(id: UUID().uuidString,
-                                        createdTimeInterval: Date.now.timeIntervalSince1970,
-                                        text: content,
-                                        isActive: true)
+    public func send(content: String, user: AcademyUser, type: AnnouncementType) -> AnyPublisher<Bool, Error> {
+        let announcement = Announcement(
+            id: UUID().uuidString,
+            fromUser: user,
+            createdTimeInterval: Date.now.timeIntervalSince1970,
+            text: content,
+            isActive: true,
+            type: type
+        )
         
         do {
             let data = try announcement.toFirebase()
@@ -25,19 +29,4 @@ public class AnnouncementSenderService {
                 .eraseToAnyPublisher()
         }
     }
-}
-
-extension Encodable {
-    func toFirebase() throws -> [String: Any] {
-        let data: Data = try JSONEncoder().encode(self)
-        guard let dict = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-        else {
-            throw FirebaseDecodingError.invalidType
-        }
-        return dict
-    }
-}
-
-enum FirebaseDecodingError: Error {
-    case invalidType
 }

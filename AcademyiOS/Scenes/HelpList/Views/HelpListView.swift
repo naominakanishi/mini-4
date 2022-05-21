@@ -4,57 +4,33 @@ import AcademyUI
 
 struct HelpListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject private var viewModel = HelpListViewModel(
-        listener: HelpListenerService(),
-        helpAssignService: HelpAssignService(),
-        helpUpdatingService: HelpUpdatingService()
-    )
+    @EnvironmentObject var authService: AuthService
+    @ObservedObject private var viewModel: HelpListViewModel
+    
+    init(currentUser: AcademyUser) {
+        self.viewModel = HelpListViewModel(
+            currentUser: currentUser,
+            listener: HelpListenerService(),
+            helpAssignService: HelpAssignService(),
+            helpUpdatingService: HelpUpdatingService()
+        )
+    }
     
     var body: some View {
         ZStack {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
                     VStack {
-                        HStack {
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "arrow.left")
-                                    .font(.system(size: 24, weight: .bold, design: .default))
-                                    .foregroundColor(Color.white)
-                            }
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                        
-                        HStack {
-                            Text("Fila de ajuda")
-                                .font(.title)
-                                .bold()
-                                .foregroundColor(Color.white)
-                            
-                            Spacer()
-                        }
-                        .padding()
-                        
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                HelpTypeFilterButton(helpType: .all) {
-                                    viewModel.filterChosen = .all
+                                ForEach(viewModel.filterTags) { tag in
+                                    AcademyTag(text: tag.name,
+                                               color: tag.color,
+                                               isSelected: tag.isSelected)
+                                    .onTapGesture {
+                                        viewModel.didSelectFilter(withId: tag.id)
+                                    }
                                 }
-                                
-                                HelpTypeFilterButton(helpType: .code) {
-                                    viewModel.filterChosen = .code
-                                }
-                                
-                                HelpTypeFilterButton(helpType: .design) {
-                                    viewModel.filterChosen = .design
-                                }
-                                
-                                HelpTypeFilterButton(helpType: .business) {
-                                    viewModel.filterChosen = .business
-                                }
-                                
                                 Spacer()
                             }
                         }
@@ -63,6 +39,8 @@ struct HelpListView: View {
                         
                         ForEach(viewModel.currentHelpList) { helpModel in
                             HelpCard(
+                                queuePosition: viewModel.getQueuePosition(help: helpModel),
+                                isFromUser: helpModel.user.id == authService.user.id,
                                 helpModel: helpModel,
                                 assignHelpHandler: {
                                     viewModel.assignHelpHandler(help: helpModel)
@@ -72,7 +50,9 @@ struct HelpListView: View {
                                 }
                             )
                             .onLongPressGesture {
-                                viewModel.handleCardLongPress(helpModel: helpModel)
+                                if helpModel.user.id == authService.user.id {
+                                    viewModel.handleCardLongPress(helpModel: helpModel)
+                                }
                             }
                         }
                     }
@@ -103,22 +83,33 @@ struct HelpListView: View {
             }
         }
         .background(Color.adaBackground)
-        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
-            HelpFormView(helpModel: viewModel.helpOnEdit ?? nil) {
+            HelpFormView(user: authService.user, helpModel: viewModel.helpOnEdit ?? nil) {
                 viewModel.helpOnEdit = nil
             }
         }
         .onAppear {
             viewModel.handleOnAppear()
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "arrow.left")
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .foregroundColor(Color.white)
+                }
+            }
+        })
+        .navigationTitle("Fila de ajuda")
     }
 }
 
 
-struct HelpListView_Previews: PreviewProvider {
-    static var previews: some View {
-        HelpListView()
-    }
-}
+//struct HelpListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HelpListView()
+//    }
+//}
