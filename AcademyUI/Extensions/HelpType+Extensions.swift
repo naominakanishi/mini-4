@@ -4,13 +4,13 @@ public extension HelpType {
     var color: Color {
         switch self {
         case .business:
-            return .adaYellow
-        case .code:
             return .adaGreen
+        case .code:
+            return .adaPurple
         case .design:
-            return .adaPink
+            return .adaDarkBlue
         case .general:
-            return .adaLightBlue
+            return .adaRed
         case .all:
             return .gray
         }

@@ -14,13 +14,13 @@ public struct HelpCard: View {
     var typeColor: Color {
         switch helpModel.type {
         case .business:
-            return .adaYellow
-        case .code:
             return .adaGreen
+        case .code:
+            return .adaPurple
         case .design:
-            return .adaPink
+            return .adaDarkBlue
         case.general:
-            return .adaLightBlue
+            return .adaRed
         case .all:
             return .gray
         }
