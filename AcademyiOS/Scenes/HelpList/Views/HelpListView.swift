@@ -4,12 +4,10 @@ import AcademyUI
 
 struct HelpListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var authService: AuthService
     @ObservedObject private var viewModel: HelpListViewModel
     
-    init(currentUser: AcademyUser) {
+    init() {
         self.viewModel = HelpListViewModel(
-            currentUser: currentUser,
             listener: HelpListenerService(),
             helpAssignService: HelpAssignService(),
             helpUpdatingService: HelpUpdatingService()
@@ -39,19 +37,19 @@ struct HelpListView: View {
                         
                         ForEach(viewModel.currentHelpList) { helpModel in
                             HelpCard(
-                                queuePosition: viewModel.getQueuePosition(help: helpModel),
-                                isFromUser: helpModel.user.id == authService.user.id,
-                                helpModel: helpModel,
+                                queuePosition: helpModel.queuePosition,
+                                isFromUser: helpModel.isOwner,
+                                helpModel: helpModel.help,
                                 assignHelpHandler: {
-                                    viewModel.assignHelpHandler(help: helpModel)
+                                    viewModel.assignHelpHandler(help: helpModel.help)
                                 },
                                 completeHelpHandler: {
-                                    viewModel.completeHelpHandler(help: helpModel)
+                                    viewModel.completeHelpHandler(help: helpModel.help)
                                 }
                             )
                             .onLongPressGesture {
-                                if helpModel.user.id == authService.user.id {
-                                    viewModel.handleCardLongPress(helpModel: helpModel)
+                                if helpModel.isOwner {
+                                    viewModel.handleCardLongPress(helpModel: helpModel.help)
                                 }
                             }
                         }
@@ -85,7 +83,7 @@ struct HelpListView: View {
         .background(Color.adaBackground)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $viewModel.showRequestHelpModal) {
-            HelpFormView(user: authService.user, helpModel: viewModel.helpOnEdit ?? nil) {
+            HelpFormView(helpModel: viewModel.helpOnEdit ?? nil) {
                 viewModel.helpOnEdit = nil
             }
         }

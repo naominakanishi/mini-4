@@ -2,21 +2,14 @@ import Foundation
 import Academy
 import Combine
 import SwiftUI
+import AcademyUI
 
 final class HelpFormViewModel: ObservableObject {
     
-    // TODO unify this model across the app
-    struct TagModel: Identifiable {
-        let id = UUID()
-        let name: String
-        let color: Color
-        let isSelected: Bool
-    }
-    
     private var helpModel: Help? = nil
-    private var user: AcademyUser
     private let helpSenderService = HelpSenderService()
     private let helpUpdatingService = HelpUpdatingService()
+    private let userListenerService = UserListenerService()
     private var cancelBag: [AnyCancellable] = []
     
     @Published var title: String = ""
@@ -26,7 +19,7 @@ final class HelpFormViewModel: ObservableObject {
     
     
     @Published
-    var tags: [TagModel] = []
+    var tags: [AcademyTagModel] = []
     
     var isButtonDisabled: Bool {
         title.isEmpty ||
@@ -45,8 +38,7 @@ final class HelpFormViewModel: ObservableObject {
         }
     }
     
-    init(helpModel: Help?, user: AcademyUser) {
-        self.user = user
+    init(helpModel: Help?) {
         self.helpModel = helpModel
         self.title = helpModel?.title ?? ""
         self.description = helpModel?.description ?? ""
@@ -56,22 +48,28 @@ final class HelpFormViewModel: ObservableObject {
     }
     
     func tapButtonHandle() {
-        if helpModel != nil {
-            let updatedHelp = Help(
-                id: helpModel!.id,
-                user: user,
-                title: title,
-                description: description,
-                type: type ?? .all,
-                currentLocation: currentLocation,
-                requestTimeInterval: helpModel!.requestTimeInterval,
-                assignee: nil,
-                status: helpModel!.status
-            )
-            updateHelp(updatedHelp)
-        } else {
-            createNewHelp()
-        }
+        userListenerService
+            .listener
+            .prefix(1)
+            .sink { user in
+                if self.helpModel != nil {
+                    let updatedHelp = Help(
+                        id: self.helpModel!.id,
+                        user: user,
+                        title: self.title,
+                        description: self.description,
+                        type: self.type ?? .all,
+                        currentLocation: self.currentLocation,
+                        requestTimeInterval: self.helpModel!.requestTimeInterval,
+                        assignee: nil,
+                        status: self.helpModel!.status
+                    )
+                    self.updateHelp(updatedHelp)
+                } else {
+                    self.createNewHelp(user: user)
+                }
+            }
+            .store(in: &cancelBag)
     }
     
     func didSelectTag(withId id: UUID) {
@@ -89,7 +87,7 @@ final class HelpFormViewModel: ObservableObject {
         }
     }
     
-    private func createNewHelp() {
+    private func createNewHelp(user: AcademyUser) {
         let type = availableTags[selectedTagIndex]
         let newHelpRequest = Help(id: UUID().uuidString,
                                   user: user,

@@ -13,6 +13,7 @@ public extension Color {
     static let adaYellow = Color(red: 240/255, green: 214/255, blue: 94/255)
     
     static let adaDarkGray = Color(red: 19/255, green: 26/255, blue: 43/255)
+    static let adaLightGrey = Color(red: 196/255, green: 196/255, blue: 196/255)
 }
 
 public extension Color {

@@ -7,8 +7,6 @@ struct AnnouncementListView: View {
     
     @ObservedObject var viewModel: AnnouncementListViewModel
     
-    @EnvironmentObject var authService: AuthService
-    
     @State private var modal = false
     
     init(viewModel: AnnouncementListViewModel) {
@@ -39,13 +37,13 @@ struct AnnouncementListView: View {
                     VStack {
                         ForEach (viewModel.announcementList, id: \.id) { announcement in
                             AnnouncementCard(
-                                text: announcement.text,
-                                user: announcement.fromUser,
-                                dateString: announcement.createdDate.getFormattedDate(),
-                                type: (announcement.type ?? .announcement).rawValue
+                                text: announcement.announcement.text,
+                                user: announcement.announcement.fromUser,
+                                dateString: announcement.announcement.createdDate.getFormattedDate(),
+                                type: (announcement.announcement.type ?? .announcement).rawValue
                             )
                             .onLongPressGesture {
-                                modal = announcement.fromUser == authService.user
+                                modal = announcement.isOwner
                             }
                         }
                     }
@@ -74,7 +72,7 @@ struct AnnouncementListView: View {
             }
         }
         .sheet(isPresented: $modal) {
-            AnnouncementFormView(viewModel: .init(currentUser: authService.user, sender: .init()))
+            AnnouncementFormView(viewModel: .init(sender: .init()))
         }
     }
     

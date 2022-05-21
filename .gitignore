@@ -2,3 +2,5 @@
 *.xcuserstate
 
 Academy.xcodeproj/xcuserdata/naominakanishi.xcuserdatad/xcschemes/xcschememanagement.plist
+
+*.xcbkptlist

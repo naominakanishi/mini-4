@@ -15,9 +15,8 @@ public final class HelpListenerService {
         return helpRepository
             .readingPublisher
             .flatMap { data -> AnyPublisher<[Help], Never> in
-                print(" GOT IT ", String(data: data, encoding: .utf8))
-                return Just(data )
-                    .decode(type: [Help].self, decoder: JSONDecoder())
+                Just(data)
+                    .decode(type: [Help].self, decoder: JSONDecoder.firebaseDecoder)
                     .replaceError(with: [])
                     .eraseToAnyPublisher()
             }

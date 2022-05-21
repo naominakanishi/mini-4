@@ -40,10 +40,12 @@ final class CalendarEventsRepository: ObservableObject {
             }
             
             let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            dump(dictionaries)
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            self.readingPublisher.send(data)
+            do {
+                let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
+                self.readingPublisher.send(data)
+            } catch {
+                print("DEU RUM!", error)
+            }
         }
     }
     

@@ -37,10 +37,13 @@ final class EquipmentRepository: ObservableObject {
         
             guard let snapshot = snapshot else { fatalError() }
             
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            self.readingPublisher.send(data)
+            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
+            do {
+                let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
+                self.readingPublisher.send(data)
+            } catch {
+                print("DEU RUM!", error)
+            }
         }
     }
     

@@ -30,17 +30,20 @@ class AnnouncementFormViewModel: ObservableObject {
     private var cancelBag: [AnyCancellable] = []
     
     private let sender: AnnouncementSenderService
-    private let currentUser: AcademyUser
+    private let userListenerService = UserListenerService()
     
-    init(currentUser: AcademyUser, sender: AnnouncementSenderService) {
-        self.currentUser = currentUser
+    init(sender: AnnouncementSenderService) {
         self.sender = sender
         
         updateAnnouncementTypes()
     }
     
     func handleSend() {
-        sender.send(content: content, user: currentUser, type: AnnouncementType.allCases[selectedTypeIndex])
+        userListenerService
+            .listener
+            .flatMap { [self] user in
+                sender.send(content: self.content, user: user, type: AnnouncementType.allCases[self.selectedTypeIndex])
+            }
             .sink(receiveCompletion: { error in
                 // TODO display error
             }, receiveValue: {

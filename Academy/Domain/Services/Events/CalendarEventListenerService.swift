@@ -14,8 +14,9 @@ public final class CalendarEventListenerService {
     public func listen() -> AnyPublisher<[CalendarEvent], Never> {
         return repository
             .readingPublisher
-            .decode(type: [CalendarEvent].self, decoder: JSONDecoder())
+            .decode(type: [CalendarEvent].self, decoder: JSONDecoder.firebaseDecoder)
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
 }
+
