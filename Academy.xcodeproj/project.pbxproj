@@ -18,6 +18,7 @@
 		03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C515283573B8000336C5 /* ViewExtension.swift */; };
 		03D2C518283573F4000336C5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C517283573F4000336C5 /* BottomSheet.swift */; };
 		03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C51928357433000336C5 /* KeyboardObservable.swift */; };
+		1112B091283986C100127718 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		1164A29E2838A99E00F2F4AC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1164A29D2838A99E00F2F4AC /* FirebaseStorage */; };
 		1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */; };
 		1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */; };
@@ -126,7 +127,6 @@
 		5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */; };
 		5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */; };
 		5BE70E5E282C643C00E36372 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* AuthService.swift */; };
-		5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
 		5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E65282D8A1800E36372 /* HomeView.swift */; };
 		5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E67282DBEDB00E36372 /* ScheduleView.swift */; };
@@ -483,7 +483,6 @@
 				5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */,
 				5BC2EAD52832ECD70071821E /* Scenes */,
 				119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */,
-				5BC2EAD72832ECF30071821E /* AnnouncementListView.swift */,
 				119255B9282B4EAA008410F3 /* Assets.xcassets */,
 				119255BB282B4EAA008410F3 /* Preview Content */,
 			);
@@ -762,6 +761,8 @@
 		5BC2EAE72832F6240071821E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
+				5BC2EAD72832ECF30071821E /* AnnouncementListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -992,7 +993,6 @@
 			children = (
 				5BE70E25282C3F6B00E36372 /* HelpCard.swift */,
 				5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */,
-				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 				5BC2EACD2831EA900071821E /* EquipmentCard.swift */,
 				5BC2EB0D28336F970071821E /* EquipmentTypeFilterButton.swift */,
 				035FA7D428347B2D00439AFD /* CustomTextField.swift */,
@@ -1371,6 +1371,7 @@
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,
 				11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */,
 				11F575C02837007E00123D19 /* FeatureCard.swift in Sources */,
+				1112B091283986C100127718 /* AnnouncementCard.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BC2EADD2832ED270071821E /* AnnouncementListViewModel.swift in Sources */,
@@ -1410,7 +1411,6 @@
 				03D2C51028356206000336C5 /* StringExt.swift in Sources */,
 				5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */,
 				03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */,
-				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
 				03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */,
 				035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */,
 				5BE70E64282D88A000E36372 /* Colors.swift in Sources */,

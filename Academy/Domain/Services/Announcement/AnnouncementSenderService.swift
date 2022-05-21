@@ -11,14 +11,15 @@ public class AnnouncementSenderService {
         self.init(repository: .shared)
     }
     
-    public func send(content: String, user: AcademyUser, type: AnnouncementType) -> AnyPublisher<Bool, Error> {
+    public func send(content: String, user: AcademyUser, type: AnnouncementType, headline: String) -> AnyPublisher<Bool, Error> {
         let announcement = Announcement(
             id: UUID().uuidString,
             fromUser: user,
             createdTimeInterval: Date.now.timeIntervalSince1970,
             text: content,
             isActive: true,
-            type: type
+            type: type,
+            headline: headline
         )
         
         do {

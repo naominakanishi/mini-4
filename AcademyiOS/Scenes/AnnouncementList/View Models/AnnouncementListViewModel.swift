@@ -20,7 +20,7 @@ final class AnnouncementListViewModel: ObservableObject {
         Publishers.CombineLatest(userListener.listener, listener.listen())
             .map { user, announcements in
                 announcements
-                    .prefix(4)
+//                    .prefix(4)
                     .map { announcement in
                         AnnouncementModel(isOwner: user.id == announcement.fromUser.id,
                                           announcement: announcement)

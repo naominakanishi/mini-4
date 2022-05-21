@@ -1,5 +1,6 @@
 import SwiftUI
 import Academy
+import AcademyUI
 
 public struct AnnouncementCard: View {
     
@@ -17,16 +18,8 @@ public struct AnnouncementCard: View {
     
     public var body: some View {
         HStack(alignment: .top) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(.adaGreen)
-                Image(user.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-            .frame(maxWidth: 44, maxHeight: 44)
-            
-           announcementBody
+            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
+            announcementBody
         }
         .foregroundColor(Color.white)
         .padding()

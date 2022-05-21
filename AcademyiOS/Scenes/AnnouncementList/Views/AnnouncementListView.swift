@@ -31,7 +31,9 @@ struct AnnouncementListView: View {
                     .cornerRadius(8)
                     Spacer()
                 }
+                .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
                 .background(Color.adaBackground)
+            
             } else {
                 ScrollView {
                     VStack {
@@ -47,11 +49,19 @@ struct AnnouncementListView: View {
                             }
                         }
                     }
+                    .padding(.horizontal, DesignSystem.Spacing.generalHPadding / 2)
+                    .padding(.top, DesignSystem.Spacing.titleToContentPadding)
+                    
                     .background(Color.adaBackground)
                 }
+                
             }
+            
         }
+        
+        
         .navigationTitle("Avisos")
+            .padding(.bottom, DesignSystem.Spacing.titleToContentPadding)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -68,9 +78,11 @@ struct AnnouncementListView: View {
                     modal = true
                 } label: {
                     Image(systemName: "plus")
+                        
                 }
             }
         }
+        .background(Color.adaBackground)
         .sheet(isPresented: $modal) {
             AnnouncementFormView(viewModel: .init(sender: .init()))
         }
