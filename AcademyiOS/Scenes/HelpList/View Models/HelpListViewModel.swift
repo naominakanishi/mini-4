@@ -86,22 +86,22 @@ final class HelpListViewModel: ObservableObject {
             .map { user, helpList in
                 helpList.map { help in
                     HelpModel(isOwner: user.id == help.user.id,
-                              queuePosition: self.getQueuePosition(help: help),
+                              queuePosition: self.getQueuePosition(help: help, onList: helpList),
                               help: help)
                 }
             }
             .assign(to: &$currentHelpList)
     }
     
-    func getQueuePosition(help: Help) -> Int {
+    func getQueuePosition(help: Help, onList currentHelpList: [Help]) -> Int {
         let typeList = currentHelpList.filter { h in
-            h.help.type == help.type
+            h.type == help.type
         }
         let sortedTypeList = typeList.sorted { h1, h2 in
-            h1.help.requestDate < h2.help.requestDate
+            h1.requestDate < h2.requestDate
         }
         let index = sortedTypeList.firstIndex { h in
-            h.help.id == help.id
+            h.id == help.id
         }
         return (index ?? 999) + 1
     }
