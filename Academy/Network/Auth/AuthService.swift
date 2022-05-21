@@ -33,7 +33,8 @@ public final class AuthService: ObservableObject {
         imageName: "",
         status: nil,
         birthday: nil,
-        role: nil
+        role: nil,
+        helpTags: []
     )
     
     init(userRepository: UserRepository) {
@@ -55,7 +56,16 @@ public final class AuthService: ObservableObject {
                             .assign(to: &self.$user)
                     } else {
                         self.userSenderService
-                            .send(user: AcademyUser(id: authUser.uid, name: authUser.displayName ?? "", email: authUser.email!, imageName: "", status: .available, birthday: nil, role: nil))
+                            .send(user: AcademyUser(
+                                id: authUser.uid,
+                                name: authUser.displayName ?? "",
+                                email: authUser.email!,
+                                imageName: "",
+                                status: .available,
+                                birthday: nil,
+                                role: nil,
+                                helpTags: []
+                            ))
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.authState = .signedIn

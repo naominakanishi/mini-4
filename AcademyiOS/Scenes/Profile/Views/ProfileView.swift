@@ -11,26 +11,33 @@ import Combine
 
 struct ProfileView: View {
     
-    @StateObject var viewModel: ProfileViewModel = .init()
+    @ObservedObject
+    var viewModel: ProfileViewModel
     
     @State
     private var openCameraRoll: Bool = false
-    @State
-    private var imageSelected: UIImage?
     
     @FocusState
     private var isEditing: Bool
     
-    
     var body: some View {
-        VStack(alignment: .center, spacing: 30){
-            imagePicker
-            nameTextField
-            abilitiesTags
-            rolesDropdown
-            birthdayPicker
+        ZStack {
+            ScrollView {
+                VStack(alignment: .center, spacing: 30){
+                    imagePicker
+                    nameTextField
+                    abilitiesTags
+                    rolesDropdown
+                    birthdayPicker
+                    Spacer()
+                }
+            }
+            
             Spacer()
-            saveButton
+            VStack {
+                Spacer()
+                saveButton
+            }
         }
             .padding()
             .background(Color.adaBackground)
@@ -39,11 +46,10 @@ struct ProfileView: View {
                 isEditing = false
             }
             .background(Color.adaBackground)
-            .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             .navigationTitle("Perfil")
-            .sheet(isPresented: $openCameraRoll){
-                ImagePicker(selectedImage: $imageSelected,
+            .sheet(isPresented: $openCameraRoll) {
+                ImagePicker(selectedImage: $viewModel.imageSelected,
                             sourceType: .photoLibrary)
             }
     }
@@ -53,7 +59,7 @@ struct ProfileView: View {
         Button {
             openCameraRoll = true
         } label: {
-            ProfilePictureView(imageSelected: $imageSelected)
+            ProfilePictureView(imageSelected: $viewModel.imageSelected)
         }
     }
     
@@ -91,6 +97,9 @@ struct ProfileView: View {
                 HStack {
                     ForEach(viewModel.helpTags) { tag in
                         AcademyTag(model: tag)
+                            .onTapGesture {
+                                viewModel.onTagSelected(tagId: tag.id)
+                            }
                     }
                 }
             }
@@ -106,6 +115,7 @@ struct ProfileView: View {
         GrowableTextField(hint: "Seu nome",
                           text: $viewModel.displayName,
                           isEditingDescription: _isEditing)
+            .textContentType(.username)
             .padding(8)
             .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
             .cornerRadius(8)
@@ -135,7 +145,7 @@ struct ProfileView: View {
     @ViewBuilder
     private var saveButton: some View {
         Button(action: {
-            //TODO: Button Action
+            viewModel.save()
         }, label: {
             Text("Salvar")
                 .font(.adaTagTitle)

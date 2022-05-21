@@ -48,8 +48,11 @@ public struct GrowableTextField: View {
                     shouldClearHint = true
                 }
             }
-            .onAppear {
-                text = hint
+            .onChange(of: text) { newValue in
+                guard newValue.last == "\n"
+                else { return }
+                text = String(text.dropLast())
+                isEditingDescription = false
             }
            // .background(Color.white.opacity(0.1).textFieldAdaGradient(repeatCount: 4))
     }

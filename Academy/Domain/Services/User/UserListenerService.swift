@@ -15,8 +15,11 @@ public final class UserListenerService {
     public func listenUser(with id: String) -> AnyPublisher<AcademyUser, Never> {
         userRepository
             .fetchUser(with: id)
-            .decode(type: AcademyUser.self, decoder: JSONDecoder())
-            .replaceError(with: AcademyUser(id: "ERRO", name: "ERRO", email: "ERRO", imageName: "ERRO", status: nil, birthday: nil, role: nil))
+            .flatMap {
+                Just($0)
+                    .decode(type: AcademyUser.self, decoder: JSONDecoder.firebaseDecoder)
+                    .replaceError(with: AcademyUser(id: "ERRO", name: "ERRO", email: "ERRO", imageName: "ERRO", status: nil, birthday: nil, role: nil, helpTags: []))
+            }
             .eraseToAnyPublisher()
     }
     

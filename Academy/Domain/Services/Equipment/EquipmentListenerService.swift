@@ -14,7 +14,7 @@ public final class EquipmentListenerService {
     public func listen(to type: EquipmentType) -> AnyPublisher<[Equipment], Never> {
         return repository
             .readingPublisher
-            .decode(type: [Equipment].self, decoder: JSONDecoder())
+            .decode(type: [Equipment].self, decoder: JSONDecoder.firebaseDecoder)
             .replaceError(with: [])
             .map { equipments -> [Equipment] in
                 if type == .all { return equipments }

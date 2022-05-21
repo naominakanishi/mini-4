@@ -36,7 +36,7 @@ struct HomeView: View {
                             Spacer()
                             
                             NavigationLink {
-                                ProfileView()
+                                ProfileView(viewModel: .init(currentUserId: authService.user.id))
                             } label: {
                                 ZStack {
                                     Circle()

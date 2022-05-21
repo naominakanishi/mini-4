@@ -20,7 +20,7 @@ public final class AnnouncementListenerService {
             .readingPublisher
             .flatMap { data -> AnyPublisher<[Announcement], Never> in
                 Just(data)
-                    .decode(type: [Announcement].self, decoder: JSONDecoder())
+                    .decode(type: [Announcement].self, decoder: JSONDecoder.firebaseDecoder)
                     .replaceError(with: [])
                     .eraseToAnyPublisher()
             }

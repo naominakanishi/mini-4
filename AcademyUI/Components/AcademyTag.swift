@@ -2,9 +2,9 @@ import SwiftUI
 
 public struct AcademyTagModel: Identifiable {
     public let id = UUID()
-    let name: String
+    public let name: String
     let color: Color
-    let isSelected: Bool
+    public let isSelected: Bool
     
     public init(name: String, color: Color, isSelected: Bool) {
         self.name = name

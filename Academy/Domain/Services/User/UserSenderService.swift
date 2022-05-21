@@ -17,10 +17,11 @@ public class UserSenderService {
             id: user.id,
             name: user.name,
             email: user.email,
-            imageName: "",
+            imageName: user.imageName,
             status: .available,
-            birthday: nil,
-            role: .student
+            birthday: user.birthday,
+            role: user.role ?? .student,
+            helpTags: user.helpTags
         )
         
         do {
