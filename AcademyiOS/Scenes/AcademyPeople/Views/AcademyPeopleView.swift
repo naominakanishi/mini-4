@@ -32,11 +32,10 @@ struct AcademyPeopleView: View {
                             VStack(alignment: .center, spacing: 5){
                                 ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 70)
                                 Text(user.name)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.white) //TODO: Cor de acordo com cargo
                                     .font(.system(size: 11))
                             }
                             .padding(0)
-//                            .frame(width: 70, height: 81)
                         })
                     }
                 }
