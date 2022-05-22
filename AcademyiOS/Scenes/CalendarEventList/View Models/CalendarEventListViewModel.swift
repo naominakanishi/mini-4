@@ -65,7 +65,7 @@ extension EventModel {
         self.init(title: event.title,
                   color: .red,
                   emoji: event.emoji,
-                  time: event.fullDay ? nil : event.startDate.hourMinute
+                  time: event.fullDay ? nil : event.startDate.hourMinute + " - " + event.endDate.hourMinute
         )
     }
 }
