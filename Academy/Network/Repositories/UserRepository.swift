@@ -14,8 +14,11 @@ final class UserRepository: ObservableObject {
     private let storage = Storage.storage()
     
     let currentUserPublisher = CurrentValueSubject<Data, Never>(.init())
+    let allUsersPublisher = CurrentValueSubject<Data, Error>(.init())
     
-    init() {}
+    init() {
+        startListeningForUsers()
+    }
     
     func initializeUser(withId id: String) {
         store.collection(path).document(id).addSnapshotListener { (document, error) in
@@ -33,6 +36,21 @@ final class UserRepository: ObservableObject {
             }
             print("SENDING UP")
             self.currentUserPublisher.send(data)
+        }
+    }
+    
+    private func startListeningForUsers(){
+        store.collection(path).addSnapshotListener { snapshot, error in
+            if let error = error {
+                self.allUsersPublisher.send(completion: .failure(error))
+                return
+            }
+            guard let documents = snapshot?.documents else { return }
+            let dictionaries = documents.compactMap { snapshot in
+                snapshot.data()
+            }
+            guard let data = try?JSONSerialization.data(withJSONObject: dictionaries, options: []) else { return }
+            self.allUsersPublisher.send(data)
         }
     }
     
