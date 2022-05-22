@@ -1,54 +1,34 @@
- //
-//  ProfileView.swift
-//  AcademyiOS
-//
-//  Created by HANNA P C FERREIRA on 17/05/22.
-//
-
 import SwiftUI
+import Academy
 import AcademyUI
-import Combine
 
 struct ProfileView: View {
     
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject
-    var viewModel: ProfileViewModel
+    let academyUser: AcademyUser
     
-    @State
-    private var openCameraRoll: Bool = false
+    init(academyUser: AcademyUser) {
+        self.academyUser = academyUser
+    }
     
-    @FocusState
-    private var isEditing: Bool
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                VStack(alignment: .center, spacing: 30){
-                    imagePicker
-                    nameTextField
-                    abilitiesTags
-                    rolesDropdown
-                    birthdayPicker
-                    Spacer()
-                }
-            }
-            
-            Spacer()
-            VStack {
-                Spacer()
-                saveButton
+        ScrollView {
+            VStack(alignment: .center, spacing: 12) {
+                profilePic
+                    .padding(.bottom, 20)
+                nameField
+                abilitiesTags
+                rolesField
+                birthdayField
             }
         }
-        .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
+        .padding(.horizontal, DesignSystem.Spacing.generalHPadding/2)
             .background(Color.adaBackground)
-            .onTapGesture {
-                isEditing = false
-            }
-            .background(Color.adaBackground)
-            .navigationTitle("Perfil")
+  
+            .navigationTitle("Fulano") //todo
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -61,36 +41,29 @@ struct ProfileView: View {
                     }
                 }
             }
-            .sheet(isPresented: $openCameraRoll) {
-                ImagePicker(selectedImage: $viewModel.imageSelected,
-                            sourceType: .photoLibrary)
-            }
     }
     
     @ViewBuilder
-    private var imagePicker: some View {
-        Button {
-            openCameraRoll = true
-        } label: {
-            ProfilePictureView(imageSelected: $viewModel.imageSelected, imageUrl: $viewModel.imageUrl, size: 90)
-        }
+    private var profilePic: some View {
+        ProfilePictureView(imageUrl: .constant(.init(academyUser.imageName)), size: 60)
     }
     
     @ViewBuilder
-    private var birthdayPicker: some View {
-        DatePicker(selection: $viewModel.birthday, displayedComponents: .date) {
-            Label {
-                Text("Aniversário")
-                    .font(.adaTagTitle)
-            } icon: {
-                Image(systemName: "calendar")
-                    .foregroundColor(Color.adaLightBlue)
-            }
+    private var nameField: some View {
+        HStack {
+            Text("Nome da pessoa") // todo
+                .font(.system(size: 14, weight: .bold))
+                .padding(.horizontal, 8)
+                .foregroundColor(.white)
+                .padding(.vertical)
+
+                
+            Spacer()
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal)
-        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
-        .cornerRadius(12)
+        .background(Color.white.opacity(0.6).textFieldAdaGradient())
+        .cornerRadius(8)
+        .frame(maxHeight: 50)
+        
     }
     
     @ViewBuilder
@@ -108,11 +81,10 @@ struct ProfileView: View {
             .padding()
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(viewModel.helpTags) { tag in
-                        AcademyTag(model: tag)
-                            .onTapGesture {
-                                viewModel.onTagSelected(tagId: tag.id)
-                            }
+                    ForEach(academyUser.helpTags ?? [], id: \.rawValue) { tag in
+                        AcademyTag(model: .init(name: tag.rawValue,
+                                                color: tag.color,
+                                                isSelected: true))
                     }
                 }
             }
@@ -124,53 +96,53 @@ struct ProfileView: View {
     }
     
     @ViewBuilder
-    private var nameTextField: some View {
-        GrowableTextField(hint: "Seu nome",
-                          text: $viewModel.displayName,
-                          isEditingDescription: _isEditing)
-            .textContentType(.username)
-            .padding(8)
-            .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
-            .cornerRadius(8)
-            .frame(maxHeight: 50)
-    }
-    
-    @ViewBuilder
-    private var rolesDropdown: some View {
-        VStack {
-            HStack{
-                DropdownPicker(options: viewModel.availableRoles,
-                               title: "Seu cargo",
-                               leadingIconName: "person.crop.square.filled.and.at.rectangle.fill",
-                               selectedOption: $viewModel.currentRole)
-            }
-            .padding()
-        }
-        .frame(maxWidth: .infinity)
-        .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
-        .cornerRadius(12)
-    }
-    
-    @ViewBuilder
-    private var saveButton: some View {
-        Button(action: {
-            viewModel
-                .save()
-                .sink { _ in
-                    
-                } receiveValue: { _ in
-                    presentationMode.wrappedValue.dismiss()
-                }
-                .store(in: &viewModel.cancelBag)
-
-        }, label: {
-            Text("Salvar")
-                .font(.adaTagTitle)
-                .padding(14)
+    var rolesField: some View {
+        HStack {
+            Image(systemName: "person.crop.square.filled.and.at.rectangle.fill")
+                .foregroundColor(.adaLightBlue)
+                .padding(.leading)
+            Text("Cargo")
                 .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .background(Color.adaLightBlue)
-                .cornerRadius(12)
-        })
+                .fontWeight(.bold)
+                .font(.system(size: 14))
+            Spacer()
+            Text("Estudante")
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(.system(size: 14))
+                .padding()
+            // todo
+        }
+        .background(Color.white.opacity(0.6).textFieldAdaGradient())
+        .cornerRadius(8)
+        .frame(maxHeight: 50)
+        
+    }
+    
+    @ViewBuilder
+    var birthdayField: some View {
+        HStack{
+            Image(systemName: "calendar")
+                .foregroundColor(.adaLightBlue)
+                .padding(.leading)
+            Text("Aniversário")
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(.system(size: 14))
+            Spacer()
+            Text("dd/mm/yyyy") // todo
+                .padding(.horizontal, 8)
+                .foregroundColor(.white)
+                .padding(.vertical)
+                .font(.system(size: 14, weight: .semibold))
+
+        }
+        .background(Color.white.opacity(0.6).textFieldAdaGradient())
+        .cornerRadius(8)
+        .frame(maxHeight: 50)
+        
+        
     }
 }
+
+

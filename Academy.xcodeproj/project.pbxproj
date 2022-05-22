@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		035FA7CB28346D6D00439AFD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CA28346D6D00439AFD /* ProfileView.swift */; };
+		035FA7CB28346D6D00439AFD /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CA28346D6D00439AFD /* EditProfileView.swift */; };
 		035FA7D12834727900439AFD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D02834727900439AFD /* ProfileViewModel.swift */; };
 		035FA7D3283479A300439AFD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D2283479A300439AFD /* ImagePicker.swift */; };
 		035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D428347B2D00439AFD /* CustomTextField.swift */; };
@@ -136,6 +136,7 @@
 		5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */; };
 		5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */; };
 		D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0E0A42838414400C14FE2 /* DesignSystem.swift */; };
+		D7E0E0A7283AD73000C14FE2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0E0A6283AD73000C14FE2 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,7 +231,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		035FA7CA28346D6D00439AFD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		035FA7CA28346D6D00439AFD /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		035FA7D02834727900439AFD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		035FA7D2283479A300439AFD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		035FA7D428347B2D00439AFD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -343,6 +344,7 @@
 		5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyPeopleView.swift; sourceTree = "<group>"; };
 		5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxView.swift; sourceTree = "<group>"; };
 		D7E0E0A42838414400C14FE2 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		D7E0E0A6283AD73000C14FE2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,7 +423,8 @@
 		035FA7C928346D4C00439AFD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				035FA7CA28346D6D00439AFD /* ProfileView.swift */,
+				035FA7CA28346D6D00439AFD /* EditProfileView.swift */,
+				D7E0E0A6283AD73000C14FE2 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1377,7 +1380,7 @@
 				5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */,
 				1112B0B72839DFDB00127718 /* NewEventViewModel.swift in Sources */,
-				035FA7CB28346D6D00439AFD /* ProfileView.swift in Sources */,
+				035FA7CB28346D6D00439AFD /* EditProfileView.swift in Sources */,
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,
 				11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */,
 				11F575C02837007E00123D19 /* FeatureCard.swift in Sources */,
@@ -1387,6 +1390,7 @@
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BC2EADD2832ED270071821E /* AnnouncementListViewModel.swift in Sources */,
 				035FA7D3283479A300439AFD /* ImagePicker.swift in Sources */,
+				D7E0E0A7283AD73000C14FE2 /* ProfileView.swift in Sources */,
 				5B75E6502835B4B30047ADEB /* Loader.swift in Sources */,
 				5BC2EADA2832ECFE0071821E /* AnnouncementFormView.swift in Sources */,
 				5B68C20C2834B55300FD2539 /* LoginView.swift in Sources */,

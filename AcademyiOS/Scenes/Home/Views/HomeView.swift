@@ -25,7 +25,7 @@ struct HomeView: View {
                         Spacer()
                         
                         NavigationLink {
-                            ProfileView(viewModel: .init())
+                            EditProfileView(viewModel: .init())
                         } label: {
                             ProfilePictureView(imageUrl: $viewModel.userImageUrl, size: 60)
                         }
