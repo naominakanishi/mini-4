@@ -7,113 +7,124 @@ struct HelpFormView: View {
     @ObservedObject var viewModel: HelpFormViewModel
     var onDismiss: () -> ()
     
-    init(user: AcademyUser, helpModel: Help?, onDismiss: @escaping () -> ()) {
+    @FocusState
+    private var isEditingHeadline: Bool
+    
+    @FocusState
+    private var isEditingContent: Bool
+    
+    @FocusState private var isEditingLocation: Bool
+    
+    init(helpModel: Help?, onDismiss: @escaping () -> ()) {
         self.onDismiss = onDismiss
-        self.viewModel = HelpFormViewModel(helpModel: helpModel, user: user)
+        self.viewModel = HelpFormViewModel(helpModel: helpModel)
     }
     
     var body: some View {
-        VStack {
-            Text("Precisa de ajuda?")
-                .bold()
-                .font(.title2)
-                .padding(.vertical, 32)
-                .foregroundColor(Color.white)
-            
-            VStack(alignment: .leading) {
-                    Text("Categoria")
-                        .bold()
-                        .foregroundColor(Color.white)
+        ZStack {
+            ScrollView {
+                VStack {
+                    titleView
+                        .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
+                    Group {
+                        helpTypePickerView
+                        headlineTextField
+                        contentTextField
+                        locationTextField
+                    }
+                    .padding(.vertical, DesignSystem.Spacing.cardInternalPadding)
                     
-                    HStack {
-                        HelpTypeFilterButton(helpType: .code) {
-                            viewModel.type = .code
-                        }
-                        
-                        HelpTypeFilterButton(helpType: .design) {
-                            viewModel.type = .design
-                        }
-                        
-                        HelpTypeFilterButton(helpType: .business) {
-                            viewModel.type = .business
-                        }
                     
                     Spacer()
+                    
                 }
-                
             }
-            .padding(.horizontal)
-            .padding(.bottom)
-            
-            VStack(alignment: .leading) {
-                Text("Assunto principal")
-                    .bold()
-                    .foregroundColor(Color.white)
-                
-                TextField("Seu desafio em poucas palavras", text: $viewModel.title)
-                    .padding()
-                    .background(Color.adaDarkGray)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(8)
-                    .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            
-            VStack(alignment: .leading) {
-                Text("Descrição")
-                    .bold()
-                    .foregroundColor(Color.white)
-                
-                TextField("Descreva com mais detalhes o que você está tentando fazer e o que você já tentou até aogra", text: $viewModel.description)
-                    .padding()
-                    .frame(height: 150)
-                    .background(Color.adaDarkGray)
-                    .cornerRadius(8)
-                    .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
-                    .foregroundColor(Color.white)
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            
-            VStack(alignment: .leading) {
-                Text("Onde você está?")
-                    .bold()
-                    .foregroundColor(Color.white)
-                
-                TextField("Onde a ajuda poderá te encontrar", text: $viewModel.currentLocation)
-                    .padding()
-                    .background(Color.adaDarkGray)
-                    .cornerRadius(8)
-                    .shadow(color: .black.opacity(0.10), radius: 16, x: 0, y: 0)
-                    .foregroundColor(Color.white)
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-                viewModel.tapButtonHandle()
-            }) {
-                VStack {
-                    Text(viewModel.buttonText)
-                        .foregroundColor(.white)
+            VStack {
+                Spacer()
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                    viewModel.tapButtonHandle()
+                } label: {
+                    Text("Enviar")
                         .bold()
+                        .frame(maxWidth: .infinity, maxHeight: 60)
+                        .background(Color.adaLightBlue)
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(30)
-                .padding()
+                .disabled(viewModel.isButtonDisabled)
+            }
+        }
+        .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
+        .background(Color.adaBackground)
+        .onTapGesture {
+            if(isEditingHeadline) {
+                isEditingHeadline = false
             }
             
-            Spacer()
-        }
-        .background(Color.adaBackground)
-        .onDisappear {
-            onDismiss()
+            if(isEditingContent) {
+                isEditingContent = false
+            }
+            
+            if(isEditingLocation) {
+                isEditingLocation = false
+            }
         }
     }
+    
+    @ViewBuilder
+    private var titleView: some View {
+        HStack {
+            Text("Precisa de ajuda?")
+                .font(.largeTitle)
+                .bold()
+            Spacer()
+        }
+    }
+    
+    @ViewBuilder private var helpTypePickerView: some View {
+        VStack(alignment: .leading) {
+            Text("Com o que você precisa de ajuda?")
+                .font(.adaFontSubtitle)
+            
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(viewModel.tags) { tag in
+                        AcademyTag(model: tag)
+                            .onTapGesture {
+                                viewModel.didSelectTag(withId: tag.id)
+                            }
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder private var headlineTextField: some View {
+        GrowableTextField(hint: "Escreva aqui um resumo da sua dúvida", text: $viewModel.title, isEditingDescription: _isEditingHeadline)
+            .padding(4)
+            .frame(maxHeight: 60)
+            .background(Color.white.textFieldAdaGradient())
+            .cornerRadius(12)
+    }
+    
+    @ViewBuilder private var contentTextField: some View {
+        GrowableTextField(hint: "Descreva aqui com mais detalhes com o que você precisa de ajuda", text: $viewModel.description, isEditingDescription: _isEditingContent)
+            .padding(4)
+            .frame(maxHeight: 200)
+            .background(Color.white.textFieldAdaGradient())
+            .cornerRadius(12)
+    }
+    
+    @ViewBuilder private var locationTextField: some View {
+        GrowableTextField(hint: "Onde você está?", text: $viewModel.currentLocation, isEditingDescription: _isEditingHeadline)
+            .padding(4)
+            .frame(maxHeight: 60)
+            .background(Color.white.textFieldAdaGradient())
+            .cornerRadius(12)
+    }
+    
+    
 }
 
 //struct HelpFormView_Previews: PreviewProvider {

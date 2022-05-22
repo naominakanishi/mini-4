@@ -1,30 +1,25 @@
 import SwiftUI
 import Academy
+import AcademyUI
 
 public struct AnnouncementCard: View {
     
     var text: String
     let user: AcademyUser
     let dateString: String
+    let type: String
     
-    public init(text: String, user: AcademyUser, dateString: String) {
+    public init(text: String, user: AcademyUser, dateString: String, type: String) {
         self.text = text
         self.user = user
         self.dateString = dateString
+        self.type = type
     }
     
     public var body: some View {
         HStack(alignment: .top) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(.adaGreen)
-                Image(user.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-            .frame(maxWidth: 44, maxHeight: 44)
-            
-           announcementBody
+            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
+            announcementBody
         }
         .foregroundColor(Color.white)
         .padding()
@@ -34,9 +29,7 @@ public struct AnnouncementCard: View {
         .listRowBackground(Color.adaBackground)
         .navigationTitle("Avisos")
     }
-        
 
-    
     private var announcementBody: some View {
         VStack(alignment: .leading) {
             announcementTitle
@@ -46,6 +39,9 @@ public struct AnnouncementCard: View {
     
     private var announcementTitle: some View {
         HStack {
+            Text("@" + type)
+                .bold()
+                .font(.system(size: 16, weight: .bold, design: .default))
             Text("@" + user.name)
                 .bold()
                 .font(.system(size: 16, weight: .bold, design: .default))

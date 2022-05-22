@@ -4,44 +4,46 @@ import Combine
 import SwiftUI
 
 final class HelpListViewModel: ObservableObject {
+    struct HelpModel: Identifiable {
+        let id = UUID()
+        let isOwner: Bool
+        let queuePosition: Int
+        let help: Help
+    }
     
-    private var user: AcademyUser
+    struct FilterTag: Identifiable {
+        let id = UUID()
+        let name: String
+        let color: Color
+        let isSelected: Bool
+    }
+    
     private let listener: HelpListenerService
     private let helpUpdatingService: HelpUpdatingService
     private let helpAssignService: HelpAssignService
-    
-    private var cancelable: AnyCancellable?
-    
-    @Published var helpOnEdit: Help? = nil
-    
-    @Published var currentHelpList: [Help] = []
-    
-    @Published var filterChosen: HelpType = .all {
-        didSet {
-            selectFilter(helpType: filterChosen)
-        }
-    }
+    private let userLisenterService: UserListenerService = .init()
     
     @Published var showRequestHelpModal: Bool = false
     
+    @Published var helpOnEdit: Help? = nil
     
-    init(currentUser: AcademyUser, listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
-        self.user = currentUser
+    @Published var currentHelpList: [HelpModel] = []
+    
+    @Published
+    private(set) var filterTags: [FilterTag] = []
+    
+    private var selectedFilterIndex = 0
+    
+    private var disposeBag = [AnyCancellable]()
+    
+    init(listener: HelpListenerService, helpAssignService: HelpAssignService, helpUpdatingService: HelpUpdatingService) {
         self.listener = listener
         self.helpAssignService = helpAssignService
         self.helpUpdatingService = helpUpdatingService
     }
     
-    func selectFilter(helpType: HelpType) {
-        cancelable?.cancel()
-        cancelable = listener
-            .listen(to: helpType)
-            .replaceError(with: [])
-            .assign(to: \.currentHelpList, on: self)
-    }
-    
     func handleOnAppear() {
-        selectFilter(helpType: .all)
+        updateFilters()
     }
     
     func handleCardLongPress(helpModel: Help) {
@@ -50,7 +52,16 @@ final class HelpListViewModel: ObservableObject {
     }
     
     func assignHelpHandler(help: Help) {
-        helpAssignService.assign(using: help, currentUser: user)
+        userLisenterService
+            .listener
+            .flatMap { user in
+                self.helpAssignService.assign(using: help, currentUser: user)
+            }
+            .replaceError(with: false)
+            .sink { _ in
+                self.renderFilteredList()
+            }
+            .store(in: &disposeBag)
     }
     
     func completeHelpHandler(help: Help) {
@@ -59,7 +70,37 @@ final class HelpListViewModel: ObservableObject {
         helpUpdatingService.execute(using: helpUpdated)
     }
     
-    func getQueuePosition(help: Help) -> Int {
+    func didSelectFilter(withId id: UUID) {
+        guard let index = filterTags.firstIndex(where: { $0.id == id})
+        else { return }
+        selectedFilterIndex = index
+        updateFilters()
+    }
+    
+    private func updateFilters() {
+        filterTags = HelpType.allCases.enumerated().map {
+            .init(name: $1.rawValue,
+                  color: $1.color,
+                  isSelected: $0 == selectedFilterIndex
+            )
+        }
+        renderFilteredList()
+    }
+    
+    private func renderFilteredList() {
+        let helpType = HelpType.allCases[selectedFilterIndex]
+        Publishers.CombineLatest(userLisenterService.listener, listener.listen(to: helpType))
+            .map { user, helpList in
+                helpList.map { help in
+                    HelpModel(isOwner: user.id == help.user.id,
+                              queuePosition: self.getQueuePosition(help: help, onList: helpList),
+                              help: help)
+                }
+            }
+            .assign(to: &$currentHelpList)
+    }
+    
+    func getQueuePosition(help: Help, onList currentHelpList: [Help]) -> Int {
         let typeList = currentHelpList.filter { h in
             h.type == help.type
         }

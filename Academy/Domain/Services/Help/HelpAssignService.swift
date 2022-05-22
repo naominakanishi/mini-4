@@ -12,10 +12,16 @@ public final class HelpAssignService {
     }
     
     public func assign(using help: Help, currentUser: AcademyUser) -> AnyPublisher<Bool, Error> {
-        var updatedHelp = help
-        updatedHelp.status = .beingHelped
-        updatedHelp.assignee = currentUser
-        
-        return repository.update(updatedHelp)
+        repository.update(.init(
+            id: help.id,
+            user: help.user,
+            title: help.title,
+            description: help.description,
+            type: help.type,
+            currentLocation: help.currentLocation,
+            requestTimeInterval: help.requestTimeInterval,
+            assignee: currentUser,
+            status: .beingHelped)
+        )
     }
 }

@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		035FA7CB28346D6D00439AFD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CA28346D6D00439AFD /* ProfileView.swift */; };
-		035FA7CD28346ECF00439AFD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CC28346ECF00439AFD /* ProfileViewModel.swift */; };
-		035FA7CF283471C300439AFD /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7CE283471C300439AFD /* ProfilePictureView.swift */; };
-		035FA7D12834727900439AFD /* ProfilePictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */; };
+		035FA7D12834727900439AFD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D02834727900439AFD /* ProfileViewModel.swift */; };
 		035FA7D3283479A300439AFD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D2283479A300439AFD /* ImagePicker.swift */; };
 		035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D428347B2D00439AFD /* CustomTextField.swift */; };
 		03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD66102836D7C10062F8F9 /* GeneralButton.swift */; };
@@ -20,6 +18,11 @@
 		03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C515283573B8000336C5 /* ViewExtension.swift */; };
 		03D2C518283573F4000336C5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C517283573F4000336C5 /* BottomSheet.swift */; };
 		03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C51928357433000336C5 /* KeyboardObservable.swift */; };
+		1112B091283986C100127718 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
+		1164A29E2838A99E00F2F4AC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1164A29D2838A99E00F2F4AC /* FirebaseStorage */; };
+		1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */; };
+		1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */; };
+		118865E928384826005B561F /* HelpType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118865E828384826005B561F /* HelpType+Extensions.swift */; };
 		119255A7282B4E77008410F3 /* Academy.h in Headers */ = {isa = PBXBuildFile; fileRef = 119255A6282B4E77008410F3 /* Academy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B5282B4EA9008410F3 /* AcademyiOSApp.swift */; };
 		119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B7282B4EA9008410F3 /* HelpListView.swift */; };
@@ -41,8 +44,10 @@
 		11BB181A2834598D0050B977 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB18192834598D0050B977 /* Role.swift */; };
 		11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB181B28345C170050B977 /* PeopleViewModel.swift */; };
 		11BB182228345EB10050B977 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB182128345EB10050B977 /* PersonView.swift */; };
-		11F47A2E2836C60600612631 /* RoleTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F47A2D2836C60600612631 /* RoleTypeFilterButton.swift */; };
+		11F47A2E2836C60600612631 /* AcademyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F47A2D2836C60600612631 /* AcademyTag.swift */; };
 		11F575C02837007E00123D19 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F575BF2837007E00123D19 /* FeatureCard.swift */; };
+		11F575C22837211B00123D19 /* GrowableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F575C12837211B00123D19 /* GrowableTextField.swift */; };
+		11F575DF2837464300123D19 /* LJRoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F575DE2837464300123D19 /* LJRoutingService.swift */; };
 		5B68C2032834B00600FD2539 /* EquipmentWaitlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */; };
 		5B68C2072834B08400FD2539 /* SuggestionSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */; };
 		5B68C20C2834B55300FD2539 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B68C20B2834B55300FD2539 /* LoginView.swift */; };
@@ -51,16 +56,24 @@
 		5B75E645283577A60047ADEB /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E644283577A60047ADEB /* UserRepository.swift */; };
 		5B75E64728357B090047ADEB /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64628357B090047ADEB /* AuthState.swift */; };
 		5B75E64C2835AF510047ADEB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64B2835AF510047ADEB /* LoadingView.swift */; };
-		5B75E64E2835AF5F0047ADEB /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64D2835AF5F0047ADEB /* LoadingViewModel.swift */; };
 		5B75E6502835B4B30047ADEB /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E64F2835B4B30047ADEB /* Loader.swift */; };
 		5B75E6532835CAF40047ADEB /* UserListenerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6522835CAF40047ADEB /* UserListenerService.swift */; };
 		5B75E6552835CD270047ADEB /* UserUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6542835CD270047ADEB /* UserUpdatingService.swift */; };
 		5B75E6572835CD3F0047ADEB /* UserSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6562835CD3F0047ADEB /* UserSenderService.swift */; };
 		5B75E6592835CD8C0047ADEB /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6582835CD8C0047ADEB /* Encodable.swift */; };
-		5B75E65B2835D12B0047ADEB /* UserExistenceCheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */; };
 		5B75E65D2835FBDE0047ADEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65C2835FBDE0047ADEB /* Data.swift */; };
 		5B75E65F2835FCA00047ADEB /* EquipmentUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */; };
 		5B75E6612836E1A50047ADEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */; };
+		5B75E6632836EBA00047ADEB /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6622836EBA00047ADEB /* CalendarEvent.swift */; };
+		5B75E6662836ECBC0047ADEB /* CalendarEventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6652836ECBC0047ADEB /* CalendarEventsRepository.swift */; };
+		5B75E6682836EF8F0047ADEB /* CalendarEventListenerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6672836EF8F0047ADEB /* CalendarEventListenerService.swift */; };
+		5B75E66A2836EF9D0047ADEB /* CalendarEventSenderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6692836EF9D0047ADEB /* CalendarEventSenderService.swift */; };
+		5B75E66C2836EFAD0047ADEB /* CalendarEventUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E66B2836EFAD0047ADEB /* CalendarEventUpdatingService.swift */; };
+		5B75E6712836F1D80047ADEB /* CalendarEventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6702836F1D80047ADEB /* CalendarEventListView.swift */; };
+		5B75E6732836F1F00047ADEB /* CalendarEventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6722836F1F00047ADEB /* CalendarEventListViewModel.swift */; };
+		5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6742836F4060047ADEB /* CalendarEventBox.swift */; };
+		5B75E67728370F6C0047ADEB /* CalendarDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E67628370F6B0047ADEB /* CalendarDay.swift */; };
+		5B75E679283712790047ADEB /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E678283712790047ADEB /* CalendarExtensions.swift */; };
 		5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAB82831B8000071821E /* HelpRepository.swift */; };
 		5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */; };
 		5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EABD2831D2570071821E /* HomeViewModel.swift */; };
@@ -114,12 +127,12 @@
 		5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */; };
 		5BE70E5C282C5FEC00E36372 /* HelpListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5B282C5FEC00E36372 /* HelpListViewModel.swift */; };
 		5BE70E5E282C643C00E36372 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* AuthService.swift */; };
-		5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
 		5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E65282D8A1800E36372 /* HomeView.swift */; };
 		5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E67282DBEDB00E36372 /* ScheduleView.swift */; };
 		5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */; };
 		5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */; };
+		D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0E0A42838414400C14FE2 /* DesignSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,9 +228,7 @@
 
 /* Begin PBXFileReference section */
 		035FA7CA28346D6D00439AFD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		035FA7CC28346ECF00439AFD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		035FA7CE283471C300439AFD /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
-		035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureViewModel.swift; sourceTree = "<group>"; };
+		035FA7D02834727900439AFD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		035FA7D2283479A300439AFD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		035FA7D428347B2D00439AFD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03CD66102836D7C10062F8F9 /* GeneralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButton.swift; sourceTree = "<group>"; };
@@ -227,6 +238,9 @@
 		03D2C515283573B8000336C5 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		03D2C517283573F4000336C5 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		03D2C51928357433000336C5 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
+		1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPicker.swift; sourceTree = "<group>"; };
+		1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
+		118865E828384826005B561F /* HelpType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpType+Extensions.swift"; sourceTree = "<group>"; };
 		119255A3282B4E77008410F3 /* Academy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Academy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255A6282B4E77008410F3 /* Academy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Academy.h; sourceTree = "<group>"; };
 		119255B3282B4EA9008410F3 /* Academy Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Academy Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,8 +258,10 @@
 		11BB18192834598D0050B977 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		11BB181B28345C170050B977 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewModel.swift; path = "AcademyiOS/Scenes/AcademyPeople/View Models/PeopleViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		11BB182128345EB10050B977 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonView.swift; path = AcademyiOS/Scenes/AcademyPeople/Views/PersonView.swift; sourceTree = SOURCE_ROOT; };
-		11F47A2D2836C60600612631 /* RoleTypeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTypeFilterButton.swift; sourceTree = "<group>"; };
+		11F47A2D2836C60600612631 /* AcademyTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyTag.swift; sourceTree = "<group>"; };
 		11F575BF2837007E00123D19 /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
+		11F575C12837211B00123D19 /* GrowableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowableTextField.swift; sourceTree = "<group>"; };
+		11F575DE2837464300123D19 /* LJRoutingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJRoutingService.swift; sourceTree = "<group>"; };
 		5B68C2022834B00600FD2539 /* EquipmentWaitlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentWaitlistService.swift; sourceTree = "<group>"; };
 		5B68C2062834B08400FD2539 /* SuggestionSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSenderService.swift; sourceTree = "<group>"; };
 		5B68C20B2834B55300FD2539 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -255,16 +271,24 @@
 		5B75E644283577A60047ADEB /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		5B75E64628357B090047ADEB /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		5B75E64B2835AF510047ADEB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		5B75E64D2835AF5F0047ADEB /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		5B75E64F2835B4B30047ADEB /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		5B75E6522835CAF40047ADEB /* UserListenerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListenerService.swift; sourceTree = "<group>"; };
 		5B75E6542835CD270047ADEB /* UserUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdatingService.swift; sourceTree = "<group>"; };
 		5B75E6562835CD3F0047ADEB /* UserSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSenderService.swift; sourceTree = "<group>"; };
 		5B75E6582835CD8C0047ADEB /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
-		5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExistenceCheckerService.swift; sourceTree = "<group>"; };
 		5B75E65C2835FBDE0047ADEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5B75E65E2835FCA00047ADEB /* EquipmentUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentUpdatingService.swift; sourceTree = "<group>"; };
 		5B75E6602836E1A50047ADEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B75E6622836EBA00047ADEB /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		5B75E6652836ECBC0047ADEB /* CalendarEventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsRepository.swift; sourceTree = "<group>"; };
+		5B75E6672836EF8F0047ADEB /* CalendarEventListenerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListenerService.swift; sourceTree = "<group>"; };
+		5B75E6692836EF9D0047ADEB /* CalendarEventSenderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSenderService.swift; sourceTree = "<group>"; };
+		5B75E66B2836EFAD0047ADEB /* CalendarEventUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventUpdatingService.swift; sourceTree = "<group>"; };
+		5B75E6702836F1D80047ADEB /* CalendarEventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListView.swift; sourceTree = "<group>"; };
+		5B75E6722836F1F00047ADEB /* CalendarEventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListViewModel.swift; sourceTree = "<group>"; };
+		5B75E6742836F4060047ADEB /* CalendarEventBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventBox.swift; sourceTree = "<group>"; };
+		5B75E67628370F6B0047ADEB /* CalendarDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDay.swift; sourceTree = "<group>"; };
+		5B75E678283712790047ADEB /* CalendarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensions.swift; sourceTree = "<group>"; };
 		5BC2EAB82831B8000071821E /* HelpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRepository.swift; sourceTree = "<group>"; };
 		5BC2EABB2831CF0B0071821E /* AnnouncementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRepository.swift; sourceTree = "<group>"; };
 		5BC2EABD2831D2570071821E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -312,6 +336,7 @@
 		5BE70E67282DBEDB00E36372 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyPeopleView.swift; sourceTree = "<group>"; };
 		5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxView.swift; sourceTree = "<group>"; };
+		D7E0E0A42838414400C14FE2 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +346,7 @@
 			files = (
 				5BD206F028319BBC005E1090 /* FirebaseDatabase in Frameworks */,
 				5BD206D7282F43CE005E1090 /* CodableFirebase in Frameworks */,
+				1164A29E2838A99E00F2F4AC /* FirebaseStorage in Frameworks */,
 				5BD206E3282F45D3005E1090 /* GoogleSignIn in Frameworks */,
 				5BD206EE28319BBC005E1090 /* FirebaseCrashlytics in Frameworks */,
 				5BD206EA28319BBC005E1090 /* FirebaseAnalytics in Frameworks */,
@@ -380,8 +406,7 @@
 		035FA7C828346D4200439AFD /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				035FA7CC28346ECF00439AFD /* ProfileViewModel.swift */,
-				035FA7D02834727900439AFD /* ProfilePictureViewModel.swift */,
+				035FA7D02834727900439AFD /* ProfileViewModel.swift */,
 				035FA7D2283479A300439AFD /* ImagePicker.swift */,
 			);
 			path = "View Models";
@@ -391,7 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				035FA7CA28346D6D00439AFD /* ProfileView.swift */,
-				035FA7CE283471C300439AFD /* ProfilePictureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -406,6 +430,14 @@
 				03D2C51928357433000336C5 /* KeyboardObservable.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		118865E72838481A005B561F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				118865E828384826005B561F /* HelpType+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		11925599282B4E77008410F3 = {
@@ -496,11 +528,21 @@
 			isa = PBXGroup;
 			children = (
 				03D2C50E283561F5000336C5 /* Utils */,
+				118865E72838481A005B561F /* Extensions */,
 				5BE70E24282C3F5A00E36372 /* Components */,
 				119255E5282B51C9008410F3 /* AcademyUI.h */,
 				5BE70E63282D88A000E36372 /* Colors.swift */,
+				D7E0E0A42838414400C14FE2 /* DesignSystem.swift */,
 			);
 			path = AcademyUI;
+			sourceTree = "<group>";
+		};
+		11F575DD2837463300123D19 /* LearningJourney */ = {
+			isa = PBXGroup;
+			children = (
+				11F575DE2837464300123D19 /* LJRoutingService.swift */,
+			);
+			path = LearningJourney;
 			sourceTree = "<group>";
 		};
 		5B68C2042834B03E00FD2539 /* Auth */ = {
@@ -550,7 +592,6 @@
 		5B75E6482835AF380047ADEB /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				5B75E64A2835AF430047ADEB /* View Models */,
 				5B75E6492835AF3D0047ADEB /* Views */,
 			);
 			path = Loading;
@@ -565,23 +606,49 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5B75E64A2835AF430047ADEB /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				5B75E64D2835AF5F0047ADEB /* LoadingViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
 		5B75E6512835CADD0047ADEB /* User */ = {
 			isa = PBXGroup;
 			children = (
 				5B75E6522835CAF40047ADEB /* UserListenerService.swift */,
 				5B75E6542835CD270047ADEB /* UserUpdatingService.swift */,
 				5B75E6562835CD3F0047ADEB /* UserSenderService.swift */,
-				5B75E65A2835D12B0047ADEB /* UserExistenceCheckerService.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		5B75E6642836ECA70047ADEB /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				5B75E6672836EF8F0047ADEB /* CalendarEventListenerService.swift */,
+				5B75E6692836EF9D0047ADEB /* CalendarEventSenderService.swift */,
+				5B75E66B2836EFAD0047ADEB /* CalendarEventUpdatingService.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		5B75E66D2836F1A60047ADEB /* CalendarEventList */ = {
+			isa = PBXGroup;
+			children = (
+				5B75E66F2836F1BE0047ADEB /* View Models */,
+				5B75E66E2836F1B90047ADEB /* Views */,
+			);
+			path = CalendarEventList;
+			sourceTree = "<group>";
+		};
+		5B75E66E2836F1B90047ADEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B75E6702836F1D80047ADEB /* CalendarEventListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B75E66F2836F1BE0047ADEB /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B75E6722836F1F00047ADEB /* CalendarEventListViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BC2EABA2831CB800071821E /* Utils */ = {
@@ -590,6 +657,7 @@
 				5BE70E50282C4A6F00E36372 /* DateFormatter.swift */,
 				5B75E6582835CD8C0047ADEB /* Encodable.swift */,
 				5B75E65C2835FBDE0047ADEB /* Data.swift */,
+				5B75E678283712790047ADEB /* CalendarExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -615,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				035FA7C728346D3200439AFD /* Profile */,
+				5B75E66D2836F1A60047ADEB /* CalendarEventList */,
 				5B75E6482835AF380047ADEB /* Loading */,
 				5B68C2082834B53000FD2539 /* Login */,
 				5BC2EAFC2832F7370071821E /* Schedule */,
@@ -692,6 +761,7 @@
 		5BC2EAE72832F6240071821E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 				5BC2EAD72832ECF30071821E /* AnnouncementListView.swift */,
 			);
 			path = Views;
@@ -896,6 +966,8 @@
 				5BC2EAC12831E1B20071821E /* Suggestion.swift */,
 				5BC2EAC52831E7B00071821E /* Equipment.swift */,
 				11BB18192834598D0050B977 /* Role.swift */,
+				5B75E6622836EBA00047ADEB /* CalendarEvent.swift */,
+				5B75E67628370F6B0047ADEB /* CalendarDay.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -921,13 +993,16 @@
 			children = (
 				5BE70E25282C3F6B00E36372 /* HelpCard.swift */,
 				5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */,
-				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 				5BC2EACD2831EA900071821E /* EquipmentCard.swift */,
 				5BC2EB0D28336F970071821E /* EquipmentTypeFilterButton.swift */,
 				035FA7D428347B2D00439AFD /* CustomTextField.swift */,
 				03D2C5132835736E000336C5 /* CustomModifiers.swift */,
+				11F47A2D2836C60600612631 /* AcademyTag.swift */,
+				11F575C12837211B00123D19 /* GrowableTextField.swift */,
+				5B75E6742836F4060047ADEB /* CalendarEventBox.swift */,
 				03CD66102836D7C10062F8F9 /* GeneralButton.swift */,
-				11F47A2D2836C60600612631 /* RoleTypeFilterButton.swift */,
+				1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */,
+				1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -971,6 +1046,8 @@
 		5BE70E49282C46F500E36372 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				11F575DD2837463300123D19 /* LearningJourney */,
+				5B75E6642836ECA70047ADEB /* Events */,
 				5B75E6512835CADD0047ADEB /* User */,
 				5B68C2042834B03E00FD2539 /* Auth */,
 				5B68C2052834B06D00FD2539 /* Suggestion */,
@@ -989,6 +1066,7 @@
 				5BC2EABF2831E13E0071821E /* SuggestionRepository.swift */,
 				5BC2EAC72831E8A50071821E /* EquipmentRepository.swift */,
 				5B75E644283577A60047ADEB /* UserRepository.swift */,
+				5B75E6652836ECBC0047ADEB /* CalendarEventsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1038,6 +1116,7 @@
 				5BD206EF28319BBC005E1090 /* FirebaseDatabase */,
 				5BD206F128319BBC005E1090 /* FirebaseFirestore */,
 				5BD206F328319BBC005E1090 /* FirebaseFirestoreSwift-Beta */,
+				1164A29D2838A99E00F2F4AC /* FirebaseStorage */,
 			);
 			productName = Academy;
 			productReference = 119255A3282B4E77008410F3 /* Academy.framework */;
@@ -1228,16 +1307,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F575DF2837464300123D19 /* LJRoutingService.swift in Sources */,
 				5BE70E5E282C643C00E36372 /* AuthService.swift in Sources */,
 				5B75E65D2835FBDE0047ADEB /* Data.swift in Sources */,
 				5BC2EAC22831E1B20071821E /* Suggestion.swift in Sources */,
 				5BC2EAC62831E7B00071821E /* Equipment.swift in Sources */,
 				5BC2EB0928335E630071821E /* HelpAssignService.swift in Sources */,
+				5B75E6632836EBA00047ADEB /* CalendarEvent.swift in Sources */,
+				5B75E66C2836EFAD0047ADEB /* CalendarEventUpdatingService.swift in Sources */,
 				5BC2EB072832FDDB0071821E /* HelpListenerService.swift in Sources */,
 				5BC2EAE12832ED9D0071821E /* AnnouncementSenderService.swift in Sources */,
 				5BE70E23282C3EC000E36372 /* Announcement.swift in Sources */,
-				5B75E65B2835D12B0047ADEB /* UserExistenceCheckerService.swift in Sources */,
+				5B75E6662836ECBC0047ADEB /* CalendarEventsRepository.swift in Sources */,
 				5BC2EAC82831E8A50071821E /* EquipmentRepository.swift in Sources */,
+				5B75E679283712790047ADEB /* CalendarExtensions.swift in Sources */,
 				5BE70E1D282C33B600E36372 /* Help.swift in Sources */,
 				5BC2EABC2831CF0B0071821E /* AnnouncementRepository.swift in Sources */,
 				5BE70E1B282C338E00E36372 /* AcademyUser.swift in Sources */,
@@ -1254,10 +1337,13 @@
 				5BC2EB0C28336BA50071821E /* EquipmentListenerService.swift in Sources */,
 				5BE70E51282C4A6F00E36372 /* DateFormatter.swift in Sources */,
 				5BC2EAD22832DF460071821E /* AnnouncementListenerService.swift in Sources */,
+				5B75E66A2836EF9D0047ADEB /* CalendarEventSenderService.swift in Sources */,
 				5B75E6532835CAF40047ADEB /* UserListenerService.swift in Sources */,
 				5B75E64728357B090047ADEB /* AuthState.swift in Sources */,
+				5B75E67728370F6C0047ADEB /* CalendarDay.swift in Sources */,
 				5BC2EAC02831E13E0071821E /* SuggestionRepository.swift in Sources */,
 				5B75E6552835CD270047ADEB /* UserUpdatingService.swift in Sources */,
+				5B75E6682836EF8F0047ADEB /* CalendarEventListenerService.swift in Sources */,
 				11BB181A2834598D0050B977 /* Role.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1272,21 +1358,20 @@
 				119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */,
 				5BD206E5282F49D5005E1090 /* HelpFormViewModel.swift in Sources */,
 				11BB182228345EB10050B977 /* PersonView.swift in Sources */,
-				035FA7D12834727900439AFD /* ProfilePictureViewModel.swift in Sources */,
-				035FA7CD28346ECF00439AFD /* ProfileViewModel.swift in Sources */,
-				035FA7CF283471C300439AFD /* ProfilePictureView.swift in Sources */,
+				035FA7D12834727900439AFD /* ProfileViewModel.swift in Sources */,
 				5BC2EABE2831D2580071821E /* HomeViewModel.swift in Sources */,
+				5B75E6712836F1D80047ADEB /* CalendarEventListView.swift in Sources */,
 				5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */,
 				5B68C2102834B5A000FD2539 /* SignInWithAppleButton.swift in Sources */,
 				5BC2EACA2831E92E0071821E /* EquipmentListView.swift in Sources */,
 				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
-				5B75E64E2835AF5F0047ADEB /* LoadingViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */,
 				035FA7CB28346D6D00439AFD /* ProfileView.swift in Sources */,
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,
 				11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */,
 				11F575C02837007E00123D19 /* FeatureCard.swift in Sources */,
+				1112B091283986C100127718 /* AnnouncementCard.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BC2EADD2832ED270071821E /* AnnouncementListViewModel.swift in Sources */,
@@ -1294,6 +1379,7 @@
 				5B75E6502835B4B30047ADEB /* Loader.swift in Sources */,
 				5BC2EADA2832ECFE0071821E /* AnnouncementFormView.swift in Sources */,
 				5B68C20C2834B55300FD2539 /* LoginView.swift in Sources */,
+				5B75E6732836F1F00047ADEB /* CalendarEventListViewModel.swift in Sources */,
 				5BE70E53282C4BA700E36372 /* HelpListViewModel.swift in Sources */,
 				5B68C20E2834B55F00FD2539 /* LoginViewModel.swift in Sources */,
 				5B75E64C2835AF510047ADEB /* LoadingView.swift in Sources */,
@@ -1315,19 +1401,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D2C512283563AD000336C5 /* DecimalExtension.swift in Sources */,
+				1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */,
 				03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */,
 				03D2C5142835736E000336C5 /* CustomModifiers.swift in Sources */,
-				11F47A2E2836C60600612631 /* RoleTypeFilterButton.swift in Sources */,
+				11F47A2E2836C60600612631 /* AcademyTag.swift in Sources */,
 				5BC2EB0E28336F970071821E /* EquipmentTypeFilterButton.swift in Sources */,
+				118865E928384826005B561F /* HelpType+Extensions.swift in Sources */,
 				5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */,
 				03D2C51028356206000336C5 /* StringExt.swift in Sources */,
+				5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */,
 				03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */,
-				5BE70E60282C669C00E36372 /* AnnouncementCard.swift in Sources */,
 				03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */,
 				035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */,
 				5BE70E64282D88A000E36372 /* Colors.swift in Sources */,
+				1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */,
+				D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */,
 				5BE70E59282C596200E36372 /* HelpTypeFilterButton.swift in Sources */,
 				03D2C518283573F4000336C5 /* BottomSheet.swift in Sources */,
+				11F575C22837211B00123D19 /* GrowableTextField.swift in Sources */,
 				5BE70E26282C3F6B00E36372 /* HelpCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1898,6 +1989,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1164A29D2838A99E00F2F4AC /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BD206E828319BBC005E1090 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		5BD206D6282F43CE005E1090 /* CodableFirebase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5BD206D5282F43CE005E1090 /* XCRemoteSwiftPackageReference "CodableFirebase" */;

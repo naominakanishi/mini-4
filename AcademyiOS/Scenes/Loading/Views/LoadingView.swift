@@ -1,28 +1,39 @@
 import SwiftUI
 import Academy
 
+final class LoadingViewModel: ObservableObject {
+    
+    private let authService = AuthService.shared
+    
+    @Published
+    private(set) var authState: AuthState = .undefined
+    
+    init() {}
+    
+    func onAppear() {
+        authService
+            .authStatePublisher
+            .assign(to: &$authState)
+    }
+}
+
 struct LoadingView: View {
-    @EnvironmentObject var authService: AuthService
+    @StateObject
+    var viewModel = LoadingViewModel()
     
     var body: some View {
         VStack {
-            switch authService.authState {
+            switch viewModel.authState {
             case .undefined:
                 Loader()
             case .signedIn:
-                HomeView()
+                HomeView(viewModel: .init())
             case .signedOut:
                 LoginView()
             }
         }
         .onAppear {
-            authService.initialize()
+            viewModel.onAppear()
         }
-    }
-}
-
-struct LoadingView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoadingView()
     }
 }

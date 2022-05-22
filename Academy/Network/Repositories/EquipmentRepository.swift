@@ -3,20 +3,20 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-public final class EquipmentRepository: ObservableObject {
+final class EquipmentRepository: ObservableObject {
     
     static let shared = EquipmentRepository()
     
     private let path = "equipment"
     private let store = Firestore.firestore()
     
-    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
-    public init() {
+    init() {
         read()
     }
     
-    public func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
+    func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         store.collection(path).addDocument(data: data) {
             if let _ = $0 {
@@ -37,14 +37,17 @@ public final class EquipmentRepository: ObservableObject {
         
             guard let snapshot = snapshot else { fatalError() }
             
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            self.readingPublisher.send(data)
+            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
+            do {
+                let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
+                self.readingPublisher.send(data)
+            } catch {
+                print("DEU RUM!", error)
+            }
         }
     }
     
-    public func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
+    func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
             try store.collection(path).document(equipment.id)

@@ -2,16 +2,22 @@ import SwiftUI
 import FirebaseCore
 import CryptoKit
 import Academy
+import FirebaseFirestore
 
 @main
 struct AcademyiOSApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate
-    @StateObject var authService = AuthService()
-    
+    init() {
+        FirebaseApp.configure()
+        
+        let settings = Firestore.firestore().settings
+        settings.isPersistenceEnabled = false
+        Firestore.firestore().settings = settings
+        
+    }
     var body: some Scene {
         WindowGroup {
             LoadingView()
-                .environmentObject(authService)
                 .preferredColorScheme(.dark)
         }
     }
@@ -24,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Configure Firebase
-        FirebaseApp.configure()
+        
         
         return true
     }

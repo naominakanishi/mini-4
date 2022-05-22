@@ -3,23 +3,13 @@ import AcademyUI
 import Academy
 
 struct HomeView: View {
-    @StateObject var viewModel = HomeViewModel(
-        announcementUpdatingService: .init(),
-        announcementListenerService: .init()
-    )
-    
-    @EnvironmentObject var authService: AuthService
+    @StateObject
+    var viewModel: HomeViewModel = .init()
     
     @State var showHelpListView: Bool = false
     @State var showAcademyPeopleView: Bool = false
     @State var showEquipmentList: Bool = false
     @State var showSuggestionsBoxView: Bool = false
-    
-    func logout() {
-        authService.signOut { result in
-            // TO DO
-        }
-    }
     
     var body: some View {
         NavigationView {
@@ -27,30 +17,26 @@ struct HomeView: View {
                 VStack {
                     VStack {
                         HStack {
-                            Text("Academy Pocket")
-                                .font(.system(size: 30, weight: .bold, design: .default))
-                                .foregroundColor(Color.white)
+                            Image("logo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(2)
+                                .frame(width: 170)
                             
                             Spacer()
                             
-                            ZStack {
-                                Circle()
-                                    .foregroundColor(Color.adaLightBlue)
-                                Image("andre-memoji")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .padding(2)
-                            }
-                            .frame(maxWidth: 60, maxHeight: 60)
-                            .onTapGesture {
-                                logout()
+                            NavigationLink {
+                                ProfileView(viewModel: .init())
+                            } label: {
+                                ProfilePictureView(imageUrl: $viewModel.userImageUrl, size: 60)
                             }
                         }
+                        .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
                         
                         VStack {
                             HStack {
                                 Text("Avisos")
-                                    .font(.system(size: 24, weight: .bold, design: .default))
+                                    .font(.adaFontSubtitle)
                                     .foregroundColor(Color.white)
                                 
                                 Spacer()
@@ -68,10 +54,11 @@ struct HomeView: View {
                                     ForEach(viewModel.activeAnnouncements) { announcement in
                                         VStack {
                                             AnnouncementCard(
-                                                text: announcement.text,
+                                                text: announcement.headline ?? announcement.text.prefix(100) + "...",
                                                 user: announcement.fromUser,
-                                                dateString: announcement.createdDate.getFormattedDate()
-                                            )
+                                                dateString: announcement.createdDate.getFormattedDate(),
+                                                type: (announcement.type ?? .announcement).rawValue)
+                                            
                                             Spacer()
                                                 .frame(height: 40)
                                         }
@@ -93,31 +80,77 @@ struct HomeView: View {
                             }
                         }
 //                        .padding(.vertical, 32)
-                        
-                        HStack {
-                            VStack {
-                                ShortcutCard(title: "mentores", image: Image("people-icon"), color: Color.adaGreen.opacity(0.6))
-                                    .padding(.vertical, 4)
-                                ShortcutCard(title: "sugestoes", image: Image("suggestions-icon"), color: Color.adaPurple.opacity(0.6))
-                                    .padding(.vertical, 4)
-                                ShortcutCard(title: "learning\njourney", image: Image("learningJourney-icon"), color: Color.adaPink.opacity(0.6))
-                                    .padding(.vertical, 4)
-                            }
-                            VStack {
-                                ShortcutCard(title: "@ajuda", image: Image("help-icon"), color: Color.adaLightBlue.opacity(0.6))
-                                    .scaledToFill()
-                                    .padding(.vertical, 4)
-                                ShortcutCard(title: "equipamentos", image: Image("equipments-icon"), color: Color.adaPurple.opacity(0.6))
-                                    .padding(.vertical, 4)
+                        VStack (alignment: .leading){
+                            
+                            Text("Utilidades")
+                                .font(.adaFontSubtitle)
+                                .foregroundColor(Color.white)
+                                .padding(DesignSystem.Spacing.subtitlesToContentPadding)
+                                
+                            HStack {
+                                VStack {
+                                    NavigationLink(destination: {
+                                        AcademyPeopleView()
+                                    }, label: {
+                                        ShortcutCard(title: "mentores",
+                                                     image: Image("people-icon"),
+                                                     color: Color.adaRed.opacity(0.6)
+                                        )
+                                        .padding(.vertical, 4)
+                                    })
+                                    NavigationLink(destination: {
+                                        SuggestionsBoxView()
+                                    }, label: {
+                                        ShortcutCard(title: "sugestoes",
+                                                     image: Image("suggestions-icon"),
+                                                     color: Color.adaLightBlue.opacity(0.6)
+                                        )
+                                        .padding(.vertical, 4)
+                                    })
+                                    Button {
+                                        viewModel.openLearningJourney()
+                                    } label: {
+                                        ShortcutCard(title: "learning\njourney",
+                                                     image: Image("learningJourney-icon"),
+                                                     color: Color.adaDarkBlue.opacity(0.6)
+                                        )
+                                            .padding(.vertical, 4)
+                                    }
+
+
+                                }
+                                VStack {
+                                    NavigationLink {
+                                        HelpListView()
+                                    } label: {
+                                        ShortcutCard(title: "@ajuda",
+                                                     image: Image("help-icon"),
+                                                     color: Color.adaPurple.opacity(0.6),
+                                                     imageWidth: 60
+                                        )
+                                            .aspectRatio(1, contentMode: .fill)
+                                            .padding(.vertical, 4)
+                                    }
+
+                                    NavigationLink {
+                                        EquipmentListView()
+                                    } label: {
+                                        ShortcutCard(title: "equipamentos",
+                                                     image: Image("equipments-icon"),
+                                                     color: Color.adaGreen.opacity(0.6)
+                                        )
+                                            .padding(.vertical, 4)
+                                    }
+                                }
                             }
                         }
+                        
                     }
-                    .padding()
+                    .padding(.horizontal, DesignSystem.Spacing.generalHPadding)
                     Spacer()
                     
                 }
             }
-           
             .background(Color.adaBackground)
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
@@ -155,24 +188,24 @@ struct ShortcutCard: View {
     let title: String
     let image: Image
     let color: Color
+    var imageWidth: CGFloat = 27
     
     var body: some View {
-        VStack {
-            HStack {
+        HStack {
+            VStack {
                 Spacer()
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 27)
-            }
-            Spacer()
-            HStack {
                 Text(title)
-                    .font(.system(size: 18, weight: .bold, design: .default))
+                    .font(.system(size: 15.5, weight: .bold, design: .default))
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 32)
+            }
+            Spacer()
+            VStack {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: imageWidth)
                 Spacer()
             }
         }

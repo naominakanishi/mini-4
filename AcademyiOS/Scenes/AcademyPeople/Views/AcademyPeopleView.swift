@@ -55,7 +55,7 @@ struct AcademyPeopleView: View {
                     Button {
                         viewModel.selectFilter(with: filter.id)
                     } label: {
-                        RoleTypeFilterButton(role: filter.roleName, typeColor: filter.color)
+                        AcademyTag(text: filter.roleName, color: filter.color, isSelected: true) // TODO handle isSelected
                     }
                 }
             }

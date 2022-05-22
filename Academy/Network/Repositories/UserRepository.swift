@@ -2,88 +2,121 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
+//import CodableFirebase
+import FirebaseStorage
 
-public final class UserRepository: ObservableObject {
+final class UserRepository: ObservableObject {
     
     static let shared = UserRepository()
     
     private let path = "user"
     private let store = Firestore.firestore()
+    private let storage = Storage.storage()
     
-    public init() {}
+    let currentUserPublisher = CurrentValueSubject<Data, Never>(.init())
     
-    public func checkIfUserExists(with id: String) -> AnyPublisher<Bool, Never> {
-        let publisher = PassthroughSubject<Bool, Never>()
-        
-        store.collection(path).document(id).getDocument(source: .server, completion: { document, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let data = document?.data() else {
-                print("User doesn't exist")
-                publisher.send(false)
-                return
-            }
-            
-            publisher.send(true)
-        })
-        
-        return publisher.eraseToAnyPublisher()
-    }
+    init() {}
     
-    public func fetchUser(with id: String) -> AnyPublisher<Data, Never> {
-        let publisher = PassthroughSubject<Data, Never>()
-        
+    func initializeUser(withId id: String) {
         store.collection(path).document(id).addSnapshotListener { (document, error) in
             if let error = error {
                 print(error.localizedDescription)
+                return
             }
             
-            guard let document = document else {
+            guard let document = document,
+                  let dictionary = document.data(),
+                  let data = try? JSONSerialization.data(withJSONObject: dictionary, options: [])
+            else {
                 print("User doesn't exist")
                 return
             }
-            
-            let dictionary: [String: Any] = document.data()!
-            
-            let data = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
-            
-            publisher.send(data)
+            print("SENDING UP")
+            self.currentUserPublisher.send(data)
         }
-        
-        return publisher.eraseToAnyPublisher()
     }
     
-    func createUser(userData data: [String: Any], with id: String) -> AnyPublisher<Bool, Error> {
-        let response = PassthroughSubject<Bool, Error>()
-        store.collection(path).document(id).setData(data) {
-            if let _ = $0 {
-                response.send(false)
-                return
-            }
-            response.send(true)
-        }
-        return response
-            .eraseToAnyPublisher()
-    }
-    
-    func update(_ user: AcademyUser) -> AnyPublisher<Bool, Error> {
-        let response = PassthroughSubject<Bool, Error>()
-        do {
-            try store.collection(path).document(user.id).setData(from: user) {
-                if let error = $0 {
-                    response.send(false)
+    func checkIfUserExists(with id: String) -> Future<[String: Any]?, Error> {
+        Future<[String: Any]?, Error> { promise in
+            self.store.collection(self.path).document(id).getDocument(source: .server, completion: { document, error in
+                if let error = error {
+                    promise(.failure(error))
                     return
                 }
                 
-                response.send(true)
+                guard let data = document?.data() else {
+                    print("User doesn't exist")
+                    promise(.success(nil))
+                    return
+                }
+                promise(.success(data))
+            })
+        }
+    }
+    
+    func createUser(userData data: [String: Any], with id: String) -> Future<Void, Error> {
+        Future<Void, Error> { promise in
+            self.store.collection(self.path).document(id).setData(data) {
+                if let error = $0 {
+                    promise(.failure(error))
+                    return
+                }
+                promise(.success(()))
+            }
+        }
+    }
+    
+    func update(_ user: AcademyUser) -> AnyPublisher<AcademyUser, Error> {
+        let response = PassthroughSubject<AcademyUser, Error>()
+        do {
+            let dictionary = try user.toFirebase()
+            store.collection(path).document(user.id).setData(dictionary) {
+                if let error = $0 {
+                    response.send(completion: .failure(error))
+                    return
+                }
+                response.send(user)
+//                self.publisher.send(encoded)
             }
         } catch {
-            return Fail(outputType: Bool.self, failure: error)
-                .eraseToAnyPublisher()
+            response.send(completion: .failure(error))
         }
         return response
             .eraseToAnyPublisher()
+    }
+    
+    func updateImage(using data: Data, usingFileName fileName: String) -> AnyPublisher<URL, Error> {
+        let publisher = PassthroughSubject<URL, Error>()
+        let ref = storage.reference().child("user_images").child(fileName + ".png")
+
+        ref.putData(data, metadata: nil) { _, error in
+            if let error = error {
+                publisher.send(completion: .failure(error))
+                return
+            }
+            
+            ref.downloadURL { url, error in
+                if let error = error {
+                    publisher.send(completion: .failure(error))
+                    return
+                }
+                
+                if let url = url {
+                    publisher.send(url)
+                    return
+                }
+                publisher.send(completion: .finished)
+            }
+        }
+        return publisher
+            .eraseToAnyPublisher()
+    }
+}
+
+extension JSONDecoder {
+    static var firebaseDecoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .millisecondsSince1970
+        return decoder
     }
 }

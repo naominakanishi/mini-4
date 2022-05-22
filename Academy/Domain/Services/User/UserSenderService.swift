@@ -12,22 +12,25 @@ public class UserSenderService {
         self.init(repository: .shared)
     }
     
-    public func send(user: AcademyUser) -> AnyPublisher<Bool, Error> {
+    public func send(user: AcademyUser) -> AnyPublisher<Void, Error> {
         let user = AcademyUser(
             id: user.id,
             name: user.name,
             email: user.email,
-            imageName: "",
+            imageName: user.imageName,
             status: .available,
-            birthday: nil,
-            role: .student
+            birthday: user.birthday,
+            role: user.role ?? .student,
+            helpTags: user.helpTags
         )
         
         do {
             let data = try user.toFirebase()
-            return repository.createUser(userData: data, with: user.id)
+            return repository
+                .createUser(userData: data, with: user.id)
+                .eraseToAnyPublisher()
         } catch let error {
-            return Fail(outputType: Bool.self, failure: error)
+            return Fail(outputType: Void.self, failure: error)
                 .eraseToAnyPublisher()
         }
     }

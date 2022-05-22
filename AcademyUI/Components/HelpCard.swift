@@ -1,5 +1,6 @@
 import SwiftUI
 import Academy
+import AcademyUI
 
 public struct HelpCard: View {
     
@@ -14,13 +15,13 @@ public struct HelpCard: View {
     var typeColor: Color {
         switch helpModel.type {
         case .business:
-            return .adaYellow
-        case .code:
             return .adaGreen
+        case .code:
+            return .adaPurple
         case .design:
-            return .adaPink
+            return .adaDarkBlue
         case.general:
-            return .adaLightBlue
+            return .adaRed
         case .all:
             return .gray
         }
@@ -62,10 +63,7 @@ public struct HelpCard: View {
                         .font(.system(size: 16, weight: .regular, design: .rounded))
                         .foregroundColor(Color.white)
                 case .beingHelped:
-                    Image(helpModel.assignee!.imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50)
+                    ProfilePictureView(imageUrl: .constant(.init(string: helpModel.assignee!.imageName)), size: 50)
                 case .done:
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
@@ -81,10 +79,7 @@ public struct HelpCard: View {
                         .background(typeColor)
                     
                     HStack {
-                        Image(helpModel.user.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 60, height: 60)
+                        ProfilePictureView(imageUrl: .constant(.init(string: helpModel.user.imageName)), size: 60)
                             .padding(.trailing)
                         
                         Text(helpModel.user.name)

@@ -1,5 +1,5 @@
 public enum AuthState {
     case undefined
     case signedOut
-    case signedIn
+    case signedIn(String)
 }

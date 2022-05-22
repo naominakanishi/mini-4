@@ -3,16 +3,16 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-public final class AnnouncementRepository: ObservableObject {
+final class AnnouncementRepository: ObservableObject {
     
     static let shared = AnnouncementRepository()
     
     private let path = "announcement"
     private let store = Firestore.firestore()
     
-    public let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
+    let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
-    public init() {
+    init() {
         read()
     }
     
@@ -33,16 +33,21 @@ public final class AnnouncementRepository: ObservableObject {
         store.collection(path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("FAILED!", error.localizedDescription)
+                return
             }
             
             // Review
-            guard let snapshot = snapshot else { fatalError()
+            guard let snapshot = snapshot else {
+                return
             }
             
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
-            let data = try! JSONSerialization.data(withJSONObject: dictionaries, options: [])
-            
-            self.readingPublisher.send(data)
+            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
+            do {
+                let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
+                self.readingPublisher.send(data)
+            } catch {
+                print("DEU RUM!", error)
+            }
         }
     }
     

@@ -43,19 +43,3 @@ struct PersonView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
-
-extension Color {
-    func adaGradient(repeatCount count: Int = 5) -> LinearGradient {
-        .init(colors: .init(repeating: self, count: count) + [.clear],
-              startPoint: .topLeading,
-              endPoint: .bottomTrailing)
-    }
-}
-
-extension Color {
-    func reversedAdaGradient(repeatCount count: Int = 5) -> LinearGradient {
-        .init(colors: [.clear] + .init(repeating: self, count: count),
-              startPoint: .topLeading,
-              endPoint: .bottomTrailing)
-    }
-}
