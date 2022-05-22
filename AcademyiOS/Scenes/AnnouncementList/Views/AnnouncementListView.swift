@@ -78,7 +78,8 @@ struct AnnouncementListView: View {
                     modal = true
                 } label: {
                     Image(systemName: "plus")
-                        
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .foregroundColor(Color.white)
                 }
             }
         }
