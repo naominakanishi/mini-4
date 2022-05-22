@@ -5,9 +5,9 @@ import AcademyUI
 struct AcademyPeopleView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject
+    @StateObject
     var viewModel = PeopleViewModel()
-    @ObservedObject
+    @StateObject
     var viewPicModel: ProfileViewModel
 
     let columns = [
@@ -26,17 +26,18 @@ struct AcademyPeopleView: View {
             ScrollView {
                 LazyVGrid (columns: columns, spacing: 14 ) {
                     ForEach(viewModel.users) { user in
-                        HStack{
-                            Button(action: {
-                                //TODO: Caminho para o perfil correto da pessoa
-                            }, label: {
-                                ProfilePictureView(imageSelected: $viewPicModel.imageSelected, imageUrl: $viewPicModel.imageUrl, size: 90)
+                        Button(action: {
+                            //TODO: Caminho para o perfil correto da pessoa
+                        }, label: {
+                            VStack(alignment: .center, spacing: 5){
                                 ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
-                                Text("Teste")
-                            })
-                            
-                        }
-
+                                Text(user.name)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 11))
+                            }
+                            .padding(0)
+                            .frame(width: 70, height: 81)
+                        })
                     }
                 }
             }
@@ -63,7 +64,7 @@ struct AcademyPeopleView: View {
             HStack {
                 ForEach(viewModel.filterList) { filter in
                     Button {
-                        viewModel.selectFilter(with: filter.id)
+//                        viewModel.selectFilter(with: filter.id)
                     } label: {
                         AcademyTag(text: filter.roleName, color: filter.color, isSelected: true) // TODO handle isSelected
                     }
