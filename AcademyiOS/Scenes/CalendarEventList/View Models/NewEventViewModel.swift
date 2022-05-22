@@ -54,12 +54,11 @@ final class NewEventViewModel: ObservableObject {
     }
     
     func send() {
-        eventSender.send(event: .init(id: UUID().uuidString,
-                                      title: title,
-                                      emoji: emoji,
-                                      fullDay: isAllDay,
-                                      startDateTimeInterval: startDate.timeIntervalSince1970,
-                                      endDateTimeInterval: endDate.timeIntervalSince1970)
+        eventSender.send(title: title,
+                         emoji: emoji,
+                         isAllDay: isAllDay,
+                         startDate: startDate,
+                         endDate: endDate)
         )
     }
 }
