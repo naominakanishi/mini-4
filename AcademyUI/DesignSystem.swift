@@ -27,7 +27,7 @@ public extension Font {
     static let listItemTimeStamp: Font = .system(size: 15, weight: .bold)
     static let adaTagTitle: Font = .system(size: 15, weight: .bold)
     static let calendarDayOfTheWeek: Font = .system(size: 13, weight: .regular)
-    static let calendarDayOfTheMonth: Font = .system(size: 24, weight: .semibold)
+    static let calendarDayOfTheMonth: Font = .system(size: 32, weight: .semibold)
     static let sendRequestButtonLabel: Font = .system(size: 17, weight: .bold)
     
 }

@@ -42,11 +42,37 @@ final class CalendarEventsRepository: ObservableObject {
             let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
             do {
                 let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
-                self.readingPublisher.send(data)
+//                self.readingPublisher.send(data)
             } catch {
                 print("DEU RUM!", error)
             }
         }
+        
+        let mock = [
+            CalendarEvent(id: UUID().uuidString,
+                          title: "Timed event",
+                          emoji: "🤡",
+                          fullDay: false,
+                          startDateTimeInterval: Date.now.timeIntervalSince1970,
+                          endDateTimeInterval: Date.now.advanced(by: 10000).timeIntervalSince1970
+            ),
+            CalendarEvent(id: UUID().uuidString,
+                          title: "All day",
+                          emoji: "📅",
+                          fullDay: true,
+                          startDateTimeInterval: Date.now.timeIntervalSince1970,
+                          endDateTimeInterval: Date.now.advanced(by: 10000).timeIntervalSince1970
+            ),
+            CalendarEvent(id: UUID().uuidString,
+                          title: "Ontem",
+                          emoji: "",
+                          fullDay: true,
+                          startDateTimeInterval: Calendar.current.date(byAdding: .day, value: -1, to: .now)!.timeIntervalSince1970,
+                          endDateTimeInterval: Calendar.current.date(byAdding: .day, value: -1, to: .now)!.advanced(by: 10000).timeIntervalSince1970
+            ),
+        ]
+        let data = try! JSONEncoder().encode(mock)
+        readingPublisher.send(data)
     }
     
     func update(_ event: CalendarEvent) -> AnyPublisher<Bool, Error> {

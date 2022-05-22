@@ -11,11 +11,24 @@ public final class CalendarEventListenerService {
         self.init(repository: .shared)
     }
     
+    public var todayEvents: AnyPublisher<[CalendarEvent], Never> {
+        listen()
+            .map { eventList in
+                eventList.filter {
+                    Calendar.current.isDateInToday($0.startDate)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+    
     public func listen() -> AnyPublisher<[CalendarEvent], Never> {
         return repository
             .readingPublisher
-            .decode(type: [CalendarEvent].self, decoder: JSONDecoder.firebaseDecoder)
-            .replaceError(with: [])
+            .flatMap { data in
+                Just(data)
+                    .decode(type: [CalendarEvent].self, decoder: JSONDecoder.firebaseDecoder)
+                    .replaceError(with: [])
+            }
             .eraseToAnyPublisher()
     }
 }

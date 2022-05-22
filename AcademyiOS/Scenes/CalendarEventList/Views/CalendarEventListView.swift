@@ -2,14 +2,14 @@ import SwiftUI
 import AcademyUI
 
 struct CalendarEventListView: View {
-    @StateObject var viewModel = CalendarEventListViewModel()
+    @StateObject
+    var viewModel = CalendarEventListViewModel()
     
     var body: some View {
         VStack {
             ScrollView(.vertical) {
-                ForEach(viewModel.calendarEventList) { event in
-                    CalendarEventBox(event: event)
-                        .padding(.bottom, 4)
+                ForEach(viewModel.calendar) { month in
+                    MonthView(month: month)
                 }
             }
         }

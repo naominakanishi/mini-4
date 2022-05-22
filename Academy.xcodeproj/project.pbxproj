@@ -19,6 +19,7 @@
 		03D2C518283573F4000336C5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C517283573F4000336C5 /* BottomSheet.swift */; };
 		03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C51928357433000336C5 /* KeyboardObservable.swift */; };
 		1112B091283986C100127718 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
+		1112B0B32839AE1600127718 /* DayEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B22839AE1600127718 /* DayEventsView.swift */; };
 		1164A29E2838A99E00F2F4AC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1164A29D2838A99E00F2F4AC /* FirebaseStorage */; };
 		1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */; };
 		1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */; };
@@ -71,7 +72,6 @@
 		5B75E66C2836EFAD0047ADEB /* CalendarEventUpdatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E66B2836EFAD0047ADEB /* CalendarEventUpdatingService.swift */; };
 		5B75E6712836F1D80047ADEB /* CalendarEventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6702836F1D80047ADEB /* CalendarEventListView.swift */; };
 		5B75E6732836F1F00047ADEB /* CalendarEventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6722836F1F00047ADEB /* CalendarEventListViewModel.swift */; };
-		5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E6742836F4060047ADEB /* CalendarEventBox.swift */; };
 		5B75E67728370F6C0047ADEB /* CalendarDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E67628370F6B0047ADEB /* CalendarDay.swift */; };
 		5B75E679283712790047ADEB /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75E678283712790047ADEB /* CalendarExtensions.swift */; };
 		5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC2EAB82831B8000071821E /* HelpRepository.swift */; };
@@ -238,6 +238,7 @@
 		03D2C515283573B8000336C5 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		03D2C517283573F4000336C5 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		03D2C51928357433000336C5 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
+		1112B0B22839AE1600127718 /* DayEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventsView.swift; sourceTree = "<group>"; };
 		1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPicker.swift; sourceTree = "<group>"; };
 		1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		118865E828384826005B561F /* HelpType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpType+Extensions.swift"; sourceTree = "<group>"; };
@@ -286,7 +287,6 @@
 		5B75E66B2836EFAD0047ADEB /* CalendarEventUpdatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventUpdatingService.swift; sourceTree = "<group>"; };
 		5B75E6702836F1D80047ADEB /* CalendarEventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListView.swift; sourceTree = "<group>"; };
 		5B75E6722836F1F00047ADEB /* CalendarEventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventListViewModel.swift; sourceTree = "<group>"; };
-		5B75E6742836F4060047ADEB /* CalendarEventBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventBox.swift; sourceTree = "<group>"; };
 		5B75E67628370F6B0047ADEB /* CalendarDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDay.swift; sourceTree = "<group>"; };
 		5B75E678283712790047ADEB /* CalendarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensions.swift; sourceTree = "<group>"; };
 		5BC2EAB82831B8000071821E /* HelpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRepository.swift; sourceTree = "<group>"; };
@@ -999,10 +999,10 @@
 				03D2C5132835736E000336C5 /* CustomModifiers.swift */,
 				11F47A2D2836C60600612631 /* AcademyTag.swift */,
 				11F575C12837211B00123D19 /* GrowableTextField.swift */,
-				5B75E6742836F4060047ADEB /* CalendarEventBox.swift */,
 				03CD66102836D7C10062F8F9 /* GeneralButton.swift */,
 				1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */,
 				1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */,
+				1112B0B22839AE1600127718 /* DayEventsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1408,8 +1408,8 @@
 				5BC2EB0E28336F970071821E /* EquipmentTypeFilterButton.swift in Sources */,
 				118865E928384826005B561F /* HelpType+Extensions.swift in Sources */,
 				5BC2EACE2831EA900071821E /* EquipmentCard.swift in Sources */,
+				1112B0B32839AE1600127718 /* DayEventsView.swift in Sources */,
 				03D2C51028356206000336C5 /* StringExt.swift in Sources */,
-				5B75E6752836F4060047ADEB /* CalendarEventBox.swift in Sources */,
 				03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */,
 				03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */,
 				035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */,
