@@ -1,6 +1,12 @@
 import SwiftUI
+import Academy
+import Combine
 
 final class NewEventViewModel: ObservableObject {
+    
+    private let eventSender = CalendarEventSenderService()
+    
+    private var cancelBag = [AnyCancellable]()
     
     @Published
     var title: String = ""
@@ -10,11 +16,25 @@ final class NewEventViewModel: ObservableObject {
     
     @Published
     var startDate: Date = .now
+    
     @Published
     var endDate: Date = .now
     
     @Published
     var repeatingFrequency: String?
+    
+    @Published
+    var emoji: String = ""
+    
+    init() {
+        self.$emoji
+            .sink(receiveCompletion: { err in
+               print("CHEGA", err)
+            }, receiveValue: { newValue in
+                print("RECVD", newValue)
+            })
+            .store(in: &cancelBag)
+    }
     
     var availableDateComponents: DatePickerComponents {
         if isAllDay {
@@ -34,7 +54,13 @@ final class NewEventViewModel: ObservableObject {
     }
     
     func send() {
-        
+        eventSender.send(event: .init(id: UUID().uuidString,
+                                      title: title,
+                                      emoji: emoji,
+                                      fullDay: isAllDay,
+                                      startDateTimeInterval: startDate.timeIntervalSince1970,
+                                      endDateTimeInterval: endDate.timeIntervalSince1970)
+        )
     }
 }
 

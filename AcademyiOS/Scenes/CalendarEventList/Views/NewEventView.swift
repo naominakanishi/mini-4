@@ -28,6 +28,13 @@ struct NewEventView: View {
                 .cornerRadius(8)
                 .frame(maxHeight: 50)
                 
+                
+                SingleEmojiTextField(text: $viewModel.emoji)
+                    .padding(8)
+                    .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
+                    .cornerRadius(8)
+                    .frame(maxHeight: 50)
+                
                 durationPicker
                 
                 DropdownPicker(options: viewModel.frequencyOptions,
@@ -41,7 +48,6 @@ struct NewEventView: View {
                 Spacer()
             }
             .padding(.horizontal, DesignSystem.Spacing.generalHPadding / 2)
-            
             VStack {
                 Spacer()
                 saveButton

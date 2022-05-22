@@ -22,6 +22,7 @@
 		1112B0B32839AE1600127718 /* DayEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B22839AE1600127718 /* DayEventsView.swift */; };
 		1112B0B52839DFD100127718 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B42839DFD100127718 /* NewEventView.swift */; };
 		1112B0B72839DFDB00127718 /* NewEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B62839DFDB00127718 /* NewEventViewModel.swift */; };
+		1112B0B92839F22000127718 /* SingleEmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B82839F22000127718 /* SingleEmojiTextField.swift */; };
 		1164A29E2838A99E00F2F4AC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1164A29D2838A99E00F2F4AC /* FirebaseStorage */; };
 		1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */; };
 		1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */; };
@@ -243,6 +244,7 @@
 		1112B0B22839AE1600127718 /* DayEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventsView.swift; sourceTree = "<group>"; };
 		1112B0B42839DFD100127718 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 		1112B0B62839DFDB00127718 /* NewEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewModel.swift; sourceTree = "<group>"; };
+		1112B0B82839F22000127718 /* SingleEmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEmojiTextField.swift; sourceTree = "<group>"; };
 		1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPicker.swift; sourceTree = "<group>"; };
 		1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		118865E828384826005B561F /* HelpType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpType+Extensions.swift"; sourceTree = "<group>"; };
@@ -1009,6 +1011,7 @@
 				1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */,
 				1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */,
 				1112B0B22839AE1600127718 /* DayEventsView.swift */,
+				1112B0B82839F22000127718 /* SingleEmojiTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1409,6 +1412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D2C512283563AD000336C5 /* DecimalExtension.swift in Sources */,
+				1112B0B92839F22000127718 /* SingleEmojiTextField.swift in Sources */,
 				1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */,
 				03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */,
 				03D2C5142835736E000336C5 /* CustomModifiers.swift in Sources */,
