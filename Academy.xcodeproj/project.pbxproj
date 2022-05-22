@@ -20,6 +20,8 @@
 		03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C51928357433000336C5 /* KeyboardObservable.swift */; };
 		1112B091283986C100127718 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		1112B0B32839AE1600127718 /* DayEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B22839AE1600127718 /* DayEventsView.swift */; };
+		1112B0B52839DFD100127718 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B42839DFD100127718 /* NewEventView.swift */; };
+		1112B0B72839DFDB00127718 /* NewEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B62839DFDB00127718 /* NewEventViewModel.swift */; };
 		1164A29E2838A99E00F2F4AC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1164A29D2838A99E00F2F4AC /* FirebaseStorage */; };
 		1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */; };
 		1164A2A22838BE9000F2F4AC /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */; };
@@ -239,6 +241,8 @@
 		03D2C517283573F4000336C5 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		03D2C51928357433000336C5 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
 		1112B0B22839AE1600127718 /* DayEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventsView.swift; sourceTree = "<group>"; };
+		1112B0B42839DFD100127718 /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
+		1112B0B62839DFDB00127718 /* NewEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventViewModel.swift; sourceTree = "<group>"; };
 		1164A29F2838BDC600F2F4AC /* DropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownPicker.swift; sourceTree = "<group>"; };
 		1164A2A12838BE9000F2F4AC /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		118865E828384826005B561F /* HelpType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpType+Extensions.swift"; sourceTree = "<group>"; };
@@ -639,6 +643,7 @@
 			isa = PBXGroup;
 			children = (
 				5B75E6702836F1D80047ADEB /* CalendarEventListView.swift */,
+				1112B0B42839DFD100127718 /* NewEventView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				5B75E6722836F1F00047ADEB /* CalendarEventListViewModel.swift */,
+				1112B0B62839DFDB00127718 /* NewEventViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1367,11 +1373,13 @@
 				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */,
 				5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */,
+				1112B0B72839DFDB00127718 /* NewEventViewModel.swift in Sources */,
 				035FA7CB28346D6D00439AFD /* ProfileView.swift in Sources */,
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,
 				11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */,
 				11F575C02837007E00123D19 /* FeatureCard.swift in Sources */,
 				1112B091283986C100127718 /* AnnouncementCard.swift in Sources */,
+				1112B0B52839DFD100127718 /* NewEventView.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
 				5BC2EADD2832ED270071821E /* AnnouncementListViewModel.swift in Sources */,

@@ -65,7 +65,7 @@ final class CalendarEventsRepository: ObservableObject {
             ),
             CalendarEvent(id: UUID().uuidString,
                           title: "Ontem",
-                          emoji: "",
+                          emoji: "👨‍🌾",
                           fullDay: true,
                           startDateTimeInterval: Calendar.current.date(byAdding: .day, value: -1, to: .now)!.timeIntervalSince1970,
                           endDateTimeInterval: Calendar.current.date(byAdding: .day, value: -1, to: .now)!.advanced(by: 10000).timeIntervalSince1970

@@ -15,7 +15,6 @@ struct HelpListView: View {
     }
     
     var body: some View {
-        ZStack {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack {
                     VStack {
@@ -57,28 +56,6 @@ struct HelpListView: View {
                     
                     Spacer()
                 }
-            }
-            
-            VStack {
-                Spacer()
-                
-                HStack(alignment: .bottom) {
-                    Spacer()
-                    
-                    Button(action: {
-                        viewModel.showRequestHelpModal = true
-                    }) {
-                        ZStack {
-                            Circle()
-                            Image(systemName: "plus")
-                                .foregroundColor(.white)
-                                .font(.title)
-                        }
-                        .frame(maxWidth: 60, maxHeight: 60)
-                        .padding()
-                    }
-                }
-            }
         }
         .background(Color.adaBackground)
         .navigationBarBackButtonHidden(true)
@@ -96,6 +73,16 @@ struct HelpListView: View {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "arrow.left")
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .foregroundColor(Color.white)
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    viewModel.showRequestHelpModal = true
+                }) {
+                    Image(systemName: "plus")
                         .font(.system(size: 24, weight: .bold, design: .default))
                         .foregroundColor(Color.white)
                 }
