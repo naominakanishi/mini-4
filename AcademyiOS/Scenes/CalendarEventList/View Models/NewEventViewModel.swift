@@ -59,7 +59,6 @@ final class NewEventViewModel: ObservableObject {
                          isAllDay: isAllDay,
                          startDate: startDate,
                          endDate: endDate)
-    
     }
 }
 

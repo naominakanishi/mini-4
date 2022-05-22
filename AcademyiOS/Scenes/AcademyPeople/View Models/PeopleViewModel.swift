@@ -20,11 +20,12 @@ class PeopleViewModel: ObservableObject {
     
     @Published
     private(set) var users: [UserModel] = []
-        
-    private var allUsers: [AcademyUser] = []
+    
+    private let peopleListenerService = AcademyPeopleListenerService()
     
     init() {
         loadRoles()
+        loadPeople()
     }
     
     private func loadRoles() {
@@ -35,30 +36,41 @@ class PeopleViewModel: ObservableObject {
                     roleName: $0.rawValue)
             }
         filterList = roles
-        selectFilter(with: filterList[0].id)
+//        selectFilter(with: filterList[0].id)
     }
     
-    func selectFilter(with id: UUID) {
-        guard let selectedName = filterList.first(where: { $0.id == id })?.roleName,
-              let selectedRole = Role.allCases.first(where: { $0.rawValue == selectedName })
-        else { return }
-        let filteredUsers: [AcademyUser]
-        switch selectedRole {
-        case .all:
-            filteredUsers = allUsers.map { $0 }
-        default:
-            filteredUsers = allUsers.filter { $0.role == selectedRole }
-        }
-        
-        users = filteredUsers
-            .map { user in
-                return .init(
-                    color: color(forRole: user.role ?? .all),
-                    imageName: user.imageName,
-                    name: user.name
-                )
+    private func loadPeople(){
+        peopleListenerService.academyPeople.map { users in
+            users.map { user in
+                UserModel.init(color: .red, //TODO: change color conform role
+                               imageName: user.imageName,
+                               name: user.name)
             }
+        }
+        .assign(to: &$users)
     }
+    
+//    func selectFilter(with id: UUID) {
+//        guard let selectedName = filterList.first(where: { $0.id == id })?.roleName,
+//              let selectedRole = Role.allCases.first(where: { $0.rawValue == selectedName })
+//        else { return }
+//        let filteredUsers: [AcademyUser]
+//        switch selectedRole {
+//        case .all:
+//            filteredUsers = allUsers.map { $0 }
+//        default:
+//            filteredUsers = allUsers.filter { $0.role == selectedRole }
+//        }
+//
+//        users = filteredUsers
+//            .map { user in
+//                return .init(
+//                    color: color(forRole: user.role ?? .all),
+//                    imageName: user.imageName,
+//                    name: user.name
+//                )
+//            }
+//    }
     
     private func color(forRole role: Role) -> Color {
         switch role {
