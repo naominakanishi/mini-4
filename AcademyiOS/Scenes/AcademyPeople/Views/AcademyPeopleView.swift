@@ -7,6 +7,8 @@ struct AcademyPeopleView: View {
     
     @ObservedObject
     var viewModel = PeopleViewModel()
+    @ObservedObject
+    var viewPicModel: ProfileViewModel
 
     let columns = [
         GridItem(.flexible()),
@@ -24,9 +26,17 @@ struct AcademyPeopleView: View {
             ScrollView {
                 LazyVGrid (columns: columns, spacing: 14 ) {
                     ForEach(viewModel.users) { user in
-                        PersonView(userImage: Image(user.imageName),
-                                   username: user.name,
-                                   color: user.color)
+                        HStack{
+                            Button(action: {
+                                //TODO: Caminho para o perfil correto da pessoa
+                            }, label: {
+                                ProfilePictureView(imageSelected: $viewPicModel.imageSelected, imageUrl: $viewPicModel.imageUrl, size: 90)
+                                ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
+                                Text("Teste")
+                            })
+                            
+                        }
+
                     }
                 }
             }
@@ -62,9 +72,9 @@ struct AcademyPeopleView: View {
         }
     }
 }
-
-struct AcademyPeopleView_Previews: PreviewProvider {
-    static var previews: some View {
-        AcademyPeopleView()
-    }
-}
+//
+//struct AcademyPeopleView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AcademyPeopleView()
+//    }
+//}
