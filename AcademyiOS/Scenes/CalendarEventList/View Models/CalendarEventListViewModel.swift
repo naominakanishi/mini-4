@@ -20,13 +20,25 @@ final class CalendarEventListViewModel: ObservableObject {
     }
     
     private func getMonths(forDomainEvents events: [CalendarEvent]) -> [MonthModel] {
-        Dictionary.init(grouping: events) { element in
-            element.startDate.month
-        }.map { (month, events) in
-            MonthModel(name: month, from: events)
+        events.groups(by: { $0.startDate.month }, sorting: { dict in
+            dict.values.sorted {
+                $0[0].startDate < $1[0].startDate
+            }
+        })
+            .map { events in
+            let month = events[0].startDate.month
+            return MonthModel(name: month, from: events)
         }
     }
 }
+
+
+
+
+
+
+
+
 
 
 extension Date {
@@ -44,9 +56,13 @@ extension MonthModel {
     }
     
     private static func getDays(forDomainEvents events: [CalendarEvent]) -> [DayModel] {
-        Dictionary(grouping: events) { $0.startDate.get(.day) }
-            .map { (day, events) -> DayModel in
-                .init(from: events,
+        events
+            .groups(by: { $0.startDate.get(.day)}, sorting: { dict in
+                dict.values.map { $0 }.sorted { $0[0].startDate < $1[0].startDate }
+            })
+            .map { events -> DayModel in
+                let day = events[0].startDate.get(.day)
+                return .init(from: events,
                       name: events[0].startDate.dayOfTheWeek,
                       number: String(day)
                 )
@@ -67,5 +83,46 @@ extension EventModel {
                   emoji: event.emoji,
                   time: event.fullDay ? nil : event.startDate.hourMinute + " - " + event.endDate.hourMinute
         )
+    }
+}
+
+public final class SequenceGroup<K, V>: Equatable where K: Equatable {
+    let key: K
+    var values: [V] = []
+    
+    init(key: K) {
+        self.key = key
+    }
+    
+    public static func == (lhs: SequenceGroup<K, V>, rhs: SequenceGroup<K, V>) -> Bool {
+        lhs.key == rhs.key
+    }
+}
+
+public extension Sequence {
+    func groups<V>(by key: (Element) -> V, sorting: ([V: [Element]]) -> [[Element]]) -> [[Element]] where V: Hashable {
+        var results: [V: [Element]] = [:]
+        
+        for element in self {
+            let k = key(element)
+            if let _ = results[k] {
+                results[k]?.append(element)
+            } else {
+                results[k] = [element]
+            }
+        }
+        
+        return sorting(results)
+    }
+}
+
+extension Sequence where Element: Equatable {
+    var unique: [Element] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            guard !uniqueValues.contains(item) else { return }
+            uniqueValues.append(item)
+        }
+        return uniqueValues
     }
 }

@@ -30,6 +30,11 @@ public final class CalendarEventListenerService {
                     .decode(type: [CalendarEvent].self, decoder: JSONDecoder.firebaseDecoder)
                     .replaceError(with: [])
             }
+            .map { events in
+                events
+                    .filter { Calendar.current.isDateInToday($0.startDate) || $0.startDate > Date.now }
+                    .sorted { $0.startDate < $1.startDate }
+            }
             .eraseToAnyPublisher()
     }
 }

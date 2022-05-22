@@ -2,6 +2,8 @@ import SwiftUI
 import AcademyUI
 
 struct NewEventView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     @StateObject
     var viewModel: NewEventViewModel = .init()
     
@@ -37,14 +39,16 @@ struct NewEventView: View {
                 
                 durationPicker
                 
-                DropdownPicker(options: viewModel.frequencyOptions,
-                               title: "Repete",
-                               leadingIconName: "",
-                               selectedOption: $viewModel.repeatingFrequency)
-                .padding(.vertical, 16)
-                .padding(.horizontal, 8)
-                .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
-                .cornerRadius(12)
+                if viewModel.showsRepeatingFrequency {
+                    DropdownPicker(options: viewModel.frequencyOptions,
+                                   title: "Repete",
+                                   leadingIconName: "",
+                                   selectedOption: $viewModel.repeatingFrequency)
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 8)
+                    .background(Color.white.opacity(0.1).adaGradient(repeatCount: 3))
+                    .cornerRadius(12)
+                }
                 Spacer()
             }
             .padding(.horizontal, DesignSystem.Spacing.generalHPadding / 2)
@@ -96,7 +100,16 @@ struct NewEventView: View {
     private var saveButton: some View {
         
         Button {
-            
+            viewModel
+                .send()
+                .map { _ in true }
+                .replaceError(with: false)
+                .sink(receiveValue: {
+                    guard $0 else { return }
+                    dismiss()
+                })
+                .store(in: &viewModel.cancelBag)
+
         } label: {
             Text("Enviar")
                 .bold()

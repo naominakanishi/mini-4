@@ -60,7 +60,6 @@ final class HomeViewModel: ObservableObject {
             .todayEvents
             .map { events in
                 let month = MonthModel(name: "Hoje", from: events)
-                dump(month)
                 return month
             }
             .assign(to: &$todayEvents)
