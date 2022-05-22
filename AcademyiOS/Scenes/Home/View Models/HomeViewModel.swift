@@ -53,9 +53,7 @@ final class HomeViewModel: ObservableObject {
         userListenerService
             .listener
             .map { $0.imageName }
-            .map {
-                URL(string: $0)
-            }
+            .map { URL(string: $0) }
             .assign(to: &$userImageUrl)
         
         eventListenerService

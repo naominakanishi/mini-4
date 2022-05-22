@@ -99,8 +99,8 @@ struct HomeView: View {
     @ViewBuilder
     private var eventListView: some View {
         MonthView(month: viewModel.todayEvents) {
-            Button("ver mais") {
-                // TODO route to see more
+            NavigationLink("ver mais") {
+                CalendarEventListView()
             }
         }
     }

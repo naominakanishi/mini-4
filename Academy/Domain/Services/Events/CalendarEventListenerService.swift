@@ -17,6 +17,7 @@ public final class CalendarEventListenerService {
                 eventList.filter {
                     Calendar.current.isDateInToday($0.startDate)
                 }
+                .sorted { $0.startDate > $1.startDate }
             }
             .eraseToAnyPublisher()
     }

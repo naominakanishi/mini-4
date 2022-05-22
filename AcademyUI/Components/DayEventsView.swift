@@ -53,8 +53,8 @@ public struct DayEventsView: View {
                 }
             }
         }
-        .padding([.vertical, .horizontal], DesignSystem.Spacing.cardInternalPadding)
-        .background(Color.white.textFieldAdaGradient())
+        .padding(.all, DesignSystem.Spacing.cardInternalPadding)
+        .background(Color.white.opacity(0.6).textFieldAdaGradient())
         .cornerRadius(12)
     }
     
@@ -67,8 +67,10 @@ public struct DayEventsView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(event.title)
                     .font(.system(size: 14, weight: .bold, design: .default))
-                Text(event.time)
-                    .font(.system(size: 13, weight: .regular, design: .default))
+                if let time = event.time {
+                    Text(time)
+                        .font(.system(size: 13, weight: .regular, design: .default))
+                }
             }
             Spacer()
         }
@@ -109,9 +111,9 @@ public struct EventModel: Identifiable {
     let title: String
     let color: Color
     let emoji: String
-    let time: String
+    let time: String?
     
-    public init(title: String, color: Color, emoji: String, time: String) {
+    public init(title: String, color: Color, emoji: String, time: String?) {
         self.title = title
         self.color = color
         self.emoji = emoji
