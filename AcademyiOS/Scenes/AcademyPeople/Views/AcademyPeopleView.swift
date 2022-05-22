@@ -30,13 +30,13 @@ struct AcademyPeopleView: View {
                             //TODO: Caminho para o perfil correto da pessoa
                         }, label: {
                             VStack(alignment: .center, spacing: 5){
-                                ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
+                                ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 70)
                                 Text(user.name)
                                     .foregroundColor(.white)
                                     .font(.system(size: 11))
                             }
                             .padding(0)
-                            .frame(width: 70, height: 81)
+//                            .frame(width: 70, height: 81)
                         })
                     }
                 }
