@@ -43,7 +43,7 @@ struct AnnouncementListView: View {
                     VStack {
                         ForEach (viewModel.announcementList, id: \.id) { announcement in
                             AnnouncementCard(
-                                text: announcement.text,
+                                text: announcement.headline ?? "",
                                 user: announcement.fromUser,
                                 dateString: announcement.createdDate.getFormattedDate(),
                                 type: (announcement.type ?? .announcement).rawValue
