@@ -16,8 +16,12 @@ struct AnnouncementListView: View {
         ]
     }
     
+    func delete(at offsets: IndexSet) {
+        print("Delete")
+    }
+    
     var body: some View {
-        Group {
+        VStack {
             if viewModel.announcementList.isEmpty {
                 VStack {
                     VStack {
@@ -39,15 +43,19 @@ struct AnnouncementListView: View {
                     VStack {
                         ForEach (viewModel.announcementList, id: \.id) { announcement in
                             AnnouncementCard(
-                                text: announcement.announcement.text,
-                                user: announcement.announcement.fromUser,
-                                dateString: announcement.announcement.createdDate.getFormattedDate(),
-                                type: (announcement.announcement.type ?? .announcement).rawValue
+                                text: announcement.text,
+                                user: announcement.fromUser,
+                                dateString: announcement.createdDate.getFormattedDate(),
+                                type: (announcement.type ?? .announcement).rawValue
                             )
                             .onTapGesture {
-                                modal = announcement.isOwner
+                                if (announcement.fromUser.id == viewModel.user.id) {
+                                    modal = true
+                                    viewModel.announcementOnEdit = announcement
+                                }
                             }
                         }
+                        .onDelete(perform: delete)
                     }
                     .padding(.horizontal, DesignSystem.Spacing.generalHPadding / 2)
                     .padding(.top, DesignSystem.Spacing.titleToContentPadding)
@@ -85,7 +93,9 @@ struct AnnouncementListView: View {
         }
         .background(Color.adaBackground)
         .sheet(isPresented: $modal) {
-            AnnouncementFormView(viewModel: .init(sender: .init()))
+            AnnouncementFormView(viewModel: .init(announcementToBeEdited: viewModel.announcementOnEdit, sender: .init())) {
+                viewModel.announcementOnEdit = nil
+            }
         }
     }
     
