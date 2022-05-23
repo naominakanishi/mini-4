@@ -116,9 +116,9 @@ struct HomeView: View {
             HStack {
                 VStack {
                     NavigationLink(destination: {
-                        AcademyPeopleView(viewPicModel: ProfileViewModel())
+                        AcademyPeopleView()
                     }, label: {
-                        ShortcutCard(title: "mentores",
+                        ShortcutCard(title: "pessoas",
                                      image: Image("people-icon"),
                                      color: Color.adaRed.opacity(0.6)
                         )

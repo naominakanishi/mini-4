@@ -31,5 +31,14 @@ public class AcademyPeopleListenerService {
         .eraseToAnyPublisher()
     }
  
+    
+    public func people(withRole role: Role) ->  AnyPublisher<[AcademyUser], Never>  {
+        academyPeople
+            .map { users in
+                if role == .all { return users }
+                return users.filter { $0.role == role}
+            }
+            .eraseToAnyPublisher()
+    }
 }
 
