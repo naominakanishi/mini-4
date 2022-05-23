@@ -118,21 +118,14 @@ struct HomeView: View {
                     NavigationLink(destination: {
                         AcademyPeopleView()
                     }, label: {
-                        ShortcutCard(title: "pessoas",
+                        ShortcutCard(title: "pessoas da academy",
                                      image: Image("people-icon"),
                                      color: Color.adaRed.opacity(0.6)
                         )
                         .padding(.vertical, 4)
+                        .padding(.trailing, 4)
                     })
-                    NavigationLink(destination: {
-                        SuggestionsBoxView()
-                    }, label: {
-                        ShortcutCard(title: "sugestoes",
-                                     image: Image("suggestions-icon"),
-                                     color: Color.adaLightBlue.opacity(0.6)
-                        )
-                        .padding(.vertical, 4)
-                    })
+                    
                     Button {
                         viewModel.openLearningJourney()
                     } label: {
@@ -140,7 +133,19 @@ struct HomeView: View {
                                      image: Image("learningJourney-icon"),
                                      color: Color.adaDarkBlue.opacity(0.6)
                         )
+                        .padding(.vertical, 4)
+                        .padding(.trailing, 4)
+                    }
+                    
+                    NavigationLink {
+                        EquipmentListView()
+                    } label: {
+                        ShortcutCard(title: "equipamentos",
+                                     image: Image("equipments-icon"),
+                                     color: Color.adaGreen.opacity(0.6)
+                        )
                             .padding(.vertical, 4)
+                            .padding(.trailing, 4)
                     }
 
 
@@ -156,17 +161,19 @@ struct HomeView: View {
                         )
                             .aspectRatio(1, contentMode: .fill)
                             .padding(.vertical, 4)
+                            .padding(.leading, 4)
                     }
-
-                    NavigationLink {
-                        EquipmentListView()
-                    } label: {
-                        ShortcutCard(title: "equipamentos",
-                                     image: Image("equipments-icon"),
-                                     color: Color.adaGreen.opacity(0.6)
+                    
+                    NavigationLink(destination: {
+                        SuggestionsBoxView()
+                    }, label: {
+                        ShortcutCard(title: "sugestões",
+                                     image: Image("suggestions-icon"),
+                                     color: Color.adaLightBlue.opacity(0.6)
                         )
-                            .padding(.vertical, 4)
-                    }
+                        .padding(.vertical, 4)
+                        .padding(.leading, 4)
+                    })
                 }
             }
         }
