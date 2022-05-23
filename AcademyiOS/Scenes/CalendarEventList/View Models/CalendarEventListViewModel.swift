@@ -64,7 +64,7 @@ extension MonthModel {
                 let day = events[0].startDate.get(.day)
                 return .init(from: events,
                       name: events[0].startDate.dayOfTheWeek,
-                      number: String(day)
+                      number: String(format: "%02d", day)
                 )
             }
     }
