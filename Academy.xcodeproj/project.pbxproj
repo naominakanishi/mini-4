@@ -133,7 +133,6 @@
 		5BE70E5E282C643C00E36372 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5D282C643C00E36372 /* AuthService.swift */; };
 		5BE70E64282D88A000E36372 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E63282D88A000E36372 /* Colors.swift */; };
 		5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E65282D8A1800E36372 /* HomeView.swift */; };
-		5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E67282DBEDB00E36372 /* ScheduleView.swift */; };
 		5BE70E6A282DBEF500E36372 /* AcademyPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */; };
 		5BE70E6D282DBF1A00E36372 /* SuggestionsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */; };
 		D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0E0A42838414400C14FE2 /* DesignSystem.swift */; };
@@ -342,7 +341,6 @@
 		5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCard.swift; sourceTree = "<group>"; };
 		5BE70E63282D88A000E36372 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BE70E65282D8A1800E36372 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		5BE70E67282DBEDB00E36372 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		5BE70E69282DBEF500E36372 /* AcademyPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyPeopleView.swift; sourceTree = "<group>"; };
 		5BE70E6C282DBF1A00E36372 /* SuggestionsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsBoxView.swift; sourceTree = "<group>"; };
 		D7E0E0A42838414400C14FE2 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
@@ -707,7 +705,6 @@
 				5B75E66D2836F1A60047ADEB /* CalendarEventList */,
 				5B75E6482835AF380047ADEB /* Loading */,
 				5B68C2082834B53000FD2539 /* Login */,
-				5BC2EAFC2832F7370071821E /* Schedule */,
 				5BC2EAEF2832F6920071821E /* EquipmentList */,
 				5BC2EAEE2832F6860071821E /* SuggestionBox */,
 				5BC2EAED2832F67D0071821E /* AcademyPeople */,
@@ -919,30 +916,6 @@
 			isa = PBXGroup;
 			children = (
 				5BC2EACB2831E9B60071821E /* EquipmentListViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
-		5BC2EAFC2832F7370071821E /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				5BC2EAFE2832F7670071821E /* View Models */,
-				5BC2EAFD2832F7630071821E /* Views */,
-			);
-			path = Schedule;
-			sourceTree = "<group>";
-		};
-		5BC2EAFD2832F7630071821E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5BE70E67282DBEDB00E36372 /* ScheduleView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5BC2EAFE2832F7670071821E /* View Models */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1390,7 +1363,6 @@
 				5BC2EACA2831E92E0071821E /* EquipmentListView.swift in Sources */,
 				5BC2EAC42831E3020071821E /* SuggestionsBoxViewModel.swift in Sources */,
 				5BE70E55282C566B00E36372 /* HelpFormView.swift in Sources */,
-				5BE70E68282DBEDB00E36372 /* ScheduleView.swift in Sources */,
 				1112B0B72839DFDB00127718 /* NewEventViewModel.swift in Sources */,
 				035FA7CB28346D6D00439AFD /* EditProfileView.swift in Sources */,
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,

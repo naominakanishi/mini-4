@@ -44,7 +44,7 @@ struct AnnouncementListView: View {
                                 dateString: announcement.announcement.createdDate.getFormattedDate(),
                                 type: (announcement.announcement.type ?? .announcement).rawValue
                             )
-                            .onLongPressGesture {
+                            .onTapGesture {
                                 modal = announcement.isOwner
                             }
                         }
