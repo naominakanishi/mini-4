@@ -118,7 +118,7 @@ struct HomeView: View {
                     NavigationLink(destination: {
                         AcademyPeopleView()
                     }, label: {
-                        ShortcutCard(title: "mentores",
+                        ShortcutCard(title: "pessoas",
                                      image: Image("people-icon"),
                                      color: Color.adaRed.opacity(0.6)
                         )

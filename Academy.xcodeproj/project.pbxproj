@@ -12,6 +12,7 @@
 		035FA7D3283479A300439AFD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D2283479A300439AFD /* ImagePicker.swift */; };
 		035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FA7D428347B2D00439AFD /* CustomTextField.swift */; };
 		03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD66102836D7C10062F8F9 /* GeneralButton.swift */; };
+		03D2597E283AD88D0004A915 /* AcademyPeopleListenerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2597D283AD88D0004A915 /* AcademyPeopleListenerServices.swift */; };
 		03D2C51028356206000336C5 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C50F28356206000336C5 /* StringExt.swift */; };
 		03D2C512283563AD000336C5 /* DecimalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C511283563AD000336C5 /* DecimalExtension.swift */; };
 		03D2C5142835736E000336C5 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C5132835736E000336C5 /* CustomModifiers.swift */; };
@@ -236,6 +237,7 @@
 		035FA7D2283479A300439AFD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		035FA7D428347B2D00439AFD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		03CD66102836D7C10062F8F9 /* GeneralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButton.swift; sourceTree = "<group>"; };
+		03D2597D283AD88D0004A915 /* AcademyPeopleListenerServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyPeopleListenerServices.swift; sourceTree = "<group>"; };
 		03D2C50F28356206000336C5 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		03D2C511283563AD000336C5 /* DecimalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalExtension.swift; sourceTree = "<group>"; };
 		03D2C5132835736E000336C5 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
@@ -427,6 +429,14 @@
 				D7E0E0A6283AD73000C14FE2 /* ProfileView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		03D2597C283AD8790004A915 /* AcademyPeople */ = {
+			isa = PBXGroup;
+			children = (
+				03D2597D283AD88D0004A915 /* AcademyPeopleListenerServices.swift */,
+			);
+			path = AcademyPeople;
 			sourceTree = "<group>";
 		};
 		03D2C50E283561F5000336C5 /* Utils */ = {
@@ -1058,6 +1068,7 @@
 		5BE70E49282C46F500E36372 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				03D2597C283AD8790004A915 /* AcademyPeople */,
 				11F575DD2837463300123D19 /* LearningJourney */,
 				5B75E6642836ECA70047ADEB /* Events */,
 				5B75E6512835CADD0047ADEB /* User */,
@@ -1344,6 +1355,7 @@
 				5B75E6592835CD8C0047ADEB /* Encodable.swift in Sources */,
 				5BC2EB042832FD9C0071821E /* HelpUpdatingService.swift in Sources */,
 				5B68C2072834B08400FD2539 /* SuggestionSenderService.swift in Sources */,
+				03D2597E283AD88D0004A915 /* AcademyPeopleListenerServices.swift in Sources */,
 				5BC2EB022832FD8B0071821E /* HelpSenderService.swift in Sources */,
 				5BC2EAB92831B8000071821E /* HelpRepository.swift in Sources */,
 				5BC2EB0C28336BA50071821E /* EquipmentListenerService.swift in Sources */,

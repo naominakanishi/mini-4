@@ -15,37 +15,38 @@ struct ProfileView: View {
     
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center, spacing: 12) {
-                profilePic
-                    .padding(.bottom, 20)
-                nameField
-                abilitiesTags
-                rolesField
-                birthdayField
-            }
-        }
-        .padding(.horizontal, DesignSystem.Spacing.generalHPadding/2)
-            .background(Color.adaBackground)
-  
-            .navigationTitle("Fulano") //todo
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.left")
-                            .font(.system(size: 24, weight: .bold, design: .default))
-                            .foregroundColor(Color.white)
-                    }
+            ScrollView {
+                VStack(alignment: .center, spacing: 12) {
+                    profilePic
+                        .padding(.bottom, 20)
+                   // nameField
+                    abilitiesTags
+                    rolesField
+                    birthdayField
                 }
             }
+            .padding(.horizontal, DesignSystem.Spacing.generalHPadding/2)
+                .background(Color.adaBackground)
+      
+                .navigationTitle(academyUser.name) //todo
+                .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .font(.system(size: 24, weight: .bold, design: .default))
+                                .foregroundColor(Color.white)
+                        }
+                    }
+                }
+        
     }
     
     @ViewBuilder
     private var profilePic: some View {
-        ProfilePictureView(imageUrl: .constant(.init(academyUser.imageName)), size: 60)
+        ProfilePictureView(imageUrl: .constant(.init(academyUser.imageName)), size: 90)
     }
     
     @ViewBuilder
@@ -106,12 +107,11 @@ struct ProfileView: View {
                 .fontWeight(.bold)
                 .font(.system(size: 14))
             Spacer()
-            Text("Estudante")
+            Text(academyUser.role?.rawValue ?? "")
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .font(.system(size: 14))
                 .padding()
-            // todo
         }
         .background(Color.white.opacity(0.6).textFieldAdaGradient())
         .cornerRadius(8)
@@ -130,12 +130,14 @@ struct ProfileView: View {
                 .fontWeight(.bold)
                 .font(.system(size: 14))
             Spacer()
-            Text("dd/mm/yyyy") // todo
-                .padding(.horizontal, 8)
-                .foregroundColor(.white)
-                .padding(.vertical)
-                .font(.system(size: 14, weight: .semibold))
-
+            if let birthday =  academyUser.birthday {
+                let date = Date(timeIntervalSince1970: birthday).dayMonthYear
+                Text(date) // todo
+                    .padding(.horizontal, 8)
+                    .foregroundColor(.white)
+                    .padding(.vertical)
+                    .font(.system(size: 14, weight: .semibold))
+            }
         }
         .background(Color.white.opacity(0.6).textFieldAdaGradient())
         .cornerRadius(8)

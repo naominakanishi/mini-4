@@ -3,19 +3,18 @@ import Academy
 import AcademyUI
 
 struct AcademyPeopleView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject
+    @StateObject
     var viewModel = PeopleViewModel()
-
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    //Mock
     
     var body: some View {
         VStack {
@@ -24,9 +23,17 @@ struct AcademyPeopleView: View {
             ScrollView {
                 LazyVGrid (columns: columns, spacing: 14 ) {
                     ForEach(viewModel.users) { user in
-                        PersonView(userImage: Image(user.imageName),
-                                   username: user.name,
-                                   color: user.color)
+                        NavigationLink(destination: {
+                            ProfileView(academyUser: user.user)
+                        }, label: {
+                            VStack(alignment: .center, spacing: 5){
+                                ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 70)
+                                Text(user.name)
+                                    .foregroundColor(.white) //TODO: Cor de acordo com cargo
+                                    .font(.system(size: 11))
+                            }
+                            .padding(0)
+                        })
                     }
                 }
             }
@@ -55,16 +62,12 @@ struct AcademyPeopleView: View {
                     Button {
                         viewModel.selectFilter(with: filter.id)
                     } label: {
-                        AcademyTag(text: filter.roleName, color: filter.color, isSelected: true)
+                        AcademyTag(text: filter.roleName,
+                                   color: filter.color,
+                                   isSelected: filter.isSelected)
                     }
                 }
             }
         }
-    }
-}
-
-struct AcademyPeopleView_Previews: PreviewProvider {
-    static var previews: some View {
-        AcademyPeopleView()
     }
 }
