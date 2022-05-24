@@ -35,7 +35,7 @@ public struct GrowableTextField: View {
     
     public var body: some View {
         TextEditor(text: textProxy)
-            .font(.system(size: 14, weight: .bold))
+            .font(.system(size: 14, weight: .regular))
             .focused($isEditingDescription)
             .onChange(of: isEditingDescription) { isEditing in
                 if(isEditing && shouldClearHint) {
@@ -54,6 +54,5 @@ public struct GrowableTextField: View {
                 text = String(text.dropLast())
                 isEditingDescription = false
             }
-           // .background(Color.white.opacity(0.1).textFieldAdaGradient(repeatCount: 4))
     }
 }

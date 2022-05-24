@@ -33,7 +33,10 @@ struct HomeView: View {
                     .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)
                     
                     announcementsView
+                    
                     eventListView
+                        .padding(.bottom)
+                    
                     shortcutsView
                     
                 }
@@ -111,7 +114,6 @@ struct HomeView: View {
             Text("Utilidades")
                 .font(.adaFontSubtitle)
                 .foregroundColor(Color.white)
-                .padding(DesignSystem.Spacing.subtitlesToContentPadding)
                 
             HStack {
                 VStack {

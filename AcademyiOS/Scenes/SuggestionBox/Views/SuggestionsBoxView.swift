@@ -12,8 +12,7 @@ struct SuggestionsBoxView: View {
         ZStack {
             VStack {
                 Text("Deixe aqui sua sugestão ou crítica para melhorar o ambiente da Academy.\nLembre-se que sua resposta será anônima, e poderá ser acessada somente pelo Binder :)")
-                    .bold()
-                    .font(.system(size: 16, weight: .bold, design: .default))
+                    .font(.system(size: 16, weight: .regular, design: .default))
                     .padding(.bottom, 20)
                 GrowableTextField(hint: "Deixe aqui sua sugestão ou crítica para melhorar o ambiente da Academy",
                                   text: $viewModel.text,
