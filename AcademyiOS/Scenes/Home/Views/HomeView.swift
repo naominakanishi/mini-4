@@ -138,7 +138,7 @@ struct HomeView: View {
                     }
                     
                     NavigationLink {
-                        EquipmentListView()
+                        EquipmentListView(currentUser: viewModel.currentUser)
                     } label: {
                         ShortcutCard(title: "equipamentos",
                                      image: Image("equipments-icon"),

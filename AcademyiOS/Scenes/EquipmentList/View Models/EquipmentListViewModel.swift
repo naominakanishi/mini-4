@@ -23,11 +23,13 @@ final class EquipmentListViewModel: ObservableObject {
     
     private var cancellable: AnyCancellable?
     private var cancelBag: [AnyCancellable] = []
+    private var currentUser: AcademyUser
     
-    init(listenerService: EquipmentListenerService, updatingService: EquipmentUpdatingService, waitlistService: EquipmentWaitlistService) {
+    init(currentUser: AcademyUser, listenerService: EquipmentListenerService, updatingService: EquipmentUpdatingService, waitlistService: EquipmentWaitlistService) {
         self.listenerService = listenerService
         self.updatingService = updatingService
         self.waitlistService = waitlistService
+        self.currentUser = currentUser
     }
     
     func selectFilter(equipmentType: EquipmentType) {
@@ -51,32 +53,27 @@ final class EquipmentListViewModel: ObservableObject {
     }
     
     func handleTapOnEquipmentButton(equipment: Equipment) {
-        _ = userListenerService
-            .listener
-            .prefix(1)
-            .flatMap { currentUser -> AnyPublisher<Bool, Error> in
-                switch equipment.status {
-                case .available:
-                    print("Equipment is available")
-                    var updatedEquipment = equipment
-                    updatedEquipment.status = .borrowed
-                    updatedEquipment.personWhoBorrowed = currentUser
-                    return self.updatingService.execute(using: updatedEquipment)
-                case .borrowed:
-                    print("Equipment is borrowed")
-                    if equipment.personWhoBorrowed?.id == currentUser.id {
-                        var updatedEquipment = equipment
-                        updatedEquipment.status = .available
-                        updatedEquipment.personWhoBorrowed = nil
-                        return self.updatingService.execute(using: updatedEquipment)
-                    } else {
-                        return self.waitlistService.addUserToWaitlist(equipment: equipment, user: currentUser)
-                    }
-                case .maintenance:
-                    return Just(false)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
+        switch equipment.status {
+        case .available:
+            print("Equipment is available")
+            var updatedEquipment = equipment
+            updatedEquipment.status = .borrowed
+            updatedEquipment.personWhoBorrowed = currentUser
+            self.updatingService.execute(using: updatedEquipment)
+        case .borrowed:
+            print("Equipment is borrowed")
+            if equipment.personWhoBorrowed?.id == currentUser.id {
+                var updatedEquipment = equipment
+                updatedEquipment.status = .available
+                updatedEquipment.personWhoBorrowed = nil
+                self.updatingService.execute(using: updatedEquipment)
+            } else {
+                self.waitlistService.addUserToWaitlist(equipment: equipment, user: currentUser)
             }
+        case .maintenance:
+            Just(false)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 }
