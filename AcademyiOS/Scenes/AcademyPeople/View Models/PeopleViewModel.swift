@@ -73,11 +73,11 @@ class PeopleViewModel: ObservableObject {
         case .all:
             return .gray
         case.coordinator:
-            return .adaPink
+            return .adaYellow
         case .jrMentor:
-            return .adaGreen
+            return .adaPurple
         case .mentor:
-            return .adaPink
+            return .adaRed
         case .student:
             return .adaLightBlue
         }

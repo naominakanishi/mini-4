@@ -25,9 +25,9 @@ struct HomeView: View {
                         Spacer()
                         
                         NavigationLink {
-                            EditProfileView(viewModel: .init())
+                            EditProfileView(viewModel: .init(), userRole: .constant(viewModel.userRole))
                         } label: {
-                            ProfilePictureView(imageUrl: $viewModel.userImageUrl, size: 60)
+                            ProfilePictureView(imageUrl: $viewModel.userImageUrl, size: 60, userRole: .constant(viewModel.userRole))
                         }
                     }
                     .padding(.vertical, DesignSystem.Spacing.titleToContentPadding)

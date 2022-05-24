@@ -46,7 +46,7 @@ struct ProfileView: View {
     
     @ViewBuilder
     private var profilePic: some View {
-        ProfilePictureView(imageUrl: .constant(.init(academyUser.imageName)), size: 90)
+        ProfilePictureView(imageUrl: .constant(.init(academyUser.imageName)), size: 90, userRole: .constant(academyUser.role!))
     }
     
     @ViewBuilder

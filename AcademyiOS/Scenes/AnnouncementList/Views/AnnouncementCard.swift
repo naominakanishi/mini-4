@@ -18,7 +18,7 @@ public struct AnnouncementCard: View {
     
     public var body: some View {
         HStack(alignment: .top) {
-            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
+            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44, userRole: .constant(user.role!))
             announcementBody
         }
         .foregroundColor(Color.white)
