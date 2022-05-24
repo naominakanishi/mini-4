@@ -1,12 +1,13 @@
 import SwiftUI
+import Academy
 
 public struct ProfilePictureView: View {
-    public init(imageSelected: Binding<UIImage?> = .constant(nil), imageUrl: Binding<URL?>, size: CGFloat) {
+    public init(imageSelected: Binding<UIImage?> = .constant(nil), imageUrl: Binding<URL?>, size: CGFloat, userRole: Binding<Role?>) {
         self._imageSelected = imageSelected
         self._imageUrl = imageUrl
+        self._userRole = userRole
         self.size = size
     }
-    
     
     @Binding
     var imageSelected: UIImage?
@@ -14,7 +15,25 @@ public struct ProfilePictureView: View {
     @Binding
     var imageUrl: URL?
     
+    @Binding
+    var userRole: Role?
+    
     let size: CGFloat
+    
+    var circleColor: Color {
+        switch userRole {
+        case.coordinator:
+            return .adaYellow
+        case .jrMentor:
+            return .adaPurple
+        case .mentor:
+            return .adaRed
+        case .student:
+            return .adaLightBlue
+        default:
+            return .gray
+        }
+    }
     
     public var body: some View {
         ZStack{
@@ -36,18 +55,18 @@ public struct ProfilePictureView: View {
                     ))
                         .fill(.linearGradient(.init(
                             colors: [
-                                Color.adaLightBlue,
-                                Color.adaLightBlue,
-                                (Color.adaLightBlue.opacity(0))]),
+                                circleColor,
+                                circleColor,
+                                (circleColor.opacity(0))]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing))
                     )
         }
         .background(
             .linearGradient(.init(
-                colors: [(Color.adaLightBlue.opacity(0)),
-                         (Color.adaLightBlue.opacity(0.2)),
-                         (Color.adaLightBlue.opacity(0.4))]),
+                colors: [(circleColor.opacity(0)),
+                         (circleColor.opacity(0.2)),
+                         (circleColor.opacity(0.4))]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing))
         .clipShape(Circle())
@@ -72,18 +91,18 @@ public struct ProfilePictureView: View {
                         ))
                             .fill(.linearGradient(.init(
                                 colors: [
-                                    Color.adaLightBlue,
-                                    Color.adaLightBlue,
-                                    (Color.adaLightBlue.opacity(0))]),
+                                    circleColor,
+                                    circleColor,
+                                    (circleColor.opacity(0))]),
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing))
                         )
             }
             .background(
                 .linearGradient(.init(
-                    colors: [(Color.adaLightBlue.opacity(0)),
-                             (Color.adaLightBlue.opacity(0.2)),
-                             (Color.adaLightBlue.opacity(0.4))]),
+                    colors: [(circleColor.opacity(0)),
+                             (circleColor.opacity(0.2)),
+                             (circleColor.opacity(0.4))]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing))
             .clipShape(Circle())
@@ -95,7 +114,7 @@ public struct ProfilePictureView: View {
                     .foregroundColor(.white)
                     .clipShape(Circle())
             }
-            .background(Color.adaLightBlue)
+            .background(circleColor)
             .clipShape(Circle())
         }
         

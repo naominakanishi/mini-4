@@ -27,7 +27,7 @@ struct AcademyPeopleView: View {
                             ProfileView(academyUser: user.user)
                         }, label: {
                             VStack(alignment: .center, spacing: 5){
-                                ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 70)
+                                ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 70, userRole: .constant(user.user.role!))
                                 Text(user.name)
                                     .foregroundColor(.white) //TODO: Cor de acordo com cargo
                                     .font(.system(size: 11))

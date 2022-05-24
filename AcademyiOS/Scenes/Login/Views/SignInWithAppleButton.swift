@@ -15,11 +15,25 @@ struct SignInWithAppleView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UIButton {
         let button = UIButton(type: .custom)
-        button.layer.backgroundColor = Color.black.cgColor
-        button.layer.cornerRadius = 25
-        button.setImage(UIImage(named: "appleIcon"), for: .normal)
-        button.imageView?.contentMode = .scaleToFill
-        button.tintColor = UIColor.white
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.buttonSize = .large
+        configuration.baseForegroundColor = UIColor(.adaBackground)
+        configuration.image = UIImage(systemName: "applelogo")
+        configuration.baseBackgroundColor = UIColor(.white)
+        configuration.imagePadding = 16
+        configuration.titlePadding = 8
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 32, bottom: 16, trailing: 32)
+        
+        var attText = AttributedString.init("Sign in with Apple")
+        attText.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        attText.foregroundColor = UIColor(.adaBackground)
+        
+        configuration.attributedTitle = attText
+        
+        button.configuration = configuration
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = .systemFont(ofSize: 21, weight: .bold)
         button.addTarget(context.coordinator, action: #selector(Coordinator.login), for: .touchDown)
         return button
     }

@@ -18,7 +18,7 @@ public struct AnnouncementCard: View {
     
     public var body: some View {
         HStack(alignment: .top) {
-            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44)
+            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44, userRole: .constant(user.role!))
             announcementBody
         }
         .foregroundColor(Color.white)
@@ -51,9 +51,3 @@ public struct AnnouncementCard: View {
         }
     }
 }
-
-//struct AnnouncementCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AnnouncementCard(announcement: Announcement(id: "x", createdTimeInterval: Date().timeIntervalSince1970, text: "Hoje não teremos Get Together kjkds dskdsakn askn dskadkn sndska askn asn asnsd aknsa sakn asknsadkdn skndsn sndndskan sknsda ksksksksk sksansak sn kanks kanskns akndkan aksnsak!!!!!! ", isActive: true))
-//    }
-//}

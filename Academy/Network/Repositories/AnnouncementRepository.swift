@@ -16,9 +16,9 @@ final class AnnouncementRepository: ObservableObject {
         read()
     }
     
-    func create(announcementData data: [String: Any]) -> AnyPublisher<Bool, Error> {
+    func create(announcementData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
-        store.collection(path).addDocument(data: data) {
+        store.collection(path).document(id).setData(data) {
             if let _ = $0 {
                 response.send(false)
                 return

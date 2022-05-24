@@ -13,6 +13,12 @@ final class HomeViewModel: ObservableObject {
     var userImageUrl: URL?
     
     @Published
+    var userRole: Role = .student
+    
+    @Published
+    var currentUser: AcademyUser = .init(id: "", name: "", email: "", imageName: "", status: .offline, birthday: nil, role: nil, helpTags: nil)
+    
+    @Published
     private(set) var todayEvents: MonthModel = .init(name: "Home", days: [])
     
     private var cancellabels: Set<AnyCancellable> = []
@@ -55,6 +61,15 @@ final class HomeViewModel: ObservableObject {
             .map { $0.imageName }
             .map { URL(string: $0) }
             .assign(to: &$userImageUrl)
+        
+        userListenerService
+            .listener
+            .assign(to: &$currentUser)
+        
+        userListenerService
+            .listener
+            .map { $0.role ?? .student }
+            .assign(to: &$userRole)
         
         eventListenerService
             .todayEvents

@@ -1,13 +1,7 @@
- //
-//  ProfileView.swift
-//  AcademyiOS
-//
-//  Created by HANNA P C FERREIRA on 17/05/22.
-//
-
 import SwiftUI
 import AcademyUI
 import Combine
+import Academy
 
 struct EditProfileView: View {
     
@@ -23,6 +17,9 @@ struct EditProfileView: View {
     @FocusState
     private var isEditing: Bool
     
+    @Binding
+    var userRole: Role
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -33,6 +30,17 @@ struct EditProfileView: View {
                     abilitiesTags
                     rolesDropdown
                     birthdayPicker
+                    
+                    Button(action: {
+                        viewModel.logout()
+                    }) {
+                        VStack {
+                            Text("Fazer logout")
+                        }
+                        .foregroundColor(Color.adaRed)
+                        .padding()
+                    }
+                    
                     Spacer()
                 }
             }
@@ -72,7 +80,7 @@ struct EditProfileView: View {
         Button {
             openCameraRoll = true
         } label: {
-            ProfilePictureView(imageSelected: $viewModel.imageSelected, imageUrl: $viewModel.imageUrl, size: 90)
+            ProfilePictureView(imageSelected: $viewModel.imageSelected, imageUrl: $viewModel.imageUrl, size: 90, userRole: .constant(userRole))
         }
     }
     

@@ -13,6 +13,8 @@ struct AnnouncementFormView: View {
     @FocusState
     private var isEditingContent: Bool
     
+    var onDismiss: () -> ()
+    
     var body: some View {
         VStack {
             titleView
@@ -27,7 +29,7 @@ struct AnnouncementFormView: View {
                 viewModel.handleSend()
                 presentationMode.wrappedValue.dismiss()
             } label: {
-                Text("Enviar")
+                Text(viewModel.buttonText)
                     .bold()
                     .frame(maxWidth: .infinity, maxHeight: 60)
                     .background(Color.adaLightBlue)
@@ -47,12 +49,15 @@ struct AnnouncementFormView: View {
                 isEditingContent = false
             }
         }
+        .onDisappear {
+            onDismiss()
+        }
     }
     
     @ViewBuilder
     private var titleView: some View {
         HStack {
-            Text("Novo aviso")
+            Text(viewModel.title)
                 .font(.largeTitle)
                 .bold()
             Spacer()

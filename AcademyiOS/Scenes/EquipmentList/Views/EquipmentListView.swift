@@ -6,8 +6,8 @@ struct EquipmentListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: EquipmentListViewModel
     
-    init() {
-        self.viewModel = EquipmentListViewModel(listenerService: .init(), updatingService: .init(), waitlistService: .init())
+    init(currentUser: AcademyUser) {
+        self.viewModel = EquipmentListViewModel(currentUser: currentUser, listenerService: .init(), updatingService: .init(), waitlistService: .init())
     }
     
     var body: some View {

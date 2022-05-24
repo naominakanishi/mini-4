@@ -4,28 +4,29 @@ import Combine
 
 final class AnnouncementListViewModel: ObservableObject {
     
-    struct AnnouncementModel: Identifiable {
-        let id = UUID()
-        let isOwner: Bool
-        let announcement: Announcement
-    }
+    @Published private (set) var announcementList: [Announcement] = []
     
-    @Published private (set) var announcementList: [AnnouncementModel] = []
+    @Published
+    var announcementOnEdit: Announcement? = nil
+    
+    @Published
+    var user: AcademyUser = .init(id: "", name: "", email: "", imageName: "", status: nil, birthday: nil, role: nil, helpTags: nil)
     
     private let listener: AnnouncementListenerService
     private let userListener = UserListenerService()
     
     init(listener: AnnouncementListenerService) {
         self.listener = listener
-        Publishers.CombineLatest(userListener.listener, listener.listen())
-            .map { user, announcements in
-                announcements
-//                    .prefix(4)
-                    .map { announcement in
-                        AnnouncementModel(isOwner: user.id == announcement.fromUser.id,
-                                          announcement: announcement)
-                    }
-            }
+        self.listen()
+    }
+    
+    func listen() {
+        userListener
+            .listener
+            .assign(to: &$user)
+        
+        listener
+            .listen()
             .assign(to: &$announcementList)
     }
 }

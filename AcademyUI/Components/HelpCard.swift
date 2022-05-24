@@ -63,7 +63,7 @@ public struct HelpCard: View {
                         .font(.system(size: 16, weight: .regular, design: .rounded))
                         .foregroundColor(Color.white)
                 case .beingHelped:
-                    ProfilePictureView(imageUrl: .constant(.init(string: helpModel.assignee!.imageName)), size: 50)
+                    ProfilePictureView(imageUrl: .constant(.init(string: helpModel.assignee!.imageName)), size: 50, userRole: .constant(helpModel.assignee!.role!))
                 case .done:
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
@@ -79,7 +79,7 @@ public struct HelpCard: View {
                         .background(typeColor)
                     
                     HStack {
-                        ProfilePictureView(imageUrl: .constant(.init(string: helpModel.user.imageName)), size: 60)
+                        ProfilePictureView(imageUrl: .constant(.init(string: helpModel.user.imageName)), size: 60, userRole: .constant(helpModel.user.role!))
                             .padding(.trailing)
                         
                         Text(helpModel.user.name)

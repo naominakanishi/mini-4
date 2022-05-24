@@ -34,16 +34,14 @@ struct HelpFormView: View {
                     }
                     .padding(.vertical, DesignSystem.Spacing.cardInternalPadding)
                     
-                    
                     Spacer()
-                    
                 }
             }
             VStack {
                 Spacer()
                 Button {
-                    presentationMode.wrappedValue.dismiss()
                     viewModel.tapButtonHandle()
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Enviar")
                         .bold()

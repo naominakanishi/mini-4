@@ -3,13 +3,17 @@ import SwiftUI
 struct LoginView: View {
     @StateObject var viewModel = LoginViewModel()
     
+    var backgroundColor = Color(red: 23/255, green: 3/255, blue: 28/255)
+    
     var body: some View {
         VStack {
             Spacer()
-            Text("Welcome, Academer!")
-                .foregroundColor(.white)
-                .font(.system(size: 30, weight: .bold, design: .default))
-                .padding(.bottom)
+            Image("academyPocketLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: 250)
+            
+            Spacer()
             
             SignInWithAppleView(loginViewModel: viewModel)
                 .frame(maxHeight: 50)
@@ -19,7 +23,7 @@ struct LoginView: View {
         }
         .padding()
         .frame(width: UIScreen.main.bounds.width)
-        .background(Color.adaBackground)
+        .background(backgroundColor)
         .ignoresSafeArea()
     }
 }

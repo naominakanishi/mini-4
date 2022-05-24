@@ -24,7 +24,7 @@ public class AnnouncementSenderService {
         
         do {
             let data = try announcement.toFirebase()
-            return repository.create(announcementData: data)
+            return repository.create(announcementData: data, id: announcement.id)
         } catch let error {
             return Fail(outputType: Bool.self, failure: error)
                 .eraseToAnyPublisher()
