@@ -134,4 +134,10 @@ final class ProfileViewModel: ObservableObject {
                     )
             }
     }
+    
+    func logout() {
+        AuthService.shared.signOut { result in
+            print("Result:", result)
+        }
+    }
 }

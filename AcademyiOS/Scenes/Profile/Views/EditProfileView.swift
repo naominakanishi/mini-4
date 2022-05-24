@@ -30,6 +30,17 @@ struct EditProfileView: View {
                     abilitiesTags
                     rolesDropdown
                     birthdayPicker
+                    
+                    Button(action: {
+                        viewModel.logout()
+                    }) {
+                        VStack {
+                            Text("Fazer logout")
+                        }
+                        .foregroundColor(Color.adaRed)
+                        .padding()
+                    }
+                    
                     Spacer()
                 }
             }
