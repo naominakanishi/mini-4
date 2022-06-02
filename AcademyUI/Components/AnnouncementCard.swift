@@ -8,12 +8,16 @@ public struct AnnouncementCard: View {
     let user: AcademyUser
     let dateString: String
     let type: String
+    let titleFont: Font
+    let contentFont: Font
     
-    public init(text: String, user: AcademyUser, dateString: String, type: String) {
+    public init(text: String, user: AcademyUser, dateString: String, type: String, titleFont: Font, contentFont: Font) {
         self.text = text
         self.user = user
         self.dateString = dateString
         self.type = type
+        self.titleFont = titleFont
+        self.contentFont = contentFont
     }
     
     public var body: some View {
@@ -34,6 +38,7 @@ public struct AnnouncementCard: View {
         VStack(alignment: .leading) {
             announcementTitle
             Text(text)
+                .font(contentFont)
         }
     }
     
@@ -41,13 +46,13 @@ public struct AnnouncementCard: View {
         HStack {
             Text("@" + type)
                 .bold()
-                .font(.system(size: 16, weight: .bold, design: .default))
+                .font(titleFont)
             Text("@" + user.name)
                 .bold()
-                .font(.system(size: 16, weight: .bold, design: .default))
+                .font(titleFont)
             Spacer()
             Text(dateString)
-                .font(.system(size: 14, weight: .regular, design: .default))
+                .font(contentFont)
         }
     }
 }

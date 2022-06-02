@@ -75,7 +75,11 @@ struct HomeView: View {
                                 text: announcement.headline ?? announcement.text.prefix(100) + "...",
                                 user: announcement.fromUser,
                                 dateString: announcement.createdDate.getFormattedDate(),
-                                type: (announcement.type ?? .announcement).rawValue)
+                                type: (announcement.type ?? .announcement).rawValue,
+                                titleFont: .cardTitle,
+                                contentFont: .cardText
+                                )
+                            
                             
                             Spacer()
                                 .frame(height: 40)

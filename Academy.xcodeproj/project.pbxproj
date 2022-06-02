@@ -19,7 +19,6 @@
 		03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C515283573B8000336C5 /* ViewExtension.swift */; };
 		03D2C518283573F4000336C5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C517283573F4000336C5 /* BottomSheet.swift */; };
 		03D2C51A28357433000336C5 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2C51928357433000336C5 /* KeyboardObservable.swift */; };
-		1112B091283986C100127718 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		1112B0B32839AE1600127718 /* DayEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B22839AE1600127718 /* DayEventsView.swift */; };
 		1112B0B52839DFD100127718 /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B42839DFD100127718 /* NewEventView.swift */; };
 		1112B0B72839DFDB00127718 /* NewEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1112B0B62839DFDB00127718 /* NewEventViewModel.swift */; };
@@ -33,8 +32,8 @@
 		119255B8282B4EA9008410F3 /* HelpListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255B7282B4EA9008410F3 /* HelpListView.swift */; };
 		119255BA282B4EAA008410F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119255B9282B4EAA008410F3 /* Assets.xcassets */; };
 		119255BD282B4EAA008410F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119255BC282B4EAA008410F3 /* Preview Assets.xcassets */; };
-		119255C2282B4EB3008410F3 /* Academy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; };
-		119255C3282B4EB3008410F3 /* Academy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		119255C2282B4EB3008410F3 /* Academy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; platformFilter = ios; };
+		119255C3282B4EB3008410F3 /* Academy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255A3282B4E77008410F3 /* Academy.framework */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		119255CE282B4F00008410F3 /* AcademyTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255CD282B4F00008410F3 /* AcademyTVApp.swift */; };
 		119255D0282B4F00008410F3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119255CF282B4F00008410F3 /* ContentView.swift */; };
 		119255D2282B4F01008410F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119255D1282B4F01008410F3 /* Assets.xcassets */; };
@@ -46,6 +45,9 @@
 		119255EA282B51C9008410F3 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		119255EE282B51E5008410F3 /* AcademyUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; };
 		119255EF282B51E5008410F3 /* AcademyUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119255E3282B51C9008410F3 /* AcademyUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11991AF1284690E80027DA50 /* TVMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11991AF0284690E80027DA50 /* TVMainScreenView.swift */; };
+		11991AF3284690F20027DA50 /* TVMainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11991AF2284690F20027DA50 /* TVMainScreenViewModel.swift */; };
+		11991AF42846995F0027DA50 /* AnnouncementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */; };
 		11BB181A2834598D0050B977 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB18192834598D0050B977 /* Role.swift */; };
 		11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB181B28345C170050B977 /* PeopleViewModel.swift */; };
 		11BB182228345EB10050B977 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BB182128345EB10050B977 /* PersonView.swift */; };
@@ -264,6 +266,8 @@
 		119255D4282B4F01008410F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		119255E3282B51C9008410F3 /* AcademyUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AcademyUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119255E5282B51C9008410F3 /* AcademyUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcademyUI.h; sourceTree = "<group>"; };
+		11991AF0284690E80027DA50 /* TVMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMainScreenView.swift; sourceTree = "<group>"; };
+		11991AF2284690F20027DA50 /* TVMainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMainScreenViewModel.swift; sourceTree = "<group>"; };
 		11BB18192834598D0050B977 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		11BB181B28345C170050B977 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewModel.swift; path = "AcademyiOS/Scenes/AcademyPeople/View Models/PeopleViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		11BB182128345EB10050B977 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonView.swift; path = AcademyiOS/Scenes/AcademyPeople/Views/PersonView.swift; sourceTree = SOURCE_ROOT; };
@@ -524,6 +528,7 @@
 		119255CC282B4F00008410F3 /* AcademyTV */ = {
 			isa = PBXGroup;
 			children = (
+				11991AED284690900027DA50 /* Main Screen */,
 				5BE70E21282C3D2500E36372 /* Views */,
 				5BE70E1E282C3CFC00E36372 /* View Models */,
 				119255CD282B4F00008410F3 /* AcademyTVApp.swift */,
@@ -552,6 +557,31 @@
 				D7E0E0A42838414400C14FE2 /* DesignSystem.swift */,
 			);
 			path = AcademyUI;
+			sourceTree = "<group>";
+		};
+		11991AED284690900027DA50 /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				11991AEF284690AC0027DA50 /* View Models */,
+				11991AEE284690A40027DA50 /* Views */,
+			);
+			path = "Main Screen";
+			sourceTree = "<group>";
+		};
+		11991AEE284690A40027DA50 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11991AF0284690E80027DA50 /* TVMainScreenView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		11991AEF284690AC0027DA50 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				11991AF2284690F20027DA50 /* TVMainScreenViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		11F575DD2837463300123D19 /* LearningJourney */ = {
@@ -779,7 +809,6 @@
 		5BC2EAE72832F6240071821E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 				5BC2EAD72832ECF30071821E /* AnnouncementListView.swift */,
 			);
 			path = Views;
@@ -985,6 +1014,7 @@
 		5BE70E24282C3F5A00E36372 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5BE70E5F282C669B00E36372 /* AnnouncementCard.swift */,
 				5BE70E25282C3F6B00E36372 /* HelpCard.swift */,
 				5BE70E58282C596200E36372 /* HelpTypeFilterButton.swift */,
 				5BC2EACD2831EA900071821E /* EquipmentCard.swift */,
@@ -1368,7 +1398,6 @@
 				5BC2EACC2831E9B60071821E /* EquipmentListViewModel.swift in Sources */,
 				11BB181C28345C170050B977 /* PeopleViewModel.swift in Sources */,
 				11F575C02837007E00123D19 /* FeatureCard.swift in Sources */,
-				1112B091283986C100127718 /* AnnouncementCard.swift in Sources */,
 				1112B0B52839DFD100127718 /* NewEventView.swift in Sources */,
 				119255B6282B4EA9008410F3 /* AcademyiOSApp.swift in Sources */,
 				5BE70E66282D8A1800E36372 /* HomeView.swift in Sources */,
@@ -1392,6 +1421,8 @@
 				119255D0282B4F00008410F3 /* ContentView.swift in Sources */,
 				119255CE282B4F00008410F3 /* AcademyTVApp.swift in Sources */,
 				5BE70E20282C3D0A00E36372 /* ContentViewModel.swift in Sources */,
+				11991AF1284690E80027DA50 /* TVMainScreenView.swift in Sources */,
+				11991AF3284690F20027DA50 /* TVMainScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1444,7 @@
 				03CD66112836D7C10062F8F9 /* GeneralButton.swift in Sources */,
 				03D2C516283573B8000336C5 /* ViewExtension.swift in Sources */,
 				035FA7D528347B2D00439AFD /* CustomTextField.swift in Sources */,
+				11991AF42846995F0027DA50 /* AnnouncementCard.swift in Sources */,
 				5BE70E64282D88A000E36372 /* Colors.swift in Sources */,
 				1164A2A02838BDC600F2F4AC /* DropdownPicker.swift in Sources */,
 				D7E0E0A52838414400C14FE2 /* DesignSystem.swift in Sources */,
@@ -1438,6 +1470,7 @@
 /* Begin PBXTargetDependency section */
 		119255C5282B4EB3008410F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 119255A2282B4E77008410F3 /* Academy */;
 			targetProxy = 119255C4282B4EB3008410F3 /* PBXContainerItemProxy */;
 		};
@@ -1619,7 +1652,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1652,7 +1686,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3";
@@ -1684,6 +1719,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.iOS;
 				PRODUCT_NAME = "Academy Pocket";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1715,6 +1751,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.nimidesign.Academy.iOS;
 				PRODUCT_NAME = "Academy Pocket";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

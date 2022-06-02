@@ -46,7 +46,9 @@ struct AnnouncementListView: View {
                                 text: announcement.headline ?? "",
                                 user: announcement.fromUser,
                                 dateString: announcement.createdDate.getFormattedDate(),
-                                type: (announcement.type ?? .announcement).rawValue
+                                type: (announcement.type ?? .announcement).rawValue,
+                                titleFont: .cardTitle,
+                                contentFont: .cardText
                             )
                             .onTapGesture {
                                 if (announcement.fromUser.id == viewModel.user.id) {
