@@ -1,17 +1,18 @@
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 import Combine
-//import CodableFirebase
-import FirebaseStorage
 
 final class UserRepository: ObservableObject {
     
     static let shared = UserRepository()
     
     private let path = "user"
-    private let store = Firestore.firestore()
-    private let storage = Storage.storage()
+    private var store: FirestoreRef {
+        FirebaseProxy.shared.firestore()
+    }
+    
+    private var storage: StorageRef {
+        StorageProxy.shared.storage()
+    }
     
     let currentUserPublisher = CurrentValueSubject<Data, Never>(.init())
     let allUsersPublisher = CurrentValueSubject<Data, Error>(.init())
@@ -21,14 +22,13 @@ final class UserRepository: ObservableObject {
     }
     
     func initializeUser(withId id: String) {
-        store.collection(path).document(id).addSnapshotListener { (document, error) in
+        store.collection(path: path).document(id: id).addSnapshotListener(callback: { (document, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             
-            guard let document = document,
-                  let dictionary = document.data(),
+            guard let dictionary = document,
                   let data = try? JSONSerialization.data(withJSONObject: dictionary, options: [])
             else {
                 print("User doesn't exist")
@@ -36,33 +36,31 @@ final class UserRepository: ObservableObject {
             }
             print("SENDING UP")
             self.currentUserPublisher.send(data)
-        }
+        })
     }
     
     private func startListeningForUsers(){
-        store.collection(path).addSnapshotListener { snapshot, error in
+        store.collection(path: path).addSnapshotListener(callback: { snapshot, error in
             if let error = error {
                 self.allUsersPublisher.send(completion: .failure(error))
                 return
             }
-            guard let documents = snapshot?.documents else { return }
-            let dictionaries = documents.compactMap { snapshot in
-                snapshot.data()
-            }
-            guard let data = try?JSONSerialization.data(withJSONObject: dictionaries, options: []) else { return }
+            guard let dictionaries = snapshot?.compactMap { $0 },
+                  let data = try? JSONSerialization.data(withJSONObject: dictionaries, options: [])
+            else { return }
             self.allUsersPublisher.send(data)
-        }
+        })
     }
     
     func checkIfUserExists(with id: String) -> Future<[String: Any]?, Error> {
         Future<[String: Any]?, Error> { promise in
-            self.store.collection(self.path).document(id).getDocument(source: .server, completion: { document, error in
+            self.store.collection(path: self.path).document(id: id).getDocument(source: .server, completion: { document, error in
                 if let error = error {
                     promise(.failure(error))
                     return
                 }
-                
-                guard let data = document?.data() else {
+
+                guard let data = document else {
                     print("User doesn't exist")
                     promise(.success(nil))
                     return
@@ -74,7 +72,7 @@ final class UserRepository: ObservableObject {
     
     func createUser(userData data: [String: Any], with id: String) -> Future<Void, Error> {
         Future<Void, Error> { promise in
-            self.store.collection(self.path).document(id).setData(data) {
+            self.store.collection(path: self.path).document(id: id).setData(data: data) {
                 if let error = $0 {
                     promise(.failure(error))
                     return
@@ -88,7 +86,7 @@ final class UserRepository: ObservableObject {
         let response = PassthroughSubject<AcademyUser, Error>()
         do {
             let dictionary = try user.toFirebase()
-            store.collection(path).document(user.id).setData(dictionary) {
+            store.collection(path: path).document(id: user.id).setData(data: dictionary) {
                 if let error = $0 {
                     response.send(completion: .failure(error))
                     return
@@ -105,25 +103,22 @@ final class UserRepository: ObservableObject {
     
     func updateImage(using data: Data, usingFileName fileName: String) -> AnyPublisher<URL, Error> {
         let publisher = PassthroughSubject<URL, Error>()
-        let ref = storage.reference().child("user_images").child(fileName + ".png")
+        let ref = storage.child(path: "user_images").child(path: fileName + ".png")
 
-        ref.putData(data, metadata: nil) { _, error in
+        ref.putData(data) { _, error in
             if let error = error {
                 publisher.send(completion: .failure(error))
                 return
             }
-            
-            ref.downloadURL { url, error in
-                if let error = error {
-                    publisher.send(completion: .failure(error))
-                    return
-                }
-                
-                if let url = url {
+
+            ref.downloadURL { result in
+                switch result {
+                case let .success(url):
                     publisher.send(url)
-                    return
+                case let .failure(error):
+                    publisher.send(completion: .failure(error))
+                    
                 }
-                publisher.send(completion: .finished)
             }
         }
         return publisher

@@ -1,6 +1,4 @@
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 import Combine
 
 final class EquipmentRepository: ObservableObject {
@@ -8,7 +6,9 @@ final class EquipmentRepository: ObservableObject {
     static let shared = EquipmentRepository()
     
     private let path = "equipment"
-    private let store = Firestore.firestore()
+    private var store: FirestoreRef {
+        FirebaseProxy.shared.firestore()
+    }
     
     let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
@@ -18,7 +18,7 @@ final class EquipmentRepository: ObservableObject {
     
     func create(equipmentData data: [String: Any]) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
-        store.collection(path).addDocument(data: data) {
+        store.collection(path: path).addDocument(using: data) {
             if let _ = $0 {
                 response.send(false)
                 return
@@ -30,28 +30,27 @@ final class EquipmentRepository: ObservableObject {
     }
     
     private func read() {
-        store.collection(path).addSnapshotListener { (snapshot, error) in
+        store.collection(path: path).addSnapshotListener (callback: { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
         
-            guard let snapshot = snapshot else { fatalError() }
+            guard let dictionaries = snapshot else { fatalError() }
             
-            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
             do {
                 let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
                 self.readingPublisher.send(data)
             } catch {
                 print("DEU RUM!", error)
             }
-        }
+        })
     }
     
     func update(_ equipment: Equipment) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
-            try store.collection(path).document(equipment.id)
-                .setData(from: equipment) {
+            try store.collection(path: path).document(id: equipment.id)
+                .setData(using: equipment) {
                 if let error = $0 {
                     response.send(false)
                     return

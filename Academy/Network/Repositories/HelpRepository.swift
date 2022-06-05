@@ -1,6 +1,4 @@
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 import Combine
 
 final class HelpRepository: ObservableObject {
@@ -8,7 +6,9 @@ final class HelpRepository: ObservableObject {
     static let shared = HelpRepository()
     
     private let path = "help"
-    private let store = Firestore.firestore()
+    private var store: FirestoreRef {
+        FirebaseProxy.shared.firestore()
+    }
     
     let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
@@ -18,7 +18,7 @@ final class HelpRepository: ObservableObject {
     
     func create(helpData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
-        store.collection(path).document(id).setData(data) {
+        store.collection(path: path).document(id: id).setData(data: data) {
             if let _ = $0 {
                 response.send(false)
                 return
@@ -32,8 +32,8 @@ final class HelpRepository: ObservableObject {
     func update(_ help: Help) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
-            try store.collection(path).document(help.id)
-                .setData(from: help) {
+            try store.collection(path: path).document(id: help.id)
+                .setData(using: help) {
                 if let error = $0 {
                     response.send(false)
                     return
@@ -51,14 +51,13 @@ final class HelpRepository: ObservableObject {
     }
     
     private func read() {
-        store.collection(path).addSnapshotListener { (snapshot, error) in
+        store.collection(path: path).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("FAILED!", error.localizedDescription)
             }
 
-            guard let snapshot = snapshot else { fatalError() }
+            guard let dictionaries = snapshot else { fatalError() }
             
-            let dictionaries: [[String : Any]] = snapshot.documents.map { $0.data() }
             do {
                 let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
                 self.readingPublisher.send(data)

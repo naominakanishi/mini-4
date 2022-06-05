@@ -1,6 +1,4 @@
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 import Combine
 
 final class CalendarEventsRepository: ObservableObject {
@@ -8,7 +6,9 @@ final class CalendarEventsRepository: ObservableObject {
     static let shared = CalendarEventsRepository()
     
     private let path = "events"
-    private let store = Firestore.firestore()
+    private var store: FirestoreRef {
+        FirebaseProxy.shared.firestore()
+    }
     
     let readingPublisher = CurrentValueSubject<Data, Never>(.emptyJson)
     
@@ -18,7 +18,7 @@ final class CalendarEventsRepository: ObservableObject {
     
     func create(eventData data: [String: Any], id: String) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
-        store.collection(path).document(id).setData(data) {
+        store.collection(path: path).document(id: id).setData(data: data) {
             if let _ = $0 {
                 response.send(false)
                 return
@@ -31,12 +31,12 @@ final class CalendarEventsRepository: ObservableObject {
     
     func createBatch(eventData data: [[String: Any]]) -> Future<Void, Error> {
         .init { [store, path] promise in
-            let batch = store.batch()
-            let collectionReferece = store.collection(path)
+            let batch = store.createBatch()
+            let collectionReferece = store.collection(path: path)
             
             data.forEach {
-                let ref = collectionReferece.document($0["id"] as! String)
-                batch.setData($0, forDocument: ref)
+                let ref = collectionReferece.document(id: $0["id"] as! String)
+                batch.setData($0, documentRef: ref)
             }
             
             batch.commit { error in
@@ -49,30 +49,29 @@ final class CalendarEventsRepository: ObservableObject {
     }
     
     private func read() {
-        store.collection(path).addSnapshotListener { (snapshot, error) in
+        store.collection(path: path).addSnapshotListener(callback: { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
         
-            guard let snapshot = snapshot else {
+            guard let dictionaries = snapshot else {
                 fatalError()
             }
             
-            let dictionaries: [[String: Any]] = snapshot.documents.map { $0.data() }
             do {
                 let data = try JSONSerialization.data(withJSONObject: dictionaries, options: [])
                 self.readingPublisher.send(data)
             } catch {
                 print("DEU RUM!", error)
             }
-        }
+        })
     }
     
     func update(_ event: CalendarEvent) -> AnyPublisher<Bool, Error> {
         let response = PassthroughSubject<Bool, Error>()
         do {
-            try store.collection(path).document(event.id)
-                .setData(from: event) {
+            try store.collection(path: path).document(id: event.id)
+                .setData(using: event) {
                 if let error = $0 {
                     response.send(false)
                     return

@@ -1,7 +1,7 @@
 import AuthenticationServices
 import CryptoKit
-import FirebaseAuth
 import Combine
+
 
 public final class AuthService {
     
@@ -17,6 +17,10 @@ public final class AuthService {
     
     public static let shared = AuthService()
     
+    private var auth: Auth {
+        AuthProxy.shared.auth()
+    }
+    
     private init(userRepository: UserRepository) {
         initialize()
     }
@@ -26,8 +30,12 @@ public final class AuthService {
     }
     
     private func initialize() {
-        self.authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener({ change, user in
-            guard let user = Auth.auth().currentUser else  {
+        self.authStateDidChangeListenerHandle = auth.addStateDidChangeListener({ [weak self] change, user in
+            guard let self = self
+            else { return }
+            
+            guard let user = self.auth.activeUser
+            else {
                 self.signOut { error in
                     if error != nil {
                         print("Logout")
@@ -98,9 +106,9 @@ public final class AuthService {
             return
         }
         
-        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+        let credential = AuthProxy.shared.authProvider()("apple.com", idTokenString, nonce)
         
-        self.auth(using: credential) { result in
+        self.authenticate(using: credential) { result in
             switch result {
             case .failure(let error):
                 let alertVC = UIAlertController(title: "Ops!", message: error.localizedDescription, preferredStyle: .alert)
@@ -118,21 +126,20 @@ public final class AuthService {
         }
     }
     
-    private func auth(using credential: AuthCredential, completionHandler: @escaping (Result<User, Error>) -> Void) {
-        Auth.auth().signIn(with: credential, completion: { (_, err) in
+    private func authenticate(using credential: AuthCredential, completionHandler: @escaping (Result<User, Error>) -> Void) {
+        auth.signIn(with: credential, completion: { [weak self] (_, err) in
             if let error = err {
                 completionHandler(.failure(error))
                 return
             }
             
-            if let authUser = Auth.auth().currentUser {
+            if let authUser = self?.auth.activeUser {
                 completionHandler(.success(authUser))
             }
         })
     }
     
     public func signOut(completion: @escaping (Result<Bool, Error>) -> Void) {
-        let auth = Auth.auth()
         do {
             try auth.signOut()
             completion(.success(true))

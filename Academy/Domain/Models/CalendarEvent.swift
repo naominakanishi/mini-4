@@ -1,6 +1,4 @@
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 import Combine
 
 public struct CalendarEvent: Codable, Identifiable {
