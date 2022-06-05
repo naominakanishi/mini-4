@@ -1,6 +1,5 @@
 import SwiftUI
 import Academy
-import AcademyUI
 
 public struct HelpCard: View {
     
@@ -150,10 +149,11 @@ public struct HelpCard: View {
         )
         .padding(.horizontal)
         .padding(.bottom, 4)
-        .onTapGesture {
+        .onLongPressGesture(minimumDuration: 0.01, pressing: { _ in }) {
             withAnimation {
                 showDetails.toggle()
             }
         }
+        
     }
 }

@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(tvOS, unavailable)
 public struct DropdownPicker: View {
     public init(options: [String],
                 title: String,

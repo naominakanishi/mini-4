@@ -6,18 +6,6 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 
-extension StorageReference: StorageRef {
-    public func child(path: String) -> StorageRef {
-        child(path)
-    }
-    
-    public func putData(_ data: Data, completion: @escaping (Any?, Error?) -> Void) {
-        self.putData(data, metadata: nil) {
-            completion($0, $1)
-        }
-    }
-}
-
 @main
 struct AcademyiOSApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate

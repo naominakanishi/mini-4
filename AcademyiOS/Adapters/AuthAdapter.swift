@@ -6,7 +6,7 @@ extension FirebaseAuth.Auth: Academy.Auth {
         self.currentUser
     }
     
-    public func addStateDidChangeListener(_ listener: @escaping (Academy.Auth, Academy.User?) -> Void) {
+    public func addStateDidChangeListener(_ listener: @escaping (Academy.Auth, Academy.User?) -> Void) -> Any? {
         self.addStateDidChangeListener { (auth: FirebaseAuth.Auth, user: FirebaseAuth.User?) in
             listener(auth, user)
         }

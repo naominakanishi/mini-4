@@ -1,7 +1,3 @@
-public enum AuthChange {
-    
-}
-
 public protocol AuthCredential {}
 
 public protocol User {
@@ -12,14 +8,10 @@ public protocol User {
 
 public protocol Auth {
     var activeUser: User? { get }
-    func addStateDidChangeListener(_ listener: @escaping (Auth, User?) -> Void)
+    func addStateDidChangeListener(_ listener: @escaping (Auth, User?) -> Void) -> Any?
     func signIn(with credential: AuthCredential, completion: @escaping (Any?, Error?) -> Void)
     func signOut() throws
 }
-
-
-
-typealias AuthStateDidChangeListenerHandle = Void
 
 public final class AuthProxy {
     private var authInstance: Auth?

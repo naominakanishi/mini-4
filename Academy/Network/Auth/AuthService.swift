@@ -1,7 +1,7 @@
 import AuthenticationServices
 import CryptoKit
 import Combine
-
+// https://github.com/google/GoogleSignIn-iOS.git
 
 public final class AuthService {
     
@@ -13,7 +13,7 @@ public final class AuthService {
     private var cancellabels: [AnyCancellable] = []
     
     public var authStatePublisher: CurrentValueSubject<AuthState, Never> = .init(.undefined)
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+    private var authStateDidChangeListenerHandle: Any?
     
     public static let shared = AuthService()
     

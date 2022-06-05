@@ -4,9 +4,11 @@ import Academy
 final class ContentViewModel: ObservableObject {
     @Published private(set) var announcementList: [Announcement] = []
     
-    let announcementFilter = AnnouncementFilter()
+    let announcementFilter = AnnouncementListenerService()
     
     func onAppear() {
-        announcementList = announcementFilter.filterActiveAnnouncements()
+        announcementFilter
+            .activeAnnouncements
+            .assign(to: &$announcementList)
     }
 }

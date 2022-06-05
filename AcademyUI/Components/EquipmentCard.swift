@@ -1,6 +1,7 @@
 import SwiftUI
 import Academy
 
+@available(tvOS, unavailable)
 public struct EquipmentCard: View {
     var isBorrowedByUser: Bool
     var equipment: Equipment

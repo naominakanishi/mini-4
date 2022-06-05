@@ -3,12 +3,16 @@ import FirebaseCore
 import CryptoKit
 import Academy
 import FirebaseFirestore
+import FirebaseStorage
 
 @main
 struct AcademyiOSApp: App {
     @UIApplicationDelegateAdaptor private var delegate: AppDelegate
     init() {
         FirebaseApp.configure()
+        
+        FirebaseProxy.configure(using: Firestore.firestore())
+        StorageProxy.configure(using: Storage.storage().reference())
         
         let settings = Firestore.firestore().settings
         settings.isPersistenceEnabled = false

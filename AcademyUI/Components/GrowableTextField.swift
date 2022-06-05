@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(tvOS, unavailable)
 public struct GrowableTextField: View {
     public init(hint: String, text: Binding<String>, isEditingDescription: FocusState<Bool>) {
         self.hint = hint

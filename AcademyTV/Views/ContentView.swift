@@ -17,7 +17,14 @@ struct ContentView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
                             ForEach(viewModel.announcementList, id: \.self) { announcement in
-                                AnnouncementCard(announcement: announcement)
+                                AnnouncementCard(
+                                    text: announcement.text,
+                                    user: announcement.fromUser,
+                                    dateString: announcement.createdDate.formatted(),
+                                    type: announcement.type?.rawValue ?? "Aviso",
+                                    titleFont: .cardTitle,
+                                    contentFont: .cardText
+                                )
                             }
                         }
                     }
