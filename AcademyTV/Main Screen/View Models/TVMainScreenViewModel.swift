@@ -53,7 +53,7 @@ final class TVMainScreenViewModel: ObservableObject {
                 !$0.isEmpty
             }
             .map {
-                MonthModel(name: nil, from: $0)
+                MonthModel(name: "Eventos do dia", from: $0)
             }
             .assign(to: &$todayEvents)
     }
