@@ -26,6 +26,13 @@ public extension Date {
         return dayInWeek
     }
     
+    var dayOfTheMonth: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd"
+        let dayInWeek = dateFormatter.string(from: self)
+        return dayInWeek
+    }
+    
     /// Returns date in dd/mm/yyyy format
     var dayMonthYear: String {
         let formatter = DateFormatter()
@@ -42,5 +49,11 @@ public extension Date {
         formatter.timeZone = NSTimeZone(name: "UTC-3") as TimeZone?
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: self)
+    }
+    
+    var month: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter.string(from: self)
     }
 }

@@ -22,6 +22,7 @@ struct AcademyiOSApp: App {
     var body: some Scene {
         WindowGroup {
             TVMainScreenView()
+                .navigationViewStyle(.stack)
         }
     }
 }

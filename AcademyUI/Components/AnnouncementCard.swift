@@ -22,7 +22,11 @@ public struct AnnouncementCard: View {
     
     public var body: some View {
         HStack(alignment: .top) {
-            ProfilePictureView(imageUrl: .constant(URL(string: user.imageName)), size: 44, userRole: .constant(user.role!))
+            ProfilePictureView(
+                imageUrl: .constant(URL(string: user.imageName)),
+                size: imageSize,
+                userRole: .constant(user.role!)
+            )
             announcementBody
         }
         .foregroundColor(Color.white)
@@ -54,5 +58,13 @@ public struct AnnouncementCard: View {
             Text(dateString)
                 .font(contentFont)
         }
+    }
+    
+    private var imageSize: CGFloat {
+        #if os(tvOS)
+            70
+        #else
+            44
+        #endif
     }
 }

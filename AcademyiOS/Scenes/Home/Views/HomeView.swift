@@ -48,6 +48,7 @@ struct HomeView: View {
             .navigationBarBackButtonHidden(true)
             .navigationTitle("")
         }
+        .navigationViewStyle(.stack)
     }
     
     

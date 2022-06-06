@@ -34,6 +34,11 @@ public extension Color {
 
 public extension Color {
     func textFieldAdaGradient(repeatCount count: Int = 4) -> some View {
-        LinearGradient(colors: [self.opacity(0.3), self.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing).opacity(0.6)
+        LinearGradient(
+            colors: [self.opacity(0.3), self.opacity(0.1)],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+        .opacity(0.6)
     }
 }
