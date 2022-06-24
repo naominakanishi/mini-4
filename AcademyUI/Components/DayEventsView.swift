@@ -79,14 +79,14 @@ public struct EventCard: View {
     public var body: some View {
         HStack {
             Text(event.emoji)
-                .font(.system(size: 24, weight: .regular, design: .default))
+                .font(.academy.eventEmoji)
                 .padding()
             VStack(alignment: .leading, spacing: 4) {
                 Text(event.title)
-                    .font(.system(size: 14, weight: .bold, design: .default))
+                    .font(.academy.eventName)
                 if let time = event.time {
                     Text(time)
-                        .font(.system(size: 13, weight: .regular, design: .default))
+                        .font(.academy.eventTime)
                 }
             }
             Spacer()

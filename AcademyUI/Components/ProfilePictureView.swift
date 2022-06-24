@@ -1,5 +1,6 @@
 import SwiftUI
 import Academy
+#if canImport(UIKit)
 
 public struct ProfilePictureView: View {
     public init(imageSelected: Binding<UIImage?> = .constant(nil), imageUrl: Binding<URL?>, size: CGFloat, userRole: Binding<Role?>) {
@@ -120,3 +121,26 @@ public struct ProfilePictureView: View {
         
     }
 }
+
+#else
+struct ProfilePictureView: View {
+    
+    @Binding
+    var imageSelected: Image?
+    
+    @Binding
+    var imageUrl: URL?
+    
+    @Binding
+    var userRole: Role?
+    
+    public init(imageSelected: Binding<Image?> = .constant(nil), imageUrl: Binding<URL?>, size: CGFloat, userRole: Binding<Role?>) {
+        self._imageSelected = imageSelected
+        self._imageUrl = imageUrl
+        self._userRole = userRole
+    }
+    
+    var body: some View { EmptyView() }
+}
+
+#endif

@@ -60,7 +60,7 @@ class PeopleViewModel: ObservableObject {
             .people(withRole: role)
             .map { users in
             users.map { user in
-                UserModel.init(color: .red, //TODO: change color conform role
+                UserModel(color: .red, //TODO: change color conform role
                                imageName: user.imageName,
                                name: user.name, user: user)
             }

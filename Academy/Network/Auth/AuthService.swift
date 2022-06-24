@@ -111,13 +111,6 @@ public final class AuthService {
         self.authenticate(using: credential) { result in
             switch result {
             case .failure(let error):
-                let alertVC = UIAlertController(title: "Ops!", message: error.localizedDescription, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default)
-                alertVC.addAction(okAction)
-                
-                let viewController = UIApplication.shared.windows.first!.rootViewController!
-                viewController.present(alertVC, animated: true, completion: nil)
-                
                 print(error.localizedDescription)
             case .success(let authUser):
                 print("Signed in with Apple id")

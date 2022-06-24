@@ -1,4 +1,6 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
 
 @available(tvOS, unavailable)
 public struct GrowableTextField: View {
@@ -57,3 +59,5 @@ public struct GrowableTextField: View {
             }
     }
 }
+
+#endif

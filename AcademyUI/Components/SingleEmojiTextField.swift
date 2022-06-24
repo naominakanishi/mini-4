@@ -1,3 +1,5 @@
+#if canImport(UIKit)
+import UIKit
 import SwiftUI
 
 public struct SingleEmojiTextField: UIViewRepresentable {
@@ -100,3 +102,4 @@ extension Character {
 
     var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
 }
+#endif

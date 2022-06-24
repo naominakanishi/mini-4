@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 extension StringProtocol {
     
@@ -94,40 +93,6 @@ extension StringProtocol {
 }
 
 extension String {
-    func textHeightFrom(width: CGFloat, font: UIFont) -> CGFloat {
-
-        let text: UILabel = .init()
-        text.text = self
-        text.numberOfLines = 0
-
-        text.font = font
-        text.lineBreakMode = .byWordWrapping
-        return text.sizeThatFits(CGSize(width: width, height: .infinity)).height
-    }
-    
-    func textFitting(lines: Int, width: CGFloat, font: UIFont, suffix: String = "") -> String {
-        let label: UILabel = .init()
-        label.text = self
-        label.numberOfLines = 0
-        
-        var text = "0"
-        
-        for i in 1..<lines {
-            text.append("\n\(i)")
-        }
-        label.text = text
-        let height = label.sizeThatFits(CGSize(width: 40, height: CGFloat.infinity)).height
-
-        label.font = font
-        label.lineBreakMode = .byWordWrapping
-        
-        var copy = self
-        while copy.appending(suffix).textHeightFrom(width: width, font: font) > height {
-            copy = copy.removingLastWord()
-        }
-        return copy
-    }
-    
     func removingLastWord() -> String {
         if let spaceIndex = self.lastIndex(of: " ") {
             let length = self.distance(from: spaceIndex, to: self.endIndex)

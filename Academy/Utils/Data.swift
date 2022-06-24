@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 public extension Data {
     static var emptyJson: Self {
